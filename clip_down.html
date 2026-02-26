@@ -45,8 +45,7 @@
   .badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
   .hero h1{font-size:clamp(3.2rem,9vw,7.5rem);font-weight:900;line-height:1;letter-spacing:-2px;animation:fadeUp .8s .15s ease both;}
-  .hero h1 .word-clip{color:var(--accent);position:relative;}
-  .hero h1 .word-clip::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;}
+  .hero h1 .word-clip{color:var(--accent);}
   .hero h1 .word-down{color:var(--accent2);}
   .hero-sub{margin-top:24px;font-size:clamp(.95rem,2vw,1.15rem);color:var(--muted);line-height:1.9;max-width:540px;animation:fadeUp .8s .3s ease both;}
   .hero-sub strong{color:var(--text);font-weight:600;}
@@ -204,7 +203,7 @@
   <div class="hero-actions">
     <a class="btn-primary" href="#download">⬇ تحميل البرنامج مجاناً</a>
   </div>
-  <div class="hero-version">الإصدار الحالي: <span>v2.4.1</span> · يدعم +50 منصة</div>
+  <div class="hero-version">الإصدار الحالي: <span id="heroVersion">جاري التحميل...</span> · يدعم +50 منصة</div>
 
 </section>
 
@@ -253,12 +252,12 @@
     <h3 style="font-size:clamp(1.4rem,3vw,1.8rem);font-weight:900;margin-bottom:8px;">Clip_Down</h3>
     <p style="color:var(--muted);">الإصدار الأحدث من برنامج تحميل الفيديوهات من كودنا</p>
     <div class="version-info">
-      <div class="v-chip"><span class="label">الإصدار</span><span class="val">v2.4.1</span></div>
+      <div class="v-chip"><span class="label">الإصدار</span><span class="val" id="cardVersion">...</span></div>
       <div class="v-chip"><span class="label">الحجم</span><span class="val">24.8 MB</span></div>
       <div class="v-chip"><span class="label">النظام</span><span class="val">Windows 10/11</span></div>
       <div class="v-chip"><span class="label">الحالة</span><span class="val green">✔ مستقر</span></div>
     </div>
-    <a class="btn-download main" href="YOUR_DIRECT_LINK_HERE" download>
+    <a class="btn-download main" id="downloadBtn" href="YOUR_DIRECT_DOWNLOAD_LINK.exe" download>
       <span>⬇</span> تحميل البرنامج – Windows
     </a>
     <p class="download-note">مجاني تماماً · لا يحتاج تسجيل · يعمل على Windows 10 / 11 · <a href="#updates">ملاحظات الإصدار</a></p>
@@ -319,6 +318,34 @@
     document.getElementById('hamburger').classList.remove('open');
     document.getElementById('mobileNav').classList.remove('open');
   });
+
+  // ── جلب الإصدار تلقائياً من GitHub ──
+  const VERSION_URL = 'https://raw.githubusercontent.com/kodna-iq/Clip_Down/main/version.json';
+
+  async function fetchVersion() {
+    try {
+      const res = await fetch(VERSION_URL + '?t=' + Date.now()); // منع الكاش
+      if (!res.ok) throw new Error('fetch failed');
+      const data = await res.json();
+
+      const ver = 'v' + data.version;
+
+      // تحديث النصوص
+      document.getElementById('heroVersion').textContent = ver;
+      document.getElementById('cardVersion').textContent = ver;
+
+      // تحديث شارة الهيرو
+      const badge = document.querySelector('.hero-badge');
+      if (badge) badge.innerHTML = '<div class="badge-dot"></div> إصدار ' + ver + ' متاح الآن';
+
+    } catch (e) {
+      // في حال الفشل — إظهار قيمة افتراضية
+      document.getElementById('heroVersion').textContent = 'v3.0.0';
+      document.getElementById('cardVersion').textContent = 'v3.0.0';
+    }
+  }
+
+  fetchVersion();
 </script>
 </body>
 </html>
