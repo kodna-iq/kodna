@@ -6,327 +6,254 @@
 <title>كودنا – برامج وأدوات ذكية</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #07090d;
-    --surface: #0e1117;
-    --card: #12151c;
-    --accent: #00e5ff;
-    --accent2: #7c3aed;
-    --accent3: #22d3ee;
-    --green: #4ade80;
-    --orange: #fb923c;
-    --pink: #f472b6;
-    --text: #e8eaf0;
-    --muted: #6b7280;
-    --border: #1a1f2e;
-    --glow-cyan: 0 0 60px rgba(0,229,255,0.12);
-    --glow-purple: 0 0 60px rgba(124,58,237,0.12);
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font-family:'Cairo',sans-serif; overflow-x:hidden; }
+  :root{--bg:#07090d;--surface:#0e1117;--card:#12151c;--accent:#00e5ff;--accent2:#7c3aed;--text:#e8eaf0;--muted:#6b7280;--border:#1a1f2e;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;overflow-x:hidden;}
+  .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px);background-size:70px 70px;animation:gridMove 25s linear infinite;}
+  @keyframes gridMove{to{background-position:70px 70px;}}
+  .blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0;}
+  .blob1{width:600px;height:600px;background:rgba(124,58,237,0.1);top:-200px;left:-150px;animation:bf 14s ease-in-out infinite;}
+  .blob2{width:500px;height:500px;background:rgba(0,229,255,0.07);bottom:-150px;right:-100px;animation:bf 18s ease-in-out infinite reverse;}
+  @keyframes bf{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,30px)}}
+  section{position:relative;z-index:1;}
 
-  /* ── BG EFFECTS ── */
-  .grid-bg {
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
-    background-size:70px 70px;
-    animation:gridMove 25s linear infinite;
-  }
-  @keyframes gridMove { to { background-position:70px 70px; } }
-  .blob { position:fixed; border-radius:50%; filter:blur(140px); pointer-events:none; z-index:0; }
-  .blob1 { width:700px;height:700px;background:rgba(124,58,237,0.1);top:-250px;left:-200px;animation:bf 14s ease-in-out infinite; }
-  .blob2 { width:600px;height:600px;background:rgba(0,229,255,0.07);bottom:-200px;right:-150px;animation:bf 18s ease-in-out infinite reverse; }
-  .blob3 { width:400px;height:400px;background:rgba(74,222,128,0.05);top:50%;left:50%;transform:translate(-50%,-50%);animation:bf 20s ease-in-out infinite; }
-  @keyframes bf { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,40px)} }
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;z-index:1000;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(7,9,13,0.92);backdrop-filter:blur(28px);border-bottom:1px solid var(--border);}
+  .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .brand-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--accent2),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0;box-shadow:0 4px 18px rgba(124,58,237,0.4);}
+  .brand-text{font-family:'Space Mono',monospace;font-size:1.2rem;font-weight:700;color:var(--text);}
+  .brand-text span{color:var(--accent);}
+  .nav-center{display:flex;gap:24px;list-style:none;}
+  .nav-center a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:600;transition:color .2s;}
+  .nav-center a:hover{color:var(--accent);}
+  .nav-actions{display:flex;gap:10px;align-items:center;}
+  .btn-nav{padding:8px 18px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .2s;cursor:pointer;border:none;white-space:nowrap;}
+  .btn-nav.ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+  .btn-nav.ghost:hover{border-color:var(--accent);color:var(--accent);}
+  .btn-nav.fill{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;}
+  .btn-nav.fill:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,0.4);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-nav{display:none;position:fixed;top:67px;left:0;right:0;z-index:999;background:rgba(7,9,13,0.98);backdrop-filter:blur(28px);border-bottom:1px solid var(--border);padding:20px 5%;flex-direction:column;gap:0;}
+  .mobile-nav.open{display:flex;}
+  .mobile-nav a{color:var(--muted);text-decoration:none;font-size:1rem;font-weight:600;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s;}
+  .mobile-nav a:last-child{border-bottom:none;margin-top:12px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;padding:14px 20px;border-radius:10px;text-align:center;}
+  .mobile-nav a:hover{color:var(--accent);}
+  .mobile-nav a:last-child:hover{color:#fff;}
 
-  section { position:relative; z-index:1; }
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 60px;}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.25);border-radius:100px;padding:7px 18px;font-family:'Space Mono',monospace;font-size:.7rem;color:#a78bfa;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;animation:fadeUp .8s ease both;}
+  .eyebrow-dot{width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
+  .hero-title{font-size:clamp(2.6rem,8vw,7rem);font-weight:900;line-height:1.05;letter-spacing:-1px;animation:fadeUp .8s .1s ease both;}
+  .hero-title .k{color:var(--accent);}
+  .hero-title .line2{display:block;font-size:clamp(.95rem,2.8vw,2rem);font-weight:400;color:var(--muted);letter-spacing:0;margin-top:10px;}
+  .hero-desc{margin-top:20px;font-size:clamp(.9rem,2vw,1.05rem);color:var(--muted);line-height:1.9;max-width:540px;animation:fadeUp .8s .2s ease both;}
+  .hero-desc strong{color:var(--text);}
+  .hero-cta{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .3s ease both;}
+  .btn-hero-main{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;font-weight:700;font-size:clamp(.9rem,2vw,1rem);padding:14px 28px;border-radius:14px;text-decoration:none;box-shadow:0 8px 32px rgba(124,58,237,0.35);transition:transform .2s,box-shadow .2s;}
+  .btn-hero-main:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(124,58,237,0.5);}
+  .btn-hero-ghost{display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;color:var(--text);font-weight:600;font-size:clamp(.9rem,2vw,1rem);padding:14px 24px;border-radius:14px;text-decoration:none;border:1px solid var(--border);transition:all .2s;}
+  .btn-hero-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);}
+  .hero-stats{display:flex;gap:32px;margin-top:52px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .45s ease both;}
+  .stat{text-align:center;}
+  .stat-num{font-family:'Space Mono',monospace;font-size:clamp(1.4rem,4vw,2rem);font-weight:700;}
+  .stat-num span{color:var(--accent);}
+  .stat-label{font-size:.78rem;color:var(--muted);margin-top:4px;}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 5%;}
 
-  /* ── NAV ── */
-  nav {
-    position:fixed; top:0; width:100%; z-index:1000;
-    padding:16px 6%;
-    display:flex; align-items:center; justify-content:space-between;
-    background:rgba(7,9,13,0.9); backdrop-filter:blur(28px);
-    border-bottom:1px solid var(--border);
-  }
-  .nav-brand {
-    display:flex; align-items:center; gap:10px;
-    text-decoration:none;
-  }
-  .brand-icon {
-    width:40px;height:40px;
-    background:linear-gradient(135deg,var(--accent2),var(--accent));
-    border-radius:10px; display:flex; align-items:center; justify-content:center;
-    font-size:18px; font-weight:900;
-    box-shadow:0 4px 20px rgba(124,58,237,0.4);
-  }
-  .brand-text { font-family:'Space Mono',monospace; font-size:1.3rem; font-weight:700; color:var(--text); }
-  .brand-text span { color:var(--accent); }
+  /* PROGRAMS */
+  .programs{padding:80px 5%;}
+  .sec-header{margin-bottom:44px;}
+  .sec-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);padding:5px 14px;border:1px solid rgba(0,229,255,0.25);border-radius:100px;background:rgba(0,229,255,0.06);margin-bottom:14px;}
+  .sec-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1px;line-height:1.1;}
+  .sec-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:480px;margin-top:10px;}
+  .programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .prog-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;text-decoration:none;color:inherit;display:block;}
+  .prog-card:not(.dim):hover{transform:translateY(-6px);box-shadow:0 28px 56px rgba(0,0,0,.5);}
+  .prog-card.featured{border-color:rgba(0,229,255,0.25);box-shadow:0 0 50px rgba(0,229,255,0.1);}
+  .prog-card.featured:hover{border-color:rgba(0,229,255,0.5);}
+  .prog-card.dim{opacity:.5;cursor:default;}
+  .prog-card-top{padding:22px 22px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .prog-icon-wrap{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+  .prog-card-badges{display:flex;gap:6px;flex-wrap:wrap;}
+  .badge{font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 9px;border-radius:100px;font-weight:700;}
+  .badge.new{background:rgba(74,222,128,0.12);color:#4ade80;border:1px solid rgba(74,222,128,0.25);}
+  .badge.soon{background:rgba(251,146,60,0.12);color:#fb923c;border:1px solid rgba(251,146,60,0.25);}
+  .badge.beta{background:rgba(244,114,182,0.12);color:#f472b6;border:1px solid rgba(244,114,182,0.25);}
+  .badge.free{background:rgba(0,229,255,0.1);color:var(--accent);border:1px solid rgba(0,229,255,0.2);}
+  .prog-card-body{padding:0 22px 22px;}
+  .prog-name{font-family:'Space Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:8px;}
+  .prog-desc{color:var(--muted);font-size:.83rem;line-height:1.7;}
+  .prog-card-footer{padding:13px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .prog-tags{display:flex;gap:5px;flex-wrap:wrap;}
+  .prog-tag{font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--surface);color:var(--muted);border:1px solid var(--border);}
+  .prog-arrow{color:var(--muted);transition:transform .2s,color .2s;}
+  .prog-card:not(.dim):hover .prog-arrow{transform:translateX(-4px);color:var(--accent);}
 
-  .nav-center { display:flex; gap:28px; list-style:none; }
-  .nav-center a { color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:600; transition:color .2s; }
-  .nav-center a:hover { color:var(--accent); }
+  /* ABOUT */
+  .about{padding:80px 5%;}
+  .about-inner{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:52px 44px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .about-visual{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;}
+  .about-code{font-family:'Space Mono',monospace;font-size:.8rem;line-height:2;color:var(--muted);}
+  .code-line{display:flex;gap:10px;}
+  .code-num{color:rgba(255,255,255,0.1);width:20px;text-align:right;flex-shrink:0;}
+  .c-kw{color:#a78bfa;}.c-fn{color:var(--accent);}.c-str{color:#86efac;}.c-op{color:var(--muted);}.c-cmt{color:rgba(255,255,255,0.2);}.c-num{color:#fb923c;}
+  .cursor{display:inline-block;width:2px;height:1em;background:var(--accent);margin-right:2px;vertical-align:middle;animation:blink 1s step-end infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  .about-list{margin-top:22px;display:flex;flex-direction:column;gap:14px;}
+  .about-item{display:flex;align-items:flex-start;gap:12px;}
+  .about-item-icon{width:34px;height:34px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .about-item-text h4{font-weight:700;font-size:.88rem;margin-bottom:3px;}
+  .about-item-text p{color:var(--muted);font-size:.82rem;line-height:1.6;}
 
-  .nav-actions { display:flex; gap:12px; align-items:center; }
-  .btn-nav {
-    padding:8px 20px; border-radius:8px; font-weight:700; font-size:.85rem;
-    text-decoration:none; transition:all .2s; cursor:pointer; border:none;
-  }
-  .btn-nav.ghost { background:transparent; color:var(--muted); border:1px solid var(--border); }
-  .btn-nav.ghost:hover { border-color:var(--accent); color:var(--accent); }
-  .btn-nav.fill { background:linear-gradient(135deg,var(--accent2),var(--accent)); color:#fff; }
-  .btn-nav.fill:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(124,58,237,0.4); }
+  /* CTA */
+  .cta-section{padding:60px 5%;}
+  .cta-inner{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(0,229,255,0.08));border:1px solid rgba(124,58,237,0.25);border-radius:24px;padding:60px 40px;text-align:center;position:relative;overflow:hidden;}
+  .cta-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,0.07) 0%,transparent 70%);pointer-events:none;}
+  .cta-title{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:900;margin-bottom:14px;}
+  .cta-desc{color:var(--muted);font-size:clamp(.88rem,2vw,1rem);max-width:440px;margin:0 auto 32px;line-height:1.8;}
+  .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 
-  /* ── HERO ── */
-  .hero {
-    min-height:100vh; display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    text-align:center; padding:120px 6% 80px;
-  }
-  .hero-eyebrow {
-    display:inline-flex; align-items:center; gap:8px;
-    background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25);
-    border-radius:100px; padding:7px 20px;
-    font-family:'Space Mono',monospace; font-size:.72rem;
-    color:#a78bfa; letter-spacing:2px; text-transform:uppercase;
-    margin-bottom:32px; animation:fadeUp .8s ease both;
-  }
-  .eyebrow-dot { width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:pulse 2s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(1.5)} }
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);padding:44px 5% 26px;}
+  .footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px;}
+  .footer-brand p{color:var(--muted);font-size:.83rem;line-height:1.7;margin-top:8px;max-width:260px;}
+  .footer-col h5{font-weight:700;font-size:.86rem;margin-bottom:12px;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .footer-col ul li a{color:var(--muted);text-decoration:none;font-size:.83rem;transition:color .2s;}
+  .footer-col ul li a:hover{color:var(--accent);}
+  .footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .footer-copy{color:var(--muted);font-size:.78rem;}
+  .footer-socials{display:flex;gap:8px;}
+  .social-btn{width:32px;height:32px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.85rem;transition:all .2s;}
+  .social-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
 
-  .hero-title {
-    font-size:clamp(3.2rem,9vw,7rem);
-    font-weight:900; line-height:1.05; letter-spacing:-2px;
-    animation:fadeUp .8s .1s ease both;
-  }
-  .hero-title .k { color:var(--accent); }
-  .hero-title .line2 {
-    display:block; font-size:clamp(1.4rem,3.5vw,2.8rem);
-    font-weight:400; color:var(--muted); letter-spacing:0; margin-top:8px;
-  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 
-  .hero-desc {
-    margin-top:24px; font-size:1.1rem; color:var(--muted);
-    line-height:1.9; max-width:580px;
-    animation:fadeUp .8s .2s ease both;
+  /* ══ TABLET 1024 ══ */
+  @media(max-width:1024px){
+    .programs-grid{grid-template-columns:repeat(2,1fr);}
+    .btn-nav.ghost{display:none;}
+    .about-inner{gap:40px;padding:40px 32px;}
+    .footer-top{grid-template-columns:1fr 1fr;gap:28px;}
+    .footer-brand{grid-column:1/-1;}
   }
-  .hero-desc strong { color:var(--text); }
-
-  .hero-cta {
-    display:flex; gap:14px; margin-top:44px; flex-wrap:wrap; justify-content:center;
-    animation:fadeUp .8s .3s ease both;
+  /* ══ TABLET 768 ══ */
+  @media(max-width:768px){
+    .nav-center,.nav-actions{display:none;}
+    .hamburger{display:flex;}
+    .hero{padding:88px 5% 48px;}
+    .hero-stats{gap:20px;}
+    .programs{padding:60px 5%;}
+    .programs-grid{grid-template-columns:repeat(2,1fr);}
+    .about-inner{grid-template-columns:1fr;gap:32px;padding:32px 24px;}
+    .cta-inner{padding:44px 28px;}
+    .footer-top{grid-template-columns:1fr 1fr;}
   }
-  .btn-hero-main {
-    display:flex; align-items:center; gap:10px;
-    background:linear-gradient(135deg,var(--accent2),var(--accent));
-    color:#fff; font-weight:700; font-size:1rem;
-    padding:15px 36px; border-radius:14px; text-decoration:none;
-    box-shadow:0 8px 32px rgba(124,58,237,0.35);
-    transition:transform .2s, box-shadow .2s;
+  /* ══ MOBILE 520 ══ */
+  @media(max-width:520px){
+    nav{padding:12px 4%;}
+    .brand-text{font-size:1.05rem;}
+    .hero{padding:78px 4% 40px;}
+    .hero-eyebrow{font-size:.62rem;padding:6px 12px;}
+    .hero-cta{flex-direction:column;width:100%;max-width:320px;}
+    .hero-stats{gap:14px;}
+    .stat{min-width:70px;}
+    .programs{padding:48px 4%;}
+    .programs-grid{grid-template-columns:1fr;}
+    .prog-card-top{padding:18px 18px 12px;}
+    .prog-card-body{padding:0 18px 18px;}
+    .prog-card-footer{padding:11px 18px;}
+    .about{padding:48px 4%;}
+    .about-inner{padding:22px 16px;}
+    .about-code{font-size:.7rem;line-height:1.8;}
+    .cta-section{padding:40px 4%;}
+    .cta-inner{padding:32px 16px;}
+    .cta-actions{flex-direction:column;align-items:stretch;}
+    footer{padding:36px 4% 22px;}
+    .footer-top{grid-template-columns:1fr;gap:22px;}
+    .footer-brand{grid-column:auto;}
+    .footer-bottom{flex-direction:column;align-items:flex-start;}
   }
-  .btn-hero-main:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(124,58,237,0.5); }
-  .btn-hero-ghost {
-    display:flex; align-items:center; gap:10px;
-    background:transparent; color:var(--text); font-weight:600; font-size:1rem;
-    padding:15px 32px; border-radius:14px; text-decoration:none;
-    border:1px solid var(--border); transition:all .2s;
-  }
-  .btn-hero-ghost:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-3px); }
-
-  .hero-stats {
-    display:flex; gap:48px; margin-top:64px; flex-wrap:wrap; justify-content:center;
-    animation:fadeUp .8s .45s ease both;
-  }
-  .stat { text-align:center; }
-  .stat-num { font-family:'Space Mono',monospace; font-size:2rem; font-weight:700; color:var(--text); }
-  .stat-num span { color:var(--accent); }
-  .stat-label { font-size:.8rem; color:var(--muted); margin-top:4px; }
-
-  /* ── DIVIDER ── */
-  .divider {
-    height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent);
-    margin:0 6%;
+  /* ══ SMALL 360 ══ */
+  @media(max-width:360px){
+    .hero-title{font-size:2.3rem;letter-spacing:-0.5px;}
+    .hero-title .line2{font-size:.85rem;}
+    .brand-text{font-size:.9rem;}
+    .hero-stats{gap:10px;}
+    .stat-num{font-size:1.3rem;}
   }
 
-  /* ── PROGRAMS SECTION ── */
-  .programs { padding:100px 6%; }
-  .sec-header { margin-bottom:56px; }
-  .sec-tag {
-    display:inline-block;
-    font-family:'Space Mono',monospace; font-size:.7rem; letter-spacing:3px; text-transform:uppercase;
-    color:var(--accent); padding:5px 14px; border:1px solid rgba(0,229,255,0.25);
-    border-radius:100px; background:rgba(0,229,255,0.06); margin-bottom:16px;
-  }
-  .sec-title { font-size:clamp(2rem,4.5vw,3rem); font-weight:900; letter-spacing:-1px; line-height:1.1; }
-  .sec-desc { color:var(--muted); font-size:1rem; line-height:1.8; max-width:500px; margin-top:12px; }
-
-  /* PROGRAMS GRID */
-  .programs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:24px; }
-
-  .prog-card {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:20px; overflow:hidden;
-    transition:transform .3s, border-color .3s, box-shadow .3s;
-    cursor:pointer; text-decoration:none; color:inherit;
-    display:block;
-  }
-  .prog-card:hover { transform:translateY(-8px); box-shadow:0 32px 64px rgba(0,0,0,.5); }
-  .prog-card.featured { border-color:rgba(0,229,255,0.25); box-shadow:var(--glow-cyan); }
-  .prog-card.featured:hover { border-color:rgba(0,229,255,0.5); box-shadow:0 32px 64px rgba(0,0,0,.5), 0 0 80px rgba(0,229,255,0.1); }
-
-  .prog-card-top {
-    padding:28px 28px 20px;
-    display:flex; align-items:flex-start; justify-content:space-between;
-    gap:16px;
-  }
-  .prog-icon-wrap {
-    width:56px;height:56px; border-radius:14px;
+  /* ══ TELEGRAM MODAL ══ */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:9999;
+    background:rgba(0,0,0,0.75);backdrop-filter:blur(12px);
     display:flex;align-items:center;justify-content:center;
-    font-size:24px; flex-shrink:0;
+    padding:20px;opacity:0;pointer-events:none;
+    transition:opacity .3s ease;
   }
-  .prog-card-badges { display:flex; gap:8px; flex-wrap:wrap; align-items:flex-start; }
-  .badge {
-    font-family:'Space Mono',monospace; font-size:.65rem;
-    padding:3px 10px; border-radius:100px; font-weight:700;
+  .modal-overlay.active{opacity:1;pointer-events:all;}
+  .modal-box{
+    background:#12151c;border:1px solid rgba(0,229,255,0.2);
+    border-radius:24px;padding:40px 36px;max-width:440px;width:100%;
+    position:relative;text-align:center;
+    box-shadow:0 40px 80px rgba(0,0,0,.7), 0 0 60px rgba(0,229,255,0.1);
+    transform:translateY(30px) scale(0.96);
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1);
   }
-  .badge.new { background:rgba(74,222,128,0.12);color:#4ade80;border:1px solid rgba(74,222,128,0.25); }
-  .badge.soon { background:rgba(251,146,60,0.12);color:#fb923c;border:1px solid rgba(251,146,60,0.25); }
-  .badge.beta { background:rgba(244,114,182,0.12);color:#f472b6;border:1px solid rgba(244,114,182,0.25); }
-  .badge.free { background:rgba(0,229,255,0.1);color:var(--accent);border:1px solid rgba(0,229,255,0.2); }
-
-  .prog-card-body { padding:0 28px 28px; }
-  .prog-name { font-family:'Space Mono',monospace; font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:8px; }
-  .prog-desc { color:var(--muted); font-size:.875rem; line-height:1.7; }
-
-  .prog-card-footer {
-    padding:16px 28px; border-top:1px solid var(--border);
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .prog-tags { display:flex; gap:8px; flex-wrap:wrap; }
-  .prog-tag {
-    font-size:.75rem; padding:3px 10px; border-radius:6px;
-    background:var(--surface); color:var(--muted);
-    border:1px solid var(--border);
-  }
-  .prog-arrow { color:var(--muted); font-size:1rem; transition:transform .2s, color .2s; }
-  .prog-card:hover .prog-arrow { transform:translateX(-6px); color:var(--accent); }
-
-  /* COMING SOON CARD */
-  .prog-card.dim { opacity:.55; pointer-events:none; }
-
-  /* ── ABOUT ── */
-  .about { padding:100px 6%; }
-  .about-inner {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:28px; padding:72px 56px;
-    display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center;
-  }
-  .about-visual {
-    background:var(--surface); border:1px solid var(--border);
-    border-radius:20px; padding:36px;
-  }
-  .about-code {
-    font-family:'Space Mono',monospace; font-size:.85rem; line-height:2;
-    color:var(--muted);
-  }
-  .code-line { display:flex; gap:12px; }
-  .code-num { color:rgba(255,255,255,0.1); width:24px; text-align:right; flex-shrink:0; }
-  .c-kw { color:#a78bfa; }
-  .c-fn { color:var(--accent); }
-  .c-str { color:#86efac; }
-  .c-op { color:var(--muted); }
-  .c-cmt { color:rgba(255,255,255,0.2); }
-  .c-num { color:#fb923c; }
-  .cursor {
-    display:inline-block; width:2px; height:1em;
-    background:var(--accent); margin-right:2px; vertical-align:middle;
-    animation:blink 1s step-end infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-  .about-content {}
-  .about-list { margin-top:28px; display:flex; flex-direction:column; gap:16px; }
-  .about-item { display:flex; align-items:flex-start; gap:14px; }
-  .about-item-icon {
-    width:36px;height:36px; border-radius:8px; flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;font-size:16px;
-  }
-  .about-item-text h4 { font-weight:700; font-size:.95rem; margin-bottom:4px; }
-  .about-item-text p { color:var(--muted); font-size:.85rem; line-height:1.6; }
-
-  /* ── NEWSLETTER / CTA ── */
-  .cta-section { padding:80px 6%; }
-  .cta-inner {
-    background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(0,229,255,0.08));
-    border:1px solid rgba(124,58,237,0.25);
-    border-radius:28px; padding:72px 56px; text-align:center;
-    position:relative; overflow:hidden;
-  }
-  .cta-inner::before {
-    content:''; position:absolute; inset:0;
-    background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,0.07) 0%,transparent 70%);
-    pointer-events:none;
-  }
-  .cta-title { font-size:clamp(1.8rem,4vw,3rem); font-weight:900; margin-bottom:16px; }
-  .cta-desc { color:var(--muted); font-size:1rem; max-width:480px; margin:0 auto 40px; line-height:1.8; }
-  .cta-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top:1px solid var(--border);
-    padding:48px 6% 32px;
-  }
-  .footer-top { display:flex; gap:60px; flex-wrap:wrap; margin-bottom:48px; }
-  .footer-brand { flex:1.5; min-width:240px; }
-  .footer-brand .brand-text { font-size:1.4rem; margin-bottom:12px; }
-  .footer-brand p { color:var(--muted); font-size:.875rem; line-height:1.7; max-width:300px; margin-top:8px; }
-  .footer-col { flex:1; min-width:140px; }
-  .footer-col h5 { font-weight:700; font-size:.9rem; margin-bottom:16px; color:var(--text); }
-  .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
-  .footer-col ul li a { color:var(--muted); text-decoration:none; font-size:.875rem; transition:color .2s; }
-  .footer-col ul li a:hover { color:var(--accent); }
-  .footer-bottom {
-    border-top:1px solid var(--border); padding-top:24px;
-    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
-  }
-  .footer-copy { color:var(--muted); font-size:.8rem; }
-  .footer-socials { display:flex; gap:12px; }
-  .social-btn {
-    width:36px;height:36px; border-radius:8px;
-    background:var(--surface); border:1px solid var(--border);
+  .modal-overlay.active .modal-box{transform:translateY(0) scale(1);}
+  .modal-close{
+    position:absolute;top:16px;left:16px;
+    width:32px;height:32px;border-radius:8px;
+    background:rgba(255,255,255,0.06);border:1px solid var(--border);
+    color:var(--muted);cursor:pointer;font-size:1rem;
     display:flex;align-items:center;justify-content:center;
-    color:var(--muted); text-decoration:none; font-size:1rem;
     transition:all .2s;
   }
-  .social-btn:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
-
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(28px); }
-    to   { opacity:1; transform:translateY(0); }
+  .modal-close:hover{background:rgba(255,255,255,0.12);color:var(--text);}
+  .tg-icon-wrap{
+    width:72px;height:72px;border-radius:20px;margin:0 auto 20px;
+    background:linear-gradient(135deg,#0088cc,#00aaff);
+    display:flex;align-items:center;justify-content:center;
+    font-size:32px;box-shadow:0 8px 32px rgba(0,136,204,0.4);
   }
-
-  @media(max-width:900px) {
-    .nav-center, .nav-actions { display:none; }
-    .about-inner { grid-template-columns:1fr; padding:36px 28px; gap:36px; }
-    .cta-inner { padding:48px 28px; }
-    .footer-top { gap:32px; }
+  .modal-title{font-size:1.4rem;font-weight:900;margin-bottom:8px;}
+  .modal-desc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:28px;}
+  .modal-desc span{color:var(--text);font-weight:600;}
+  .btn-tg-main{
+    display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+    background:linear-gradient(135deg,#0088cc,#00aaff);
+    color:#fff;font-weight:700;font-size:1rem;font-family:'Cairo',sans-serif;
+    padding:15px 28px;border-radius:13px;text-decoration:none;
+    box-shadow:0 8px 28px rgba(0,136,204,0.35);
+    transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;
   }
-  @media(max-width:600px) {
-    .programs-grid { grid-template-columns:1fr; }
-    .hero-stats { gap:28px; }
+  .btn-tg-main:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,136,204,0.5);}
+  .modal-note{margin-top:16px;font-size:.78rem;color:var(--muted);}
+  .modal-note a{color:var(--accent);text-decoration:none;}
+  .modal-divider{height:1px;background:var(--border);margin:20px 0;}
+  .modal-alt{display:flex;flex-direction:column;gap:10px;}
+  .modal-alt-title{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:4px;}
+  .btn-tg-alt{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:transparent;color:var(--text);font-weight:600;font-size:.88rem;font-family:'Cairo',sans-serif;
+    padding:12px 20px;border-radius:10px;text-decoration:none;
+    border:1px solid var(--border);transition:all .2s;cursor:pointer;
   }
+  .btn-tg-alt:hover{border-color:rgba(0,136,204,0.5);color:#00aaff;transform:translateY(-2px);}
 </style>
 </head>
 <body>
 <div class="grid-bg"></div>
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
-<div class="blob blob3"></div>
 
-<!-- NAV -->
 <nav>
   <a class="nav-brand" href="index.html">
     <div class="brand-icon">ك</div>
@@ -341,262 +268,138 @@
     <a class="btn-nav ghost" href="#programs">استكشف البرامج</a>
     <a class="btn-nav fill" href="clip_down.html">Clip_Down ↗</a>
   </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#programs" onclick="toggleMenu()">📦 البرامج</a>
+  <a href="#about" onclick="toggleMenu()">👥 من نحن</a>
+  <a href="#contact" onclick="toggleMenu()">📬 تواصل</a>
+  <a href="clip_down.html">⬇ Clip_Down</a>
+</div>
+
 <section class="hero">
   <div class="hero-eyebrow"><div class="eyebrow-dot"></div>مرحباً بك في كودنا</div>
   <h1 class="hero-title">
     <span class="k">كودنا</span>
     <span class="line2">برامج ذكية · أدوات عملية · تصميم احترافي</span>
   </h1>
-  <p class="hero-desc">
-    نبني برامج تُسهّل حياتك الرقمية.<br>
-    من تحميل الفيديوهات إلى أدوات التصميم والبرمجة —<br>
-    <strong>كل شيء في مكان واحد.</strong>
-  </p>
+  <p class="hero-desc">نبني برامج تُسهّل حياتك الرقمية.<br>من تحميل الفيديوهات إلى أدوات التصميم —<br><strong>كل شيء في مكان واحد.</strong></p>
   <div class="hero-cta">
     <a class="btn-hero-main" href="#programs">🚀 استكشف البرامج</a>
     <a class="btn-hero-ghost" href="#about">تعرّف علينا ←</a>
   </div>
   <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">+<span>10</span></div>
-      <div class="stat-label">برنامج ومشروع</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num"><span>50</span>+</div>
-      <div class="stat-label">منصة مدعومة</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num"><span>100</span>%</div>
-      <div class="stat-label">مجاني وبلا تسجيل</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num"><span>∞</span></div>
-      <div class="stat-label">تحديثات مستمرة</div>
-    </div>
+    <div class="stat"><div class="stat-num">+<span>10</span></div><div class="stat-label">برنامج ومشروع</div></div>
+    <div class="stat"><div class="stat-num"><span>50</span>+</div><div class="stat-label">منصة مدعومة</div></div>
+    <div class="stat"><div class="stat-num"><span>100</span>%</div><div class="stat-label">مجاني</div></div>
+    <div class="stat"><div class="stat-num"><span>∞</span></div><div class="stat-label">تحديثات</div></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- PROGRAMS -->
 <section class="programs" id="programs">
   <div class="sec-header">
     <div class="sec-tag">برامجنا</div>
     <h2 class="sec-title">أدواتنا لك — مجاناً</h2>
-    <p class="sec-desc">مجموعة متكاملة من البرامج العملية نطوّرها باستمرار لتلبية احتياجاتك الرقمية.</p>
+    <p class="sec-desc">مجموعة متكاملة من البرامج العملية نطوّرها باستمرار.</p>
   </div>
-
   <div class="programs-grid">
-
-    <!-- Clip_Down - FEATURED -->
     <a class="prog-card featured" href="clip_down.html">
       <div class="prog-card-top">
         <div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(34,211,238,0.1));border:1px solid rgba(0,229,255,0.2);">⬇️</div>
-        <div class="prog-card-badges">
-          <span class="badge new">جديد</span>
-          <span class="badge free">مجاني</span>
-        </div>
+        <div class="prog-card-badges"><span class="badge new">جديد</span><span class="badge free">مجاني</span></div>
       </div>
-      <div class="prog-card-body">
-        <div class="prog-name">Clip_Down</div>
-        <div class="prog-desc">حمّل الفيديوهات من يوتيوب وإنستغرام وتيك توك وأكثر من 50 موقع بجودة عالية وبضغطة واحدة.</div>
-      </div>
-      <div class="prog-card-footer">
-        <div class="prog-tags">
-          <span class="prog-tag">Windows</span>
-          <span class="prog-tag">v2.4.1</span>
-          <span class="prog-tag">+50 منصة</span>
-        </div>
-        <span class="prog-arrow">←</span>
-      </div>
+      <div class="prog-card-body"><div class="prog-name">Clip_Down</div><div class="prog-desc">حمّل الفيديوهات من يوتيوب وإنستغرام وتيك توك وأكثر من 50 موقع بجودة عالية.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">Windows</span><span class="prog-tag">v2.4.1</span></div><span class="prog-arrow">←</span></div>
     </a>
-
-    <!-- Program 2 - Coming Soon -->
     <div class="prog-card dim">
-      <div class="prog-card-top">
-        <div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(167,139,250,0.1));border:1px solid rgba(124,58,237,0.2);">🎨</div>
-        <div class="prog-card-badges">
-          <span class="badge soon">قريباً</span>
-        </div>
-      </div>
-      <div class="prog-card-body">
-        <div class="prog-name">PixelKit</div>
-        <div class="prog-desc">أداة تصميم وتعديل صور سريعة وبسيطة للاستخدام اليومي دون الحاجة لبرامج ضخمة.</div>
-      </div>
-      <div class="prog-card-footer">
-        <div class="prog-tags">
-          <span class="prog-tag">تصميم</span>
-          <span class="prog-tag">صور</span>
-        </div>
-        <span class="prog-arrow">🔒</span>
-      </div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(167,139,250,0.1));border:1px solid rgba(124,58,237,0.2);">🎨</div><div class="prog-card-badges"><span class="badge soon">قريباً</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">PixelKit</div><div class="prog-desc">أداة تصميم وتعديل صور سريعة وبسيطة دون الحاجة لبرامج ضخمة.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">تصميم</span></div><span class="prog-arrow">🔒</span></div>
     </div>
-
-    <!-- Program 3 - Coming Soon -->
     <div class="prog-card dim">
-      <div class="prog-card-top">
-        <div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(74,222,128,0.15),rgba(52,211,153,0.1));border:1px solid rgba(74,222,128,0.2);">📁</div>
-        <div class="prog-card-badges">
-          <span class="badge soon">قريباً</span>
-        </div>
-      </div>
-      <div class="prog-card-body">
-        <div class="prog-name">FileFlow</div>
-        <div class="prog-desc">مدير ملفات ذكي يُنظّم مجلداتك تلقائياً ويساعدك على إيجاد أي ملف بسرعة.</div>
-      </div>
-      <div class="prog-card-footer">
-        <div class="prog-tags">
-          <span class="prog-tag">إدارة</span>
-          <span class="prog-tag">ملفات</span>
-        </div>
-        <span class="prog-arrow">🔒</span>
-      </div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(74,222,128,0.15),rgba(52,211,153,0.1));border:1px solid rgba(74,222,128,0.2);">📁</div><div class="prog-card-badges"><span class="badge soon">قريباً</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">FileFlow</div><div class="prog-desc">مدير ملفات ذكي يُنظّم مجلداتك تلقائياً ويساعدك على إيجاد أي ملف بسرعة.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">ملفات</span></div><span class="prog-arrow">🔒</span></div>
     </div>
-
-    <!-- Program 4 - Coming Soon -->
     <div class="prog-card dim">
-      <div class="prog-card-top">
-        <div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(251,146,60,0.15),rgba(251,191,36,0.1));border:1px solid rgba(251,146,60,0.2);">⚡</div>
-        <div class="prog-card-badges">
-          <span class="badge beta">قيد التطوير</span>
-        </div>
-      </div>
-      <div class="prog-card-body">
-        <div class="prog-name">SpeedBoost</div>
-        <div class="prog-desc">أداة لتحسين أداء جهازك وتنظيفه من الملفات المؤقتة وتسريع الإقلاع.</div>
-      </div>
-      <div class="prog-card-footer">
-        <div class="prog-tags">
-          <span class="prog-tag">أداء</span>
-          <span class="prog-tag">تنظيف</span>
-        </div>
-        <span class="prog-arrow">🔒</span>
-      </div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(251,146,60,0.15),rgba(251,191,36,0.1));border:1px solid rgba(251,146,60,0.2);">⚡</div><div class="prog-card-badges"><span class="badge beta">قيد التطوير</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">SpeedBoost</div><div class="prog-desc">أداة لتحسين أداء جهازك وتنظيفه من الملفات المؤقتة.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">أداء</span></div><span class="prog-arrow">🔒</span></div>
     </div>
-
-    <!-- Program 5 - Coming Soon -->
     <div class="prog-card dim">
-      <div class="prog-card-top">
-        <div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(236,72,153,0.1));border:1px solid rgba(244,114,182,0.2);">🔒</div>
-        <div class="prog-card-badges">
-          <span class="badge soon">قريباً</span>
-        </div>
-      </div>
-      <div class="prog-card-body">
-        <div class="prog-name">SafeLock</div>
-        <div class="prog-desc">حماية ملفاتك الشخصية بتشفير قوي وكلمة مرور آمنة بدون تعقيد.</div>
-      </div>
-      <div class="prog-card-footer">
-        <div class="prog-tags">
-          <span class="prog-tag">أمان</span>
-          <span class="prog-tag">تشفير</span>
-        </div>
-        <span class="prog-arrow">🔒</span>
-      </div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(236,72,153,0.1));border:1px solid rgba(244,114,182,0.2);">🔒</div><div class="prog-card-badges"><span class="badge soon">قريباً</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">SafeLock</div><div class="prog-desc">حماية ملفاتك بتشفير قوي وكلمة مرور آمنة.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">أمان</span></div><span class="prog-arrow">🔒</span></div>
     </div>
-
-    <!-- Program 6 - Coming Soon -->
     <div class="prog-card dim">
-      <div class="prog-card-top">
-        <div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1));border:1px solid rgba(99,102,241,0.2);">📝</div>
-        <div class="prog-card-badges">
-          <span class="badge soon">قريباً</span>
-        </div>
-      </div>
-      <div class="prog-card-body">
-        <div class="prog-name">NoteStack</div>
-        <div class="prog-desc">تطبيق ملاحظات خفيف وسريع يحفظ أفكارك ويزامنها عبر أجهزتك.</div>
-      </div>
-      <div class="prog-card-footer">
-        <div class="prog-tags">
-          <span class="prog-tag">ملاحظات</span>
-          <span class="prog-tag">إنتاجية</span>
-        </div>
-        <span class="prog-arrow">🔒</span>
-      </div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1));border:1px solid rgba(99,102,241,0.2);">📝</div><div class="prog-card-badges"><span class="badge soon">قريباً</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">NoteStack</div><div class="prog-desc">تطبيق ملاحظات خفيف يحفظ أفكارك ويزامنها عبر أجهزتك.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">ملاحظات</span></div><span class="prog-arrow">🔒</span></div>
     </div>
-
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-inner">
     <div class="about-visual">
       <div class="about-code">
-        <div class="code-line"><span class="code-num">1</span><span><span class="c-cmt">// كودنا – فلسفتنا</span></span></div>
+        <div class="code-line"><span class="code-num">1</span><span class="c-cmt">// كودنا – فلسفتنا</span></div>
         <div class="code-line"><span class="code-num">2</span><span></span></div>
         <div class="code-line"><span class="code-num">3</span><span><span class="c-kw">const</span> <span class="c-fn">kodna</span> = {</span></div>
-        <div class="code-line"><span class="code-num">4</span><span>&nbsp;&nbsp;<span class="c-fn">mission</span>: <span class="c-str">"تبسيط التقنية للجميع"</span>,</span></div>
+        <div class="code-line"><span class="code-num">4</span><span>&nbsp;&nbsp;<span class="c-fn">mission</span>: <span class="c-str">"تبسيط التقنية"</span>,</span></div>
         <div class="code-line"><span class="code-num">5</span><span>&nbsp;&nbsp;<span class="c-fn">values</span>: [</span></div>
         <div class="code-line"><span class="code-num">6</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"مجاني دائماً"</span>,</span></div>
         <div class="code-line"><span class="code-num">7</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"بسيط وفعّال"</span>,</span></div>
         <div class="code-line"><span class="code-num">8</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"تحديثات مستمرة"</span></span></div>
         <div class="code-line"><span class="code-num">9</span><span>&nbsp;&nbsp;],</span></div>
-        <div class="code-line"><span class="code-num">10</span><span>&nbsp;&nbsp;<span class="c-fn">programs</span>: <span class="c-num">10</span><span class="c-op">+</span>,</span></div>
-        <div class="code-line"><span class="code-num">11</span><span>&nbsp;&nbsp;<span class="c-fn">users</span>: <span class="c-str">"growing"</span> <span class="c-op">✓</span></span></div>
-        <div class="code-line"><span class="code-num">12</span><span>};</span></div>
-        <div class="code-line"><span class="code-num">13</span><span></span></div>
-        <div class="code-line"><span class="code-num">14</span><span><span class="c-cmt">// نبني بشغف كل يوم</span><span class="cursor"></span></span></div>
+        <div class="code-line"><span class="code-num">10</span><span>&nbsp;&nbsp;<span class="c-fn">programs</span>: <span class="c-num">10</span><span class="c-op">+</span></span></div>
+        <div class="code-line"><span class="code-num">11</span><span>};<span class="cursor"></span></span></div>
       </div>
     </div>
-    <div class="about-content">
+    <div>
       <div class="sec-tag">من نحن</div>
       <h2 class="sec-title" style="margin-top:12px;">نبني أدوات<br>تُحدث فرقاً</h2>
-      <p class="sec-desc" style="max-width:100%;margin-top:12px;">كودنا مشروع عربي متخصص في بناء برامج عملية وأدوات رقمية مجانية تُسهّل حياة المستخدم العربي وتوفّر له بدائل احترافية بلا تعقيد.</p>
+      <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-top:12px;">كودنا مشروع عربي متخصص في بناء برامج عملية مجانية تُسهّل حياة المستخدم العربي.</p>
       <div class="about-list">
         <div class="about-item">
           <div class="about-item-icon" style="background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2);">⚡</div>
-          <div class="about-item-text">
-            <h4>سرعة وكفاءة</h4>
-            <p>برامجنا خفيفة وسريعة لا تُثقل جهازك وتؤدي وظيفتها بأقل موارد ممكنة.</p>
-          </div>
+          <div class="about-item-text"><h4>سرعة وكفاءة</h4><p>برامجنا خفيفة لا تُثقل جهازك وتؤدي وظيفتها بأقل موارد.</p></div>
         </div>
         <div class="about-item">
           <div class="about-item-icon" style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);">🎯</div>
-          <div class="about-item-text">
-            <h4>تصميم موجّه للمستخدم</h4>
-            <p>نُصمّم كل تفصيلة مع مراعاة تجربة المستخدم العربي وسهولة الاستخدام.</p>
-          </div>
+          <div class="about-item-text"><h4>موجّه للمستخدم</h4><p>نُصمّم كل تفصيلة مع مراعاة تجربة المستخدم العربي.</p></div>
         </div>
         <div class="about-item">
           <div class="about-item-icon" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);">🔄</div>
-          <div class="about-item-text">
-            <h4>تطوير مستمر</h4>
-            <p>نُصدر تحديثات دورية بناءً على ملاحظاتكم ونضيف برامج جديدة باستمرار.</p>
-          </div>
+          <div class="about-item-text"><h4>تطوير مستمر</h4><p>نُصدر تحديثات دورية ونضيف برامج جديدة باستمرار.</p></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="cta-inner">
     <h2 class="cta-title">هل لديك اقتراح<br>لبرنامج جديد؟</h2>
     <p class="cta-desc">نحن نسمعك! أخبرنا بما تحتاجه وسنعمل على بنائه ضمن مجموعة كودنا.</p>
     <div class="cta-actions">
-      <a class="btn-hero-main" href="clip_down.html">
-        ⬇ جرّب Clip_Down الآن
-      </a>
-      <a class="btn-hero-ghost" href="mailto:contact@kodna.com">
-        📬 راسلنا
-      </a>
+      <a class="btn-hero-main" href="clip_down.html">⬇ جرّب Clip_Down الآن</a>
+      <a class="btn-hero-ghost" href="/cdn-cgi/l/email-protection#10737f7e64717364507b7f747e713e737f7d">📬 راسلنا</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="nav-brand" style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div class="brand-icon">ك</div>
         <span class="brand-text">كودنا<span>.</span></span>
       </div>
@@ -608,7 +411,6 @@
         <li><a href="clip_down.html">Clip_Down</a></li>
         <li><a href="#">PixelKit (قريباً)</a></li>
         <li><a href="#">FileFlow (قريباً)</a></li>
-        <li><a href="#">SpeedBoost (قريباً)</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -616,7 +418,7 @@
       <ul>
         <li><a href="#about">من نحن</a></li>
         <li><a href="#programs">البرامج</a></li>
-        <li><a href="#contact">تواصل معنا</a></li>
+        <li><a href="#contact">تواصل</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -631,12 +433,56 @@
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 كودنا – جميع الحقوق محفوظة · صُنع بكل ❤️</span>
     <div class="footer-socials">
-      <a class="social-btn" href="#" title="تويتر">𝕏</a>
-      <a class="social-btn" href="#" title="تيليغرام">✈</a>
-      <a class="social-btn" href="#" title="يوتيوب">▶</a>
+      <a class="social-btn" href="#">𝕏</a>
+      <a class="social-btn" href="#">✈</a>
+      <a class="social-btn" href="#">▶</a>
     </div>
   </div>
 </footer>
 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function toggleMenu(){
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+  window.addEventListener('scroll',()=>{
+    document.getEl
+<!-- TELEGRAM MODAL -->
+<div class="modal-overlay" id="tgModal" onclick="closeTgModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeTgModal()">✕</button>
+    <div class="tg-icon-wrap">✈️</div>
+    <h3 class="modal-title">تواصل معنا عبر تيليغرام</h3>
+    <p class="modal-desc">فريق <span>كودنا</span> جاهز للرد على استفساراتك،<br>اقتراحاتك، وطلبات الدعم الفني.</p>
+    <a class="btn-tg-main" href="https://t.me/YOUR_TELEGRAM_USERNAME" target="_blank" rel="noopener">✈️&nbsp; فتح تيليغرام الآن</a>
+    <p class="modal-note">سيتم فتح تيليغرام مباشرة · يمكنك البحث عن <a href="https://t.me/YOUR_TELEGRAM_USERNAME" target="_blank">@YOUR_USERNAME</a></p>
+    <div class="modal-divider"></div>
+    <div class="modal-alt">
+      <div class="modal-alt-title">أو انضم لقناة كودنا</div>
+      <a class="btn-tg-alt" href="https://t.me/YOUR_CHANNEL" target="_blank" rel="noopener">📢&nbsp; قناة كودنا – أخبار وتحديثات</a>
+    </div>
+  </div>
+</div>
+<script>
+  function toggleMenu(){
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+  window.addEventListener('scroll',()=>{
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileNav').classList.remove('open');
+  });
+  function openTgModal(){
+    document.getElementById('tgModal').classList.add('active');
+    document.body.style.overflow='hidden';
+  }
+  function closeTgModal(e){
+    if(!e || e.target===document.getElementById('tgModal') || (e.currentTarget && e.currentTarget.classList.contains('modal-close'))){
+      document.getElementById('tgModal').classList.remove('active');
+      document.body.style.overflow='';
+    }
+  }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTgModal({target:document.getElementById('tgModal')});});
+<\/script>
 </body>
 </html>
