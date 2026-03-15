@@ -139,14 +139,7 @@ nav {
 }
 .nav-links a:hover { color:var(--accent); }
 .nav-right { display:flex; align-items:center; gap:10px; flex-shrink:0; }
-.btn-nav-gh {
-  display:flex; align-items:center; gap:7px;
-  padding:8px 16px; border-radius:8px;
-  background:var(--surface); border:1px solid var(--border);
-  color:var(--muted); font-size:.82rem; font-weight:600;
-  transition:all .2s;
-}
-.btn-nav-gh:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
+
 .btn-nav-dl {
   display:flex; align-items:center; gap:7px;
   padding:8px 16px; border-radius:8px;
@@ -284,14 +277,7 @@ html[dir="rtl"] .hero-title .down::after { left:auto; right:0; }
   box-shadow:0 8px 32px rgba(0,229,255,.28); transition:all .25s;
 }
 .btn-hero-dl:hover { transform:translateY(-3px); box-shadow:0 14px 42px rgba(0,229,255,.42); }
-.btn-hero-gh {
-  display:flex; align-items:center; gap:8px;
-  background:transparent; color:var(--muted);
-  font-weight:600; font-size:clamp(.88rem,1.8vw,.95rem);
-  padding:15px 22px; border-radius:var(--r); border:1px solid var(--border);
-  transition:all .25s;
-}
-.btn-hero-gh:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-3px); }
+
 .hero-version {
   margin-top:18px; font-family:'Space Mono', monospace; font-size:.73rem;
   color:var(--muted); animation:fadeUp .8s .48s ease both;
@@ -941,9 +927,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
         <button class="lang-item" onclick="setLang('ru')" data-lang="ru" role="menuitem">🇷🇺 Русский</button>
       </div>
     </div>
-    <a href="https://github.com/kodna-iq/urdown" target="_blank" rel="noopener noreferrer" class="btn-nav-gh" aria-label="GitHub Repository">
-      GitHub
-    </a>
+
     <a href="#download" class="btn-nav-dl" data-i18n="nav_download">
       <i class="fa-solid fa-download"></i> <span data-i18n="nav_download">Download</span>
     </a>
@@ -957,7 +941,6 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
   <a href="#features" onclick="toggleMenu()" data-i18n="nav_features">Features</a>
   <a href="#download" onclick="toggleMenu()" data-i18n="nav_download">Download</a>
   <a href="#whats-new" onclick="toggleMenu()" data-i18n="nav_changelog">What's New</a>
-  <a href="https://github.com/kodna-iq/urdown" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
 </div>
 
 <!-- ══════════════ HERO ══════════════ -->
@@ -989,10 +972,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
         <i class="fa-solid fa-download" aria-hidden="true"></i>
         <span data-i18n="btn_windows">Download for Windows</span>
       </a>
-      <a href="https://github.com/kodna-iq/urdown" target="_blank" rel="noopener noreferrer" class="btn-hero-gh">
-        <i class="fa-brands fa-github" aria-hidden="true"></i>
-        GitHub
-      </a>
+
     </div>
     <p class="hero-version">
       <span data-i18n="version_label">Latest Version</span>:&nbsp;<span id="heroVersion" style="color:var(--accent)">...</span>
@@ -1078,7 +1058,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
         <div class="platform-name">Windows</div>
         <div class="platform-desc" data-i18n="windows_only">Windows 10/11 · 64-bit</div>
         <button id="winBtn" class="btn-platform active-btn"
-           onclick="startDownload(window._winDownloadUrl || '')"
+           onclick="startDownload(window._winDownloadUrl)"
            aria-label="Download UrDown for Windows">
           <i class="fa-solid fa-download" aria-hidden="true"></i>
           <span data-i18n="btn_windows">Download for Windows</span>
@@ -1147,7 +1127,6 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
 
     <p class="download-note-text reveal">
       <span data-i18n="free_note">Free forever · No registration · Open source</span>
-      &nbsp;·&nbsp; <a href="https://github.com/kodna-iq/urdown/releases" target="_blank" rel="noopener noreferrer" data-i18n="view_releases">All Releases</a>
     </p>
   </div>
 </section>
@@ -1173,14 +1152,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
               <span data-i18n="whats_new_loading">Fetching release notes...</span>
             </div>
           </div>
-          <div class="release-links">
-            <a href="https://github.com/kodna-iq/urdown/releases" target="_blank" rel="noopener noreferrer" class="rel-link" data-i18n="view_releases">
-              <i class="fa-brands fa-github"></i> All Releases
-            </a>
-            <a href="https://github.com/kodna-iq/urdown" target="_blank" rel="noopener noreferrer" class="rel-link" data-i18n="view_github">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> View on GitHub
-            </a>
-          </div>
+
         </div>
       </div>
 
@@ -1274,9 +1246,9 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       <!-- Tab: Dashboard — exact UI from DashboardPage.dart -->
       <div class="gallery-panel active" id="tab-download">
         <div style="display:flex;height:340px;overflow:hidden;">
-          <div style="flex:1;overflow-y:auto;padding:22px 22px 10px;background:#07090d;">
-            <div style="font-size:1.4rem;font-weight:800;color:#e8eaf0;margin-bottom:3px;">Dashboard</div>
-            <div style="font-size:.8rem;color:#6b7280;margin-bottom:18px;">Manage your downloads</div>
+          <div style="flex:1;overflow:hidden;padding:16px 18px 10px;background:#07090d;">
+            <div style="font-size:1.1rem;font-weight:800;color:#e8eaf0;margin-bottom:2px;">Dashboard</div>
+            <div style="font-size:.8rem;color:#6b7280;margin-bottom:12px;">Manage your downloads</div>
             <!-- Stats row -->
             <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
               <div style="background:#12151c;border:1px solid rgba(0,229,255,0.15);border-radius:12px;padding:14px;">
@@ -1301,7 +1273,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
               </div>
             </div>
             <!-- URL input box -->
-            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:12px;padding:16px;">
+            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:10px;padding:12px;">
               <div style="font-size:.85rem;font-weight:600;color:#e8eaf0;margin-bottom:3px;">Download a Video</div>
               <div style="font-size:.72rem;color:#6b7280;margin-bottom:12px;">Paste a URL to start downloading</div>
               <div style="display:flex;gap:10px;">
@@ -1321,7 +1293,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       <!-- Tab: Queue — exact DownloadCard.dart UI -->
       <div class="gallery-panel" id="tab-queue">
         <div style="display:flex;height:340px;overflow:hidden;">
-          <div style="flex:1;overflow-y:auto;padding:18px;background:#07090d;display:flex;flex-direction:column;gap:8px;">
+          <div style="flex:1;overflow:hidden;padding:14px;background:#07090d;display:flex;flex-direction:column;gap:7px;">
             <div style="font-size:1.1rem;font-weight:800;color:#e8eaf0;margin-bottom:6px;">Queue</div>
             <!-- Download card 1 — Active (left cyan stripe) -->
             <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:12px;overflow:hidden;display:flex;">
@@ -1396,7 +1368,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       <!-- Tab: History — exact HistoryPage.dart UI -->
       <div class="gallery-panel" id="tab-settings">
         <div style="display:flex;height:340px;overflow:hidden;">
-          <div style="flex:1;overflow-y:auto;padding:18px;background:#07090d;display:flex;flex-direction:column;gap:10px;">
+          <div style="flex:1;overflow:hidden;padding:14px;background:#07090d;display:flex;flex-direction:column;gap:8px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
               <div style="font-size:1.1rem;font-weight:800;color:#e8eaf0;">History</div>
               <div style="color:#00e5ff;font-size:.78rem;font-weight:600;display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-trash-can" style="font-size:.75rem;"></i>Clear All</div>
@@ -1474,7 +1446,6 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
         <li><a href="#features" data-i18n="nav_features">Features</a></li>
         <li><a href="#download" data-i18n="nav_download">Download</a></li>
         <li><a href="#whats-new" data-i18n="nav_changelog">What's New</a></li>
-        <li><a href="https://github.com/kodna-iq/urdown" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1489,8 +1460,8 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
     <div class="footer-col">
       <h5>Support</h5>
       <ul>
-        <li><a href="https://github.com/kodna-iq/urdown/issues" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
-        <li><a href="https://github.com/kodna-iq/urdown/releases" target="_blank" rel="noopener noreferrer" data-i18n="view_releases">All Releases</a></li>
+        <li><a href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
+
         <li><a href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer">Telegram</a></li>
       </ul>
     </div>
@@ -1828,7 +1799,10 @@ document.addEventListener('click', e => {
 ────────────────────────────────────────── */
 const GH_LATEST = 'https://api.github.com/repos/kodna-iq/urdown/releases/latest';
 const GH_ALL    = 'https://api.github.com/repos/kodna-iq/urdown/releases';
-let WIN_DL = '';
+// Fallback URL - updated by API when releases load
+const WIN_FALLBACK = 'https://github.com/kodna-iq/urdown/releases/latest/download/UrDown_windows.exe';
+let WIN_DL = WIN_FALLBACK;
+window._winDownloadUrl = WIN_FALLBACK;
 
 function formatNumber(n) {
   if (n >= 1000000) return (n/1000000).toFixed(1) + 'M+';
