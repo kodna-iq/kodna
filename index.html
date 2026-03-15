@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>كودنا – برامج وأدوات ذكية</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- ══ SECURITY HEADERS ══ -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn-cgi.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com; frame-ancestors 'self';">
+
+<!-- ══ SEO ══ -->
+<meta name="description" content="Kodna – مجموعة برامج وأدوات رقمية مجانية للجميع. حمّل UrDown وغيره من أدواتنا المجانية.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="كودنا / ضياء دارم">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="كودنا – برامج وأدوات ذكية">
+<meta property="og:description" content="مجموعة برامج وأدوات رقمية مجانية للجميع.">
+<meta property="og:url" content="https://kodna.iq/">
+<meta property="og:locale" content="ar_IQ">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kodna_iq">
+<meta name="twitter:title" content="كودنا – برامج وأدوات ذكية">
+
+<!-- ══ FAVICON ══ -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c3aed'/%3E%3Cstop offset='100%25' stop-color='%2300e5ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='50%25' y='54%25' font-family='Cairo,Arial,sans-serif' font-size='36' font-weight='900' fill='white' text-anchor='middle' dominant-baseline='middle'%3E%D9%83%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c3aed'/%3E%3Cstop offset='100%25' stop-color='%2300e5ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='50%25' y='54%25' font-family='Cairo,Arial,sans-serif' font-size='36' font-weight='900' fill='white' text-anchor='middle' dominant-baseline='middle'%3E%D9%83%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c3aed'/%3E%3Cstop offset='100%25' stop-color='%2300e5ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='38' fill='url(%23g)'/%3E%3Ctext x='50%25' y='54%25' font-family='Cairo,Arial,sans-serif' font-size='100' font-weight='900' fill='white' text-anchor='middle' dominant-baseline='middle'%3E%D9%83%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#07090d">
+<meta name="msapplication-TileColor" content="#07090d">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#07090d;--surface:#0e1117;--card:#12151c;--accent:#00e5ff;--accent2:#7c3aed;--text:#e8eaf0;--muted:#6b7280;--border:#1a1f2e;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
   body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;overflow-x:hidden;}
   .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px);background-size:70px 70px;animation:gridMove 25s linear infinite;}
   @keyframes gridMove{to{background-position:70px 70px;}}
@@ -134,10 +164,33 @@
   .footer-socials{display:flex;gap:8px;}
   .social-btn{width:32px;height:32px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.85rem;transition:all .2s;}
   .social-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  /* ══ LANGUAGE FONT SWITCH ══ */
+  body { -webkit-text-size-adjust:100%; }
+  body.lang-en, body.lang-zh, body.lang-es, body.lang-ru {
+    font-family:'Plus Jakarta Sans', sans-serif;
+  }
+  body.lang-ar, body.lang-ku {
+    font-family:'Cairo', sans-serif;
+  }
+  /* Lang Switcher */
+  .lang-switcher{position:relative;}
+  .lang-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:.82rem;font-weight:600;transition:all .2s;cursor:pointer;}
+  .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .lang-btn .chevron{font-size:.65rem;transition:transform .2s;}
+  .lang-btn.open .chevron{transform:rotate(180deg);}
+  .lang-menu{position:absolute;top:calc(100% + 8px);right:0;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:6px;min-width:160px;box-shadow:0 20px 40px rgba(0,0,0,.5);display:none;flex-direction:column;gap:2px;z-index:200;}
+  html[dir="ltr"] .lang-menu{right:0;left:auto;}
+  html[dir="rtl"] .lang-menu{left:0;right:auto;}
+  .lang-menu.open{display:flex;}
+  .lang-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;border:none;background:transparent;color:var(--muted);font-size:.83rem;font-weight:600;text-align:right;transition:all .15s;width:100%;cursor:pointer;font-family:'Cairo',sans-serif;}
+  html[dir="ltr"] .lang-item{text-align:left;}
+  .lang-item:hover{background:var(--surface);color:var(--text);}
+  .lang-item.active{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.15);}
+
 
   @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 
-  /* ══ TABLET 1024 ══ */
+  /* ══ LAPTOP 1024 ══ */
   @media(max-width:1024px){
     .programs-grid{grid-template-columns:repeat(2,1fr);}
     .btn-nav.ghost{display:none;}
@@ -149,8 +202,9 @@
   @media(max-width:768px){
     .nav-center,.nav-actions{display:none;}
     .hamburger{display:flex;}
-    .hero{padding:88px 5% 48px;}
-    .hero-stats{gap:20px;}
+    .hero{padding:86px 5% 48px;}
+    .hero-stats{gap:20px;flex-wrap:wrap;}
+    .stat{min-width:80px;}
     .programs{padding:60px 5%;}
     .programs-grid{grid-template-columns:repeat(2,1fr);}
     .about-inner{grid-template-columns:1fr;gap:32px;padding:32px 24px;}
@@ -160,12 +214,14 @@
   /* ══ MOBILE 520 ══ */
   @media(max-width:520px){
     nav{padding:12px 4%;}
-    .brand-text{font-size:1.05rem;}
-    .hero{padding:78px 4% 40px;}
+    .brand-text{font-size:1rem;}
+    .hero{padding:76px 4% 40px;}
     .hero-eyebrow{font-size:.62rem;padding:6px 12px;}
-    .hero-cta{flex-direction:column;width:100%;max-width:320px;}
-    .hero-stats{gap:14px;}
+    .hero-cta{flex-direction:column;align-items:center;width:100%;max-width:320px;margin-left:auto;margin-right:auto;}
+    .btn-hero-main,.btn-hero-ghost{width:100%;justify-content:center;}
+    .hero-stats{gap:12px;justify-content:center;}
     .stat{min-width:70px;}
+    .stat-num{font-size:1.4rem;}
     .programs{padding:48px 4%;}
     .programs-grid{grid-template-columns:1fr;}
     .prog-card-top{padding:18px 18px 12px;}
@@ -182,13 +238,15 @@
     .footer-brand{grid-column:auto;}
     .footer-bottom{flex-direction:column;align-items:flex-start;}
   }
-  /* ══ SMALL 360 ══ */
-  @media(max-width:360px){
-    .hero-title{font-size:2.3rem;letter-spacing:-0.5px;}
-    .hero-title .line2{font-size:.85rem;}
-    .brand-text{font-size:.9rem;}
-    .hero-stats{gap:10px;}
-    .stat-num{font-size:1.3rem;}
+  /* ══ SMALL 380 ══ */
+  @media(max-width:380px){
+    .hero-title{font-size:2.2rem;letter-spacing:-0.5px;}
+    .hero-title .line2{font-size:.82rem;}
+    .brand-text{font-size:.88rem;}
+    .hero-stats{gap:8px;}
+    .stat-num{font-size:1.2rem;}
+    .hero-eyebrow{display:none;}
+    .programs-grid{grid-template-columns:1fr;}
   }
 
   /* ══ TELEGRAM MODAL ══ */
@@ -250,7 +308,7 @@
   .btn-tg-alt:hover{border-color:rgba(0,136,204,0.5);color:#00aaff;transform:translateY(-2px);}
 </style>
 </head>
-<body>
+<body class="lang-ar">
 <div class="grid-bg"></div>
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
@@ -258,45 +316,60 @@
 <nav>
   <a class="nav-brand" href="index.html">
     <div class="brand-icon">ك</div>
-    <span class="brand-text">كودنا<span>.</span></span>
+    <span class="brand-text">Kodna<span>.</span></span>
   </a>
   <ul class="nav-center">
-    <li><a href="#programs">البرامج</a></li>
-    <li><a href="#about">من نحن</a></li>
-    <li><a href="#contact">تواصل</a></li>
+    <li><a href="#programs" data-i18n="nav_programs">البرامج</a></li>
+    <li><a href="#about" data-i18n="nav_about">من نحن</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">تواصل</a></li>
   </ul>
   <div class="nav-actions">
-    <a class="btn-nav ghost" href="#programs">استكشف البرامج</a>
-    <a class="btn-nav fill" href="clip_down.html">Clip_Down ↗</a>
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+        <span id="langFlag">🇮🇶</span>
+        <span id="langCode">AR</span>
+        <i class="fa-solid fa-chevron-down chevron" id="langChevron"></i>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button class="lang-item" onclick="setLang('ar')" data-lang="ar">🇮🇶 العربية</button>
+        <button class="lang-item" onclick="setLang('en')" data-lang="en">🇬🇧 English</button>
+        <button class="lang-item" onclick="setLang('ku')" data-lang="ku">🏔️ کوردی</button>
+        <button class="lang-item" onclick="setLang('zh')" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-item" onclick="setLang('es')" data-lang="es">🇪🇸 Español</button>
+        <button class="lang-item" onclick="setLang('ru')" data-lang="ru">🇷🇺 Русский</button>
+      </div>
+    </div>
+    <a class="btn-nav ghost" href="#programs" data-i18n="nav_explore">استكشف البرامج</a>
+    <a class="btn-nav fill" href="urdown.html">UrDown ↗</a>
   </div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="القائمة">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="mobile-nav" id="mobileNav">
-  <a href="#programs" onclick="toggleMenu()">📦 البرامج</a>
-  <a href="#about" onclick="toggleMenu()">👥 من نحن</a>
-  <a href="#contact" onclick="toggleMenu()">📬 تواصل</a>
-  <a href="clip_down.html">⬇ Clip_Down</a>
+  <a href="#programs" onclick="toggleMenu()" data-i18n="mobile_programs">📦 البرامج</a>
+  <a href="#about" onclick="toggleMenu()" data-i18n="mobile_about">👥 من نحن</a>
+  <a href="#contact" onclick="toggleMenu()" data-i18n="mobile_contact">📬 تواصل</a>
+  <a href="urdown.html">⬇ UrDown</a>
 </div>
 
 <section class="hero">
-  <div class="hero-eyebrow"><div class="eyebrow-dot"></div>مرحباً بك في كودنا</div>
+  <div class="hero-eyebrow"><div class="eyebrow-dot"></div><span data-i18n="hero_eyebrow">مرحباً بك في كودنا</span></div>
   <h1 class="hero-title">
-    <span class="k">كودنا</span>
-    <span class="line2">برامج ذكية · أدوات عملية · تصميم احترافي</span>
+    <span class="k">Kodna</span>
+    <span class="line2" data-i18n="hero_line2">برامج ذكية · أدوات عملية · تصميم احترافي</span>
   </h1>
-  <p class="hero-desc">نبني برامج تُسهّل حياتك الرقمية.<br>من تحميل الفيديوهات إلى أدوات التصميم —<br><strong>كل شيء في مكان واحد.</strong></p>
+  <p class="hero-desc" data-i18n-html="hero_desc">نبني برامج تُسهّل حياتك الرقمية.<br>من تحميل الفيديوهات إلى أدوات التصميم —<br><strong>كل شيء في مكان واحد.</strong></p>
   <div class="hero-cta">
-    <a class="btn-hero-main" href="#programs">🚀 استكشف البرامج</a>
-    <a class="btn-hero-ghost" href="#about">تعرّف علينا ←</a>
+    <a class="btn-hero-main" href="#programs" data-i18n="btn_explore">🚀 استكشف البرامج</a>
+    <a class="btn-hero-ghost" href="#about" data-i18n="btn_about">تعرّف علينا ←</a>
   </div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">+<span>10</span></div><div class="stat-label">برنامج ومشروع</div></div>
-    <div class="stat"><div class="stat-num"><span>50</span>+</div><div class="stat-label">منصة مدعومة</div></div>
-    <div class="stat"><div class="stat-num"><span>100</span>%</div><div class="stat-label">مجاني</div></div>
-    <div class="stat"><div class="stat-num"><span>∞</span></div><div class="stat-label">تحديثات</div></div>
+    <div class="stat"><div class="stat-num">+<span>10</span></div><div class="stat-label" data-i18n="stat_programs">برنامج ومشروع</div></div>
+    <div class="stat"><div class="stat-num"><span>50</span>+</div><div class="stat-label" data-i18n="stat_platforms">منصة مدعومة</div></div>
+    <div class="stat"><div class="stat-num"><span>100</span>%</div><div class="stat-label" data-i18n="stat_free">مجاني</div></div>
+    <div class="stat"><div class="stat-num"><span>∞</span></div><div class="stat-label" data-i18n="stat_updates">تحديثات</div></div>
   </div>
 </section>
 
@@ -304,43 +377,50 @@
 
 <section class="programs" id="programs">
   <div class="sec-header">
-    <div class="sec-tag">برامجنا</div>
-    <h2 class="sec-title">أدواتنا لك — مجاناً</h2>
-    <p class="sec-desc">مجموعة متكاملة من البرامج العملية نطوّرها باستمرار.</p>
+    <div class="sec-tag" data-i18n="sec_programs">برامجنا</div>
+    <h2 class="sec-title" data-i18n="programs_title">أدواتنا لك — مجاناً</h2>
+    <p class="sec-desc" data-i18n="programs_desc">مجموعة متكاملة من البرامج العملية نطوّرها باستمرار.</p>
   </div>
   <div class="programs-grid">
-    <a class="prog-card featured" href="clip_down.html">
+    <a class="prog-card featured" href="urdown.html" style="border-color:rgba(0,229,255,0.2);box-shadow:0 0 50px rgba(0,229,255,0.08);">
       <div class="prog-card-top">
-        <div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(34,211,238,0.1));border:1px solid rgba(0,229,255,0.2);">⬇️</div>
-        <div class="prog-card-badges"><span class="badge new">جديد</span><span class="badge free">مجاني</span></div>
+        <div class="prog-icon-wrap" style="background:none;border:none;padding:0;width:50px;height:50px;overflow:hidden;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" width="50" height="50" style="display:block;border-radius:12px;flex-shrink:0;">
+            <rect width="1024" height="1024" rx="210" fill="#00E5FF"/>
+            <rect x="262" y="740" width="500" height="80" rx="40" fill="#07090d"/>
+            <rect x="477" y="190" width="70" height="450" rx="35" fill="#07090d"/>
+            <path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="prog-card-badges"><span class="badge new" data-i18n="badge_new">جديد</span><span class="badge free" data-i18n="badge_free">مجاني</span></div>
       </div>
-      <div class="prog-card-body"><div class="prog-name">Clip_Down</div><div class="prog-desc">حمّل الفيديوهات من يوتيوب وإنستغرام وتيك توك وأكثر من 50 موقع بجودة عالية.</div></div>
-      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">Windows</span><span class="prog-tag">v2.4.1</span></div><span class="prog-arrow">←</span></div>
+      <div class="prog-card-body"><div class="prog-name">UrDown</div><div class="prog-desc" data-i18n="urdown_desc">محمّل فيديو احترافي لـ Windows و Mac و Android من أكثر من 1000 موقع. دعم البث المباشر وقوائم التشغيل.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">Windows</span><span class="prog-tag">Mac</span><span class="prog-tag">Android</span></div><span class="prog-arrow">←</span></div>
     </a>
     <div class="prog-card dim">
-      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(167,139,250,0.1));border:1px solid rgba(124,58,237,0.2);">🎨</div><div class="prog-card-badges"><span class="badge soon">قريباً</span></div></div>
-      <div class="prog-card-body"><div class="prog-name">PixelKit</div><div class="prog-desc">أداة تصميم وتعديل صور سريعة وبسيطة دون الحاجة لبرامج ضخمة.</div></div>
-      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">تصميم</span></div><span class="prog-arrow">🔒</span></div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(167,139,250,0.1));border:1px solid rgba(124,58,237,0.2);">🎨</div><div class="prog-card-badges"><span class="badge soon" data-i18n="badge_soon">قريباً</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">PixelKit</div><div class="prog-desc" data-i18n="pixelkit_desc">أداة تصميم وتعديل صور سريعة وبسيطة دون الحاجة لبرامج ضخمة.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag" data-i18n="tag_design">تصميم</span></div><span class="prog-arrow">🔒</span></div>
     </div>
     <div class="prog-card dim">
-      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(74,222,128,0.15),rgba(52,211,153,0.1));border:1px solid rgba(74,222,128,0.2);">📁</div><div class="prog-card-badges"><span class="badge soon">قريباً</span></div></div>
-      <div class="prog-card-body"><div class="prog-name">FileFlow</div><div class="prog-desc">مدير ملفات ذكي يُنظّم مجلداتك تلقائياً ويساعدك على إيجاد أي ملف بسرعة.</div></div>
-      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">ملفات</span></div><span class="prog-arrow">🔒</span></div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(74,222,128,0.15),rgba(52,211,153,0.1));border:1px solid rgba(74,222,128,0.2);">📁</div><div class="prog-card-badges"><span class="badge soon" data-i18n="badge_soon">قريباً</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">FileFlow</div><div class="prog-desc" data-i18n="fileflow_desc">مدير ملفات ذكي يُنظّم مجلداتك تلقائياً ويساعدك على إيجاد أي ملف بسرعة.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag" data-i18n="tag_files">ملفات</span></div><span class="prog-arrow">🔒</span></div>
     </div>
     <div class="prog-card dim">
-      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(251,146,60,0.15),rgba(251,191,36,0.1));border:1px solid rgba(251,146,60,0.2);">⚡</div><div class="prog-card-badges"><span class="badge beta">قيد التطوير</span></div></div>
-      <div class="prog-card-body"><div class="prog-name">SpeedBoost</div><div class="prog-desc">أداة لتحسين أداء جهازك وتنظيفه من الملفات المؤقتة.</div></div>
-      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">أداء</span></div><span class="prog-arrow">🔒</span></div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(251,146,60,0.15),rgba(251,191,36,0.1));border:1px solid rgba(251,146,60,0.2);">⚡</div><div class="prog-card-badges"><span class="badge beta" data-i18n="badge_beta">قيد التطوير</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">SpeedBoost</div><div class="prog-desc" data-i18n="speedboost_desc">أداة لتحسين أداء جهازك وتنظيفه من الملفات المؤقتة.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag" data-i18n="tag_perf">أداء</span></div><span class="prog-arrow">🔒</span></div>
     </div>
     <div class="prog-card dim">
-      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(236,72,153,0.1));border:1px solid rgba(244,114,182,0.2);">🔒</div><div class="prog-card-badges"><span class="badge soon">قريباً</span></div></div>
-      <div class="prog-card-body"><div class="prog-name">SafeLock</div><div class="prog-desc">حماية ملفاتك بتشفير قوي وكلمة مرور آمنة.</div></div>
-      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">أمان</span></div><span class="prog-arrow">🔒</span></div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(236,72,153,0.1));border:1px solid rgba(244,114,182,0.2);">🔒</div><div class="prog-card-badges"><span class="badge soon" data-i18n="badge_soon">قريباً</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">SafeLock</div><div class="prog-desc" data-i18n="safelock_desc">حماية ملفاتك بتشفير قوي وكلمة مرور آمنة.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag" data-i18n="tag_security">أمان</span></div><span class="prog-arrow">🔒</span></div>
     </div>
     <div class="prog-card dim">
-      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1));border:1px solid rgba(99,102,241,0.2);">📝</div><div class="prog-card-badges"><span class="badge soon">قريباً</span></div></div>
-      <div class="prog-card-body"><div class="prog-name">NoteStack</div><div class="prog-desc">تطبيق ملاحظات خفيف يحفظ أفكارك ويزامنها عبر أجهزتك.</div></div>
-      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag">ملاحظات</span></div><span class="prog-arrow">🔒</span></div>
+      <div class="prog-card-top"><div class="prog-icon-wrap" style="background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1));border:1px solid rgba(99,102,241,0.2);">📝</div><div class="prog-card-badges"><span class="badge soon" data-i18n="badge_soon">قريباً</span></div></div>
+      <div class="prog-card-body"><div class="prog-name">NoteStack</div><div class="prog-desc" data-i18n="notestack_desc">تطبيق ملاحظات خفيف يحفظ أفكارك ويزامنها عبر أجهزتك.</div></div>
+      <div class="prog-card-footer"><div class="prog-tags"><span class="prog-tag" data-i18n="tag_notes">ملاحظات</span></div><span class="prog-arrow">🔒</span></div>
     </div>
   </div>
 </section>
@@ -351,35 +431,35 @@
   <div class="about-inner">
     <div class="about-visual">
       <div class="about-code">
-        <div class="code-line"><span class="code-num">1</span><span class="c-cmt">// كودنا – فلسفتنا</span></div>
+        <div class="code-line"><span class="code-num">1</span><span class="c-cmt" data-i18n="code_comment">// كودنا – فلسفتنا</span></div>
         <div class="code-line"><span class="code-num">2</span><span></span></div>
         <div class="code-line"><span class="code-num">3</span><span><span class="c-kw">const</span> <span class="c-fn">kodna</span> = {</span></div>
-        <div class="code-line"><span class="code-num">4</span><span>&nbsp;&nbsp;<span class="c-fn">mission</span>: <span class="c-str">"تبسيط التقنية"</span>,</span></div>
+        <div class="code-line"><span class="code-num">4</span><span>&nbsp;&nbsp;<span class="c-fn">mission</span>: <span class="c-str" data-i18n="code_mission">"تبسيط التقنية"</span>,</span></div>
         <div class="code-line"><span class="code-num">5</span><span>&nbsp;&nbsp;<span class="c-fn">values</span>: [</span></div>
-        <div class="code-line"><span class="code-num">6</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"مجاني دائماً"</span>,</span></div>
-        <div class="code-line"><span class="code-num">7</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"بسيط وفعّال"</span>,</span></div>
-        <div class="code-line"><span class="code-num">8</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"تحديثات مستمرة"</span></span></div>
+        <div class="code-line"><span class="code-num">6</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str" data-i18n="code_v1">"مجاني دائماً"</span>,</span></div>
+        <div class="code-line"><span class="code-num">7</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str" data-i18n="code_v2">"بسيط وفعّال"</span>,</span></div>
+        <div class="code-line"><span class="code-num">8</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str" data-i18n="code_v3">"تحديثات مستمرة"</span></span></div>
         <div class="code-line"><span class="code-num">9</span><span>&nbsp;&nbsp;],</span></div>
         <div class="code-line"><span class="code-num">10</span><span>&nbsp;&nbsp;<span class="c-fn">programs</span>: <span class="c-num">10</span><span class="c-op">+</span></span></div>
         <div class="code-line"><span class="code-num">11</span><span>};<span class="cursor"></span></span></div>
       </div>
     </div>
     <div>
-      <div class="sec-tag">من نحن</div>
-      <h2 class="sec-title" style="margin-top:12px;">نبني أدوات<br>تُحدث فرقاً</h2>
-      <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-top:12px;">كودنا مشروع عربي متخصص في بناء برامج عملية مجانية تُسهّل حياة المستخدم العربي.</p>
+      <div class="sec-tag" data-i18n="sec_about">من نحن</div>
+      <h2 class="sec-title" style="margin-top:12px;" data-i18n-html="about_title">نبني أدوات<br>تُحدث فرقاً</h2>
+      <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-top:12px;" data-i18n="about_desc">كودنا مشروع متخصص في بناء برامج عملية مجانية تُسهّل حياة المستخدم.</p>
       <div class="about-list">
         <div class="about-item">
           <div class="about-item-icon" style="background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2);">⚡</div>
-          <div class="about-item-text"><h4>سرعة وكفاءة</h4><p>برامجنا خفيفة لا تُثقل جهازك وتؤدي وظيفتها بأقل موارد.</p></div>
+          <div class="about-item-text"><h4 data-i18n="about_i1_title">سرعة وكفاءة</h4><p data-i18n="about_i1_desc">برامجنا خفيفة لا تُثقل جهازك وتؤدي وظيفتها بأقل موارد.</p></div>
         </div>
         <div class="about-item">
           <div class="about-item-icon" style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);">🎯</div>
-          <div class="about-item-text"><h4>موجّه للمستخدم</h4><p>نُصمّم كل تفصيلة مع مراعاة تجربة المستخدم العربي.</p></div>
+          <div class="about-item-text"><h4 data-i18n="about_i2_title">موجّه للمستخدم</h4><p data-i18n="about_i2_desc">نُصمّم كل تفصيلة مع مراعاة تجربة المستخدم.</p></div>
         </div>
         <div class="about-item">
           <div class="about-item-icon" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);">🔄</div>
-          <div class="about-item-text"><h4>تطوير مستمر</h4><p>نُصدر تحديثات دورية ونضيف برامج جديدة باستمرار.</p></div>
+          <div class="about-item-text"><h4 data-i18n="about_i3_title">تطوير مستمر</h4><p data-i18n="about_i3_desc">نُصدر تحديثات دورية ونضيف برامج جديدة باستمرار.</p></div>
         </div>
       </div>
     </div>
@@ -388,11 +468,11 @@
 
 <section class="cta-section" id="contact">
   <div class="cta-inner">
-    <h2 class="cta-title">هل لديك اقتراح<br>لبرنامج جديد؟</h2>
-    <p class="cta-desc">نحن نسمعك! أخبرنا بما تحتاجه وسنعمل على بنائه ضمن مجموعة كودنا.</p>
+    <h2 class="cta-title" data-i18n-html="cta_title">هل لديك اقتراح<br>لبرنامج جديد؟</h2>
+    <p class="cta-desc" data-i18n="cta_desc">نحن نسمعك! أخبرنا بما تحتاجه وسنعمل على بنائه ضمن مجموعة كودنا.</p>
     <div class="cta-actions">
-      <a class="btn-hero-main" href="clip_down.html">⬇ جرّب Clip_Down الآن</a>
-      <a class="btn-hero-ghost" href="https://t.me/kodna_iq" target="_blank" rel="noopener"><i class="fa-brands fa-telegram" style="font-size:1.1rem;"></i> راسلنا</a>
+      <a class="btn-hero-main" href="urdown.html" data-i18n="cta_btn">⬇ جرّب UrDown الآن</a>
+      <a class="btn-hero-ghost" href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram" style="font-size:1.1rem;"></i> <span data-i18n="btn_contact">راسلنا</span></a>
     </div>
   </div>
 </section>
@@ -404,35 +484,35 @@
         <div class="brand-icon">ك</div>
         <span class="brand-text">كودنا<span>.</span></span>
       </div>
-      <p>مشروع عربي لبناء برامج وأدوات رقمية مجانية وعملية للمستخدم العربي.</p>
+      <p data-i18n="footer_tagline">مشروع لبناء برامج وأدوات رقمية مجانية وعملية للمستخدم.</p>
     </div>
     <div class="footer-col">
-      <h5>البرامج</h5>
+      <h5 data-i18n="footer_programs">البرامج</h5>
       <ul>
-        <li><a href="clip_down.html">Clip_Down</a></li>
+        <li><a href="urdown.html">UrDown ✨</a></li>
         <li><a href="#">PixelKit (قريباً)</a></li>
         <li><a href="#">FileFlow (قريباً)</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h5>الموقع</h5>
+      <h5 data-i18n="footer_site">الموقع</h5>
       <ul>
-        <li><a href="#about">من نحن</a></li>
-        <li><a href="#programs">البرامج</a></li>
-        <li><a href="#contact">تواصل</a></li>
+        <li><a href="#about" data-i18n="nav_about">من نحن</a></li>
+        <li><a href="#programs" data-i18n="nav_programs">البرامج</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">تواصل</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h5>دعم</h5>
+      <h5 data-i18n="footer_support">دعم</h5>
       <ul>
-        <li><a href="#">الأسئلة الشائعة</a></li>
-        <li><a href="#">الإبلاغ عن مشكلة</a></li>
-        <li><a href="#">اقتراح برنامج</a></li>
+        <li><a href="#" data-i18n="support_faq">الأسئلة الشائعة</a></li>
+        <li><a href="#" data-i18n="support_bug">الإبلاغ عن مشكلة</a></li>
+        <li><a href="#" data-i18n="support_suggest">اقتراح برنامج</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 كودنا — تطوير ضياء دارم</span>
+    <span class="footer-copy" data-i18n="footer_copy">© 2025 كودنا — تطوير ضياء دارم</span>
     <div class="footer-socials">
       <a class="social-btn" href="#">𝕏</a>
       <a class="social-btn" href="#">✈</a>
@@ -453,21 +533,364 @@
   <div class="modal-box">
     <button class="modal-close" onclick="closeTgModal()">✕</button>
     <div class="tg-icon-wrap">✈️</div>
-    <h3 class="modal-title">تواصل معنا عبر تيليغرام</h3>
-    <p class="modal-desc">فريق <span>كودنا</span> جاهز للرد على استفساراتك،<br>اقتراحاتك، وطلبات الدعم الفني.</p>
-    <a class="btn-tg-main" href="https://t.me/kodna_iq" target="_blank" rel="noopener">✈️&nbsp; فتح تيليغرام الآن</a>
-    <p class="modal-note">سيتم فتح تيليغرام مباشرة · يمكنك البحث عن <a href="https://t.me/kodna_iq" target="_blank">@kodna_iq</a></p>
+    <h3 class="modal-title" data-i18n="tg_title">تواصل معنا عبر تيليغرام</h3>
+    <p class="modal-desc" data-i18n-html="tg_desc">فريق <span>كودنا</span> جاهز للرد على استفساراتك،<br>اقتراحاتك، وطلبات الدعم الفني.</p>
+    <a class="btn-tg-main" href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer" data-i18n="tg_open">✈️&nbsp; فتح تيليغرام الآن</a>
+    <p class="modal-note">سيتم فتح تيليغرام مباشرة · يمكنك البحث عن <a href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer">@kodna_iq</a></p>
     <div class="modal-divider"></div>
     <div class="modal-alt">
-      <div class="modal-alt-title">أو انضم لقناة كودنا</div>
-      <a class="btn-tg-alt" href="https://t.me/kodna_iq" target="_blank" rel="noopener">📢&nbsp; قناة كودنا – أخبار وتحديثات</a>
+      <div class="modal-alt-title" data-i18n="tg_or">أو انضم لقناة كودنا</div>
+      <a class="btn-tg-alt" href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer" data-i18n="tg_channel">📢&nbsp; قناة كودنا – أخبار وتحديثات</a>
     </div>
   </div>
 </div>
 <script>
+'use strict';
+
+/* ══════════════════════════════════════
+   TRANSLATIONS  —  Kodna Index
+   Shared localStorage key: 'kodna_lang'
+══════════════════════════════════════ */
+const I18N_INDEX = {
+  ar: {
+    dir:'rtl', flag:'🇮🇶', code:'AR',
+    nav_programs:'البرامج', nav_about:'من نحن', nav_contact:'تواصل', nav_explore:'استكشف البرامج',
+    mobile_programs:'📦 البرامج', mobile_about:'👥 من نحن', mobile_contact:'📬 تواصل',
+    hero_eyebrow:'مرحباً بك في كودنا',
+    hero_line2:'برامج ذكية · أدوات عملية · تصميم احترافي',
+    hero_desc:'نبني برامج تُسهّل حياتك الرقمية.<br>من تحميل الفيديوهات إلى أدوات التصميم —<br><strong>كل شيء في مكان واحد.</strong>',
+    btn_explore:'🚀 استكشف البرامج', btn_about:'تعرّف علينا ←', btn_contact:'راسلنا',
+    stat_programs:'برنامج ومشروع', stat_platforms:'منصة مدعومة', stat_free:'مجاني', stat_updates:'تحديثات',
+    sec_programs:'برامجنا', programs_title:'أدواتنا لك — مجاناً',
+    programs_desc:'مجموعة متكاملة من البرامج العملية نطوّرها باستمرار.',
+    badge_new:'جديد', badge_free:'مجاني', badge_soon:'قريباً', badge_beta:'قيد التطوير',
+    urdown_desc:'محمّل فيديو احترافي لـ Windows و Mac و Android من أكثر من 1000 موقع. دعم البث المباشر وقوائم التشغيل.',
+    pixelkit_desc:'أداة تصميم وتعديل صور سريعة وبسيطة دون الحاجة لبرامج ضخمة.',
+    fileflow_desc:'مدير ملفات ذكي يُنظّم مجلداتك تلقائياً ويساعدك على إيجاد أي ملف بسرعة.',
+    speedboost_desc:'أداة لتحسين أداء جهازك وتنظيفه من الملفات المؤقتة.',
+    safelock_desc:'حماية ملفاتك بتشفير قوي وكلمة مرور آمنة.',
+    notestack_desc:'تطبيق ملاحظات خفيف يحفظ أفكارك ويزامنها عبر أجهزتك.',
+    tag_design:'تصميم', tag_files:'ملفات', tag_perf:'أداء', tag_security:'أمان', tag_notes:'ملاحظات',
+    code_comment:'// كودنا – فلسفتنا',
+    code_mission:'"تبسيط التقنية"',
+    code_v1:'"مجاني دائماً"', code_v2:'"بسيط وفعّال"', code_v3:'"تحديثات مستمرة"',
+    sec_about:'من نحن',
+    about_title:'نبني أدوات<br>تُحدث فرقاً',
+    about_desc:'كودنا مشروع متخصص في بناء برامج عملية مجانية تُسهّل حياة المستخدم.',
+    about_i1_title:'سرعة وكفاءة', about_i1_desc:'برامجنا خفيفة لا تُثقل جهازك وتؤدي وظيفتها بأقل موارد.',
+    about_i2_title:'موجّه للمستخدم', about_i2_desc:'نُصمّم كل تفصيلة مع مراعاة تجربة المستخدم.',
+    about_i3_title:'تطوير مستمر', about_i3_desc:'نُصدر تحديثات دورية ونضيف برامج جديدة باستمرار.',
+    cta_title:'هل لديك اقتراح<br>لبرنامج جديد؟',
+    cta_desc:'نحن نسمعك! أخبرنا بما تحتاجه وسنعمل على بنائه ضمن مجموعة كودنا.',
+    cta_btn:'⬇ جرّب UrDown الآن',
+    footer_tagline:'مشروع لبناء برامج وأدوات رقمية مجانية وعملية للمستخدم.',
+    footer_programs:'البرامج', footer_site:'الموقع', footer_support:'دعم',
+    support_faq:'الأسئلة الشائعة', support_bug:'الإبلاغ عن مشكلة', support_suggest:'اقتراح برنامج',
+    footer_copy:'© 2025 كودنا — تطوير ضياء دارم',
+    tg_title:'تواصل معنا عبر تيليغرام',
+    tg_desc:'فريق <span>كودنا</span> جاهز للرد على استفساراتك،<br>اقتراحاتك، وطلبات الدعم الفني.',
+    tg_open:'✈️\u00a0 فتح تيليغرام الآن',
+    tg_or:'أو انضم لقناة كودنا',
+    tg_channel:'📢\u00a0 قناة كودنا – أخبار وتحديثات',
+    modal_note_text:'سيتم فتح تيليغرام مباشرة'
+  },
+  en: {
+    dir:'ltr', flag:'🇬🇧', code:'EN',
+    nav_programs:'Programs', nav_about:'About', nav_contact:'Contact', nav_explore:'Explore Programs',
+    mobile_programs:'📦 Programs', mobile_about:'👥 About', mobile_contact:'📬 Contact',
+    hero_eyebrow:'Welcome to Kodna',
+    hero_line2:'Smart Apps · Practical Tools · Pro Design',
+    hero_desc:'We build software that simplifies your digital life.<br>From video downloading to design tools —<br><strong>everything in one place.</strong>',
+    btn_explore:'🚀 Explore Programs', btn_about:'About Us →', btn_contact:'Message Us',
+    stat_programs:'Apps & Projects', stat_platforms:'Supported Platforms', stat_free:'Free', stat_updates:'Updates',
+    sec_programs:'Our Apps', programs_title:'Our Tools — Free',
+    programs_desc:'A full suite of practical software we continuously develop.',
+    badge_new:'New', badge_free:'Free', badge_soon:'Soon', badge_beta:'In Dev',
+    urdown_desc:'Professional video downloader for Windows, Mac & Android from 1000+ sites. Live stream recording & playlist support.',
+    pixelkit_desc:'Fast and simple image design and editing tool — no heavy software required.',
+    fileflow_desc:'Smart file manager that organizes your folders automatically.',
+    speedboost_desc:'A tool to boost your device performance and clean temp files.',
+    safelock_desc:'Protect your files with strong encryption and a secure password.',
+    notestack_desc:'Lightweight notes app that saves your ideas and syncs across devices.',
+    tag_design:'Design', tag_files:'Files', tag_perf:'Performance', tag_security:'Security', tag_notes:'Notes',
+    code_comment:'// Kodna – our philosophy',
+    code_mission:'"simplify technology"',
+    code_v1:'"always free"', code_v2:'"simple & effective"', code_v3:'"continuous updates"',
+    sec_about:'About',
+    about_title:'We Build Tools<br>That Make a Difference',
+    about_desc:'Kodna is a project dedicated to building free, practical software for everyone.',
+    about_i1_title:'Speed & Efficiency', about_i1_desc:'Our apps are lightweight and perform their function with minimal resources.',
+    about_i2_title:'User-Focused', about_i2_desc:'We design every detail with the user experience in mind.',
+    about_i3_title:'Continuous Development', about_i3_desc:'We release regular updates and continuously add new software.',
+    cta_title:'Have a Suggestion<br>for New Software?',
+    cta_desc:"We're listening! Tell us what you need and we'll build it within the Kodna suite.",
+    cta_btn:'⬇ Try UrDown Now',
+    footer_tagline:'An open project building free digital tools for everyone.',
+    footer_programs:'Programs', footer_site:'Site', footer_support:'Support',
+    support_faq:'FAQ', support_bug:'Report a Bug', support_suggest:'Suggest an App',
+    footer_copy:'© 2025 Kodna — Developed by Dhia Darem',
+    tg_title:'Contact Us on Telegram',
+    tg_desc:'The <span>Kodna</span> team is ready to answer your questions,<br>suggestions, and support requests.',
+    tg_open:'✈️\u00a0 Open Telegram Now',
+    tg_or:'Or join the Kodna channel',
+    tg_channel:'📢\u00a0 Kodna Channel – News & Updates',
+    modal_note_text:'Telegram will open directly'
+  },
+  ku: {
+    dir:'rtl', flag:'🏔️', code:'KU',
+    nav_programs:'بەرنامەکان', nav_about:'دەربارە', nav_contact:'پەیوەندی', nav_explore:'بەرنامەکان بپتکۆشە',
+    mobile_programs:'📦 بەرنامەکان', mobile_about:'👥 دەربارە', mobile_contact:'📬 پەیوەندی',
+    hero_eyebrow:'بەخێربێیت بۆ Kodna',
+    hero_line2:'بەرنامەی زیرەک · ئامرازی کارپێکراو · دیزاینی پیشەیی',
+    hero_desc:'بەرنامە دروست دەکەین کە ژیانی دیجیتاڵیت ئاسان دەکات.<br>لە داونلۆدی ڤیدیۆ تا ئامرازەکانی دیزاین —<br><strong>هەموو شتێک لە یەک شوێن.</strong>',
+    btn_explore:'🚀 بەرنامەکان بپتکۆشە', btn_about:'دەربارەمان ←', btn_contact:'پەیوەندیمان پێوەبکە',
+    stat_programs:'بەرنامە و پڕۆژە', stat_platforms:'پلاتفۆرمی پشتگیریکراو', stat_free:'خۆڕایی', stat_updates:'نوێکارییەکان',
+    sec_programs:'بەرنامەکانمان', programs_title:'ئامرازەکانمان بۆت — خۆڕایی',
+    programs_desc:'کۆمەڵەیەکی تەواو لە بەرنامەی کارپێکراو کە بەردەوام پەرەی پێدەدەین.',
+    badge_new:'نوێ', badge_free:'خۆڕایی', badge_soon:'بەمزوانە', badge_beta:'لە پەرەپێدان',
+    urdown_desc:'داونلۆودەرێکی پیشەیی بۆ Windows و Mac و Android لە زیاتر لە ١٠٠٠ مالپەڕ.',
+    pixelkit_desc:'ئامرازێکی خێرا و سادە بۆ دیزاین و دەستکاریکردنی وێنە.',
+    fileflow_desc:'بەڕێوەبەرێکی فایلی زیرەک کە فۆڵدەرەکانت خۆکار ڕیزبەند دەکات.',
+    speedboost_desc:'ئامرازێک بۆ باشترکردنی کارکردنی ئامێرەکەت.',
+    safelock_desc:'فایلەکانت پارێزگاری بکە بە شیفرەکردنی بەهێز.',
+    notestack_desc:'ئەپی تێبینیی سووک کە ئەندیشەکانت پاشەکەوت دەکات.',
+    tag_design:'دیزاین', tag_files:'فایلەکان', tag_perf:'کارایی', tag_security:'ئەمنیت', tag_notes:'تێبینییەکان',
+    code_comment:'// Kodna – فەلسەفەمان',
+    code_mission:'"ئاسانکردنی تەکنەلۆژیا"',
+    code_v1:'"هەمیشە خۆڕایی"', code_v2:'"سادە و کارا"', code_v3:'"نوێکاریی بەردەوام"',
+    sec_about:'دەربارە',
+    about_title:'ئامراز دروست دەکەین<br>کە جیاوازی دروست دەکات',
+    about_desc:'Kodna پڕۆژەیەکی عەرەبییە تایبەت بە دروستکردنی بەرنامەی کارپێکراوی خۆڕایی بۆ بەکارهێنەران.',
+    about_i1_title:'خێرایی و کارایی', about_i1_desc:'بەرنامەکانمان سووک و بە کەمترین سەرچاوە کار دەکەن.',
+    about_i2_title:'ئاراستەی بەکارهێنەر', about_i2_desc:'هەر وردەکارییەک لەگەڵ تەجربەی بەکارهێنەر دیزاین دەکەین.',
+    about_i3_title:'پەرەپێدانی بەردەوام', about_i3_desc:'نوێکارییە دەوری ئیشدەکەین و بەردەوام بەرنامەی نوێ زیاد دەکەین.',
+    cta_title:'پێشنیارت هەیە<br>بۆ بەرنامەیەکی نوێ؟',
+    cta_desc:'گوێمان لێیە! پێمان بڵێ چیت پێویستە، دروستی دەکەین.',
+    cta_btn:'⬇ UrDown تاقی بکەرەوە',
+    footer_tagline:'پڕۆژەیەک بۆ دروستکردنی ئامرازی دیجیتاڵی خۆڕایی بۆ هەموان.',
+    footer_programs:'بەرنامەکان', footer_site:'مالپەڕ', footer_support:'پشتگیری',
+    support_faq:'پرسیارە باوەکان', support_bug:'ڕاپۆرتکردنی کێشە', support_suggest:'پێشنیارکردنی بەرنامە',
+    footer_copy:'© 2025 Kodna — پەرەپێدانی ضیاء دارم',
+    tg_title:'پەیوەندیمان پێوەبکە لە تیلیگرام',
+    tg_desc:'تیمی <span>Kodna</span> ئامادەیە وەڵامی پرسیارەکانت بداتەوە.',
+    tg_open:'✈️\u00a0 تیلیگرام ئێستا بکەرەوە',
+    tg_or:'یان بەشداربە لە کەناڵی Kodna',
+    tg_channel:'📢\u00a0 کەناڵی Kodna – هەواڵ و نوێکارییەکان',
+    modal_note_text:'تیلیگرام ڕاستەوخۆ دەکرێتەوە'
+  },
+  zh: {
+    dir:'ltr', flag:'🇨🇳', code:'ZH',
+    nav_programs:'软件', nav_about:'关于', nav_contact:'联系', nav_explore:'浏览软件',
+    mobile_programs:'📦 软件', mobile_about:'👥 关于', mobile_contact:'📬 联系',
+    hero_eyebrow:'欢迎来到 Kodna',
+    hero_line2:'智能应用 · 实用工具 · 专业设计',
+    hero_desc:'我们构建简化您数字生活的软件。<br>从视频下载到设计工具 —<br><strong>一切都在一个地方。</strong>',
+    btn_explore:'🚀 浏览软件', btn_about:'了解我们 →', btn_contact:'联系我们',
+    stat_programs:'应用和项目', stat_platforms:'支持平台', stat_free:'免费', stat_updates:'更新',
+    sec_programs:'我们的软件', programs_title:'我们的工具 — 免费',
+    programs_desc:'一整套我们持续开发的实用软件。',
+    badge_new:'新', badge_free:'免费', badge_soon:'即将推出', badge_beta:'开发中',
+    urdown_desc:'适用于 Windows、Mac 和 Android 的专业视频下载器，支持 1000+ 个网站。',
+    pixelkit_desc:'无需重型软件的快速简单图像设计和编辑工具。',
+    fileflow_desc:'自动整理文件夹的智能文件管理器。',
+    speedboost_desc:'提升设备性能并清理临时文件的工具。',
+    safelock_desc:'用强加密和安全密码保护您的文件。',
+    notestack_desc:'跨设备同步想法的轻量级笔记应用。',
+    tag_design:'设计', tag_files:'文件', tag_perf:'性能', tag_security:'安全', tag_notes:'笔记',
+    code_comment:'// Kodna – 我们的理念',
+    code_mission:'"简化技术"',
+    code_v1:'"永远免费"', code_v2:'"简单高效"', code_v3:'"持续更新"',
+    sec_about:'关于',
+    about_title:'我们构建<br>改变一切的工具',
+    about_desc:'Kodna 是一个致力于为所有人构建免费实用软件的项目。',
+    about_i1_title:'速度与效率', about_i1_desc:'我们的应用轻量且以最少的资源完成工作。',
+    about_i2_title:'以用户为中心', about_i2_desc:'我们以用户体验为核心设计每一个细节。',
+    about_i3_title:'持续开发', about_i3_desc:'我们定期发布更新并持续添加新软件。',
+    cta_title:'有新软件的建议吗？',
+    cta_desc:'我们在听！告诉我们您需要什么，我们将在 Kodna 套件中构建它。',
+    cta_btn:'⬇ 立即体验 UrDown',
+    footer_tagline:'一个为所有人构建免费数字工具的开放项目。',
+    footer_programs:'软件', footer_site:'站点', footer_support:'支持',
+    support_faq:'常见问题', support_bug:'报告问题', support_suggest:'建议应用',
+    footer_copy:'© 2025 Kodna — 由 Dhia Darem 开发',
+    tg_title:'通过 Telegram 联系我们',
+    tg_desc:'<span>Kodna</span> 团队随时准备回答您的问题。',
+    tg_open:'✈️\u00a0 立即打开 Telegram',
+    tg_or:'或加入 Kodna 频道',
+    tg_channel:'📢\u00a0 Kodna 频道 – 新闻与更新',
+    modal_note_text:'Telegram 将直接打开'
+  },
+  es: {
+    dir:'ltr', flag:'🇪🇸', code:'ES',
+    nav_programs:'Programas', nav_about:'Nosotros', nav_contact:'Contacto', nav_explore:'Explorar Programas',
+    mobile_programs:'📦 Programas', mobile_about:'👥 Nosotros', mobile_contact:'📬 Contacto',
+    hero_eyebrow:'Bienvenido a Kodna',
+    hero_line2:'Apps Inteligentes · Herramientas Prácticas · Diseño Pro',
+    hero_desc:'Creamos software que simplifica tu vida digital.<br>Desde descarga de vídeos hasta herramientas de diseño —<br><strong>todo en un solo lugar.</strong>',
+    btn_explore:'🚀 Explorar Programas', btn_about:'Conócenos →', btn_contact:'Escríbenos',
+    stat_programs:'Apps y Proyectos', stat_platforms:'Plataformas', stat_free:'Gratis', stat_updates:'Actualizaciones',
+    sec_programs:'Nuestras Apps', programs_title:'Nuestras Herramientas — Gratis',
+    programs_desc:'Una suite completa de software práctico que desarrollamos continuamente.',
+    badge_new:'Nuevo', badge_free:'Gratis', badge_soon:'Pronto', badge_beta:'En Desarrollo',
+    urdown_desc:'Descargador de vídeo profesional para Windows, Mac y Android desde 1000+ sitios.',
+    pixelkit_desc:'Herramienta de diseño y edición de imágenes rápida y simple.',
+    fileflow_desc:'Administrador de archivos inteligente que organiza tus carpetas automáticamente.',
+    speedboost_desc:'Herramienta para mejorar el rendimiento de tu dispositivo.',
+    safelock_desc:'Protege tus archivos con cifrado fuerte y contraseña segura.',
+    notestack_desc:'App de notas ligera que sincroniza tus ideas entre dispositivos.',
+    tag_design:'Diseño', tag_files:'Archivos', tag_perf:'Rendimiento', tag_security:'Seguridad', tag_notes:'Notas',
+    code_comment:'// Kodna – nuestra filosofía',
+    code_mission:'"simplificar la tecnología"',
+    code_v1:'"siempre gratis"', code_v2:'"simple y eficaz"', code_v3:'"actualizaciones continuas"',
+    sec_about:'Nosotros',
+    about_title:'Creamos Herramientas<br>que Marcan la Diferencia',
+    about_desc:'Kodna es un proyecto dedicado a crear software gratuito y práctico para todos.',
+    about_i1_title:'Velocidad y Eficiencia', about_i1_desc:'Nuestras apps son ligeras y funcionan con mínimos recursos.',
+    about_i2_title:'Centrado en el Usuario', about_i2_desc:'Diseñamos cada detalle pensando en la experiencia del usuario.',
+    about_i3_title:'Desarrollo Continuo', about_i3_desc:'Lanzamos actualizaciones regulares y añadimos software nuevo constantemente.',
+    cta_title:'¿Tienes una Sugerencia<br>para un Nuevo Programa?',
+    cta_desc:'¡Te escuchamos! Cuéntanos qué necesitas y lo construiremos en la suite Kodna.',
+    cta_btn:'⬇ Prueba UrDown Ahora',
+    footer_tagline:'Un proyecto abierto que crea herramientas digitales gratuitas para todos.',
+    footer_programs:'Programas', footer_site:'Sitio', footer_support:'Soporte',
+    support_faq:'Preguntas Frecuentes', support_bug:'Reportar un Error', support_suggest:'Sugerir una App',
+    footer_copy:'© 2025 Kodna — Desarrollado por Dhia Darem',
+    tg_title:'Contáctanos en Telegram',
+    tg_desc:'El equipo de <span>Kodna</span> está listo para responder tus preguntas.',
+    tg_open:'✈️\u00a0 Abrir Telegram Ahora',
+    tg_or:'O únete al canal de Kodna',
+    tg_channel:'📢\u00a0 Canal Kodna – Noticias y Actualizaciones',
+    modal_note_text:'Telegram se abrirá directamente'
+  },
+  ru: {
+    dir:'ltr', flag:'🇷🇺', code:'RU',
+    nav_programs:'Программы', nav_about:'О нас', nav_contact:'Контакт', nav_explore:'Обзор программ',
+    mobile_programs:'📦 Программы', mobile_about:'👥 О нас', mobile_contact:'📬 Контакт',
+    hero_eyebrow:'Добро пожаловать в Kodna',
+    hero_line2:'Умные приложения · Практичные инструменты · Профессиональный дизайн',
+    hero_desc:'Мы создаём программы, упрощающие вашу цифровую жизнь.<br>От загрузки видео до инструментов дизайна —<br><strong>всё в одном месте.</strong>',
+    btn_explore:'🚀 Обзор программ', btn_about:'О нас →', btn_contact:'Написать нам',
+    stat_programs:'Приложений и проектов', stat_platforms:'Поддерживаемых платформ', stat_free:'Бесплатно', stat_updates:'Обновлений',
+    sec_programs:'Наши приложения', programs_title:'Наши инструменты — Бесплатно',
+    programs_desc:'Полный набор практичного программного обеспечения, которое мы постоянно развиваем.',
+    badge_new:'Новое', badge_free:'Бесплатно', badge_soon:'Скоро', badge_beta:'В разработке',
+    urdown_desc:'Профессиональный загрузчик видео для Windows, Mac и Android с 1000+ сайтов.',
+    pixelkit_desc:'Быстрый и простой инструмент для дизайна и редактирования изображений.',
+    fileflow_desc:'Умный файловый менеджер, автоматически организующий папки.',
+    speedboost_desc:'Инструмент для повышения производительности устройства.',
+    safelock_desc:'Защитите файлы надёжным шифрованием и паролем.',
+    notestack_desc:'Лёгкое приложение для заметок с синхронизацией между устройствами.',
+    tag_design:'Дизайн', tag_files:'Файлы', tag_perf:'Производительность', tag_security:'Безопасность', tag_notes:'Заметки',
+    code_comment:'// Kodna – наша философия',
+    code_mission:'"упростить технологии"',
+    code_v1:'"всегда бесплатно"', code_v2:'"просто и эффективно"', code_v3:'"постоянные обновления"',
+    sec_about:'О нас',
+    about_title:'Создаём инструменты,<br>которые меняют мир',
+    about_desc:'Kodna — проект, посвящённый созданию бесплатного практичного ПО для всех.',
+    about_i1_title:'Скорость и эффективность', about_i1_desc:'Наши приложения лёгкие и работают с минимальными ресурсами.',
+    about_i2_title:'Ориентированность на пользователя', about_i2_desc:'Каждую деталь мы разрабатываем с учётом пользовательского опыта.',
+    about_i3_title:'Непрерывная разработка', about_i3_desc:'Мы выпускаем регулярные обновления и постоянно добавляем новое ПО.',
+    cta_title:'Есть предложение<br>по новой программе?',
+    cta_desc:'Мы слушаем! Расскажите, что вам нужно, и мы создадим это в рамках Kodna.',
+    cta_btn:'⬇ Попробуйте UrDown',
+    footer_tagline:'Открытый проект по созданию бесплатных цифровых инструментов для всех.',
+    footer_programs:'Программы', footer_site:'Сайт', footer_support:'Поддержка',
+    support_faq:'Частые вопросы', support_bug:'Сообщить об ошибке', support_suggest:'Предложить приложение',
+    footer_copy:'© 2025 Kodna — Разработано Dhia Darem',
+    tg_title:'Свяжитесь с нами в Telegram',
+    tg_desc:'Команда <span>Kodna</span> готова ответить на ваши вопросы.',
+    tg_open:'✈️\u00a0 Открыть Telegram',
+    tg_or:'Или присоединяйтесь к каналу Kodna',
+    tg_channel:'📢\u00a0 Канал Kodna – Новости и обновления',
+    modal_note_text:'Telegram откроется напрямую'
+  }
+};
+
+/* ══════════════════════════════════════
+   CORE i18n ENGINE
+══════════════════════════════════════ */
+const STORAGE_KEY = 'kodna_lang';
+let currentLang = 'ar';
+
+function detectLang() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved && I18N_INDEX[saved]) return saved;
+  const bl = (navigator.language || navigator.userLanguage || 'ar').toLowerCase();
+  if (bl.startsWith('ar') || bl.startsWith('arz')) return 'ar';
+  if (bl.startsWith('ku') || bl.startsWith('ckb') || bl.startsWith('kmr')) return 'ku';
+  if (bl.startsWith('zh')) return 'zh';
+  if (bl.startsWith('es')) return 'es';
+  if (bl.startsWith('ru') || bl.startsWith('uk') || bl.startsWith('be')) return 'ru';
+  if (bl.startsWith('en')) return 'en';
+  return 'ar';
+}
+
+function applyLang(lang) {
+  if (!I18N_INDEX[lang]) lang = 'ar';
+  currentLang = lang;
+  localStorage.setItem(STORAGE_KEY, lang);
+  const t = I18N_INDEX[lang];
+  const root = document.getElementById('htmlRoot');
+  root.setAttribute('lang', lang);
+  root.setAttribute('dir', t.dir);
+  document.body.className = 'lang-' + lang;
+  // Nav flag/code
+  const flag = document.getElementById('langFlag');
+  const code = document.getElementById('langCode');
+  if (flag) flag.textContent = t.flag;
+  if (code) code.textContent = t.code;
+  // Active item
+  document.querySelectorAll('.lang-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.lang === lang);
+  });
+  // data-i18n (text content)
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  // data-i18n-html (innerHTML — safe, our own strings only)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  // Direction-specific arrow flips
+  document.querySelectorAll('.prog-arrow').forEach(el => {
+    if (el.textContent === '←' || el.textContent === '→') {
+      el.textContent = t.dir === 'rtl' ? '←' : '→';
+    }
+  });
+}
+
+function setLang(lang) {
+  applyLang(lang);
+  closeLangMenu();
+}
+
+function toggleLangMenu() {
+  const menu = document.getElementById('langMenu');
+  const btn  = document.getElementById('langBtn');
+  const open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+function closeLangMenu() {
+  const menu = document.getElementById('langMenu');
+  const btn  = document.getElementById('langBtn');
+  if (menu) menu.classList.remove('open');
+  if (btn)  btn.classList.remove('open');
+}
+document.addEventListener('click', e => {
+  const sw = document.getElementById('langSwitcher');
+  if (sw && !sw.contains(e.target)) closeLangMenu();
+});
+
+/* ══════════════════════════════════════
+   NAV & MODAL
+══════════════════════════════════════ */
   function toggleMenu(){
-    document.getElementById('hamburger').classList.toggle('open');
-    document.getElementById('mobileNav').classList.toggle('open');
+    const h = document.getElementById('hamburger');
+    const n = document.getElementById('mobileNav');
+    h.classList.toggle('open');
+    n.classList.toggle('open');
   }
   window.addEventListener('scroll',()=>{
     document.getElementById('hamburger').classList.remove('open');
@@ -484,6 +907,13 @@
     }
   }
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTgModal({target:document.getElementById('tgModal')});});
-<\/script>
+
+/* ══════════════════════════════════════
+   INIT — runs on page load
+══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang(detectLang());
+});
+</script>
 </body>
 </html>
