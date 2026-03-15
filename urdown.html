@@ -942,7 +942,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       </div>
     </div>
     <a href="https://github.com/kodna-iq/urdown" target="_blank" rel="noopener noreferrer" class="btn-nav-gh" aria-label="GitHub Repository">
-      <i class="fa-brands fa-github"></i> GitHub
+      GitHub
     </a>
     <a href="#download" class="btn-nav-dl" data-i18n="nav_download">
       <i class="fa-solid fa-download"></i> <span data-i18n="nav_download">Download</span>
@@ -1078,7 +1078,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
         <div class="platform-name">Windows</div>
         <div class="platform-desc" data-i18n="windows_only">Windows 10/11 · 64-bit</div>
         <button id="winBtn" class="btn-platform active-btn"
-           onclick="startDownload('https://github.com/kodna-iq/urdown/releases/latest/download/UrDown_windows.exe')"
+           onclick="startDownload(window._winDownloadUrl || '')"
            aria-label="Download UrDown for Windows">
           <i class="fa-solid fa-download" aria-hidden="true"></i>
           <span data-i18n="btn_windows">Download for Windows</span>
@@ -1274,18 +1274,6 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       <!-- Tab: Dashboard — exact UI from DashboardPage.dart -->
       <div class="gallery-panel active" id="tab-download">
         <div style="display:flex;height:340px;overflow:hidden;">
-          <!-- Sidebar NavigationRail (68px wide) -->
-          <div style="width:68px;background:#0e1117;border-right:1px solid #1a1f2e;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:4px;flex-shrink:0;">
-            <div style="width:36px;height:36px;border-radius:10px;overflow:hidden;margin-bottom:14px;">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" width="36" height="36"><rect width="1024" height="1024" rx="210" fill="#00E5FF"/><rect x="262" y="740" width="500" height="80" rx="40" fill="#07090d"/><rect x="477" y="190" width="70" height="450" rx="35" fill="#07090d"/><path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div style="width:44px;height:44px;border-radius:10px;background:rgba(0,229,255,0.12);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-house" style="color:#00e5ff;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-download" style="color:#6b7280;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-clock-rotate-left" style="color:#6b7280;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-sliders" style="color:#6b7280;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-circle-info" style="color:#6b7280;font-size:18px;"></i></div>
-          </div>
-          <!-- Main content -->
           <div style="flex:1;overflow-y:auto;padding:22px 22px 10px;background:#07090d;">
             <div style="font-size:1.4rem;font-weight:800;color:#e8eaf0;margin-bottom:3px;">Dashboard</div>
             <div style="font-size:.8rem;color:#6b7280;margin-bottom:18px;">Manage your downloads</div>
@@ -1333,13 +1321,6 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       <!-- Tab: Queue — exact DownloadCard.dart UI -->
       <div class="gallery-panel" id="tab-queue">
         <div style="display:flex;height:340px;overflow:hidden;">
-          <div style="width:68px;background:#0e1117;border-right:1px solid #1a1f2e;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:4px;flex-shrink:0;">
-            <div style="width:36px;height:36px;border-radius:10px;overflow:hidden;margin-bottom:14px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" width="36" height="36"><rect width="1024" height="1024" rx="210" fill="#00E5FF"/><rect x="262" y="740" width="500" height="80" rx="40" fill="#07090d"/><rect x="477" y="190" width="70" height="450" rx="35" fill="#07090d"/><path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-house" style="color:#6b7280;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;background:rgba(0,229,255,0.12);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-download" style="color:#00e5ff;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-clock-rotate-left" style="color:#6b7280;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-sliders" style="color:#6b7280;font-size:18px;"></i></div>
-          </div>
           <div style="flex:1;overflow-y:auto;padding:18px;background:#07090d;display:flex;flex-direction:column;gap:8px;">
             <div style="font-size:1.1rem;font-weight:800;color:#e8eaf0;margin-bottom:6px;">Queue</div>
             <!-- Download card 1 — Active (left cyan stripe) -->
@@ -1415,13 +1396,6 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       <!-- Tab: History — exact HistoryPage.dart UI -->
       <div class="gallery-panel" id="tab-settings">
         <div style="display:flex;height:340px;overflow:hidden;">
-          <div style="width:68px;background:#0e1117;border-right:1px solid #1a1f2e;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:4px;flex-shrink:0;">
-            <div style="width:36px;height:36px;border-radius:10px;overflow:hidden;margin-bottom:14px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" width="36" height="36"><rect width="1024" height="1024" rx="210" fill="#00E5FF"/><rect x="262" y="740" width="500" height="80" rx="40" fill="#07090d"/><rect x="477" y="190" width="70" height="450" rx="35" fill="#07090d"/><path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-house" style="color:#6b7280;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-download" style="color:#6b7280;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;background:rgba(0,229,255,0.12);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-clock-rotate-left" style="color:#00e5ff;font-size:18px;"></i></div>
-            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-sliders" style="color:#6b7280;font-size:18px;"></i></div>
-          </div>
           <div style="flex:1;overflow-y:auto;padding:18px;background:#07090d;display:flex;flex-direction:column;gap:10px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
               <div style="font-size:1.1rem;font-weight:800;color:#e8eaf0;">History</div>
@@ -1490,9 +1464,6 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       <div class="footer-socials">
         <a href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Telegram">
           <i class="fa-brands fa-telegram"></i>
-        </a>
-        <a href="https://github.com/kodna-iq" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
-          <i class="fa-brands fa-github"></i>
         </a>
         <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
       </div>
@@ -1857,7 +1828,7 @@ document.addEventListener('click', e => {
 ────────────────────────────────────────── */
 const GH_LATEST = 'https://api.github.com/repos/kodna-iq/urdown/releases/latest';
 const GH_ALL    = 'https://api.github.com/repos/kodna-iq/urdown/releases';
-const WIN_DL    = 'https://github.com/kodna-iq/urdown/releases/latest/download/UrDown_windows.exe';
+let WIN_DL = '';
 
 function formatNumber(n) {
   if (n >= 1000000) return (n/1000000).toFixed(1) + 'M+';
@@ -1968,11 +1939,27 @@ async function fetchGitHubData() {
     setAll('winVersion',      verClean);
 
     // ── Windows asset size ──
-    const winAsset     = assets.find(a => a.name === 'UrDown_windows.exe');
-    const macAsset     = assets.find(a => a.name === 'UrDown_mac.dmg');
-    const androidAsset = assets.find(a => a.name === 'UrDown_android.apk');
+    // Match any Windows exe (e.g. UrDown_windows.exe OR UrDown_windows_1.0.0.exe)
+    const winAsset     = assets.find(a => /UrDown.*windows.*\.exe$/i.test(a.name) || /UrDown.*\.exe$/i.test(a.name));
+    const macAsset     = assets.find(a => /UrDown.*\.dmg$/i.test(a.name));
+    const androidAsset = assets.find(a => /UrDown.*\.apk$/i.test(a.name));
 
-    if (winAsset) setAll('winSize', formatSize(winAsset.size));
+    if (winAsset) {
+      setAll('winSize', formatSize(winAsset.size));
+      // Store the real download URL and wire the button
+      WIN_DL = winAsset.browser_download_url;
+      window._winDownloadUrl = WIN_DL;
+      const wb = document.getElementById('winBtn');
+      if (wb) {
+        wb.onclick = () => startDownload(WIN_DL);
+      }
+    } else {
+      // Fallback: try /releases/latest but get actual filename from redirect
+      const fallbackUrl = 'https://github.com/kodna-iq/urdown/releases/latest/download/UrDown_windows.exe';
+      window._winDownloadUrl = fallbackUrl;
+      const wb = document.getElementById('winBtn');
+      if (wb) wb.onclick = () => startDownload(fallbackUrl);
+    }
 
     // ── release notes ──
     const notesEl = document.getElementById('releaseNotes');
