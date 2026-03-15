@@ -615,7 +615,7 @@ html[dir="rtl"] .whats-new-grid { direction:rtl; }
   padding:12px 16px; background:var(--surface);
   border-bottom:1px solid var(--border);
 }
-.gallery-panel { display:none; padding:24px; }
+.gallery-panel { display:none; padding:0; overflow:hidden; border-radius:0 0 18px 18px; }
 .gallery-panel.active { display:block; }
 /* Mock UI panels */
 .mock-download-bar {
@@ -985,7 +985,7 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
       Download videos from <strong>1000+ websites</strong> with high speed and advanced features.
     </p>
     <div class="hero-actions">
-      <a href="#download" class="btn-hero-dl">
+      <a href="#download" class="btn-hero-dl" onclick="smoothScrollTo('download')">
         <i class="fa-solid fa-download" aria-hidden="true"></i>
         <span data-i18n="btn_windows">Download for Windows</span>
       </a>
@@ -1077,11 +1077,12 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
         </div>
         <div class="platform-name">Windows</div>
         <div class="platform-desc" data-i18n="windows_only">Windows 10/11 · 64-bit</div>
-        <a id="winBtn" href="https://github.com/kodna-iq/urdown/releases/latest/download/UrDown_windows.exe"
-           class="btn-platform active-btn" download aria-label="Download UrDown for Windows">
+        <button id="winBtn" class="btn-platform active-btn"
+           onclick="startDownload('https://github.com/kodna-iq/urdown/releases/latest/download/UrDown_windows.exe')"
+           aria-label="Download UrDown for Windows">
           <i class="fa-solid fa-download" aria-hidden="true"></i>
           <span data-i18n="btn_windows">Download for Windows</span>
-        </a>
+        </button>
         <div class="platform-meta">
           <span class="meta-chip" id="winVersion">...</span>
           <span class="meta-chip green" data-i18n="status_stable">✓ Stable</span>
@@ -1255,9 +1256,9 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
     </div>
 
     <div class="gallery-tabs" role="tablist">
-      <button class="g-tab active" onclick="switchTab('download')" role="tab" aria-selected="true" data-i18n="tab_download">Download</button>
+      <button class="g-tab active" onclick="switchTab('download')" role="tab" aria-selected="true" data-i18n="tab_download">Dashboard</button>
       <button class="g-tab" onclick="switchTab('queue')" role="tab" aria-selected="false" data-i18n="tab_queue">Queue</button>
-      <button class="g-tab" onclick="switchTab('settings')" role="tab" aria-selected="false" data-i18n="tab_settings">Settings</button>
+      <button class="g-tab" onclick="switchTab('settings')" role="tab" aria-selected="false" data-i18n="tab_settings">History</button>
     </div>
 
     <div class="gallery-frame reveal" aria-live="polite">
@@ -1267,99 +1268,209 @@ html[dir="rtl"] .release-links    { flex-direction:row-reverse; }
           <div class="tb-dot yellow"></div>
           <div class="tb-dot green"></div>
         </div>
-        <div class="tb-title" id="galleryTabTitle">UrDown – Download</div>
+        <div class="tb-title" id="galleryTabTitle">UrDown – Dashboard</div>
       </div>
 
-      <!-- Tab: Download -->
+      <!-- Tab: Dashboard — exact UI from DashboardPage.dart -->
       <div class="gallery-panel active" id="tab-download">
-        <div class="mock-download-bar">
-          <div class="mock-input">https://www.youtube.com/watch?v=dQw4w9WgXcQ</div>
-          <button class="mock-btn">
-            <i class="fa-solid fa-download"></i> Download
-          </button>
-        </div>
-        <div class="mock-formats">
-          <span class="mock-fmt sel">4K (2160p)</span>
-          <span class="mock-fmt">1080p HD</span>
-          <span class="mock-fmt">720p</span>
-          <span class="mock-fmt">480p</span>
-          <span class="mock-fmt">360p</span>
-          <span class="mock-fmt">MP3 320kbps</span>
-          <span class="mock-fmt">MP3 128kbps</span>
-          <span class="mock-fmt">WAV</span>
-        </div>
-        <div class="mock-status-bar">
-          <i class="fa-solid fa-circle-check"></i>
-          Video detected: "Never Gonna Give You Up" (3:32) — YouTube
-        </div>
-        <div class="app-site-grid" style="margin-top:4px">
-          <div class="site-chip"><i class="fa-brands fa-youtube" style="color:#FF0000"></i>YouTube</div>
-          <div class="site-chip"><i class="fa-brands fa-tiktok" style="color:#69C9D0"></i>TikTok</div>
-          <div class="site-chip"><i class="fa-brands fa-instagram" style="color:#E1306C"></i>Instagram</div>
-          <div class="site-chip"><i class="fa-brands fa-twitter" style="color:#1DA1F2"></i>Twitter</div>
-          <div class="site-chip"><i class="fa-brands fa-facebook" style="color:#1877F2"></i>Facebook</div>
-          <div class="site-chip"><i class="fa-brands fa-twitch" style="color:#9146FF"></i>Twitch</div>
-          <div class="site-chip"><i class="fa-brands fa-vimeo" style="color:#1AB7EA"></i>Vimeo</div>
-          <div class="site-more">+993</div>
+        <div style="display:flex;height:340px;overflow:hidden;">
+          <!-- Sidebar NavigationRail (68px wide) -->
+          <div style="width:68px;background:#0e1117;border-right:1px solid #1a1f2e;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:4px;flex-shrink:0;">
+            <div style="width:36px;height:36px;border-radius:10px;overflow:hidden;margin-bottom:14px;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" width="36" height="36"><rect width="1024" height="1024" rx="210" fill="#00E5FF"/><rect x="262" y="740" width="500" height="80" rx="40" fill="#07090d"/><rect x="477" y="190" width="70" height="450" rx="35" fill="#07090d"/><path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div style="width:44px;height:44px;border-radius:10px;background:rgba(0,229,255,0.12);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-house" style="color:#00e5ff;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-download" style="color:#6b7280;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-clock-rotate-left" style="color:#6b7280;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-sliders" style="color:#6b7280;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-circle-info" style="color:#6b7280;font-size:18px;"></i></div>
+          </div>
+          <!-- Main content -->
+          <div style="flex:1;overflow-y:auto;padding:22px 22px 10px;background:#07090d;">
+            <div style="font-size:1.4rem;font-weight:800;color:#e8eaf0;margin-bottom:3px;">Dashboard</div>
+            <div style="font-size:.8rem;color:#6b7280;margin-bottom:18px;">Manage your downloads</div>
+            <!-- Stats row -->
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
+              <div style="background:#12151c;border:1px solid rgba(0,229,255,0.15);border-radius:12px;padding:14px;">
+                <div style="width:28px;height:28px;background:rgba(0,229,255,0.12);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><i class="fa-solid fa-download" style="color:#00e5ff;font-size:12px;"></i></div>
+                <div style="font-size:1.4rem;font-weight:800;color:#e8eaf0;">24</div>
+                <div style="font-size:.7rem;color:#6b7280;margin-top:2px;">Total</div>
+              </div>
+              <div style="background:#12151c;border:1px solid rgba(74,222,128,0.15);border-radius:12px;padding:14px;">
+                <div style="width:28px;height:28px;background:rgba(74,222,128,0.12);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><i class="fa-solid fa-circle-check" style="color:#4ade80;font-size:12px;"></i></div>
+                <div style="font-size:1.4rem;font-weight:800;color:#e8eaf0;">21</div>
+                <div style="font-size:.7rem;color:#6b7280;margin-top:2px;">Completed</div>
+              </div>
+              <div style="background:#12151c;border:1px solid rgba(124,58,237,0.15);border-radius:12px;padding:14px;">
+                <div style="width:28px;height:28px;background:rgba(124,58,237,0.12);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><i class="fa-solid fa-bolt" style="color:#a78bfa;font-size:12px;"></i></div>
+                <div style="font-size:1.4rem;font-weight:800;color:#e8eaf0;">2</div>
+                <div style="font-size:.7rem;color:#6b7280;margin-top:2px;">Active</div>
+              </div>
+              <div style="background:#12151c;border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:14px;">
+                <div style="width:28px;height:28px;background:rgba(239,68,68,0.12);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><i class="fa-solid fa-circle-xmark" style="color:#ef4444;font-size:12px;"></i></div>
+                <div style="font-size:1.4rem;font-weight:800;color:#e8eaf0;">1</div>
+                <div style="font-size:.7rem;color:#6b7280;margin-top:2px;">Failed</div>
+              </div>
+            </div>
+            <!-- URL input box -->
+            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:12px;padding:16px;">
+              <div style="font-size:.85rem;font-weight:600;color:#e8eaf0;margin-bottom:3px;">Download a Video</div>
+              <div style="font-size:.72rem;color:#6b7280;margin-bottom:12px;">Paste a URL to start downloading</div>
+              <div style="display:flex;gap:10px;">
+                <div style="flex:1;background:#0e1117;border:1px solid #1a1f2e;border-radius:9px;padding:10px 12px;display:flex;align-items:center;gap:8px;">
+                  <i class="fa-solid fa-link" style="color:#6b7280;font-size:.8rem;flex-shrink:0;"></i>
+                  <span style="font-size:.72rem;color:#363b4a;font-family:'Space Mono',monospace;">https://youtube.com/watch?v=...</span>
+                </div>
+                <div style="background:#00e5ff;color:#07090d;padding:10px 16px;border-radius:9px;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;">
+                  <i class="fa-solid fa-download" style="font-size:.8rem;"></i> Download
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Tab: Queue -->
+      <!-- Tab: Queue — exact DownloadCard.dart UI -->
       <div class="gallery-panel" id="tab-queue">
-        <div class="mock-queue">
-          <div class="mock-q-item">
-            <div class="mock-q-top">
-              <div class="mock-q-thumb" style="background:linear-gradient(135deg,#FF0000 0%,#cc0000 100%)"></div>
-              <div class="mock-q-title">Rick Astley – Never Gonna Give You Up (Official) [4K UHD]</div>
-              <div class="mock-q-pct">87%</div>
-            </div>
-            <div class="mock-progress"><div class="mock-bar" style="width:87%"></div></div>
+        <div style="display:flex;height:340px;overflow:hidden;">
+          <div style="width:68px;background:#0e1117;border-right:1px solid #1a1f2e;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:4px;flex-shrink:0;">
+            <div style="width:36px;height:36px;border-radius:10px;overflow:hidden;margin-bottom:14px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" width="36" height="36"><rect width="1024" height="1024" rx="210" fill="#00E5FF"/><rect x="262" y="740" width="500" height="80" rx="40" fill="#07090d"/><rect x="477" y="190" width="70" height="450" rx="35" fill="#07090d"/><path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-house" style="color:#6b7280;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;background:rgba(0,229,255,0.12);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-download" style="color:#00e5ff;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-clock-rotate-left" style="color:#6b7280;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-sliders" style="color:#6b7280;font-size:18px;"></i></div>
           </div>
-          <div class="mock-q-item">
-            <div class="mock-q-top">
-              <div class="mock-q-thumb" style="background:linear-gradient(135deg,#69C9D0 0%,#010101 100%)"></div>
-              <div class="mock-q-title">TikTok Playlist – Best Moments 2025 (42 videos)</div>
-              <div class="mock-q-pct">32%</div>
+          <div style="flex:1;overflow-y:auto;padding:18px;background:#07090d;display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:1.1rem;font-weight:800;color:#e8eaf0;margin-bottom:6px;">Queue</div>
+            <!-- Download card 1 — Active (left cyan stripe) -->
+            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:12px;overflow:hidden;display:flex;">
+              <div style="width:3px;background:#00e5ff;flex-shrink:0;"></div>
+              <div style="flex:1;padding:12px;">
+                <div style="display:flex;gap:10px;align-items:flex-start;">
+                  <div style="width:68px;height:48px;background:linear-gradient(135deg,#FF0000,#cc0000);border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><i class="fa-brands fa-youtube" style="color:white;font-size:1.2rem;"></i></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:.82rem;font-weight:600;color:#e8eaf0;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">The Art of Code – Dylan Beattie [Full Talk]</div>
+                    <div style="display:flex;gap:6px;align-items:center;margin-bottom:6px;">
+                      <span style="background:rgba(0,229,255,0.14);color:#00e5ff;font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:4px;">Downloading</span>
+                      <span style="font-size:.72rem;color:#6b7280;">Dylan Beattie</span>
+                    </div>
+                    <div style="display:flex;gap:5px;">
+                      <span style="background:#1a1f2e;color:#6b7280;font-size:.65rem;padding:2px 6px;border-radius:4px;">MP4</span>
+                      <span style="background:#1a1f2e;color:#6b7280;font-size:.65rem;padding:2px 6px;border-radius:4px;">1080p</span>
+                      <span style="background:rgba(0,229,255,0.12);color:#00e5ff;font-size:.65rem;font-weight:600;padding:2px 6px;border-radius:4px;">4.2 MB/s</span>
+                      <span style="background:#1a1f2e;color:#6b7280;font-size:.65rem;padding:2px 6px;border-radius:4px;">ETA 1:24</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:2px;"><i class="fa-solid fa-pause" style="color:#6b7280;font-size:14px;padding:4px;"></i><i class="fa-solid fa-xmark" style="color:#6b7280;font-size:14px;padding:4px;"></i></div>
+                </div>
+                <div style="margin:8px 12px 4px;"><div style="height:5px;background:#1a1f2e;border-radius:3px;overflow:hidden;"><div style="width:73%;height:100%;background:#00e5ff;border-radius:3px;"></div></div></div>
+                <div style="padding:0 12px;display:flex;justify-content:space-between;"><span style="font-size:.68rem;color:#363b4a;">73.0%  ·  247.3 MB</span><span style="font-size:.68rem;color:#363b4a;">Part 3</span></div>
+              </div>
             </div>
-            <div class="mock-progress"><div class="mock-bar" style="width:32%"></div></div>
-          </div>
-          <div class="mock-q-item">
-            <div class="mock-q-top">
-              <div class="mock-q-thumb" style="background:linear-gradient(135deg,#9146FF 0%,#6441a5 100%)"></div>
-              <div class="mock-q-title">Twitch Live Stream – Kodna Gaming (Recording...)</div>
-              <div class="mock-q-pct" style="color:var(--green)">LIVE</div>
+            <!-- Download card 2 — Completed (green stripe) -->
+            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:12px;overflow:hidden;display:flex;">
+              <div style="width:3px;background:#4ade80;flex-shrink:0;"></div>
+              <div style="flex:1;padding:12px;">
+                <div style="display:flex;gap:10px;align-items:flex-start;">
+                  <div style="width:68px;height:48px;background:linear-gradient(135deg,#69C9D0,#010101);border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><i class="fa-brands fa-tiktok" style="color:white;font-size:1.2rem;"></i></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:.82rem;font-weight:600;color:#e8eaf0;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Viral TikTok compilation — Top 50</div>
+                    <div style="display:flex;gap:6px;align-items:center;margin-bottom:6px;">
+                      <span style="background:rgba(74,222,128,0.14);color:#4ade80;font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:4px;">Done</span>
+                    </div>
+                    <div style="display:flex;gap:5px;">
+                      <span style="background:#1a1f2e;color:#6b7280;font-size:.65rem;padding:2px 6px;border-radius:4px;">MP4</span>
+                      <span style="background:#1a1f2e;color:#6b7280;font-size:.65rem;padding:2px 6px;border-radius:4px;">720p</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:2px;"><i class="fa-solid fa-trash" style="color:rgba(239,68,68,0.6);font-size:14px;padding:4px;"></i></div>
+                </div>
+                <div style="margin:8px 12px 0;display:flex;gap:8px;">
+                  <div style="flex:1;background:#1a1f2e;border-radius:7px;padding:6px;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;"><i class="fa-solid fa-folder-open" style="color:#00e5ff;font-size:12px;"></i><span style="font-size:.72rem;color:#00e5ff;font-weight:500;">Show File</span></div>
+                  <div style="flex:1;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.3);border-radius:7px;padding:6px;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;"><i class="fa-solid fa-circle-play" style="color:#00e5ff;font-size:12px;"></i><span style="font-size:.72rem;color:#00e5ff;font-weight:500;">Play</span></div>
+                </div>
+              </div>
             </div>
-            <div class="mock-progress"><div class="mock-bar" style="width:100%;animation:barPulse 1.5s ease-in-out infinite;"></div></div>
+            <!-- Download card 3 — Queued (purple stripe) -->
+            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:12px;overflow:hidden;display:flex;">
+              <div style="width:3px;background:#7c3aed;flex-shrink:0;"></div>
+              <div style="flex:1;padding:12px;">
+                <div style="display:flex;gap:10px;align-items:flex-start;">
+                  <div style="width:68px;height:48px;background:linear-gradient(135deg,#9146FF,#6441a5);border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><i class="fa-brands fa-twitch" style="color:white;font-size:1.2rem;"></i></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:.82rem;font-weight:600;color:#e8eaf0;margin-bottom:5px;">SpeedRun Highlights — ESA Marathon</div>
+                    <div style="display:flex;gap:6px;align-items:center;">
+                      <span style="background:rgba(124,58,237,0.14);color:#a78bfa;font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:4px;">Queued</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:2px;"><i class="fa-solid fa-xmark" style="color:#6b7280;font-size:14px;padding:4px;"></i></div>
+                </div>
+                <div style="margin:8px 12px 4px;"><div style="height:5px;background:#1a1f2e;border-radius:3px;overflow:hidden;"><div style="width:100%;height:100%;background:#7c3aed;border-radius:3px;animation:barPulse 1.2s ease-in-out infinite;opacity:.5;"></div></div></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Tab: Settings -->
+      <!-- Tab: History — exact HistoryPage.dart UI -->
       <div class="gallery-panel" id="tab-settings">
-        <div class="mock-settings">
-          <div class="mock-setting-row">
-            <label data-i18n="f5_title">Dark Mode</label>
-            <div class="mock-toggle"></div>
+        <div style="display:flex;height:340px;overflow:hidden;">
+          <div style="width:68px;background:#0e1117;border-right:1px solid #1a1f2e;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:4px;flex-shrink:0;">
+            <div style="width:36px;height:36px;border-radius:10px;overflow:hidden;margin-bottom:14px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" width="36" height="36"><rect width="1024" height="1024" rx="210" fill="#00E5FF"/><rect x="262" y="740" width="500" height="80" rx="40" fill="#07090d"/><rect x="477" y="190" width="70" height="450" rx="35" fill="#07090d"/><path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-house" style="color:#6b7280;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-download" style="color:#6b7280;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;background:rgba(0,229,255,0.12);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-clock-rotate-left" style="color:#00e5ff;font-size:18px;"></i></div>
+            <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-sliders" style="color:#6b7280;font-size:18px;"></i></div>
           </div>
-          <div class="mock-setting-row">
-            <label>Default Quality</label>
-            <div class="mock-setting-val" style="color:var(--accent)">4K UHD</div>
-          </div>
-          <div class="mock-setting-row">
-            <label>Download Path</label>
-            <div class="mock-setting-val" style="font-size:.75rem;color:var(--muted);">C:\Users\Videos\UrDown</div>
-          </div>
-          <div class="mock-setting-row">
-            <label>Language</label>
-            <div class="mock-setting-val">English</div>
-          </div>
-          <div class="mock-setting-row">
-            <label>Auto Updates</label>
-            <div class="mock-toggle"></div>
-          </div>
-          <div class="mock-setting-row">
-            <label>Max Threads</label>
-            <div class="mock-setting-val" style="color:#a78bfa">8 threads</div>
+          <div style="flex:1;overflow-y:auto;padding:18px;background:#07090d;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+              <div style="font-size:1.1rem;font-weight:800;color:#e8eaf0;">History</div>
+              <div style="color:#00e5ff;font-size:.78rem;font-weight:600;display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-trash-can" style="font-size:.75rem;"></i>Clear All</div>
+            </div>
+            <!-- Search bar -->
+            <div style="background:#0e1117;border:1px solid #1a1f2e;border-radius:9px;padding:9px 12px;display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+              <i class="fa-solid fa-magnifying-glass" style="color:#363b4a;font-size:.8rem;"></i>
+              <span style="font-size:.75rem;color:#363b4a;font-family:'Space Mono',monospace;">Search history…</span>
+            </div>
+            <!-- History item 1 -->
+            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:10px;padding:12px;display:flex;gap:10px;">
+              <div style="width:60px;height:42px;background:linear-gradient(135deg,#FF0000,#cc0000);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><i class="fa-brands fa-youtube" style="color:white;font-size:1rem;"></i></div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:.8rem;font-weight:600;color:#e8eaf0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Fireship – 100 Seconds of Rust</div>
+                <div style="display:flex;gap:5px;margin-top:5px;align-items:center;">
+                  <span style="background:#1a1f2e;color:#6b7280;font-size:.63rem;padding:1px 6px;border-radius:4px;">MP4</span>
+                  <span style="background:#1a1f2e;color:#6b7280;font-size:.63rem;padding:1px 6px;border-radius:4px;">1080p</span>
+                  <span style="font-size:.63rem;color:#363b4a;margin-left:auto;">2 hrs ago</span>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square" style="color:#363b4a;font-size:12px;flex-shrink:0;margin-top:2px;"></i>
+            </div>
+            <!-- History item 2 -->
+            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:10px;padding:12px;display:flex;gap:10px;">
+              <div style="width:60px;height:42px;background:linear-gradient(135deg,#E1306C,#833AB4);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><i class="fa-brands fa-instagram" style="color:white;font-size:1rem;"></i></div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:.8rem;font-weight:600;color:#e8eaf0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Instagram Reel – @nasa highlights 2025</div>
+                <div style="display:flex;gap:5px;margin-top:5px;align-items:center;">
+                  <span style="background:#1a1f2e;color:#6b7280;font-size:.63rem;padding:1px 6px;border-radius:4px;">MP4</span>
+                  <span style="background:#1a1f2e;color:#6b7280;font-size:.63rem;padding:1px 6px;border-radius:4px;">720p</span>
+                  <span style="font-size:.63rem;color:#363b4a;margin-left:auto;">Yesterday</span>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square" style="color:#363b4a;font-size:12px;flex-shrink:0;margin-top:2px;"></i>
+            </div>
+            <!-- History item 3 -->
+            <div style="background:#12151c;border:1px solid #1a1f2e;border-radius:10px;padding:12px;display:flex;gap:10px;">
+              <div style="width:60px;height:42px;background:linear-gradient(135deg,#1DA1F2,#0d8bd9);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><i class="fa-brands fa-twitter" style="color:white;font-size:1rem;"></i></div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:.8rem;font-weight:600;color:#e8eaf0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Twitter/X Video — SpaceX Starship launch</div>
+                <div style="display:flex;gap:5px;margin-top:5px;align-items:center;">
+                  <span style="background:#1a1f2e;color:#6b7280;font-size:.63rem;padding:1px 6px;border-radius:4px;">MP4</span>
+                  <span style="background:#1a1f2e;color:#6b7280;font-size:.63rem;padding:1px 6px;border-radius:4px;">1080p</span>
+                  <span style="font-size:.63rem;color:#363b4a;margin-left:auto;">Mar 12</span>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square" style="color:#363b4a;font-size:12px;flex-shrink:0;margin-top:2px;"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -1465,7 +1576,7 @@ const I18N = {
     f6_title:'High Speed Downloads',
     f6_desc:'Multi-threaded download engine for maximum speed with minimal CPU usage.',
     sec_screenshots:'Screenshots', screenshots_title:'See It In Action',
-    tab_download:'Download', tab_queue:'Queue', tab_settings:'Settings',
+    tab_download:'Dashboard', tab_queue:'Queue', tab_settings:'History',
     footer_back:'← Back to Kodna', footer_tagline:'UrDown is part of the Kodna software suite · Free for everyone',
     footer_copy:'© 2025 Kodna — Developed by Dhia Darem',
     changelog_title:'Changelog', no_releases:'No release notes available.',
@@ -1504,7 +1615,7 @@ const I18N = {
     f6_title:'تحميل فائق السرعة',
     f6_desc:'محرك تحميل متعدد الخيوط لأقصى سرعة مع أدنى استهلاك للمعالج.',
     sec_screenshots:'لقطات الشاشة', screenshots_title:'شاهده في العمل',
-    tab_download:'تحميل', tab_queue:'قائمة الانتظار', tab_settings:'الإعدادات',
+    tab_download:'لوحة التحكم', tab_queue:'قائمة التنزيل', tab_settings:'السجل',
     footer_back:'العودة إلى كودنا →', footer_tagline:'UrDown جزء من مجموعة برامج كودنا · مجاني للجميع',
     footer_copy:'© 2025 كودنا — تطوير ضياء دارم',
     changelog_title:'سجل التغييرات', no_releases:'لا توجد ملاحظات إصدار.',
@@ -1582,7 +1693,7 @@ const I18N = {
     f6_title:'高速下载',
     f6_desc:'多线程下载引擎，最高速度，最低 CPU 占用。',
     sec_screenshots:'截图', screenshots_title:'实际效果',
-    tab_download:'下载', tab_queue:'队列', tab_settings:'设置',
+    tab_download:'控制面板', tab_queue:'队列', tab_settings:'历史',
     footer_back:'← 返回 Kodna', footer_tagline:'UrDown 是 Kodna 软件套件的一部分 · 对所有人免费',
     footer_copy:'© 2025 Kodna — 由 Dhia Darem 开发',
     changelog_title:'更新记录', no_releases:'暂无发布说明。',
@@ -1621,7 +1732,7 @@ const I18N = {
     f6_title:'Descargas de Alta Velocidad',
     f6_desc:'Motor de descarga multihilo para máxima velocidad.',
     sec_screenshots:'Capturas', screenshots_title:'Véalo en Acción',
-    tab_download:'Descarga', tab_queue:'Cola', tab_settings:'Ajustes',
+    tab_download:'Panel', tab_queue:'Cola', tab_settings:'Historial',
     footer_back:'← Volver a Kodna', footer_tagline:'UrDown es parte del conjunto de software Kodna · Gratis para todos',
     footer_copy:'© 2025 Kodna — Desarrollado por Dhia Darem',
     changelog_title:'Registro de cambios', no_releases:'No hay notas de versión disponibles.',
@@ -1660,7 +1771,7 @@ const I18N = {
     f6_title:'Высокая скорость загрузки',
     f6_desc:'Многопоточный движок загрузки для максимальной скорости.',
     sec_screenshots:'Скриншоты', screenshots_title:'Посмотрите в действии',
-    tab_download:'Загрузка', tab_queue:'Очередь', tab_settings:'Настройки',
+    tab_download:'Панель', tab_queue:'Очередь', tab_settings:'История',
     footer_back:'← Вернуться к Kodna', footer_tagline:'UrDown — часть пакета программ Kodna · Бесплатно для всех',
     footer_copy:'© 2025 Kodna — Разработано Dhia Darem',
     changelog_title:'История изменений', no_releases:'Заметки о выпуске недоступны.',
@@ -1805,9 +1916,9 @@ function activatePlatformButton(cardId, btnId, url, nameKey, metaText) {
   btn.classList.remove('soon-btn');
   btn.classList.add('active-btn');
   btn.disabled = false;
-  btn.setAttribute('href', url);
   const t = I18N[currentLang];
   btn.innerHTML = `<i class="fa-solid fa-download"></i> <span>${t[nameKey] || 'Download'}</span>`;
+  btn.onclick = () => startDownload(url);
   if (metaText) {
     const meta = card.querySelector('.platform-meta');
     if (meta) {
@@ -1815,10 +1926,18 @@ function activatePlatformButton(cardId, btnId, url, nameKey, metaText) {
       if (chip) chip.textContent = metaText;
     }
   }
-  // Convert button from <button> to <a> behaviour
-  if (btn.tagName === 'BUTTON') {
-    btn.onclick = () => { window.location.href = url; };
-  }
+}
+
+/* ── startDownload: forces file download without page redirect ── */
+function startDownload(url) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = url.split('/').pop() || 'UrDown_setup.exe';
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => document.body.removeChild(a), 200);
 }
 
 async function fetchGitHubData() {
@@ -1938,9 +2057,9 @@ async function fetchGitHubData() {
    SCREENSHOTS TABS
 ────────────────────────────────────────── */
 const TAB_TITLES = {
-  download: 'UrDown – Download',
-  queue:    'UrDown – Download Queue',
-  settings: 'UrDown – Settings',
+  download: 'UrDown – Dashboard',
+  queue:    'UrDown – Queue',
+  settings: 'UrDown – History',
 };
 function switchTab(name) {
   document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
