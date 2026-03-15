@@ -200,7 +200,8 @@
   }
   /* ══ TABLET 768 ══ */
   @media(max-width:768px){
-    .nav-center,.nav-actions{display:none;}.lang-switcher{display:block !important;}
+    .nav-center{display:none;}
+    .btn-nav{display:none !important;}
     .hamburger{display:flex;}
     .hero{padding:86px 5% 48px;}
     .hero-stats{gap:20px;flex-wrap:wrap;}
@@ -323,22 +324,22 @@
     <li><a href="#about" data-i18n="nav_about">من نحن</a></li>
     <li><a href="#contact" data-i18n="nav_contact">تواصل</a></li>
   </ul>
-  <div class="lang-switcher" id="langSwitcher">
-    <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
-      <span id="langFlag">🇮🇶</span>
-      <span id="langCode">AR</span>
-      <i class="fa-solid fa-chevron-down chevron" id="langChevron"></i>
-    </button>
-    <div class="lang-menu" id="langMenu">
-      <button class="lang-item" onclick="setLang('ar')" data-lang="ar">🇮🇶 العربية</button>
-      <button class="lang-item" onclick="setLang('en')" data-lang="en">🇬🇧 English</button>
-      <button class="lang-item" onclick="setLang('ku')" data-lang="ku">🏔️ کوردی</button>
-      <button class="lang-item" onclick="setLang('zh')" data-lang="zh">🇨🇳 中文</button>
-      <button class="lang-item" onclick="setLang('es')" data-lang="es">🇪🇸 Español</button>
-      <button class="lang-item" onclick="setLang('ru')" data-lang="ru">🇷🇺 Русский</button>
-    </div>
-  </div>
   <div class="nav-actions">
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+        <span id="langFlag">🇮🇶</span>
+        <span id="langCode">AR</span>
+        <i class="fa-solid fa-chevron-down chevron" id="langChevron"></i>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button class="lang-item" onclick="setLang('ar')" data-lang="ar">🇮🇶 العربية</button>
+        <button class="lang-item" onclick="setLang('en')" data-lang="en">🇬🇧 English</button>
+        <button class="lang-item" onclick="setLang('ku')" data-lang="ku">🏔️ کوردی</button>
+        <button class="lang-item" onclick="setLang('zh')" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-item" onclick="setLang('es')" data-lang="es">🇪🇸 Español</button>
+        <button class="lang-item" onclick="setLang('ru')" data-lang="ru">🇷🇺 Русский</button>
+      </div>
+    </div>
     <a class="btn-nav ghost" href="#programs" data-i18n="nav_explore">استكشف البرامج</a>
     <a class="btn-nav fill" href="urdown.html">UrDown ↗</a>
   </div>
