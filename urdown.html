@@ -91,6 +91,9 @@
    DESIGN TOKENS
 ═══════════════════════════════════════════ */
 :root {
+  /* ── Android Launch Banner ── */
+  --android-green: #3ddc84;
+
   --bg:      #07090d;
   --surface: #0e1117;
   --card:    #12151c;
@@ -666,10 +669,146 @@ html[dir=rtl] .faq-q{flex-direction:row-reverse}
 html[dir=rtl] .app-tb{flex-direction:row-reverse}
 html[dir=rtl] .tb-dots{flex-direction:row-reverse}
 html[dir=rtl] .tb-title{text-align:right}
+
+/* ── Android Launch Banner ── */
+#android-banner{
+  background:linear-gradient(90deg,rgba(61,220,132,.15),rgba(0,229,255,.1));
+  border-bottom:1px solid rgba(61,220,132,.3);
+  padding:10px 20px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  font-size:.84rem;font-weight:600;color:var(--text);
+  position:relative;z-index:200;
+  animation:bannerSlide .5s ease;
+}
+@keyframes bannerSlide{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+#android-banner .ban-icon{font-size:1.1rem}
+#android-banner .ban-badge{
+  background:var(--android-green);color:#07090d;
+  border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:800;
+}
+#android-banner .ban-link{
+  color:var(--android-green);text-decoration:underline;cursor:pointer;
+}
+#android-banner .ban-close{
+  position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  color:var(--muted);cursor:pointer;font-size:1rem;padding:4px 8px;
+  transition:color .2s;
+}
+#android-banner .ban-close:hover{color:var(--text)}
+
+/* ── Platform Comparison Table ── */
+#comparison{padding:80px 0}
+.cmp-table-wrap{overflow-x:auto;margin-top:36px;border-radius:var(--r-lg);border:1px solid var(--border2)}
+.cmp-table{width:100%;border-collapse:collapse;min-width:520px}
+.cmp-table th{
+  padding:16px 20px;text-align:center;font-size:.8rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  background:var(--surface);border-bottom:1px solid var(--border2);
+}
+.cmp-table th:first-child{text-align:left;width:44%}
+.cmp-table th .th-platform{display:flex;flex-direction:column;align-items:center;gap:6px}
+.cmp-table th .th-platform i{font-size:1.4rem}
+.cmp-table th.win-col .th-platform i{color:var(--accent)}
+.cmp-table th.and-col .th-platform i{color:var(--android-green)}
+.cmp-table th.mac-col .th-platform i{color:var(--muted)}
+.cmp-table td{
+  padding:13px 20px;border-bottom:1px solid rgba(26,31,46,.8);
+  font-size:.875rem;text-align:center;color:var(--muted);
+}
+.cmp-table td:first-child{text-align:left;color:var(--text);font-weight:500}
+.cmp-table tr:last-child td{border-bottom:none}
+.cmp-table tr:hover td{background:rgba(255,255,255,.02)}
+.cmp-yes{color:var(--green);font-size:1rem}
+.cmp-no{color:var(--muted);font-size:1rem;opacity:.4}
+.cmp-soon-tag{
+  background:rgba(124,58,237,.15);color:#a78bfa;
+  border-radius:20px;padding:2px 8px;font-size:.72rem;font-weight:700;
+}
+.cmp-new-tag{
+  background:rgba(61,220,132,.15);color:var(--android-green);
+  border-radius:20px;padding:2px 8px;font-size:.72rem;font-weight:700;
+}
+
+/* ── Android Screenshot mockup ── */
+.android-mockup-wrap{
+  display:flex;align-items:center;justify-content:center;
+  gap:40px;margin-top:40px;flex-wrap:wrap;
+}
+.android-phone{
+  width:200px;background:var(--card);border-radius:32px;
+  border:2px solid var(--border2);padding:12px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04);
+  flex-shrink:0;
+}
+.phone-notch{
+  width:60px;height:6px;background:var(--border2);border-radius:3px;
+  margin:0 auto 12px;
+}
+.phone-screen{background:var(--bg);border-radius:20px;overflow:hidden;padding:12px}
+.phone-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.phone-logo{
+  width:28px;height:28px;background:var(--accent);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:900;color:#07090d;
+}
+.phone-title{font-size:.75rem;font-weight:700;color:var(--text)}
+.phone-url-bar{
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  padding:7px 10px;font-size:.65rem;color:var(--muted);margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.phone-q-row{display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap}
+.phone-chip{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:3px 8px;font-size:.62rem;color:var(--muted);
+}
+.phone-chip.act{border-color:var(--accent);color:var(--accent)}
+.phone-dl-btn{
+  width:100%;background:var(--accent);color:#07090d;border-radius:10px;
+  padding:8px;font-size:.72rem;font-weight:800;text-align:center;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.phone-bottom{margin:0 -4px;padding-top:10px;border-top:1px solid var(--border)}
+.phone-nav{display:flex;justify-content:space-around}
+.phone-nav-ico{font-size:.8rem;color:var(--muted);padding:4px}
+.phone-nav-ico.act{color:var(--accent)}
+.android-features-list{flex:1;min-width:240px}
+.android-feat-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 0;border-bottom:1px solid var(--border);
+}
+.android-feat-item:last-child{border-bottom:none}
+.android-feat-ico{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;
+}
+.android-feat-title{font-size:.875rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.android-feat-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
+
+/* ── Smart download button ── */
+.btn-dl-main.android-mode{
+  background:linear-gradient(135deg,#3ddc84,#2bb869) !important;
+  color:#07090d !important;
+}
+
+@media(max-width:640px){
+  .cmp-table th,.cmp-table td{padding:10px 12px;font-size:.78rem}
+  .android-mockup-wrap{gap:24px}
+}
 </style>
 </head>
 
 <body>
+
+<!-- ═══ ANDROID LAUNCH BANNER ═══ -->
+<div id="android-banner">
+  <span class="ban-icon">🤖</span>
+  <span class="ban-badge" data-i18n="ban_new">NEW</span>
+  <span data-i18n="ban_text">UrDown for Android is now available!</span>
+  <a class="ban-link" href="#download" data-i18n="ban_link">Download APK</a>
+  <span class="ban-close" onclick="document.getElementById('android-banner').style.display='none'" aria-label="Close">✕</span>
+</div>
+
 <div class="grid-bg" aria-hidden="true"></div>
 <div class="blob b1" aria-hidden="true"></div>
 <div class="blob b2" aria-hidden="true"></div>
@@ -690,6 +829,7 @@ html[dir=rtl] .tb-title{text-align:right}
   <ul class="nav-links" aria-label="Site sections">
     <li><a href="#features" data-i18n="nav_features">Features</a></li>
     <li><a href="#download" data-i18n="nav_download">Download</a></li>
+    <li><a href="#android-section" style="color:var(--android-green)" data-i18n="nav_android">Android <span style="font-size:.65rem;background:var(--android-green);color:#07090d;border-radius:20px;padding:1px 6px;font-weight:800;vertical-align:middle">NEW</span></a></li>
     <li><a href="#whats-new" data-i18n="nav_changelog">What's New</a></li>
     <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
   </ul>
@@ -722,6 +862,7 @@ html[dir=rtl] .tb-title{text-align:right}
 <div class="mob-nav" id="mobNav" role="navigation">
   <a href="#features" onclick="toggleMenu()" data-i18n="nav_features">Features</a>
   <a href="#download" onclick="toggleMenu()" data-i18n="nav_download">Download</a>
+  <a href="#android-section" onclick="toggleMenu()" style="color:var(--android-green)" data-i18n="nav_android">Android 🤖</a>
   <a href="#whats-new" onclick="toggleMenu()" data-i18n="nav_changelog">What's New</a>
   <a href="#faq" onclick="toggleMenu()" data-i18n="nav_faq">FAQ</a>
 </div>
@@ -807,7 +948,11 @@ html[dir=rtl] .tb-title{text-align:right}
       <div class="stat-l" data-i18n="stat_sites">Supported Sites</div>
     </div>
     <div class="stat-i">
-      <div class="stat-v g">3</div>
+      <div class="stat-v" style="color:var(--android-green)" id="statAndDl">—</div>
+      <div class="stat-l" data-i18n="stat_and_dl">Android Downloads</div>
+    </div>
+    <div class="stat-i">
+      <div class="stat-v g">2</div>
       <div class="stat-l" data-i18n="stat_plat">Platforms</div>
     </div>
     <div class="stat-i">
@@ -1063,6 +1208,110 @@ html[dir=rtl] .tb-title{text-align:right}
   </div>
 </section>
 
+<!-- ═══ PLATFORM COMPARISON ═══ -->
+<section id="comparison" aria-label="Platform Comparison">
+  <div class="wrap">
+    <div class="sec-tag" data-i18n="sec_cmp">Comparison</div>
+    <h2 class="sec-title" data-i18n="cmp_title">Which Platform Is Right for You?</h2>
+    <p class="sec-desc" data-i18n="cmp_desc">Compare features across all platforms.</p>
+    <div class="cmp-table-wrap rev">
+      <table class="cmp-table" role="table">
+        <thead>
+          <tr>
+            <th data-i18n="cmp_feature">Feature</th>
+            <th class="win-col"><div class="th-platform"><i class="fa-brands fa-windows"></i>Windows</div></th>
+            <th class="and-col"><div class="th-platform"><i class="fa-brands fa-android"></i>Android <span class="cmp-new-tag" data-i18n="ban_new">NEW</span></div></th>
+            <th class="mac-col"><div class="th-platform"><i class="fa-brands fa-apple"></i>macOS</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-i18n="cmp_r1">Download from 1000+ sites</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r2">YouTube & TikTok support</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r3">Live stream recording</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-no">✗</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r4">Playlist / batch download</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r5">Dark mode</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r6">Background download</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r7">4K / 1080p quality</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r8">Auto update</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-no">✗</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r9">Multilingual UI (6 languages)</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-soon-tag" data-i18n="cmp_soon">Soon</span></td></tr>
+          <tr><td data-i18n="cmp_r10">Free & open source</td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td><td><span class="cmp-yes">✓</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ANDROID FEATURES ═══ -->
+<section id="android-section" aria-label="Android">
+  <div class="wrap">
+    <div class="sec-tag" style="color:var(--android-green);border-color:rgba(61,220,132,.3);background:rgba(61,220,132,.08)">Android</div>
+    <h2 class="sec-title" data-i18n="and_sec_title">UrDown on Your Phone</h2>
+    <p class="sec-desc" data-i18n="and_sec_desc">All the power of UrDown, now in your pocket.</p>
+    <div class="android-mockup-wrap rev">
+      <!-- Phone Mockup -->
+      <div class="android-phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-header">
+            <div class="phone-logo">UD</div>
+            <div class="phone-title">UrDown</div>
+          </div>
+          <div class="phone-url-bar">
+            <i class="fa-solid fa-link" style="color:var(--accent);font-size:.6rem"></i>
+            <span>youtube.com/watch?v=...</span>
+          </div>
+          <div class="phone-q-row">
+            <span class="phone-chip act">1080p</span>
+            <span class="phone-chip">720p</span>
+            <span class="phone-chip">480p</span>
+            <span class="phone-chip">MP3</span>
+          </div>
+          <div class="phone-dl-btn">
+            <i class="fa-solid fa-download" style="font-size:.65rem"></i>
+            <span data-i18n="btn_and">Download for Android</span>
+          </div>
+          <div class="phone-bottom">
+            <div class="phone-nav">
+              <div class="phone-nav-ico act"><i class="fa-solid fa-house"></i></div>
+              <div class="phone-nav-ico"><i class="fa-solid fa-list"></i></div>
+              <div class="phone-nav-ico"><i class="fa-solid fa-clock-rotate-left"></i></div>
+              <div class="phone-nav-ico"><i class="fa-solid fa-gear"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Android Feature List -->
+      <div class="android-features-list">
+        <div class="android-feat-item rev">
+          <div class="android-feat-ico" style="background:rgba(61,220,132,.1)">📥</div>
+          <div><div class="android-feat-title" data-i18n="af1t">Download & Save Anywhere</div><div class="android-feat-desc" data-i18n="af1d">Save videos directly to your gallery, Downloads folder, or any custom path.</div></div>
+        </div>
+        <div class="android-feat-item rev">
+          <div class="android-feat-ico" style="background:rgba(0,229,255,.1)">🌐</div>
+          <div><div class="android-feat-title" data-i18n="af2t">1000+ Supported Sites</div><div class="android-feat-desc" data-i18n="af2d">YouTube, TikTok, Instagram, Twitter and hundreds more — right from your phone.</div></div>
+        </div>
+        <div class="android-feat-item rev">
+          <div class="android-feat-ico" style="background:rgba(167,139,250,.1)">🎵</div>
+          <div><div class="android-feat-title" data-i18n="af3t">Extract Audio as MP3</div><div class="android-feat-desc" data-i18n="af3d">Convert any video to MP3 audio with a single tap. No extra apps needed.</div></div>
+        </div>
+        <div class="android-feat-item rev">
+          <div class="android-feat-ico" style="background:rgba(239,68,68,.1)">🔒</div>
+          <div><div class="android-feat-title" data-i18n="af4t">No Ads · No Login Required</div><div class="android-feat-desc" data-i18n="af4d">100% free, no account needed. Just install and start downloading.</div></div>
+        </div>
+        <div style="margin-top:20px">
+          <a href="#download">
+            <button class="btn-dl-main android-mode" style="font-size:.9rem;padding:12px 24px" onclick="document.getElementById('androidBtn').click()">
+              <i class="fa-brands fa-android"></i>
+              <span data-i18n="btn_and">Download for Android</span>
+            </button>
+          </a>
+          <p style="margin-top:10px;font-size:.75rem;color:var(--muted)" data-i18n="and_req">Requires Android 8.0+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ FAQ ═══ -->
 <section id="faq" aria-label="FAQ">
   <div class="wrap">
@@ -1101,6 +1350,8 @@ html[dir=rtl] .tb-title{text-align:right}
       <ul>
         <li><a href="#features" data-i18n="nav_features">Features</a></li>
         <li><a href="#download" data-i18n="nav_download">Download</a></li>
+        <li><a href="#android-section" style="color:var(--android-green)" data-i18n="nav_android">Android <span style="font-size:.65rem;background:var(--android-green);color:#07090d;border-radius:20px;padding:1px 5px;font-weight:800">NEW</span></a></li>
+        <li><a href="#comparison" data-i18n="sec_cmp">Comparison</a></li>
         <li><a href="#whats-new" data-i18n="nav_changelog">What's New</a></li>
         <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
       </ul>
@@ -1145,7 +1396,20 @@ en:{dir:'ltr',flag:'🇬🇧',code:'EN',
   btn_win:'Download for Windows',btn_mac:'Mac — Coming Soon',btn_and:'Download for Android',
   ver_label:'Latest Version',rel_label:'Released',plat_label:'Platform',status_label:'Status',status_stable:'✓ Stable',
   free_note:'Free forever · No registration · Open source',
-  stat_dl:'Total Downloads',stat_sites:'Supported Sites',stat_plat:'Platforms',stat_free:'Free',
+  stat_dl:'Total Downloads',stat_sites:'Supported Sites',stat_plat:'Platforms',stat_free:'Free',stat_and_dl:'Android Downloads',
+  ban_new:'NEW',ban_text:'UrDown for Android is now available!',ban_link:'Download APK',
+  nav_android:'Android',
+  sec_cmp:'Comparison',cmp_title:'Which Platform Is Right for You?',cmp_desc:'Compare features across all platforms.',
+  cmp_feature:'Feature',cmp_soon:'Soon',
+  cmp_r1:'Download from 1000+ sites',cmp_r2:'YouTube & TikTok support',cmp_r3:'Live stream recording',
+  cmp_r4:'Playlist / batch download',cmp_r5:'Dark mode',cmp_r6:'Background download',
+  cmp_r7:'4K / 1080p quality',cmp_r8:'Auto update',cmp_r9:'Multilingual UI (6 languages)',cmp_r10:'Free & open source',
+  and_sec_title:'UrDown on Your Phone',and_sec_desc:'All the power of UrDown, now in your pocket.',
+  af1t:'Download & Save Anywhere',af1d:'Save videos directly to your gallery, Downloads folder, or any custom path.',
+  af2t:'1000+ Supported Sites',af2d:'YouTube, TikTok, Instagram, Twitter and hundreds more — right from your phone.',
+  af3t:'Extract Audio as MP3',af3d:'Convert any video to MP3 audio with a single tap. No extra apps needed.',
+  af4t:'No Ads · No Login Required',af4d:'100% free, no account needed. Just install and start downloading.',
+  and_req:'Requires Android 8.0+',
   sec_dl:'Download',dl_title:'Start Downloading Now',
   win_desc:'Windows 10/11 · 64-bit',mac_desc:'macOS version in development',and_desc:'Android 8+ · APK',
   sec_wn:"What's New",wn_title:'Latest Updates',wn_desc:'Auto-fetched release notes. Always up to date.',wn_loading:'Fetching release notes...',
@@ -1173,7 +1437,7 @@ en:{dir:'ltr',flag:'🇬🇧',code:'EN',
     {q:'Which websites are supported?',a:'UrDown supports 1000+ websites including YouTube, TikTok, Instagram, Twitter, Facebook, Twitch, Vimeo, SoundCloud, and many more.'},
     {q:'Can I download playlists?',a:'Yes. Paste a playlist URL and UrDown will download all videos automatically in the background.'},
     {q:'Does it support live streams?',a:'Yes. UrDown can record live streams from YouTube, Twitch, TikTok and other platforms in real-time.'},
-    {q:'Is Mac / Android version available?',a:'Mac and Android versions are currently in development. Follow our Telegram channel for release announcements.'},
+    {q:'Is Android version available?',a:'Yes! UrDown for Android is now available. Download the APK from the download section above. Mac version is still in development.'},
     {q:'How do I update UrDown?',a:'UrDown checks for updates automatically on startup and notifies you when a new version is available.'},
   ]
 },
@@ -1185,7 +1449,20 @@ ar:{dir:'rtl',flag:'🇮🇶',code:'AR',
   btn_win:'تحميل للـ Windows',btn_mac:'Mac — قريباً',btn_and:'تحميل للـ Android',
   ver_label:'أحدث إصدار',rel_label:'تاريخ الإصدار',plat_label:'النظام',status_label:'الحالة',status_stable:'✓ مستقر',
   free_note:'مجاني تماماً · بدون تسجيل · مفتوح المصدر',
-  stat_dl:'إجمالي التحميلات',stat_sites:'موقع مدعوم',stat_plat:'أنظمة',stat_free:'مجاني',
+  stat_dl:'إجمالي التحميلات',stat_sites:'موقع مدعوم',stat_plat:'أنظمة',stat_free:'مجاني',stat_and_dl:'تحميلات أندرويد',
+  ban_new:'جديد',ban_text:'UrDown لـ Android متاح الآن!',ban_link:'تحميل APK',
+  nav_android:'أندرويد',
+  sec_cmp:'مقارنة',cmp_title:'أي منصة تناسبك؟',cmp_desc:'قارن الميزات عبر جميع المنصات.',
+  cmp_feature:'الميزة',cmp_soon:'قريباً',
+  cmp_r1:'تحميل من 1000+ موقع',cmp_r2:'دعم يوتيوب وتيك توك',cmp_r3:'تسجيل البث المباشر',
+  cmp_r4:'تحميل قوائم تشغيل / دُفعي',cmp_r5:'الوضع الداكن',cmp_r6:'التحميل في الخلفية',
+  cmp_r7:'جودة 4K / 1080p',cmp_r8:'تحديث تلقائي',cmp_r9:'واجهة متعددة اللغات (6 لغات)',cmp_r10:'مجاني ومفتوح المصدر',
+  and_sec_title:'UrDown على هاتفك',and_sec_desc:'كل قوة UrDown، الآن في جيبك.',
+  af1t:'تحميل وحفظ في أي مكان',af1d:'احفظ الفيديوهات مباشرة في المعرض أو مجلد التنزيلات أو أي مسار مخصص.',
+  af2t:'أكثر من 1000 موقع مدعوم',af2d:'يوتيوب، تيك توك، انستغرام، تويتر والمئات غيرها — من هاتفك مباشرة.',
+  af3t:'استخراج الصوت MP3',af3d:'حوّل أي فيديو إلى ملف MP3 بنقرة واحدة. لا تطبيقات إضافية مطلوبة.',
+  af4t:'بدون إعلانات · بدون تسجيل',af4d:'مجاني 100%، لا حاجة لحساب. فقط ثبّت وابدأ التحميل.',
+  and_req:'يتطلب Android 8.0 أو أحدث',
   sec_dl:'التحميل',dl_title:'ابدأ التحميل الآن',
   win_desc:'Windows 10/11 · 64-bit',mac_desc:'إصدار macOS قيد التطوير',and_desc:'Android 8+ · APK',
   sec_wn:'ما الجديد',wn_title:'آخر التحديثات',wn_desc:'ملاحظات الإصدار تُجلب تلقائياً. دائماً محدّث.',wn_loading:'جار تحميل ملاحظات الإصدار...',
@@ -1225,7 +1502,20 @@ ku:{dir:'rtl',flag:'🏔️',code:'KU',
   btn_win:'داونلۆد بۆ Windows',btn_mac:'Mac — بەمزوانە',btn_and:'داونلۆد بۆ Android',
   ver_label:'دوایین وەشان',rel_label:'بەرھەمھاتووە',plat_label:'سیستەم',status_label:'دۆخ',status_stable:'✓ ئارامە',
   free_note:'بەتەواوی خۆڕایی · تۆمارکردن پێویست نیە',
-  stat_dl:'کۆی داونلۆدەکان',stat_sites:'مالپەڕی پشتگیریکراو',stat_plat:'پلاتفۆرم',stat_free:'خۆڕایی',
+  stat_dl:'کۆی داونلۆدەکان',stat_sites:'مالپەڕی پشتگیریکراو',stat_plat:'پلاتفۆرم',stat_free:'خۆڕایی',stat_and_dl:'داونلۆدی ئەندرۆید',
+  ban_new:'نوێ',ban_text:'.UrDown بۆ ئەندرۆید ئێستا بەردەستە',ban_link:'داونلۆدی APK',
+  nav_android:'ئەندرۆید',
+  sec_cmp:'بەراورد',cmp_title:'کام پلاتفۆرم گونجاوترە بۆت؟',cmp_desc:'تایبەتمەندییەکان لە نێوان هەموو پلاتفۆرمەکاندا بەراورد بکە.',
+  cmp_feature:'تایبەتمەندی',cmp_soon:'بەمزوانە',
+  cmp_r1:'داونلۆد لە زیاتر لە 1000 مالپەڕ',cmp_r2:'پشتگیری YouTube و TikTok',cmp_r3:'تۆمارکردنی بەرپەرسایەتی ڕاستەوخۆ',
+  cmp_r4:'داونلۆدی لیستی لێدان',cmp_r5:'دۆخی تاریک',cmp_r6:'داونلۆد لە پاشەخانەدا',
+  cmp_r7:'کوالیتی 4K / 1080p',cmp_r8:'نوێکردنەوەی خۆکار',cmp_r9:'UI پشتگیریکردنی زمانی (6 زمان)',cmp_r10:'خۆڕایی و سەرچاوەی کراوە',
+  and_sec_title:'UrDown لەسەر مۆبایلەکەت',and_sec_desc:'هەموو ئامرازەکانی UrDown، ئێستا لە جێبەکەتدا.',
+  af1t:'داونلۆد و پاشەکەوتکردن لە هەرشوێنێک',af1d:'ڤیدیۆکان ڕاستەوخۆ لە گەلەری، مجلد داونلۆد، یان هەر ئەرکێک پاشەکەوت بکە.',
+  af2t:'زیاتر لە 1000 مالپەڕی پشتگیریکراو',af2d:'YouTube، TikTok، Instagram، Twitter و سەدان مالپەڕی دیکە — ڕاستەوخۆ لە مۆبایلەکەتەوە.',
+  af3t:'دەرهێنانی دەنگ بە MP3',af3d:'هەر ڤیدیۆیەک بگۆڕە بۆ MP3 بە یەک کلیک. پێویستی بە ئەپی زیادە نییە.',
+  af4t:'بێ ڕیکلام · بێ تۆمارکردن',af4d:'خۆڕایی 100%، پێویستی بە ئەکاونت نییە. تەنها دامەزرێنە و داونلۆد بکە.',
+  and_req:'پێویستی بە Android 8.0+ هەیە',
   sec_dl:'داونلۆد',dl_title:'ئێستا داونلۆد دەست پێبکە',
   win_desc:'Windows 10/11 · 64-bit',mac_desc:'وەشانی macOS لە پەرەپێدان',and_desc:'Android 8+ · APK',
   sec_wn:'چی نوێیە',wn_title:'دوایین نوێکارییەکان',wn_desc:'تێبینییەکانی وەشان خۆکار دێنرێتەوە.',wn_loading:'بارکردنی تێبینییەکان...',
@@ -1265,7 +1555,20 @@ zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',
   btn_win:'下载 Windows 版',btn_mac:'Mac — 即将推出',btn_and:'下载 Android 版',
   ver_label:'最新版本',rel_label:'发布日期',plat_label:'系统',status_label:'状态',status_stable:'✓ 稳定版',
   free_note:'完全免费 · 无需注册 · 开源',
-  stat_dl:'总下载量',stat_sites:'支持网站',stat_plat:'平台',stat_free:'免费',
+  stat_dl:'总下载量',stat_sites:'支持网站',stat_plat:'平台',stat_free:'免费',stat_and_dl:'Android 下载量',
+  ban_new:'新',ban_text:'UrDown Android 版现已推出！',ban_link:'下载 APK',
+  nav_android:'安卓',
+  sec_cmp:'对比',cmp_title:'哪个平台适合你？',cmp_desc:'比较所有平台的功能。',
+  cmp_feature:'功能',cmp_soon:'即将推出',
+  cmp_r1:'支持 1000+ 网站下载',cmp_r2:'YouTube 和 TikTok 支持',cmp_r3:'直播录制',
+  cmp_r4:'播放列表/批量下载',cmp_r5:'深色模式',cmp_r6:'后台下载',
+  cmp_r7:'4K / 1080p 画质',cmp_r8:'自动更新',cmp_r9:'多语言界面（6种语言）',cmp_r10:'免费开源',
+  and_sec_title:'手机上的 UrDown',and_sec_desc:'UrDown 的全部功能，现在装进你的口袋。',
+  af1t:'随处下载保存',af1d:'直接将视频保存到相册、下载文件夹或任意自定义路径。',
+  af2t:'支持 1000+ 网站',af2d:'YouTube、TikTok、Instagram、Twitter 等数百个网站 — 直接在手机上使用。',
+  af3t:'提取 MP3 音频',af3d:'一键将任何视频转换为 MP3 音频。无需额外应用。',
+  af4t:'无广告 · 无需注册',af4d:'100% 免费，无需账户。安装即用。',
+  and_req:'需要 Android 8.0 或更高版本',
   sec_dl:'下载',dl_title:'立即开始下载',
   win_desc:'Windows 10/11 · 64位',mac_desc:'macOS 版本开发中',and_desc:'Android 8+ · APK',
   sec_wn:'更新日志',wn_title:'最新更新',wn_desc:'自动获取发布说明，始终保持最新。',wn_loading:'正在获取发布说明...',
@@ -1305,7 +1608,20 @@ es:{dir:'ltr',flag:'🇪🇸',code:'ES',
   btn_win:'Descargar para Windows',btn_mac:'Mac — Próximamente',btn_and:'Descargar para Android',
   ver_label:'Última versión',rel_label:'Publicado',plat_label:'Plataforma',status_label:'Estado',status_stable:'✓ Estable',
   free_note:'Gratis para siempre · Sin registro · Código abierto',
-  stat_dl:'Descargas totales',stat_sites:'Sitios compatibles',stat_plat:'Plataformas',stat_free:'Gratis',
+  stat_dl:'Descargas totales',stat_sites:'Sitios compatibles',stat_plat:'Plataformas',stat_free:'Gratis',stat_and_dl:'Descargas Android',
+  ban_new:'NUEVO',ban_text:'¡UrDown para Android ya está disponible!',ban_link:'Descargar APK',
+  nav_android:'Android',
+  sec_cmp:'Comparación',cmp_title:'¿Qué plataforma es para ti?',cmp_desc:'Compara funciones en todas las plataformas.',
+  cmp_feature:'Función',cmp_soon:'Próximamente',
+  cmp_r1:'Descargar de 1000+ sitios',cmp_r2:'Soporte YouTube y TikTok',cmp_r3:'Grabación de transmisiones en vivo',
+  cmp_r4:'Descarga de listas/lotes',cmp_r5:'Modo oscuro',cmp_r6:'Descarga en segundo plano',
+  cmp_r7:'Calidad 4K / 1080p',cmp_r8:'Actualización automática',cmp_r9:'Interfaz multilingüe (6 idiomas)',cmp_r10:'Gratis y de código abierto',
+  and_sec_title:'UrDown en tu móvil',and_sec_desc:'Todo el poder de UrDown, ahora en tu bolsillo.',
+  af1t:'Descarga y guarda en cualquier lugar',af1d:'Guarda videos directamente en tu galería, carpeta de descargas o cualquier ruta.',
+  af2t:'1000+ sitios compatibles',af2d:'YouTube, TikTok, Instagram, Twitter y cientos más — desde tu teléfono.',
+  af3t:'Extraer audio como MP3',af3d:'Convierte cualquier video a MP3 con un solo toque. Sin apps adicionales.',
+  af4t:'Sin anuncios · Sin registro',af4d:'100% gratis, sin cuenta necesaria. Solo instala y empieza a descargar.',
+  and_req:'Requiere Android 8.0 o superior',
   sec_dl:'Descargar',dl_title:'Empieza a Descargar Ahora',
   win_desc:'Windows 10/11 · 64 bits',mac_desc:'Versión macOS en desarrollo',and_desc:'Android 8+ · APK',
   sec_wn:'Novedades',wn_title:'Últimas Actualizaciones',wn_desc:'Notas de versión obtenidas automáticamente.',wn_loading:'Cargando notas de versión...',
@@ -1345,7 +1661,20 @@ ru:{dir:'ltr',flag:'🇷🇺',code:'RU',
   btn_win:'Скачать для Windows',btn_mac:'Mac — Скоро',btn_and:'Скачать для Android',
   ver_label:'Последняя версия',rel_label:'Выпущено',plat_label:'Система',status_label:'Статус',status_stable:'✓ Стабильная',
   free_note:'Бесплатно навсегда · Без регистрации · Открытый код',
-  stat_dl:'Всего загрузок',stat_sites:'Поддерживаемых сайтов',stat_plat:'Платформы',stat_free:'Бесплатно',
+  stat_dl:'Всего загрузок',stat_sites:'Поддерживаемых сайтов',stat_plat:'Платформы',stat_free:'Бесплатно',stat_and_dl:'Загрузок на Android',
+  ban_new:'НОВОЕ',ban_text:'UrDown для Android уже доступен!',ban_link:'Скачать APK',
+  nav_android:'Android',
+  sec_cmp:'Сравнение',cmp_title:'Какая платформа подходит вам?',cmp_desc:'Сравните функции на всех платформах.',
+  cmp_feature:'Функция',cmp_soon:'Скоро',
+  cmp_r1:'Загрузка с 1000+ сайтов',cmp_r2:'Поддержка YouTube и TikTok',cmp_r3:'Запись прямых трансляций',
+  cmp_r4:'Загрузка плейлистов/пакетная',cmp_r5:'Тёмная тема',cmp_r6:'Фоновая загрузка',
+  cmp_r7:'Качество 4K / 1080p',cmp_r8:'Авто-обновление',cmp_r9:'Мультиязычный интерфейс (6 языков)',cmp_r10:'Бесплатно и с открытым кодом',
+  and_sec_title:'UrDown на вашем телефоне',and_sec_desc:'Вся мощь UrDown, теперь у вас в кармане.',
+  af1t:'Скачивайте и сохраняйте где угодно',af1d:'Сохраняйте видео прямо в галерею, папку загрузок или любой путь.',
+  af2t:'1000+ поддерживаемых сайтов',af2d:'YouTube, TikTok, Instagram, Twitter и сотни других — прямо с телефона.',
+  af3t:'Извлечение аудио в MP3',af3d:'Конвертируйте любое видео в MP3 одним нажатием. Без доп. приложений.',
+  af4t:'Без рекламы · Без регистрации',af4d:'100% бесплатно, аккаунт не нужен. Просто установите и начните.',
+  and_req:'Требуется Android 8.0 и выше',
   sec_dl:'Скачать',dl_title:'Начните загружать сейчас',
   win_desc:'Windows 10/11 · 64-bit',mac_desc:'Версия macOS в разработке',and_desc:'Android 8+ · APK',
   sec_wn:'Что нового',wn_title:'Последние обновления',wn_desc:'Заметки о выпуске обновляются автоматически.',wn_loading:'Загрузка заметок о выпуске...',
@@ -1480,11 +1809,15 @@ async function fetchGH(){
     }
 
     // Download stats
-    let total=0,latestDl=0;
+    let total=0,latestDl=0,andDl=0;
     if(Array.isArray(all))all.forEach(r=>(r.assets||[]).forEach(a=>{total+=a.download_count||0}));
-    assets.forEach(a=>{latestDl+=a.download_count||0});
+    assets.forEach(a=>{
+      latestDl+=a.download_count||0;
+      if(/\.apk$/i.test(a.name)) andDl+=a.download_count||0;
+    });
     ['statTotal','dlTotal'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=fmt(total)});
     const dl=document.getElementById('dlLatest');if(dl)dl.textContent=fmt(latestDl);
+    const sad=document.getElementById('statAndDl');if(sad)sad.textContent=andDl>0?fmt(andDl):'—';
 
     // Changelog
     if(Array.isArray(all)&&all.length>0){
@@ -1655,6 +1988,44 @@ document.addEventListener('DOMContentLoaded',()=>{
   applyLang(detectLang());
   fetchGH();
   initReveal();
+
+  /* ── Smart Device Detection ── */
+  const isAndroid=/android/i.test(navigator.userAgent);
+  const isMobile=/android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
+  if(isAndroid){
+    // Switch hero main button to Android mode
+    const heroBtn=document.querySelector('.btn-dl-main');
+    if(heroBtn){
+      heroBtn.classList.add('android-mode');
+      heroBtn.setAttribute('aria-label','Download UrDown for Android');
+      heroBtn.onclick=()=>{
+        const andBtn=document.getElementById('androidBtn');
+        if(andBtn&&!andBtn.disabled) andBtn.click();
+        else window.location.href='#download';
+      };
+    }
+    // Highlight Android card in download section
+    const andCard=document.getElementById('androidCard');
+    if(andCard){
+      andCard.style.order='-1';
+      andCard.style.border='1.5px solid rgba(61,220,132,.4)';
+    }
+    // Show Android section first in viewport hint
+    const andSection=document.getElementById('android-section');
+    if(andSection) andSection.scrollIntoView=andSection.scrollIntoView;
+  }
+
+  /* ── Banner dismiss persistence ── */
+  if(sessionStorage.getItem('bannerDismissed')){
+    const b=document.getElementById('android-banner');
+    if(b) b.style.display='none';
+  }
+  const banClose=document.querySelector('#android-banner .ban-close');
+  if(banClose){
+    banClose.addEventListener('click',()=>{
+      sessionStorage.setItem('bannerDismissed','1');
+    });
+  }
 });
 </script>
 </body>
