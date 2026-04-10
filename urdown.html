@@ -119,7 +119,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   background:var(--bg);color:var(--text);
   font-family:'Plus Jakarta Sans','Cairo',sans-serif;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  overflow-x:clip;-webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
 body.lang-ar,body.lang-ku{font-family:'Cairo',sans-serif}
@@ -254,13 +254,13 @@ html[dir=rtl] .lang-item{text-align:right}
   animation:fadeUp .8s .1s ease both;
 }
 .hero h1 .ur{color:var(--text)}
-.hero h1 .dn{color:var(--accent);position:relative}
+.hero h1 .dn{color:var(--accent);position:relative;display:inline-block;padding-bottom:6px}
 .hero h1 .dn::after{
-  content:'';position:absolute;left:0;right:0;bottom:-3px;height:3px;
+  content:'';position:absolute;left:0;right:0;bottom:0;height:3px;
   background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;
   animation:slideIn .6s .6s ease both;transform-origin:left;
 }
-html[dir=rtl] .hero h1 .dn::after{transform-origin:right}
+
 @keyframes slideIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .hero-sub{
   margin-top:16px;font-size:clamp(1rem,2.2vw,1.22rem);
@@ -511,6 +511,7 @@ html[dir=rtl] .wn-grid{direction:rtl}
 }
 .gal-tb{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--border)}
 .gal-panel{display:none;height:330px;overflow:hidden;background:var(--bg)}
+@media(max-width:400px){.gal-panel{height:auto;min-height:280px}}
 .gal-panel.on{display:flex}
 .gal-inner{flex:1;overflow:hidden;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
 
@@ -706,6 +707,8 @@ html[dir=rtl] .tb-title{text-align:right}
   background:var(--surface);border-bottom:1px solid var(--border2);
 }
 .cmp-table th:first-child{text-align:left;width:44%}
+html[dir=rtl] .cmp-table th:first-child{text-align:right}
+html[dir=rtl] .cmp-table td:first-child{text-align:right}
 .cmp-table th .th-platform{display:flex;flex-direction:column;align-items:center;gap:6px}
 .cmp-table th .th-platform i{font-size:1.4rem}
 .cmp-table th.win-col .th-platform i{color:var(--accent)}
@@ -878,11 +881,11 @@ html[dir=rtl] .tb-title{text-align:right}
         <path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-    <div class="hero-badge">
+    <div class="hero-badge" dir="ltr" style="unicode-bidi:isolate">
       <div class="badge-dot" aria-hidden="true"></div>
       <span data-i18n="hero_badge">Free &amp; Open Source</span>
     </div>
-    <h1><span class="ur">Ur</span><span class="dn">Down</span></h1>
+    <h1 dir="ltr" style="unicode-bidi:isolate"><span class="ur">Ur</span><span class="dn">Down</span></h1>
     <p class="hero-sub" data-i18n="hero_sub">Powerful Video Downloader for Windows, Mac &amp; Android</p>
     <p class="hero-desc" data-i18n-html="hero_desc">Download videos from <strong>1000+ websites</strong> with high speed and advanced features.</p>
     <div class="hero-actions">
@@ -892,7 +895,7 @@ html[dir=rtl] .tb-title{text-align:right}
       </button>
     </div>
     <p class="hero-version">
-      <span data-i18n="ver_label">Latest Version</span>:&nbsp;<span id="heroVersion">...</span>
+      <span data-i18n="ver_label">Latest Version</span>:&nbsp;<span id="heroVersion" dir="ltr" style="unicode-bidi:isolate">...</span>
     </p>
   </div>
 
@@ -1009,8 +1012,8 @@ html[dir=rtl] .tb-title{text-align:right}
 
     <!-- Version Strip -->
     <div class="ver-strip rev">
-      <div class="v-chip"><span class="lbl" data-i18n="ver_label">Latest Version</span><span class="val c" id="verChip">...</span></div>
-      <div class="v-chip"><span class="lbl" data-i18n="rel_label">Released</span><span class="val" id="dateChip">...</span></div>
+      <div class="v-chip"><span class="lbl" data-i18n="ver_label">Latest Version</span><span class="val c" id="verChip" dir="ltr" style="unicode-bidi:isolate">...</span></div>
+      <div class="v-chip"><span class="lbl" data-i18n="rel_label">Released</span><span class="val" id="dateChip" dir="ltr" style="unicode-bidi:isolate">...</span></div>
       <div class="v-chip"><span class="lbl" data-i18n="plat_label">Platform</span><span class="val">Win / Mac / Android</span></div>
       <div class="v-chip"><span class="lbl" data-i18n="status_label">Status</span><span class="val g" data-i18n="status_stable">✓ Stable</span></div>
     </div>
@@ -1030,8 +1033,8 @@ html[dir=rtl] .tb-title{text-align:right}
         <p class="sec-desc" data-i18n="wn_desc">Auto-fetched release notes. Always up to date.</p>
         <div class="rel-box rev">
           <div class="rel-hdr">
-            <span class="rel-ver" id="relVerBadge">...</span>
-            <span class="rel-date" id="relDateBadge">...</span>
+            <span class="rel-ver" id="relVerBadge" dir="ltr" style="unicode-bidi:isolate">...</span>
+            <span class="rel-date" id="relDateBadge" dir="ltr" style="unicode-bidi:isolate">...</span>
           </div>
           <div id="releaseNotes">
             <div style="display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.83rem;padding:20px">
@@ -1373,7 +1376,7 @@ html[dir=rtl] .tb-title{text-align:right}
     </div>
   </div>
   <div class="footer-btm">
-    <span class="footer-copy" data-i18n="footer_copy">© 2025 Kodna — Developed by Dhia Darem</span>
+    <span class="footer-copy" data-i18n="footer_copy">© 2026 Kodna — Developed by Dhia Darem</span>
     <a href="index.html" class="footer-copy" style="color:var(--accent)" data-i18n="footer_back">← Back to Kodna</a>
   </div>
 </footer>
@@ -1431,7 +1434,7 @@ en:{dir:'ltr',flag:'🇬🇧',code:'EN',
   footer_tag:'UrDown is part of the Kodna software suite · Free for everyone',
   footer_home:'Home',footer_programs:'All Programs',footer_about:'About Us',
   footer_support:'Support',footer_report:'Report Issue',
-  footer_copy:'© 2025 Kodna — Developed by Dhia Darem',footer_back:'← Back to Kodna',
+  footer_copy:'© 2026 Kodna — Developed by Dhia Darem',footer_back:'← Back to Kodna',
   faq:[
     {q:'Is UrDown completely free?',a:'Yes. UrDown is 100% free, open source, and will never require payment or registration.'},
     {q:'Which websites are supported?',a:'UrDown supports 1000+ websites including YouTube, TikTok, Instagram, Twitter, Facebook, Twitch, Vimeo, SoundCloud, and many more.'},
@@ -1484,7 +1487,7 @@ ar:{dir:'rtl',flag:'🇮🇶',code:'AR',
   footer_tag:'UrDown جزء من مجموعة برامج كودنا · مجاني للجميع',
   footer_home:'الرئيسية',footer_programs:'جميع البرامج',footer_about:'من نحن',
   footer_support:'دعم',footer_report:'الإبلاغ عن مشكلة',
-  footer_copy:'© 2025 كودنا — تطوير ضياء دارم',footer_back:'العودة إلى كودنا →',
+  footer_copy:'© 2026 كودنا — تطوير ضياء دارم',footer_back:'العودة إلى كودنا →',
   faq:[
     {q:'هل UrDown مجاني تماماً؟',a:'نعم. UrDown مجاني 100%، مفتوح المصدر، ولن يتطلب دفعاً أو تسجيلاً أبداً.'},
     {q:'ما المواقع المدعومة؟',a:'يدعم UrDown أكثر من 1000 موقع منها يوتيوب، تيك توك، إنستغرام، تويتر، فيسبوك، تويتش، فيميو، ساوندكلاود وغيرها الكثير.'},
@@ -1537,7 +1540,7 @@ ku:{dir:'rtl',flag:'🏔️',code:'KU',
   footer_tag:'UrDown بەشێکە لە کۆمەڵەی بەرنامەکانی Kodna',
   footer_home:'سەرەکی',footer_programs:'هەموو بەرنامەکان',footer_about:'دەربارە',
   footer_support:'پشتگیری',footer_report:'ڕاپۆرتکردنی کێشە',
-  footer_copy:'© 2025 Kodna — پەرەپێدانی ضیاء دارم',footer_back:'گەڕانەوە بۆ Kodna →',
+  footer_copy:'© 2026 Kodna — پەرەپێدانی ضیاء دارم',footer_back:'گەڕانەوە بۆ Kodna →',
   faq:[
     {q:'ئایا UrDown بەتەواوی خۆڕایییە؟',a:'بەڵێ. UrDown ١٠٠٪ خۆڕایییە، سەرچاوەکراوەیە، و هەرگیز دابینکردن یان تۆمارکردن پێویست ناکات.'},
     {q:'چ مالپەڕێک پشتگیری دەکرێت؟',a:'UrDown زیاتر لە ١٠٠٠ مالپەڕ پشتگیری دەکات.'},
@@ -1590,7 +1593,7 @@ zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',
   footer_tag:'UrDown 是 Kodna 软件套件的一部分 · 对所有人免费',
   footer_home:'主页',footer_programs:'所有软件',footer_about:'关于我们',
   footer_support:'支持',footer_report:'报告问题',
-  footer_copy:'© 2025 Kodna — 由 Dhia Darem 开发',footer_back:'← 返回 Kodna',
+  footer_copy:'© 2026 Kodna — 由 Dhia Darem 开发',footer_back:'← 返回 Kodna',
   faq:[
     {q:'UrDown 完全免费吗？',a:'是的。UrDown 100% 免费，开源，永远不需要付款或注册。'},
     {q:'支持哪些网站？',a:'UrDown 支持 1000+ 个网站，包括 YouTube、TikTok、Instagram 等。'},
@@ -1643,7 +1646,7 @@ es:{dir:'ltr',flag:'🇪🇸',code:'ES',
   footer_tag:'UrDown es parte del conjunto de software Kodna · Gratis para todos',
   footer_home:'Inicio',footer_programs:'Todos los programas',footer_about:'Nosotros',
   footer_support:'Soporte',footer_report:'Reportar problema',
-  footer_copy:'© 2025 Kodna — Desarrollado por Dhia Darem',footer_back:'← Volver a Kodna',
+  footer_copy:'© 2026 Kodna — Desarrollado por Dhia Darem',footer_back:'← Volver a Kodna',
   faq:[
     {q:'¿Es UrDown completamente gratis?',a:'Sí. UrDown es 100% gratuito, de código abierto y nunca requerirá pago ni registro.'},
     {q:'¿Qué sitios son compatibles?',a:'UrDown admite más de 1000 sitios incluyendo YouTube, TikTok, Instagram y muchos más.'},
@@ -1696,7 +1699,7 @@ ru:{dir:'ltr',flag:'🇷🇺',code:'RU',
   footer_tag:'UrDown — часть пакета программ Kodna · Бесплатно для всех',
   footer_home:'Главная',footer_programs:'Все программы',footer_about:'О нас',
   footer_support:'Поддержка',footer_report:'Сообщить о проблеме',
-  footer_copy:'© 2025 Kodna — Разработано Dhia Darem',footer_back:'← Вернуться к Kodna',
+  footer_copy:'© 2026 Kodna — Разработано Dhia Darem',footer_back:'← Вернуться к Kodna',
   faq:[
     {q:'UrDown полностью бесплатный?',a:'Да. UrDown на 100% бесплатный, с открытым кодом и никогда не потребует оплаты или регистрации.'},
     {q:'Какие сайты поддерживаются?',a:'UrDown поддерживает 1000+ сайтов, включая YouTube, TikTok, Instagram и многие другие.'},
@@ -1799,7 +1802,10 @@ async function fetchGH(){
       const ws=document.getElementById('winSize');if(ws)ws.textContent=fmtMB(winA.size);
     }
     if(macA) activatePlatform('macCard','macBtn',macA.browser_download_url,'btn_mac',macA.size);
-    if(andA) activatePlatform('androidCard','androidBtn',andA.browser_download_url,'btn_and',andA.size);
+    if(andA){
+      activatePlatform('androidCard','androidBtn',andA.browser_download_url,'btn_and',andA.size);
+      if(/android/i.test(navigator.userAgent)) window._dlUrl=andA.browser_download_url;
+    }
 
     // Release notes
     const rn=document.getElementById('releaseNotes');
@@ -1998,6 +2004,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(heroBtn){
       heroBtn.classList.add('android-mode');
       heroBtn.setAttribute('aria-label','Download UrDown for Android');
+      // Fix: update button text to Android
+      const btnSpan=heroBtn.querySelector('[data-i18n]');
+      if(btnSpan){
+        btnSpan.setAttribute('data-i18n','btn_and');
+        const lang=document.documentElement.lang||detectLang();
+        btnSpan.textContent=(lang==='ar')?'تحميل للـ Android':'Download for Android';
+      }
       heroBtn.onclick=()=>{
         const andBtn=document.getElementById('androidBtn');
         if(andBtn&&!andBtn.disabled) andBtn.click();
