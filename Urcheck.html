@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07090d">
+
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self'; frame-src https://www.youtube-nocookie.com https://www.youtube.com;">
+
+<title>UrCheck — فاحص حالة حسابات X (تويتر) | X / Twitter Account Status Checker · Kodna</title>
+<meta name="description" content="UrCheck: برنامج فحص حالة حسابات X (تويتر) — نشط، موقوف، محذوف، محمي، مع المتابعين والتغريدات وتصدير النتائج. UrCheck checks X (Twitter) account status: active, suspended, deleted, protected, with followers, tweets and export. Windows.">
+<meta name="keywords" content="UrCheck,فحص حسابات تويتر,فاحص حسابات X,حالة حساب تويتر,حساب موقوف,حساب محذوف,X account checker,twitter account status,suspended account checker,bulk twitter checker,Kodna">
+<meta name="author" content="Kodna / Dhia Darem">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://kodna.org/urcheck.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kodna.org/urcheck.html">
+<meta property="og:title" content="UrCheck — X / Twitter Account Status Checker · Kodna">
+<meta property="og:description" content="فحص حالة حسابات X: نشط، موقوف، محذوف، محمي. Check X account status: active, suspended, deleted, protected.">
+<meta property="og:site_name" content="Kodna">
+<meta property="og:image" content="https://kodna.org/urcheck_icon_512.png">
+<meta name="twitter:image" content="https://kodna.org/urcheck_icon_512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UrCheck — X / Twitter Account Status Checker">
+<meta name="twitter:description" content="فحص حالة حسابات X / Check X account status. By Kodna.">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UrCheck","operatingSystem":"Windows","applicationCategory":"UtilitiesApplication","description":"X (Twitter) account status checker: active, suspended, deleted, protected, with followers, tweets and export.","offers":{"@type":"Offer","priceCurrency":"USD","price":"0","description":"Free download, paid license to activate"},"publisher":{"@type":"Organization","name":"Kodna"},"inLanguage":["ar","en","ru"]}
+</script>
+
+<link rel="icon" type="image/png" href="urcheck_icon_512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --bg:#07090d;--surface:#0e1117;--card:#12151c;
+  --accent:#00e5ff;--accent2:#7c3aed;
+  --text:#e8eaf0;--muted:#6b7280;
+  --border:#1a1f2e;--border2:#232840;
+  --r:14px;--r-lg:22px;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Plus Jakarta Sans','Cairo',sans-serif;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+body.lang-ar,body.lang-ku{font-family:'Cairo',sans-serif}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+section{position:relative;z-index:1}
+
+/* ═══════════════════════════════════════════
+   AMBIENT
+═══════════════════════════════════════════ */
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,229,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,229,255,.025) 1px,transparent 1px);
+  background-size:70px 70px;animation:gridMove 25s linear infinite;
+}
+@keyframes gridMove{to{background-position:70px 70px}}
+.blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+.blob1{width:600px;height:600px;background:rgba(124,58,237,.1);top:-200px;left:-150px;animation:bf 14s ease-in-out infinite}
+.blob2{width:500px;height:500px;background:rgba(0,229,255,.07);bottom:-150px;right:-100px;animation:bf 18s ease-in-out infinite reverse}
+@keyframes bf{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,30px)}}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:rgba(7,9,13,.92);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-icon{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:900;flex-shrink:0;
+  box-shadow:0 4px 18px rgba(124,58,237,.4);font-family:'Cairo',sans-serif;color:#fff;
+}
+.brand-text{font-family:'Space Mono',monospace;font-size:1.15rem;font-weight:700;color:var(--text)}
+.brand-text span{color:var(--accent)}
+.nav-center{display:flex;gap:24px;list-style:none}
+.nav-center a{color:var(--muted);font-size:.9rem;font-weight:600;transition:color .2s}
+.nav-center a:hover{color:var(--accent)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn-nav{padding:8px 18px;border-radius:8px;font-weight:700;font-size:.85rem;transition:all .2s;cursor:pointer;border:none;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.btn-nav.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-nav.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-nav.fill{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff}
+.btn-nav.fill:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+
+/* Lang Switcher */
+.lang-sw{position:relative}
+.lang-btn{
+  display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;font-weight:600;transition:all .2s;
+}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn .chev{font-size:.6rem;transition:transform .2s}
+.lang-btn.open .chev{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;top:calc(100%+8px);right:0;
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:var(--r);padding:6px;min-width:162px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  display:none;flex-direction:column;gap:2px;z-index:500;
+}
+html[dir=ltr] .lang-menu{right:0;left:auto}
+html[dir=rtl] .lang-menu{left:0;right:auto}
+.lang-menu.open{display:flex}
+.lang-item{
+  display:flex;align-items:center;gap:9px;padding:9px 12px;
+  border-radius:8px;border:none;background:transparent;
+  color:var(--muted);font-size:.83rem;font-weight:600;
+  text-align:right;width:100%;cursor:pointer;transition:all .15s;
+}
+html[dir=ltr] .lang-item{text-align:left}
+.lang-item:hover{background:var(--surface);color:var(--text)}
+.lang-item.active{background:rgba(0,229,255,.08);color:var(--accent);border:1px solid rgba(0,229,255,.15)}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{
+  display:none;position:fixed;top:67px;left:0;right:0;z-index:999;
+  background:rgba(7,9,13,.98);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);padding:20px 5%;flex-direction:column;gap:0;
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--muted);font-size:1rem;font-weight:600;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s}
+.mobile-nav a:hover{color:var(--accent)}
+.mobile-nav a:last-of-type{border-bottom:none}
+.mob-lang-row{padding:14px 0;border-top:1px solid var(--border);display:flex;gap:7px;flex-wrap:wrap}
+.mob-lang-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--muted);cursor:pointer;font-size:.82rem;transition:all .2s}
+.mob-lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:100px 5% 60px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);
+  border-radius:100px;padding:7px 18px;
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  color:#a78bfa;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:28px;animation:fadeUp .8s ease both;
+}
+.eyebrow-dot{width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
+.hero-title{
+  font-size:clamp(2.6rem,8vw,7rem);font-weight:900;
+  line-height:1.05;letter-spacing:-1px;
+  animation:fadeUp .8s .1s ease both;
+}
+.hero-title .k{color:var(--accent)}
+.hero-title .line2{
+  display:block;font-size:clamp(.95rem,2.8vw,1.85rem);
+  font-weight:400;color:var(--muted);letter-spacing:0;margin-top:10px;
+}
+.hero-desc{
+  margin-top:20px;font-size:clamp(.9rem,2vw,1.05rem);
+  color:var(--muted);line-height:1.9;max-width:540px;
+  animation:fadeUp .8s .2s ease both;
+}
+.hero-desc strong{color:var(--text)}
+.hero-cta{
+  display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s .3s ease both;
+}
+.btn-hero-main{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  color:#fff;font-weight:700;font-size:clamp(.9rem,2vw,1rem);
+  padding:14px 28px;border-radius:14px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(124,58,237,.35);transition:all .2s;
+}
+.btn-hero-main:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(124,58,237,.5)}
+.btn-hero-ghost{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:transparent;color:var(--text);font-weight:600;
+  font-size:clamp(.9rem,2vw,1rem);padding:14px 24px;border-radius:14px;
+  text-decoration:none;border:1px solid var(--border);transition:all .2s;
+}
+.btn-hero-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.hero-stats{
+  display:flex;gap:32px;margin-top:52px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s .45s ease both;
+}
+.stat{text-align:center}
+.stat-num{font-family:'Space Mono',monospace;font-size:clamp(1.4rem,4vw,2rem);font-weight:700}
+.stat-num span{color:var(--accent)}
+.stat-label{font-size:.78rem;color:var(--muted);margin-top:4px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 5%}
+
+/* ═══════════════════════════════════════════
+   PROGRAMS
+═══════════════════════════════════════════ */
+.programs{padding:80px 5%}
+.sec-header{margin-bottom:44px}
+.sec-tag{
+  display:inline-block;font-family:'Space Mono',monospace;
+  font-size:.68rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);padding:5px 14px;
+  border:1px solid rgba(0,229,255,.25);border-radius:100px;
+  background:rgba(0,229,255,.06);margin-bottom:14px;
+}
+.sec-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1px;line-height:1.1}
+.sec-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:480px;margin-top:10px}
+.programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.prog-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  text-decoration:none;color:inherit;display:block;
+}
+.prog-card:not(.dim):hover{transform:translateY(-6px);box-shadow:0 28px 56px rgba(0,0,0,.5)}
+.prog-card.featured{border-color:rgba(0,229,255,.25);box-shadow:0 0 50px rgba(0,229,255,.1)}
+.prog-card.featured:hover{border-color:rgba(0,229,255,.5)}
+.prog-card.dim{opacity:.5;cursor:default}
+.prog-card-top{padding:22px 22px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.prog-icon-wrap{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.prog-card-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 9px;border-radius:100px;font-weight:700}
+.badge.new{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.badge.soon{background:rgba(251,146,60,.12);color:#fb923c;border:1px solid rgba(251,146,60,.25)}
+.badge.beta{background:rgba(244,114,182,.12);color:#f472b6;border:1px solid rgba(244,114,182,.25)}
+.badge.free{background:rgba(0,229,255,.1);color:var(--accent);border:1px solid rgba(0,229,255,.2)}
+.prog-card-body{padding:0 22px 22px}
+.prog-name{font-family:'Space Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.prog-desc{color:var(--muted);font-size:.83rem;line-height:1.7}
+.prog-card-footer{padding:13px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.prog-tags{display:flex;gap:5px;flex-wrap:wrap}
+.prog-tag{font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--surface);color:var(--muted);border:1px solid var(--border)}
+.prog-arrow{color:var(--muted);transition:transform .2s,color .2s}
+html[dir=rtl] .prog-card:not(.dim):hover .prog-arrow{transform:translateX(-4px);color:var(--accent)}
+html[dir=ltr] .prog-card:not(.dim):hover .prog-arrow{transform:translateX(4px);color:var(--accent)}
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+.about{padding:80px 5%}
+.about-inner{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:24px;padding:52px 44px;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+}
+.about-visual{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px}
+.about-code{font-family:'Space Mono',monospace;font-size:.8rem;line-height:2;color:var(--muted)}
+.code-line{display:flex;gap:10px}
+.code-num{color:rgba(255,255,255,.1);width:20px;text-align:right;flex-shrink:0}
+.c-kw{color:#a78bfa}.c-fn{color:var(--accent)}.c-str{color:#86efac}.c-op{color:var(--muted)}.c-cmt{color:rgba(255,255,255,.2)}.c-num{color:#fb923c}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--accent);margin-right:2px;vertical-align:middle;animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.about-list{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.about-item{display:flex;align-items:flex-start;gap:12px}
+.about-item-icon{width:34px;height:34px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px}
+.about-item-text h4{font-weight:700;font-size:.88rem;margin-bottom:3px}
+.about-item-text p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+/* ═══════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════ */
+.cta-section{padding:60px 5%}
+.cta-inner{
+  background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(0,229,255,.08));
+  border:1px solid rgba(124,58,237,.25);border-radius:24px;
+  padding:60px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.cta-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,.07) 0%,transparent 70%);pointer-events:none}
+.cta-title{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:900;margin-bottom:14px}
+.cta-desc{color:var(--muted);font-size:clamp(.88rem,2vw,1rem);max-width:440px;margin:0 auto 32px;line-height:1.8}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{border-top:1px solid var(--border);padding:44px 5% 26px}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.footer-brand p{color:var(--muted);font-size:.83rem;line-height:1.7;margin-top:8px;max-width:260px}
+.footer-col h5{font-weight:700;font-size:.86rem;margin-bottom:12px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-col ul li a{color:var(--muted);text-decoration:none;font-size:.83rem;transition:color .2s}
+.footer-col ul li a:hover{color:var(--accent)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-copy{color:var(--muted);font-size:.78rem}
+.footer-socials{display:flex;gap:8px}
+.social-btn{width:32px;height:32px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.85rem;transition:all .2s}
+.social-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════
+   TELEGRAM MODAL
+═══════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-box{
+  background:#12151c;border:1px solid rgba(0,229,255,.2);
+  border-radius:24px;padding:40px 36px;max-width:440px;width:100%;
+  position:relative;text-align:center;
+  box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(0,229,255,.1);
+  transform:translateY(30px) scale(.96);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.active .modal-box{transform:translateY(0) scale(1)}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  color:var(--muted);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+html[dir=rtl] .modal-close{right:auto;left:16px}
+.modal-close:hover{background:rgba(255,255,255,.12);color:var(--text)}
+.tg-icon-wrap{width:72px;height:72px;border-radius:20px;margin:0 auto 20px;background:linear-gradient(135deg,#0088cc,#00aaff);display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 8px 32px rgba(0,136,204,.4)}
+.modal-title{font-size:1.4rem;font-weight:900;margin-bottom:8px}
+.modal-desc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:28px}
+.modal-desc span{color:var(--text);font-weight:600}
+.btn-tg-main{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(135deg,#0088cc,#00aaff);color:#fff;font-weight:700;font-size:1rem;padding:15px 28px;border-radius:13px;text-decoration:none;box-shadow:0 8px 28px rgba(0,136,204,.35);transition:transform .2s,box-shadow .2s}
+.btn-tg-main:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,136,204,.5)}
+.modal-note{margin-top:16px;font-size:.78rem;color:var(--muted)}
+.modal-note a{color:var(--accent);text-decoration:none}
+.modal-divider{height:1px;background:var(--border);margin:20px 0}
+.modal-alt{display:flex;flex-direction:column;gap:10px}
+.modal-alt-title{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:4px}
+.btn-tg-alt{display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--text);font-weight:600;font-size:.88rem;padding:12px 20px;border-radius:10px;text-decoration:none;border:1px solid var(--border);transition:all .2s}
+.btn-tg-alt:hover{border-color:rgba(0,136,204,.5);color:#00aaff;transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.rev{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .programs-grid{grid-template-columns:repeat(2,1fr)}
+  .btn-nav.ghost{display:none}
+  .about-inner{gap:40px;padding:40px 32px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-brand{grid-column:1/-1}
+}
+@media(max-width:768px){
+  .nav-center,.nav-actions{display:none}
+  .hamburger{display:flex}
+  .hero{padding:88px 5% 48px}
+  .hero-stats{gap:20px}
+  .programs{padding:60px 5%}
+  .programs-grid{grid-template-columns:repeat(2,1fr)}
+  .about-inner{grid-template-columns:1fr;gap:32px;padding:32px 24px}
+  .cta-inner{padding:44px 28px}
+  .footer-top{grid-template-columns:1fr 1fr}
+  /* Keep lang-sw visible */
+  .lang-sw{display:block!important}
+}
+@media(max-width:520px){
+  nav{padding:12px 4%;gap:8px}
+  .brand-text{font-size:1rem}
+  .hero{padding:78px 4% 40px}
+  .hero-eyebrow{font-size:.62rem;padding:6px 12px}
+  .hero-cta{flex-direction:column;align-items:center;max-width:320px;margin-left:auto;margin-right:auto}
+  .btn-hero-main,.btn-hero-ghost{width:100%;justify-content:center}
+  .hero-stats{gap:14px}
+  .stat{min-width:70px}
+  .programs{padding:48px 4%}
+  .programs-grid{grid-template-columns:1fr}
+  .about{padding:48px 4%}
+  .about-inner{padding:22px 16px}
+  .cta-section{padding:40px 4%}
+  .cta-inner{padding:32px 16px}
+  .cta-actions{flex-direction:column;align-items:stretch}
+  footer{padding:36px 4% 22px}
+  .footer-top{grid-template-columns:1fr;gap:22px}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:380px){
+  .hero-title{font-size:2.2rem;letter-spacing:-.5px}
+  .hero-title .line2{font-size:.82rem}
+  .brand-text{font-size:.88rem}
+  .hero-stats{gap:8px}
+  .stat-num{font-size:1.2rem}
+}
+/* RTL */
+html[dir=ltr] .nav-center{flex-direction:row}
+html[dir=ltr] .footer-bottom{flex-direction:row-reverse}
+html[dir=ltr] .footer-col ul{align-items:flex-start}
+html[dir=ltr] .about-item-text h4{text-align:left}
+html[dir=ltr] .cta-inner{direction:ltr}
+
+
+
+/* ── UrCheck product page ── */
+.uc-hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:120px 5% 60px;max-width:1200px;margin:0 auto}
+.uc-badges{display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap}
+.uc-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--border2);box-shadow:0 24px 60px rgba(0,0,0,.5);background:#000}
+.uc-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.uc-video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:pointer}
+.uc-video .uc-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;border:none;background:rgba(29,155,240,.95);color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px rgba(0,0,0,.55);transition:transform .2s}
+.uc-video:hover .uc-play{transform:translate(-50%,-50%) scale(1.12)}
+.uc-note{color:var(--muted);font-size:.8rem;margin-top:14px}
+.uc-section{max-width:1200px;margin:0 auto;padding:40px 5%}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:transform .2s,border-color .2s}
+.feat-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.feat-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;background:linear-gradient(135deg,rgba(29,155,240,.16),rgba(0,229,255,.08));border:1px solid rgba(29,155,240,.25)}
+.feat-card h4{font-size:.95rem;margin-bottom:6px}
+.feat-card p{color:var(--muted);font-size:.83rem;line-height:1.7}
+.buy-card{max-width:560px;margin:10px auto 0;background:var(--card);border:1px solid rgba(251,191,36,.25);border-radius:20px;padding:34px;text-align:center}
+.buy-price{font-family:'Space Mono',monospace;font-size:1.4rem;font-weight:700;color:#fbbf24;margin:6px 0 4px}
+@media(max-width:900px){.uc-hero{grid-template-columns:1fr;gap:30px;padding:96px 5% 40px}.feat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body class="lang-ar">
+<div class="grid-bg" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-brand" href="index.html" aria-label="Kodna home">
+    <div class="brand-icon" aria-hidden="true">ك</div>
+    <span class="brand-text">كودنا<span>.</span></span>
+  </a>
+  <ul class="nav-center" aria-label="Site sections">
+    <li><a href="index.html#programs" data-i18n="nav_programs">البرامج</a></li>
+    <li><a href="#features" data-i18n="nav_features">المميزات</a></li>
+    <li><a href="#get" data-i18n="nav_get">الحصول عليه</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-nav ghost" onclick="toggleLang()" id="langToggle" aria-label="Language">EN</button>
+    <a class="btn-nav fill" href="#get" data-i18n="nav_download">⬇ تحميل</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="uc-hero">
+  <div>
+    <img src="urcheck_icon_512.png" alt="UrCheck logo" width="88" height="88" style="display:block;margin-bottom:14px;filter:drop-shadow(0 8px 22px rgba(29,155,240,.35))">
+    <div class="hero-eyebrow"><div class="eyebrow-dot" aria-hidden="true"></div><span data-i18n="hero_eyebrow">برنامج احترافي من كودنا</span></div>
+    <h1 class="hero-title" style="margin-top:14px">UrCheck</h1>
+    <div class="uc-badges">
+      <span class="badge new" data-i18n="badge_new">جديد</span>
+      <span class="badge pro" data-i18n="badge_paid">مدفوع</span>
+      <span class="badge free" data-i18n="badge_win">Windows</span>
+    </div>
+    <p class="hero-desc" data-i18n="hero_desc">فاحص احترافي لحالة حسابات X (تويتر): نشط، موقوف، محذوف، محمي — دفعة واحدة لآلاف الحسابات، مع المتابعين والتغريدات وتصدير النتائج.</p>
+    <div class="hero-cta">
+      <a class="btn-hero-main" href="#get" data-i18n="btn_download">⬇ تحميل UrCheck</a>
+      <a class="btn-hero-ghost" href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20UrCheck" target="_blank" rel="noopener" data-i18n="btn_license">🔑 احصل على ترخيص</a>
+    </div>
+  </div>
+  <div>
+    <div class="uc-video" id="ucVideo" onclick="playVid()">
+      <img src="https://i.ytimg.com/vi/Ppaq8mF1kJc/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/Ppaq8mF1kJc/hqdefault.jpg'" alt="UrCheck — فاحص حسابات X" loading="lazy">
+      <button class="uc-play" aria-label="Play video"><i class="fa-solid fa-play"></i></button>
+    </div>
+    <p class="uc-note" data-i18n="video_note">شاهد شرح البرنامج وطريقة الاستخدام في الفيديو.</p>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section class="uc-section rev" id="features">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_features">المميزات</div>
+    <h2 class="sec-title" data-i18n="features_title">كل ما تحتاجه لفحص الحسابات</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card"><div class="feat-ic">✅</div><h4 data-i18n="f1t">كشف حالة الحساب</h4><p data-i18n="f1d">يحدد إن كان الحساب نشطاً أو موقوفاً أو محذوفاً أو محمياً.</p></div>
+    <div class="feat-card"><div class="feat-ic">📊</div><h4 data-i18n="f2t">متابعون وتغريدات</h4><p data-i18n="f2d">عدد المتابعين، المتابَعين، التغريدات، تاريخ الإنشاء وصورة البروفايل.</p></div>
+    <div class="feat-card"><div class="feat-ic">⚡</div><h4 data-i18n="f3t">فحص جماعي سريع</h4><p data-i18n="f3d">افحص آلاف الحسابات دفعة واحدة بخيوط متزامنة قابلة للضبط.</p></div>
+    <div class="feat-card"><div class="feat-ic">💾</div><h4 data-i18n="f4t">فلترة وتصدير</h4><p data-i18n="f4d">فلتر حسب الحالة، رتّب النتائج، وصدّرها إلى ملف بسهولة.</p></div>
+    <div class="feat-card"><div class="feat-ic">🌐</div><h4 data-i18n="f5t">واجهة متعددة اللغات</h4><p data-i18n="f5d">عربي، إنجليزي، روسي — تبديل فوري للغة.</p></div>
+    <div class="feat-card"><div class="feat-ic">🔒</div><h4 data-i18n="f6t">آمن ومحدّث</h4><p data-i18n="f6d">ترخيص مرتبط بالجهاز وتحديثات مستمرة ودعم مباشر.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GET / DOWNLOAD -->
+<section class="cta-section rev" id="get">
+  <div class="cta-inner" style="text-align:center;max-width:640px;margin:0 auto">
+    <div class="sec-tag" data-i18n="sec_get" style="display:inline-block">الحصول على UrCheck</div>
+    <h2 class="cta-title" style="margin-top:12px" data-i18n="get_title">حمّل البرنامج وفعّله</h2>
+    <div class="buy-card">
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.8" data-i18n="get_desc">التحميل مجاني. لتفعيل البرنامج تحتاج ترخيصاً (مرتبطاً بجهازك)، تحصل عليه بالتواصل عبر واتساب.</p>
+      <div class="buy-price" data-i18n="get_price">تواصل لمعرفة السعر والخطط</div>
+      <div class="hero-cta" style="justify-content:center;margin-top:18px">
+        <a class="btn-hero-main" href="UrCheck_Setup.exe" download data-i18n="btn_download2">⬇ تحميل UrCheck</a>
+        <a class="btn-hero-ghost" href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20UrCheck" target="_blank" rel="noopener" data-i18n="btn_license2">🔑 تفعيل عبر واتساب</a>
+      </div>
+      <p class="uc-note" data-i18n="get_note">ملاحظة: حدّث رابط التحميل إلى ملف UrCheck_Setup.exe بعد رفعه.</p>
+    </div>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div class="brand-icon" aria-hidden="true">ك</div>
+        <span class="brand-text">كودنا<span>.</span></span>
+      </div>
+      <p data-i18n="footer_tagline">مشروع لبناء برامج وأدوات رقمية مجانية وعملية للمستخدم.</p>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer_programs">البرامج</h5>
+      <ul>
+        <li><a href="urdown.html">UrDown ✨</a></li>
+        <li><a href="#" data-i18n="pixelkit_soon">PixelKit (قريباً)</a></li>
+        <li><a href="#" data-i18n="fileflow_soon">FileFlow (قريباً)</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer_site">الموقع</h5>
+      <ul>
+        <li><a href="#about" data-i18n="nav_about">من نحن</a></li>
+        <li><a href="#programs" data-i18n="nav_programs">البرامج</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">تواصل</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer_support">دعم</h5>
+      <ul>
+        <li><a href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer" data-i18n="support_bug">الإبلاغ عن مشكلة</a></li>
+        <li><a href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer" data-i18n="support_suggest">اقتراح برنامج</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy" data-i18n="footer_copy">© 2025 كودنا — تطوير ضياء دارم</span>
+    <div class="footer-socials">
+      <a class="social-btn" href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+      <a class="social-btn" href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer" aria-label="Telegram channel"><i class="fa-solid fa-paper-plane"></i></a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+const T={
+ ar:{dir:'rtl',code:'EN',
+  nav_programs:'البرامج',nav_features:'المميزات',nav_get:'الحصول عليه',nav_download:'⬇ تحميل',
+  hero_eyebrow:'برنامج احترافي من كودنا',badge_new:'جديد',badge_paid:'مدفوع',badge_win:'Windows',
+  hero_desc:'فاحص احترافي لحالة حسابات X (تويتر): نشط، موقوف، محذوف، محمي — دفعة واحدة لآلاف الحسابات، مع المتابعين والتغريدات وتصدير النتائج.',
+  btn_download:'⬇ تحميل UrCheck',btn_license:'🔑 احصل على ترخيص',video_note:'شاهد شرح البرنامج وطريقة الاستخدام في الفيديو.',
+  sec_features:'المميزات',features_title:'كل ما تحتاجه لفحص الحسابات',
+  f1t:'كشف حالة الحساب',f1d:'يحدد إن كان الحساب نشطاً أو موقوفاً أو محذوفاً أو محمياً.',
+  f2t:'متابعون وتغريدات',f2d:'عدد المتابعين، المتابَعين، التغريدات، تاريخ الإنشاء وصورة البروفايل.',
+  f3t:'فحص جماعي سريع',f3d:'افحص آلاف الحسابات دفعة واحدة بخيوط متزامنة قابلة للضبط.',
+  f4t:'فلترة وتصدير',f4d:'فلتر حسب الحالة، رتّب النتائج، وصدّرها إلى ملف بسهولة.',
+  f5t:'واجهة متعددة اللغات',f5d:'عربي، إنجليزي، روسي — تبديل فوري للغة.',
+  f6t:'آمن ومحدّث',f6d:'ترخيص مرتبط بالجهاز وتحديثات مستمرة ودعم مباشر.',
+  sec_get:'الحصول على UrCheck',get_title:'حمّل البرنامج وفعّله',
+  get_desc:'التحميل مجاني. لتفعيل البرنامج تحتاج ترخيصاً (مرتبطاً بجهازك)، تحصل عليه بالتواصل عبر واتساب.',
+  get_price:'تواصل لمعرفة السعر والخطط',btn_download2:'⬇ تحميل UrCheck',btn_license2:'🔑 تفعيل عبر واتساب',
+  get_note:'ملاحظة: حدّث رابط التحميل إلى ملف UrCheck_Setup.exe بعد رفعه.',
+  footer_tagline:'مشروع لبناء برامج وأدوات رقمية عملية للمستخدم.',footer_programs:'البرامج',footer_site:'الموقع',footer_support:'دعم',
+  nav_about:'من نحن',nav_contact:'تواصل',pixelkit_soon:'PixelKit (قريباً)',fileflow_soon:'FileFlow (قريباً)',
+  support_bug:'الإبلاغ عن مشكلة',support_suggest:'اقتراح برنامج',footer_copy:'© 2026 كودنا — تطوير ضياء دارم'},
+ en:{dir:'ltr',code:'AR',
+  nav_programs:'Programs',nav_features:'Features',nav_get:'Get it',nav_download:'⬇ Download',
+  hero_eyebrow:'A Pro app by Kodna',badge_new:'New',badge_paid:'Paid',badge_win:'Windows',
+  hero_desc:'A professional X (Twitter) account status checker: active, suspended, deleted, protected — thousands of accounts at once, with followers, tweets and result export.',
+  btn_download:'⬇ Download UrCheck',btn_license:'🔑 Get a license',video_note:'Watch how the program works in the video.',
+  sec_features:'Features',features_title:'Everything you need to check accounts',
+  f1t:'Account status',f1d:'Detects whether an account is active, suspended, deleted or protected.',
+  f2t:'Followers & tweets',f2d:'Followers, following, tweets, creation date and profile photo.',
+  f3t:'Fast bulk checking',f3d:'Check thousands of accounts at once with adjustable concurrent threads.',
+  f4t:'Filter & export',f4d:'Filter by status, sort results, and export them to a file easily.',
+  f5t:'Multilingual UI',f5d:'Arabic, English, Russian — instant language switching.',
+  f6t:'Secure & updated',f6d:'Device-bound license, continuous updates and direct support.',
+  sec_get:'Get UrCheck',get_title:'Download & activate',
+  get_desc:'Download is free. To activate you need a (device-bound) license, obtained by contacting us on WhatsApp.',
+  get_price:'Contact us for pricing & plans',btn_download2:'⬇ Download UrCheck',btn_license2:'🔑 Activate via WhatsApp',
+  get_note:'Note: update the download link to your UrCheck_Setup.exe after uploading it.',
+  footer_tagline:'A project building practical, free digital software and tools for users.',footer_programs:'Programs',footer_site:'Site',footer_support:'Support',
+  nav_about:'About',nav_contact:'Contact',pixelkit_soon:'PixelKit (Soon)',fileflow_soon:'FileFlow (Soon)',
+  support_bug:'Report a bug',support_suggest:'Suggest an app',footer_copy:'© 2026 Kodna — by Dhia Darem'}
+};
+const KEY='kodna_lang';
+function applyLang(lang){
+  if(!T[lang]) lang='ar';
+  localStorage.setItem(KEY,lang);
+  const t=T[lang], root=document.getElementById('htmlRoot');
+  root.setAttribute('lang',lang); root.setAttribute('dir',t.dir);
+  document.body.className='lang-'+lang;
+  const lt=document.getElementById('langToggle'); if(lt) lt.textContent=t.code;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(t[k]!==undefined) el.textContent=t[k];});
+}
+function toggleLang(){ applyLang(localStorage.getItem(KEY)==='en'?'ar':'en'); }
+function playVid(){var v=document.getElementById('ucVideo');v.innerHTML='<iframe src="https://www.youtube.com/embed/Ppaq8mF1kJc?autoplay=1&rel=0" title="UrCheck" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';}
+document.addEventListener('DOMContentLoaded',()=>{
+  applyLang(localStorage.getItem(KEY)|| (navigator.language||'ar').slice(0,2)==='en'?'en':'ar');
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.07});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+});
+</script>
+</body>
+</html>
