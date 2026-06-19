@@ -466,6 +466,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
   <ul class="nav-center" aria-label="Site sections">
     <li><a href="#programs" data-i18n="nav_programs">البرامج</a></li>
     <li><a href="#pro" data-i18n="nav_pro">احترافي</a></li>
+    <li><a href="#online" data-i18n="nav_online">خدمات أون لاين</a></li>
     <li><a href="#about" data-i18n="nav_about">من نحن</a></li>
     <li><a href="#contact" data-i18n="nav_contact">تواصل</a></li>
   </ul>
@@ -496,6 +497,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
 <div class="mobile-nav" id="mobileNav" role="navigation">
   <a href="#programs" onclick="toggleMenu()" data-i18n="mobile_programs">📦 البرامج</a>
   <a href="#pro" onclick="toggleMenu()" data-i18n="mobile_pro">⭐ احترافي</a>
+  <a href="#online" onclick="toggleMenu()" data-i18n="mobile_online">🛠 خدمات أون لاين</a>
   <a href="#about" onclick="toggleMenu()" data-i18n="mobile_about">👥 من نحن</a>
   <a href="#contact" onclick="toggleMenu()" data-i18n="mobile_contact">📬 تواصل</a>
   <a href="urdown.html">⬇ UrDown</a>
@@ -624,6 +626,36 @@ html[dir=ltr] .cta-inner{direction:ltr}
       </div>
       <div class="prog-card-footer">
         <div class="prog-tags"><span class="prog-tag">Windows</span><span class="prog-tag">X / Twitter</span></div>
+        <span class="prog-arrow">←</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ ONLINE SERVICES ═══ -->
+<section class="programs rev" id="online" aria-label="Online Services">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_online">خدمات أون لاين</div>
+    <h2 class="sec-title" data-i18n="online_title">خدمات وأدوات أون لاين مجانية</h2>
+    <p class="sec-desc" data-i18n="online_desc">أدوات تعمل مباشرة في متصفحك بلا تثبيت ولا تسجيل.</p>
+  </div>
+  <div class="programs-grid">
+    <a class="prog-card featured" href="2fa.html" aria-label="2FA Authenticator">
+      <div class="prog-card-top">
+        <div class="prog-icon-wrap" style="display:flex;align-items:center;justify-content:center;font-size:26px;width:50px;height:50px">🔐</div>
+        <div class="prog-card-badges">
+          <span class="badge new" data-i18n="badge_new">جديد</span>
+          <span class="badge free" data-i18n="badge_free">مجاني</span>
+        </div>
+      </div>
+      <div class="prog-card-body">
+        <div class="prog-name" data-i18n="twofa_name">مولّد رمز 2FA</div>
+        <div class="prog-desc" data-i18n="twofa_desc">مولّد رمز المصادقة الثنائية (TOTP) — أدخل المفتاح واحصل على رمز يتغيّر كل 30 ثانية، داخل متصفحك.</div>
+      </div>
+      <div class="prog-card-footer">
+        <div class="prog-tags"><span class="prog-tag">TOTP</span><span class="prog-tag" data-i18n="tag_online">أونلاين</span></div>
         <span class="prog-arrow">←</span>
       </div>
     </a>
@@ -761,6 +793,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
 ───────────────────────────────────────────── */
 const T = {
 ar:{dir:'rtl',flag:'🇮🇶',code:'AR',
+ nav_online:'خدمات أون لاين',mobile_online:'🛠 خدمات أون لاين',sec_online:'خدمات أون لاين',online_title:'خدمات وأدوات أون لاين مجانية',online_desc:'أدوات تعمل مباشرة في متصفحك بلا تثبيت ولا تسجيل.',twofa_name:'مولّد رمز 2FA',twofa_desc:'مولّد رمز المصادقة الثنائية (TOTP) — أدخل المفتاح واحصل على رمز يتغيّر كل 30 ثانية، داخل متصفحك.',tag_online:'أونلاين',
   nav_pro:'احترافي',mobile_pro:'⭐ احترافي',sec_pro:'الإصدار الاحترافي',pro_title:'برامج احترافية مدفوعة',pro_desc:'أدوات متقدمة باشتراك مدفوع، مع دعم وتحديثات مستمرة.',badge_pro:'مدفوع',urcheck_desc:'فاحص حالة حسابات X (تويتر): نشط، موقوف، محذوف، محمي — مع المتابعين والتغريدات وتصدير النتائج.',
   nav_programs:'البرامج',nav_about:'من نحن',nav_contact:'تواصل',nav_explore:'استكشف البرامج',
   mobile_programs:'📦 البرامج',mobile_about:'👥 من نحن',mobile_contact:'📬 تواصل',
@@ -796,6 +829,7 @@ ar:{dir:'rtl',flag:'🇮🇶',code:'AR',
   tg_or:'أو انضم لقناة كودنا',tg_channel:'📢\u00a0 قناة كودنا – أخبار وتحديثات',
 },
 en:{dir:'ltr',flag:'🇬🇧',code:'EN',
+ nav_online:'Online Services',mobile_online:'🛠 Online Services',sec_online:'Online Services',online_title:'Free online tools & services',online_desc:'Tools that run right in your browser — no install, no signup.',twofa_name:'2FA Authenticator',twofa_desc:'2FA (TOTP) code generator — enter your secret and get a code that refreshes every 30s, in your browser.',tag_online:'Online',
   nav_pro:'Pro',mobile_pro:'⭐ Pro',sec_pro:'Premium',pro_title:'Pro Paid Tools',pro_desc:'Advanced tools with a paid license, full support and continuous updates.',badge_pro:'Paid',urcheck_desc:'X (Twitter) account status checker: active, suspended, deleted, protected — with followers, tweets and result export.',
   nav_programs:'Programs',nav_about:'About',nav_contact:'Contact',nav_explore:'Explore Apps',
   mobile_programs:'📦 Programs',mobile_about:'👥 About',mobile_contact:'📬 Contact',
@@ -831,6 +865,7 @@ en:{dir:'ltr',flag:'🇬🇧',code:'EN',
   tg_or:'Or join the Kodna channel',tg_channel:'📢\u00a0 Kodna Channel – News & Updates',
 },
 ku:{dir:'rtl',flag:'🏔️',code:'KU',
+ nav_online:'خزمەتگوزاری ئۆنڵاین',mobile_online:'🛠 خزمەتگوزاری ئۆنڵاین',sec_online:'خزمەتگوزاری ئۆنڵاین',online_title:'ئامراز و خزمەتگوزاری ئۆنڵاینی بەخۆڕایی',online_desc:'ئامرازەکان ڕاستەوخۆ لە وێبگەڕەکەتدا کار دەکەن بەبێ دامەزراندن.',twofa_name:'دروستکەری کۆدی 2FA',twofa_desc:'دروستکەری کۆدی 2FA (TOTP) — کلیل بنووسە و کۆدێک وەربگرە کە هەر ٣٠ چرکە دەگۆڕێت.',tag_online:'ئۆنڵاین',
   nav_pro:'پیشەیی',mobile_pro:'⭐ پیشەیی',sec_pro:'نوسخەی پیشەیی',pro_title:'بەرنامەی پیشەیی پارەدان',pro_desc:'ئامرازی پێشکەوتوو بە مۆڵەتی پارەدان، لەگەڵ پشتگیری و نوێکردنەوەی بەردەوام.',badge_pro:'پارەدان',urcheck_desc:'پشکنینی دۆخی هەژماری X (تویتەر): چالاک، ڕاگیراو، سڕاوەتەوە، پارێزراو — لەگەڵ شوێنکەوتووان و تویت و هەناردەکردنی ئەنجام.',
   nav_programs:'بەرنامەکان',nav_about:'دەربارە',nav_contact:'پەیوەندی',nav_explore:'بەرنامەکان بپتکۆشە',
   mobile_programs:'📦 بەرنامەکان',mobile_about:'👥 دەربارە',mobile_contact:'📬 پەیوەندی',
@@ -866,6 +901,7 @@ ku:{dir:'rtl',flag:'🏔️',code:'KU',
   tg_or:'یان بەشداربە لە کەناڵی Kodna',tg_channel:'📢\u00a0 کەناڵی Kodna – هەواڵ و نوێکارییەکان',
 },
 zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',
+ nav_online:'在线服务',mobile_online:'🛠 在线服务',sec_online:'在线服务',online_title:'免费在线工具与服务',online_desc:'直接在浏览器中运行，无需安装或注册。',twofa_name:'2FA 验证器',twofa_desc:'2FA (TOTP) 验证码生成器 — 输入密钥即可获得每 30 秒更新的代码。',tag_online:'在线',
   nav_pro:'专业版',mobile_pro:'⭐ 专业版',sec_pro:'高级版',pro_title:'专业付费工具',pro_desc:'高级付费工具，提供完整支持与持续更新。',badge_pro:'付费',urcheck_desc:'X（推特）账号状态检测：活跃、封禁、删除、私密 — 含粉丝数、推文数和结果导出。',
   nav_programs:'软件',nav_about:'关于',nav_contact:'联系',nav_explore:'浏览软件',
   mobile_programs:'📦 软件',mobile_about:'👥 关于',mobile_contact:'📬 联系',
@@ -901,6 +937,7 @@ zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',
   tg_or:'或加入 Kodna 频道',tg_channel:'📢\u00a0 Kodna 频道 – 新闻与更新',
 },
 es:{dir:'ltr',flag:'🇪🇸',code:'ES',
+ nav_online:'Servicios online',mobile_online:'🛠 Servicios online',sec_online:'Servicios online',online_title:'Herramientas y servicios online gratis',online_desc:'Herramientas que funcionan en tu navegador, sin instalar ni registrarse.',twofa_name:'Autenticador 2FA',twofa_desc:'Generador de códigos 2FA (TOTP) — introduce tu clave y obtén un código que cambia cada 30 s.',tag_online:'Online',
   nav_pro:'Pro',mobile_pro:'⭐ Pro',sec_pro:'Premium',pro_title:'Herramientas Pro de pago',pro_desc:'Herramientas avanzadas con licencia de pago, soporte y actualizaciones continuas.',badge_pro:'De pago',urcheck_desc:'Verificador de estado de cuentas de X (Twitter): activa, suspendida, eliminada, protegida — con seguidores, tweets y exportación.',
   nav_programs:'Programas',nav_about:'Nosotros',nav_contact:'Contacto',nav_explore:'Explorar Apps',
   mobile_programs:'📦 Programas',mobile_about:'👥 Nosotros',mobile_contact:'📬 Contacto',
@@ -936,6 +973,7 @@ es:{dir:'ltr',flag:'🇪🇸',code:'ES',
   tg_or:'O únete al canal de Kodna',tg_channel:'📢\u00a0 Canal Kodna – Noticias y Actualizaciones',
 },
 ru:{dir:'ltr',flag:'🇷🇺',code:'RU',
+ nav_online:'Онлайн-сервисы',mobile_online:'🛠 Онлайн-сервисы',sec_online:'Онлайн-сервисы',online_title:'Бесплатные онлайн-инструменты и сервисы',online_desc:'Инструменты прямо в браузере — без установки и регистрации.',twofa_name:'Генератор 2FA',twofa_desc:'Генератор кодов 2FA (TOTP) — введите ключ и получите код, меняющийся каждые 30 секунд.',tag_online:'Онлайн',
   nav_pro:'Pro',mobile_pro:'⭐ Pro',sec_pro:'Премиум',pro_title:'Профессиональные платные инструменты',pro_desc:'Продвинутые инструменты по платной лицензии, с поддержкой и постоянными обновлениями.',badge_pro:'Платно',urcheck_desc:'Проверка статуса аккаунтов X (Twitter): активен, заблокирован, удалён, защищён — с подписчиками, твитами и экспортом.',
   nav_programs:'Программы',nav_about:'О нас',nav_contact:'Контакт',nav_explore:'Обзор программ',
   mobile_programs:'📦 Программы',mobile_about:'👥 О нас',mobile_contact:'📬 Контакт',
