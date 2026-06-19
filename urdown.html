@@ -1868,22 +1868,23 @@ function startDownload(url){
    LANGUAGE
 ───────────────────────────────────────────── */
 const KEY='kodna_lang';
-let currentLang='en';
+let currentLang='ar';
 
 function detectLang(){
   const sv=localStorage.getItem(KEY);
   if(sv&&T[sv])return sv;
-  const bl=(navigator.language||navigator.userLanguage||'en').toLowerCase();
+  const bl=(navigator.language||navigator.userLanguage||'ar').toLowerCase();
   if(bl.startsWith('ar'))return 'ar';
   if(bl.startsWith('ku')||bl.startsWith('ckb'))return 'ku';
   if(bl.startsWith('zh'))return 'zh';
   if(bl.startsWith('es'))return 'es';
   if(bl.startsWith('ru'))return 'ru';
-  return 'en';
+  if(bl.startsWith('en'))return 'en';
+  return 'ar';
 }
 
 function applyLang(lang){
-  if(!T[lang])lang='en';
+  if(!T[lang])lang='ar';
   currentLang=lang;
   localStorage.setItem(KEY,lang);
   const t=T[lang];
