@@ -485,7 +485,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
   </div>
   <div>
     <div class="uc-video" id="ucVideo" onclick="playVid()">
-      <img src="https://i.ytimg.com/vi/SGz_DWFrWeU/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/SGz_DWFrWeU/hqdefault.jpg'" alt="UrCheck — فاحص حسابات X" loading="lazy">
+      <img src="https://i.ytimg.com/vi/2HfaAp-uaMM/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/2HfaAp-uaMM/hqdefault.jpg'" alt="UrCheck — فاحص حسابات X" loading="lazy">
       <button class="uc-play" aria-label="Play video"><i class="fa-solid fa-play"></i></button>
     </div>
     <p class="uc-note" data-i18n="video_note">شاهد شرح البرنامج وطريقة الاستخدام في الفيديو.</p>
@@ -624,7 +624,7 @@ function applyLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(t[k]!==undefined) el.textContent=t[k];});
 }
 function toggleLang(){ applyLang(localStorage.getItem(KEY)==='en'?'ar':'en'); }
-function playVid(){var v=document.getElementById('ucVideo');v.innerHTML='<iframe src="https://www.youtube.com/embed/SGz_DWFrWeU?autoplay=1&rel=0" title="UrCheck" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';}
+function playVid(){var v=document.getElementById('ucVideo');v.innerHTML='<iframe src="https://www.youtube.com/embed/2HfaAp-uaMM?autoplay=1&rel=0" title="UrCheck" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';}
 document.addEventListener('DOMContentLoaded',()=>{
   applyLang(localStorage.getItem(KEY)|| (navigator.language||'ar').slice(0,2)==='en'?'en':'ar');
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.07});
