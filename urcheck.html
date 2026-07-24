@@ -472,7 +472,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
         <button class="lang-item" onclick="setLang('ru')" data-lang="ru" role="menuitem">🇷🇺 Русский</button>
       </div>
     </div>
-    <a class="btn-nav fill" href="#get" data-i18n="nav_download">⬇ تحميل</a>
+    <a class="btn-nav fill dl-link" href="https://github.com/kodna-iq/urcheck/releases/download/v1.0.0/UrCheck__windows_1.0.exe" download rel="noopener" data-i18n="nav_download">⬇ تحميل</a>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -505,7 +505,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
     </div>
     <p class="hero-desc" data-i18n="hero_desc">فاحص احترافي لحالة حسابات X.</p>
     <div class="hero-cta">
-      <a class="btn-hero-main" href="#get" data-i18n="btn_download">⬇ تحميل UrCheck</a>
+      <a class="btn-hero-main dl-link" href="https://github.com/kodna-iq/urcheck/releases/download/v1.0.0/UrCheck__windows_1.0.exe" download rel="noopener" data-i18n="btn_download">⬇ تحميل UrCheck</a>
       <a class="btn-hero-ghost" href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20UrCheck" target="_blank" rel="noopener" data-i18n="btn_license">🔑 احصل على ترخيص</a>
     </div>
   </div>
@@ -545,7 +545,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
       <p style="color:var(--muted);font-size:.9rem;line-height:1.8" data-i18n="get_desc">.</p>
       <div class="buy-price" data-i18n="get_price">تواصل لمعرفة السعر</div>
       <div class="hero-cta" style="justify-content:center;margin-top:18px">
-        <a class="btn-hero-main" href="https://github.com/kodna-iq/urcheck/releases/download/v1.0.0/UrCheck_windows_1.0.exe" data-i18n="btn_download2">⬇ تحميل UrCheck</a>
+        <a class="btn-hero-main dl-link" href="https://github.com/kodna-iq/urcheck/releases/download/v1.0.0/UrCheck__windows_1.0.exe" download rel="noopener" data-i18n="btn_download2">⬇ تحميل UrCheck</a>
         <a class="btn-hero-ghost" href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20UrCheck" target="_blank" rel="noopener" data-i18n="btn_license2">🔑 تفعيل عبر واتساب</a>
       </div>
       <p class="uc-note" data-i18n="get_note">.</p>
@@ -597,7 +597,11 @@ document.addEventListener('click',e=>{if(!document.getElementById('langSw')?.con
 function toggleMenu(){const h=document.getElementById('hamburger'),n=document.getElementById('mobileNav');const o=h.classList.toggle('open');n.classList.toggle('open',o);h.setAttribute('aria-expanded',o);}
 window.addEventListener('scroll',()=>{document.getElementById('hamburger')?.classList.remove('open');document.getElementById('mobileNav')?.classList.remove('open');},{passive:true});
 function playVid(){var v=document.getElementById('ucVideo');v.innerHTML='<iframe src="https://www.youtube.com/embed/2HfaAp-uaMM?autoplay=1&rel=0" title="UrCheck" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';}
+/* ====== رابط التحميل المباشر — غيّره من هنا فقط عند إصدار نسخة جديدة ====== */
+const DOWNLOAD_URL = "https://github.com/kodna-iq/urcheck/releases/download/v1.0.0/UrCheck__windows_1.0.exe";
+
 document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.dl-link').forEach(a=>{ a.href = DOWNLOAD_URL; a.setAttribute('download',''); });
   applyLang(detectLang());
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.07});
   document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
