@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07090d">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self';">
+<title>دعم الصفحات وإدارة السوشل ميديا | Social Media Management &amp; Growth · Kodna</title>
+<meta name="description" content="خدمات كودنا للسوشل ميديا: زيادة المتابعين، رفع التفاعل، إدارة الحسابات، حملات وترندات X، تصميم المحتوى، إنتاج الفيديو، وإزالة الحسابات المنتحلة. Kodna social media growth, management, X campaigns, content design and impersonation takedown.">
+<meta name="keywords" content="إدارة سوشل ميديا,زيادة متابعين,رفع تفاعل,ترندات تويتر,حملات هاشتاق,إزالة انتحال,تصميم منشورات,كودنا,social media management,follower growth,X trends,Kodna">
+<meta name="author" content="Kodna / Dhia Darem">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://kodna.org/social.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kodna.org/social.html">
+<meta property="og:title" content="دعم الصفحات وإدارة السوشل ميديا · Kodna">
+<meta property="og:description" content="متابعين، تفاعل، إدارة حسابات، حملات وترندات X، تصميم وإنتاج فيديو، وإزالة الانتحال.">
+<meta property="og:site_name" content="Kodna">
+<meta property="og:image" content="https://kodna.org/og-kodna.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Social Media Management &amp; Growth · Kodna">
+<meta name="twitter:description" content="Follower growth, engagement, account management, X campaigns, design and video production.">
+<meta name="twitter:image" content="https://kodna.org/og-kodna.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Kodna Social Media Services","serviceType":"Social media management and growth","provider":{"@type":"Organization","name":"Kodna","url":"https://kodna.org"},"areaServed":"Worldwide","availableLanguage":["ar","en","ku","zh","es","ru"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --bg:#07090d;--surface:#0e1117;--card:#12151c;
+  --accent:#00e5ff;--accent2:#7c3aed;
+  --text:#e8eaf0;--muted:#6b7280;
+  --border:#1a1f2e;--border2:#232840;
+  --r:14px;--r-lg:22px;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Plus Jakarta Sans','Cairo',sans-serif;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+body.lang-ar,body.lang-ku{font-family:'Cairo',sans-serif}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+section{position:relative;z-index:1}
+
+/* ═══════════════════════════════════════════
+   AMBIENT
+═══════════════════════════════════════════ */
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,229,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,229,255,.025) 1px,transparent 1px);
+  background-size:70px 70px;animation:gridMove 25s linear infinite;
+}
+@keyframes gridMove{to{background-position:70px 70px}}
+.blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+.blob1{width:600px;height:600px;background:rgba(124,58,237,.1);top:-200px;left:-150px;animation:bf 14s ease-in-out infinite}
+.blob2{width:500px;height:500px;background:rgba(0,229,255,.07);bottom:-150px;right:-100px;animation:bf 18s ease-in-out infinite reverse}
+@keyframes bf{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,30px)}}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:rgba(7,9,13,.92);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-icon{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:900;flex-shrink:0;
+  box-shadow:0 4px 18px rgba(124,58,237,.4);font-family:'Cairo',sans-serif;color:#fff;
+}
+.brand-text{font-family:'Space Mono',monospace;font-size:1.15rem;font-weight:700;color:var(--text)}
+.brand-text span{color:var(--accent)}
+.nav-center{display:flex;gap:24px;list-style:none}
+.nav-center a{color:var(--muted);font-size:.9rem;font-weight:600;transition:color .2s}
+.nav-center a:hover{color:var(--accent)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn-nav{padding:8px 18px;border-radius:8px;font-weight:700;font-size:.85rem;transition:all .2s;cursor:pointer;border:none;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.btn-nav.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-nav.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-nav.fill{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff}
+.btn-nav.fill:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+
+/* Lang Switcher */
+.lang-sw{position:relative}
+.lang-btn{
+  display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;font-weight:600;transition:all .2s;
+}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn .chev{font-size:.6rem;transition:transform .2s}
+.lang-btn.open .chev{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;top:calc(100%+8px);right:0;
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:var(--r);padding:6px;min-width:162px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  display:none;flex-direction:column;gap:2px;z-index:500;
+}
+html[dir=ltr] .lang-menu{right:0;left:auto}
+html[dir=rtl] .lang-menu{left:0;right:auto}
+.lang-menu.open{display:flex}
+.lang-item{
+  display:flex;align-items:center;gap:9px;padding:9px 12px;
+  border-radius:8px;border:none;background:transparent;
+  color:var(--muted);font-size:.83rem;font-weight:600;
+  text-align:right;width:100%;cursor:pointer;transition:all .15s;
+}
+html[dir=ltr] .lang-item{text-align:left}
+.lang-item:hover{background:var(--surface);color:var(--text)}
+.lang-item.active{background:rgba(0,229,255,.08);color:var(--accent);border:1px solid rgba(0,229,255,.15)}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{
+  display:none;position:fixed;top:67px;left:0;right:0;z-index:999;
+  background:rgba(7,9,13,.98);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);padding:20px 5%;flex-direction:column;gap:0;
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--muted);font-size:1rem;font-weight:600;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s}
+.mobile-nav a:hover{color:var(--accent)}
+.mobile-nav a:last-of-type{border-bottom:none}
+.mob-lang-row{padding:14px 0;border-top:1px solid var(--border);display:flex;gap:7px;flex-wrap:wrap}
+.mob-lang-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--muted);cursor:pointer;font-size:.82rem;transition:all .2s}
+.mob-lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:100px 5% 60px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);
+  border-radius:100px;padding:7px 18px;
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  color:#a78bfa;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:28px;animation:fadeUp .8s ease both;
+}
+.eyebrow-dot{width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
+.hero-title{
+  font-size:clamp(2.6rem,8vw,7rem);font-weight:900;
+  line-height:1.05;letter-spacing:-1px;
+  animation:fadeUp .8s .1s ease both;
+}
+.hero-title .k{color:var(--accent)}
+.hero-title .line2{
+  display:block;font-size:clamp(.95rem,2.8vw,1.85rem);
+  font-weight:400;color:var(--muted);letter-spacing:0;margin-top:10px;
+}
+.hero-desc{
+  margin-top:20px;font-size:clamp(.9rem,2vw,1.05rem);
+  color:var(--muted);line-height:1.9;max-width:540px;
+  animation:fadeUp .8s .2s ease both;
+}
+.hero-desc strong{color:var(--text)}
+.hero-cta{
+  display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s .3s ease both;
+}
+.btn-hero-main{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  color:#fff;font-weight:700;font-size:clamp(.9rem,2vw,1rem);
+  padding:14px 28px;border-radius:14px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(124,58,237,.35);transition:all .2s;
+}
+.btn-hero-main:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(124,58,237,.5)}
+.btn-hero-ghost{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:transparent;color:var(--text);font-weight:600;
+  font-size:clamp(.9rem,2vw,1rem);padding:14px 24px;border-radius:14px;
+  text-decoration:none;border:1px solid var(--border);transition:all .2s;
+}
+.btn-hero-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.hero-stats{
+  display:flex;gap:32px;margin-top:52px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s .45s ease both;
+}
+.stat{text-align:center}
+.stat-num{font-family:'Space Mono',monospace;font-size:clamp(1.4rem,4vw,2rem);font-weight:700}
+.stat-num span{color:var(--accent)}
+.stat-label{font-size:.78rem;color:var(--muted);margin-top:4px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 5%}
+
+/* ═══════════════════════════════════════════
+   PROGRAMS
+═══════════════════════════════════════════ */
+.programs{padding:80px 5%}
+.sec-header{margin-bottom:44px}
+.sec-tag{
+  display:inline-block;font-family:'Space Mono',monospace;
+  font-size:.68rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);padding:5px 14px;
+  border:1px solid rgba(0,229,255,.25);border-radius:100px;
+  background:rgba(0,229,255,.06);margin-bottom:14px;
+}
+.sec-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1px;line-height:1.1}
+.sec-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:480px;margin-top:10px}
+.programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.prog-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  text-decoration:none;color:inherit;display:block;
+}
+.prog-card:not(.dim):hover{transform:translateY(-6px);box-shadow:0 28px 56px rgba(0,0,0,.5)}
+.prog-card.featured{border-color:rgba(0,229,255,.25);box-shadow:0 0 50px rgba(0,229,255,.1)}
+.prog-card.featured:hover{border-color:rgba(0,229,255,.5)}
+.prog-card.dim{opacity:.5;cursor:default}
+.prog-card-top{padding:22px 22px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.prog-icon-wrap{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.prog-card-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 9px;border-radius:100px;font-weight:700}
+.badge.new{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.badge.soon{background:rgba(251,146,60,.12);color:#fb923c;border:1px solid rgba(251,146,60,.25)}
+.badge.beta{background:rgba(244,114,182,.12);color:#f472b6;border:1px solid rgba(244,114,182,.25)}
+.badge.free{background:rgba(0,229,255,.1);color:var(--accent);border:1px solid rgba(0,229,255,.2)}
+.prog-card-body{padding:0 22px 22px}
+.prog-name{font-family:'Space Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.prog-desc{color:var(--muted);font-size:.83rem;line-height:1.7}
+.prog-card-footer{padding:13px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.prog-tags{display:flex;gap:5px;flex-wrap:wrap}
+.prog-tag{font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--surface);color:var(--muted);border:1px solid var(--border)}
+.prog-arrow{color:var(--muted);transition:transform .2s,color .2s}
+html[dir=rtl] .prog-card:not(.dim):hover .prog-arrow{transform:translateX(-4px);color:var(--accent)}
+html[dir=ltr] .prog-card:not(.dim):hover .prog-arrow{transform:translateX(4px);color:var(--accent)}
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+.about{padding:80px 5%}
+.about-inner{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:24px;padding:52px 44px;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+}
+.about-visual{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px}
+.about-code{font-family:'Space Mono',monospace;font-size:.8rem;line-height:2;color:var(--muted)}
+.code-line{display:flex;gap:10px}
+.code-num{color:rgba(255,255,255,.1);width:20px;text-align:right;flex-shrink:0}
+.c-kw{color:#a78bfa}.c-fn{color:var(--accent)}.c-str{color:#86efac}.c-op{color:var(--muted)}.c-cmt{color:rgba(255,255,255,.2)}.c-num{color:#fb923c}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--accent);margin-right:2px;vertical-align:middle;animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.about-list{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.about-item{display:flex;align-items:flex-start;gap:12px}
+.about-item-icon{width:34px;height:34px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px}
+.about-item-text h4{font-weight:700;font-size:.88rem;margin-bottom:3px}
+.about-item-text p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+/* ═══════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════ */
+.cta-section{padding:60px 5%}
+.cta-inner{
+  background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(0,229,255,.08));
+  border:1px solid rgba(124,58,237,.25);border-radius:24px;
+  padding:60px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.cta-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,.07) 0%,transparent 70%);pointer-events:none}
+.cta-title{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:900;margin-bottom:14px}
+.cta-desc{color:var(--muted);font-size:clamp(.88rem,2vw,1rem);max-width:440px;margin:0 auto 32px;line-height:1.8}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{border-top:1px solid var(--border);padding:44px 5% 26px}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.footer-brand p{color:var(--muted);font-size:.83rem;line-height:1.7;margin-top:8px;max-width:260px}
+.footer-col h5{font-weight:700;font-size:.86rem;margin-bottom:12px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-col ul li a{color:var(--muted);text-decoration:none;font-size:.83rem;transition:color .2s}
+.footer-col ul li a:hover{color:var(--accent)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-copy{color:var(--muted);font-size:.78rem}
+.footer-socials{display:flex;gap:8px}
+.social-btn{width:32px;height:32px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.85rem;transition:all .2s}
+.social-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════
+   TELEGRAM MODAL
+═══════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-box{
+  background:#12151c;border:1px solid rgba(0,229,255,.2);
+  border-radius:24px;padding:40px 36px;max-width:440px;width:100%;
+  position:relative;text-align:center;
+  box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(0,229,255,.1);
+  transform:translateY(30px) scale(.96);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.active .modal-box{transform:translateY(0) scale(1)}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  color:var(--muted);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+html[dir=rtl] .modal-close{right:auto;left:16px}
+.modal-close:hover{background:rgba(255,255,255,.12);color:var(--text)}
+.tg-icon-wrap{width:72px;height:72px;border-radius:20px;margin:0 auto 20px;background:linear-gradient(135deg,#0088cc,#00aaff);display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 8px 32px rgba(0,136,204,.4)}
+.modal-title{font-size:1.4rem;font-weight:900;margin-bottom:8px}
+.modal-desc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:28px}
+.modal-desc span{color:var(--text);font-weight:600}
+.btn-tg-main{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(135deg,#0088cc,#00aaff);color:#fff;font-weight:700;font-size:1rem;padding:15px 28px;border-radius:13px;text-decoration:none;box-shadow:0 8px 28px rgba(0,136,204,.35);transition:transform .2s,box-shadow .2s}
+.btn-tg-main:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,136,204,.5)}
+.modal-note{margin-top:16px;font-size:.78rem;color:var(--muted)}
+.modal-note a{color:var(--accent);text-decoration:none}
+.modal-divider{height:1px;background:var(--border);margin:20px 0}
+.modal-alt{display:flex;flex-direction:column;gap:10px}
+.modal-alt-title{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:4px}
+.btn-tg-alt{display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--text);font-weight:600;font-size:.88rem;padding:12px 20px;border-radius:10px;text-decoration:none;border:1px solid var(--border);transition:all .2s}
+.btn-tg-alt:hover{border-color:rgba(0,136,204,.5);color:#00aaff;transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.rev{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .programs-grid{grid-template-columns:repeat(2,1fr)}
+  .btn-nav.ghost{display:none}
+  .about-inner{gap:40px;padding:40px 32px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-brand{grid-column:1/-1}
+}
+@media(max-width:768px){
+  .nav-center,.nav-actions{display:none}
+  .hamburger{display:flex}
+  .hero{padding:88px 5% 48px}
+  .hero-stats{gap:20px}
+  .programs{padding:60px 5%}
+  .programs-grid{grid-template-columns:repeat(2,1fr)}
+  .about-inner{grid-template-columns:1fr;gap:32px;padding:32px 24px}
+  .cta-inner{padding:44px 28px}
+  .footer-top{grid-template-columns:1fr 1fr}
+  /* Keep lang-sw visible */
+  .lang-sw{display:block!important}
+}
+@media(max-width:520px){
+  nav{padding:12px 4%;gap:8px}
+  .brand-text{font-size:1rem}
+  .hero{padding:78px 4% 40px}
+  .hero-eyebrow{font-size:.62rem;padding:6px 12px}
+  .hero-cta{flex-direction:column;align-items:center;max-width:320px;margin-left:auto;margin-right:auto}
+  .btn-hero-main,.btn-hero-ghost{width:100%;justify-content:center}
+  .hero-stats{gap:14px}
+  .stat{min-width:70px}
+  .programs{padding:48px 4%}
+  .programs-grid{grid-template-columns:1fr}
+  .about{padding:48px 4%}
+  .about-inner{padding:22px 16px}
+  .cta-section{padding:40px 4%}
+  .cta-inner{padding:32px 16px}
+  .cta-actions{flex-direction:column;align-items:stretch}
+  footer{padding:36px 4% 22px}
+  .footer-top{grid-template-columns:1fr;gap:22px}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:380px){
+  .hero-title{font-size:2.2rem;letter-spacing:-.5px}
+  .hero-title .line2{font-size:.82rem}
+  .brand-text{font-size:.88rem}
+  .hero-stats{gap:8px}
+  .stat-num{font-size:1.2rem}
+}
+/* RTL */
+html[dir=ltr] .nav-center{flex-direction:row}
+html[dir=ltr] .footer-bottom{flex-direction:row-reverse}
+html[dir=ltr] .footer-col ul{align-items:flex-start}
+html[dir=ltr] .about-item-text h4{text-align:left}
+html[dir=ltr] .cta-inner{direction:ltr}
+
+
+
+/* UrCheck product page */
+.uc-hero{display:grid;grid-template-columns:1fr 1.35fr;gap:52px;align-items:center;padding:120px 5% 60px;max-width:1320px;margin:0 auto}
+.uc-badges{display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap}
+.uc-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--border2);box-shadow:0 24px 60px rgba(0,0,0,.5);background:#000;cursor:pointer}
+.uc-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.uc-video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-video .uc-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;border:none;background:rgba(29,155,240,.95);color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px rgba(0,0,0,.55);transition:transform .2s}
+.uc-video:hover .uc-play{transform:translate(-50%,-50%) scale(1.12)}
+.uc-note{color:var(--muted);font-size:.8rem;margin-top:14px}
+.uc-section{max-width:1200px;margin:0 auto;padding:40px 5%}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:transform .2s,border-color .2s}
+.feat-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.feat-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;background:linear-gradient(135deg,rgba(29,155,240,.16),rgba(0,229,255,.08));border:1px solid rgba(29,155,240,.25)}
+.feat-card h4{font-size:.95rem;margin-bottom:6px}
+.feat-card p{color:var(--muted);font-size:.83rem;line-height:1.7}
+.buy-card{max-width:560px;margin:10px auto 0;background:var(--card);border:1px solid rgba(251,191,36,.25);border-radius:20px;padding:34px;text-align:center}
+.buy-price{font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700;color:#fbbf24;margin:6px 0 4px}
+.uc-foot{border-top:1px solid var(--border);margin-top:40px;padding:34px 5%;text-align:center;color:var(--muted)}
+.uc-foot .fb{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+.uc-foot .fl{display:flex;gap:18px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+.uc-foot a{color:var(--muted)}.uc-foot a:hover{color:var(--accent)}
+@media(max-width:900px){.uc-hero{grid-template-columns:1fr;gap:30px;padding:96px 5% 40px}.feat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+
+
+/* ── SOCIAL SERVICES ── */
+.kd-social{padding:64px 20px;background:var(--bg);color:var(--text);position:relative;overflow:hidden}
+.kd-social::before{content:"";position:absolute;inset:auto 50% -40% auto;transform:translateX(50%);width:700px;height:700px;background:radial-gradient(circle,rgba(0,229,255,.10),transparent 65%);pointer-events:none}
+.kd-social .kd-wrap{max-width:1140px;margin:0 auto;position:relative;z-index:1}
+.kd-social .kd-eyebrow{display:inline-block;font-size:13px;letter-spacing:.08em;color:var(--accent);border:1px solid rgba(0,229,255,.3);border-radius:999px;padding:6px 16px;margin-bottom:18px}
+.kd-social h2{font-size:clamp(28px,4.4vw,46px);line-height:1.25;margin:0 0 14px;font-weight:800}
+.kd-social h2 span{color:var(--accent)}
+.kd-social .kd-lead{color:var(--muted);font-size:17px;max-width:640px;margin:0 0 52px;line-height:1.8}
+.kd-social .kd-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.kd-social .kd-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:18px;padding:26px 24px;transition:.25s ease}
+.kd-social .kd-card:hover{transform:translateY(-4px);border-color:rgba(0,229,255,.35);background:rgba(0,229,255,.04)}
+.kd-social .kd-ico{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;font-size:22px;background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.22);margin-bottom:16px}
+.kd-social .kd-card h3{margin:0 0 8px;font-size:19px;font-weight:700}
+.kd-social .kd-card p{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.75}
+.kd-social .kd-card ul{margin:0;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.kd-social .kd-card li{padding:5px 0;position:relative;padding-inline-start:20px}
+.kd-social .kd-card li::before{content:"\25B8";position:absolute;inset-inline-start:0;color:var(--accent);font-size:12px;transform:scaleX(1)}
+[dir="rtl"] .kd-social .kd-card li::before{transform:scaleX(-1)}
+.kd-social .kd-plans{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:56px}
+.kd-social .kd-plan{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-align:center}
+.kd-social .kd-plan.kd-best{border-color:rgba(0,229,255,.45);background:rgba(0,229,255,.05);position:relative}
+.kd-social .kd-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#04121a;font-size:12px;font-weight:800;padding:4px 14px;border-radius:999px;white-space:nowrap}
+.kd-social .kd-plan h4{margin:0 0 14px;font-size:19px}
+.kd-social .kd-terms{display:flex;gap:8px;justify-content:center;margin:0 0 6px;flex-wrap:wrap}
+.kd-social .kd-term{font-size:14px;font-weight:700;color:var(--accent);background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.25);border-radius:999px;padding:7px 18px}
+.kd-social .kd-plan ul{list-style:none;margin:16px 0 0;padding:0;color:var(--muted);font-size:14px;text-align:start}
+.kd-social .kd-plan li{padding:7px 0;position:relative;padding-inline-start:20px;border-top:1px solid var(--border)}
+.kd-social .kd-plan li::before{content:"\2713";position:absolute;inset-inline-start:0;color:var(--accent)}
+.kd-social .kd-cta{margin-top:56px;text-align:center;background:linear-gradient(180deg,rgba(0,229,255,.07),transparent);border:1px solid var(--border);border-radius:22px;padding:44px 24px}
+.kd-social .kd-cta h3{margin:0 0 10px;font-size:clamp(20px,3vw,28px)}
+.kd-social .kd-cta p{color:var(--muted);margin:0 0 24px}
+.kd-social .kd-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#04121a;font-weight:800;text-decoration:none;padding:14px 30px;border-radius:12px;transition:.2s}
+.kd-social .kd-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.kd-social .kd-note{margin-top:18px;font-size:13px;color:var(--muted)}
+@media(max-width:600px){.kd-social{padding:70px 16px}}
+.kd-social .kd-lead{margin-inline:auto}
+.kd-hero{max-width:900px;margin:0 auto;padding:110px 20px 10px;text-align:center}
+.kd-hero h1{font-size:clamp(30px,5vw,52px);line-height:1.25;margin:14px 0 16px;font-weight:900}
+.kd-hero h1 span{color:var(--accent)}
+.kd-hero p{color:var(--muted);font-size:17px;line-height:1.85;max-width:660px;margin:0 auto 26px}
+</style>
+</head>
+<body class="lang-ar">
+<div class="grid-bg" aria-hidden="true"></div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-brand" href="index.html" aria-label="Kodna home">
+    <div class="brand-icon" aria-hidden="true">ك</div>
+    <span class="brand-text">Kodna<span>.</span></span>
+  </a>
+  <ul class="nav-center" aria-label="Site sections">
+    <li><a href="index.html#programs" data-i18n="nav_programs">البرامج</a></li>
+    <li><a href="#services" data-i18n="nav_services">الخدمات</a></li>
+    <li><a href="#plans" data-i18n="nav_plans">الباقات</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="lang-sw" id="langSw">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()" aria-label="Change language" aria-haspopup="true">
+        <span id="langFlag">🇮🇶</span><span id="langCode">AR</span>
+        <i class="fa-solid fa-chevron-down chev" id="langChev"></i>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button class="lang-item" onclick="setLang('ar')" data-lang="ar" role="menuitem">🇮🇶 العربية</button>
+        <button class="lang-item" onclick="setLang('en')" data-lang="en" role="menuitem">🇬🇧 English</button>
+        <button class="lang-item" onclick="setLang('ku')" data-lang="ku" role="menuitem">🏔️ کوردی</button>
+        <button class="lang-item" onclick="setLang('zh')" data-lang="zh" role="menuitem">🇨🇳 中文</button>
+        <button class="lang-item" onclick="setLang('es')" data-lang="es" role="menuitem">🇪🇸 Español</button>
+        <button class="lang-item" onclick="setLang('ru')" data-lang="ru" role="menuitem">🇷🇺 Русский</button>
+      </div>
+    </div>
+    <a class="btn-nav fill" href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AF%D8%B9%D9%85%20%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A7%D8%AA" target="_blank" rel="noopener" data-i18n="nav_wa">💬 واتساب</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav" role="navigation">
+  <a href="index.html#programs" onclick="toggleMenu()" data-i18n="mobile_programs">📦 البرامج</a>
+  <a href="#services" onclick="toggleMenu()" data-i18n="mobile_services">🛠 الخدمات</a>
+  <a href="#plans" onclick="toggleMenu()" data-i18n="mobile_plans">📦 الباقات</a>
+  <div class="mob-lang-row">
+    <button class="mob-lang-btn" onclick="setLang('ar');toggleMenu()">🇮🇶 AR</button>
+    <button class="mob-lang-btn" onclick="setLang('en');toggleMenu()">🇬🇧 EN</button>
+    <button class="mob-lang-btn" onclick="setLang('ku');toggleMenu()">🏔️ KU</button>
+    <button class="mob-lang-btn" onclick="setLang('zh');toggleMenu()">🇨🇳 ZH</button>
+    <button class="mob-lang-btn" onclick="setLang('es');toggleMenu()">🇪🇸 ES</button>
+    <button class="mob-lang-btn" onclick="setLang('ru');toggleMenu()">🇷🇺 RU</button>
+  </div>
+</div>
+
+<header class="kd-hero">
+  <div class="hero-eyebrow" style="justify-content:center"><div class="eyebrow-dot" aria-hidden="true"></div><span data-i18n="hero_eyebrow">خدمات تسويقية من كودنا</span></div>
+  <h1 data-i18n-html="soc_title">دعم الصفحات و<span>إدارة السوشل ميديا</span></h1>
+  <p data-i18n="soc_desc">ما نبني برامج بس — نشتغل وياك على حضورك الرقمي: متابعين، تفاعل، إدارة كاملة لحساباتك، وحملات هاشتاق منظّمة على منصة X.</p>
+  <div class="hero-cta" style="justify-content:center">
+    <a class="btn-hero-main" href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AF%D8%B9%D9%85%20%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A7%D8%AA" target="_blank" rel="noopener" data-i18n="soc_wa">💬 اطلب الخدمة عبر واتساب</a>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<section class="kd-social rev" id="services" aria-label="Services">
+  <div class="kd-wrap">
+    <span class="kd-eyebrow" data-i18n="soc_tag">خدمات تسويقية</span>
+    <div class="kd-grid" style="margin-top:26px">
+      <div class="kd-card">
+        <div class="kd-ico">📈</div>
+        <h3 data-i18n="soc_c1t">زيادة المتابعين</h3>
+        <p data-i18n="soc_c1d">نمو حقيقي للصفحة عبر استهداف الجمهور المناسب لمجالك.</p>
+        <ul>
+          <li data-i18n="soc_c1a">إنستغرام · فيسبوك · X · تيك توك</li>
+          <li data-i18n="soc_c1b">استهداف حسب البلد والاهتمام</li>
+          <li data-i18n="soc_c1c">تقرير نمو دوري</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">❤️</div>
+        <h3 data-i18n="soc_c2t">رفع التفاعل</h3>
+        <p data-i18n="soc_c2d">لايكات، تعليقات، مشاهدات ووصول أعلى لمنشوراتك.</p>
+        <ul>
+          <li data-i18n="soc_c2a">تفاعل على المنشورات والريلز</li>
+          <li data-i18n="soc_c2b">رفع نسبة الوصول</li>
+          <li data-i18n="soc_c2c">باقات يومية أو لكل منشور</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🧑‍💻</div>
+        <h3 data-i18n="soc_c3t">إدارة الحسابات</h3>
+        <p data-i18n="soc_c3d">إدارة يومية كاملة لصفحاتك من التخطيط للنشر والرد.</p>
+        <ul>
+          <li data-i18n="soc_c3a">خطة محتوى شهرية</li>
+          <li data-i18n="soc_c3b">جدولة ونشر يومي</li>
+          <li data-i18n="soc_c3c">رد على الرسائل والتعليقات</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🔥</div>
+        <h3 data-i18n="soc_c4t">حملات وترندات X</h3>
+        <p data-i18n="soc_c4d">حملات هاشتاق بتوقيت وزخم مدروس — محلياً أو عالمياً.</p>
+        <ul>
+          <li data-i18n="soc_c4a">استهداف دولة محددة أو ترند عالمي</li>
+          <li data-i18n="soc_c4b">جدولة موجات النشر بتوقيت الذروة</li>
+          <li data-i18n="soc_c4c">تنسيق مع مؤثرين ومتابعة الأداء</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🎨</div>
+        <h3 data-i18n="soc_c5t">تصميم المحتوى</h3>
+        <p data-i18n="soc_c5d">هوية بصرية وتصاميم منشورات تليق باسمك.</p>
+        <ul>
+          <li data-i18n="soc_c5a">لوغو وهوية بصرية</li>
+          <li data-i18n="soc_c5b">تصاميم منشورات وستوري</li>
+          <li data-i18n="soc_c5c">مونتاج ريلز قصيرة</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🛡️</div>
+        <h3 data-i18n="soc_c6t">حماية الحساب</h3>
+        <p data-i18n="soc_c6d">تأمين حساباتك ومعالجة المشاكل التقنية.</p>
+        <ul>
+          <li data-i18n="soc_c6a">تفعيل الحماية الثنائية</li>
+          <li data-i18n="soc_c6b">فحص الشادوبان بأداة UrCheck</li>
+          <li data-i18n="soc_c6c">استشارة استرجاع الحسابات</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🚫</div>
+        <h3 data-i18n="soc_c7t">إزالة الانتحال والمحتوى المسروق</h3>
+        <p data-i18n="soc_c7d">حساب ينتحل اسمك أو علامتك التجارية؟ نتابع البلاغ لحد الإزالة.</p>
+        <ul>
+          <li data-i18n="soc_c7a">حسابات تنتحل اسمك أو لوغوك</li>
+          <li data-i18n="soc_c7b">بلاغ حقوق نشر للمحتوى المسروق</li>
+          <li data-i18n="soc_c7c">متابعة البلاغ حتى الإزالة</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🎬</div>
+        <h3 data-i18n="soc_c8t">إنتاج الفيديو</h3>
+        <p data-i18n="soc_c8d">سلسلة فيديوهات متواصلة — من الفكرة للنشر، حلقة ورا حلقة.</p>
+        <ul>
+          <li data-i18n="soc_c8a">كتابة سكربت وتعليق صوتي</li>
+          <li data-i18n="soc_c8b">مونتاج طويل وريلز قصيرة</li>
+          <li data-i18n="soc_c8c">ترجمة وخطة نشر مجدولة</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="kd-social rev" id="plans" aria-label="Plans">
+  <div class="kd-wrap">
+    <div class="kd-plans" style="margin-top:0">
+      <div class="kd-plan">
+        <h4 data-i18n="soc_p1t">البداية</h4>
+        <div class="kd-terms"><span class="kd-term" data-i18n="soc_month">شهري</span><span class="kd-term" data-i18n="soc_year">سنوي</span></div>
+        <ul>
+          <li data-i18n="soc_p1a">منصة واحدة</li>
+          <li data-i18n="soc_p1b">12 منشور شهرياً</li>
+          <li data-i18n="soc_p1c">تقرير شهري</li>
+        </ul>
+      </div>
+      <div class="kd-plan kd-best">
+        <span class="kd-badge" data-i18n="soc_best">الأكثر طلباً</span>
+        <h4 data-i18n="soc_p2t">الاحترافي</h4>
+        <div class="kd-terms"><span class="kd-term" data-i18n="soc_month">شهري</span><span class="kd-term" data-i18n="soc_year">سنوي</span></div>
+        <ul>
+          <li data-i18n="soc_p2a">ثلاث منصات</li>
+          <li data-i18n="soc_p2b">30 منشور + ريلز</li>
+          <li data-i18n="soc_p2c">زيادة متابعين وتفاعل</li>
+        </ul>
+      </div>
+      <div class="kd-plan">
+        <h4 data-i18n="soc_p3t">حسب الطلب</h4>
+        <div class="kd-terms"><span class="kd-term" data-i18n="soc_month">شهري</span><span class="kd-term" data-i18n="soc_year">سنوي</span></div>
+        <ul>
+          <li data-i18n="soc_p3a">إدارة كاملة</li>
+          <li data-i18n="soc_p3b">حملات وترندات</li>
+          <li data-i18n="soc_p3c">تصميم ومونتاج</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kd-cta">
+      <h3 data-i18n="soc_ctat">خلّي صفحتك تفرق</h3>
+      <p data-i18n="soc_ctad">راسلنا وخبّرنا عن مشروعك، ونرجعلك بخطة وعرض سعر خاص.</p>
+      <a class="kd-btn" href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AF%D8%B9%D9%85%20%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A7%D8%AA" target="_blank" rel="noopener" data-i18n="soc_wa">💬 اطلب الخدمة عبر واتساب</a>
+      <div class="kd-note" data-i18n="soc_note">التسعير حسب حجم الحساب والمنصة · لا نطلب كلمة مرور حسابك</div>
+    </div>
+  </div>
+</section>
+
+<footer class="uc-foot">
+  <div class="fb"><strong style="color:var(--text)">Kodna</strong></div>
+  <p data-i18n="foot_tag">برامج وأدوات رقمية عملية من كودنا.</p>
+  <div class="fl">
+    <a href="index.html" data-i18n="nav_programs">البرامج</a>
+    <a href="urcheck.html">UrCheck</a>
+    <a href="urplay.html">UrPlay</a>
+    <a href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AF%D8%B9%D9%85%20%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A7%D8%AA" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <p style="font-size:.8rem" data-i18n="foot_copy">© 2026 كودنا — تطوير ضياء دارم</p>
+</footer>
+
+<script>
+const T = {"ar": {"dir": "rtl", "flag": "🇮🇶", "code": "AR", "nav_programs": "البرامج", "mobile_programs": "📦 البرامج", "foot_tag": "برامج وأدوات رقمية عملية من كودنا.", "foot_copy": "© 2026 كودنا — تطوير ضياء دارم", "nav_services": "الخدمات", "nav_plans": "الباقات", "nav_wa": "💬 واتساب", "mobile_services": "🛠 الخدمات", "mobile_plans": "📦 الباقات", "hero_eyebrow": "خدمات تسويقية من كودنا", "soc_nav": "دعم الصفحات", "soc_mnav": "📣 دعم الصفحات", "soc_tag": "خدمات تسويقية", "soc_title": "دعم الصفحات و<span>إدارة السوشل ميديا</span>", "soc_desc": "ما نبني برامج بس — نشتغل وياك على حضورك الرقمي: متابعين، تفاعل، إدارة كاملة لحساباتك، وحملات هاشتاق منظّمة على منصة X.", "soc_c1t": "زيادة المتابعين", "soc_c1d": "نمو حقيقي للصفحة عبر استهداف الجمهور المناسب لمجالك.", "soc_c1a": "إنستغرام · فيسبوك · X · تيك توك", "soc_c1b": "استهداف حسب البلد والاهتمام", "soc_c1c": "تقرير نمو دوري", "soc_c2t": "رفع التفاعل", "soc_c2d": "لايكات، تعليقات، مشاهدات ووصول أعلى لمنشوراتك.", "soc_c2a": "تفاعل على المنشورات والريلز", "soc_c2b": "رفع نسبة الوصول", "soc_c2c": "باقات يومية أو لكل منشور", "soc_c3t": "إدارة الحسابات", "soc_c3d": "إدارة يومية كاملة لصفحاتك من التخطيط للنشر والرد.", "soc_c3a": "خطة محتوى شهرية", "soc_c3b": "جدولة ونشر يومي", "soc_c3c": "رد على الرسائل والتعليقات", "soc_c4t": "حملات وترندات X", "soc_c4d": "حملات هاشتاق بتوقيت وزخم مدروس — محلياً أو عالمياً.", "soc_c4a": "استهداف دولة محددة أو ترند عالمي", "soc_c4b": "جدولة موجات النشر بتوقيت الذروة", "soc_c4c": "تنسيق مع مؤثرين ومتابعة الأداء", "soc_c5t": "تصميم المحتوى", "soc_c5d": "هوية بصرية وتصاميم منشورات تليق باسمك.", "soc_c5a": "لوغو وهوية بصرية", "soc_c5b": "تصاميم منشورات وستوري", "soc_c5c": "مونتاج ريلز قصيرة", "soc_c6t": "حماية الحساب", "soc_c6d": "تأمين حساباتك ومعالجة المشاكل التقنية.", "soc_c6a": "تفعيل الحماية الثنائية", "soc_c6b": "فحص الشادوبان بأداة UrCheck", "soc_c6c": "استشارة استرجاع الحسابات", "soc_c7t": "إزالة الانتحال والمحتوى المسروق", "soc_c7d": "حساب ينتحل اسمك أو علامتك التجارية؟ نتابع البلاغ لحد الإزالة.", "soc_c7a": "حسابات تنتحل اسمك أو لوغوك", "soc_c7b": "بلاغ حقوق نشر للمحتوى المسروق", "soc_c7c": "متابعة البلاغ حتى الإزالة", "soc_c8t": "إنتاج الفيديو", "soc_c8d": "سلسلة فيديوهات متواصلة — من الفكرة للنشر، حلقة ورا حلقة.", "soc_c8a": "كتابة سكربت وتعليق صوتي", "soc_c8b": "مونتاج طويل وريلز قصيرة", "soc_c8c": "ترجمة وخطة نشر مجدولة", "soc_p1t": "البداية", "soc_p1a": "منصة واحدة", "soc_p1b": "12 منشور شهرياً", "soc_p1c": "تقرير شهري", "soc_p2t": "الاحترافي", "soc_p2a": "ثلاث منصات", "soc_p2b": "30 منشور + ريلز", "soc_p2c": "زيادة متابعين وتفاعل", "soc_p3t": "حسب الطلب", "soc_p3a": "إدارة كاملة", "soc_p3b": "حملات وترندات", "soc_p3c": "تصميم ومونتاج", "soc_best": "الأكثر طلباً", "soc_month": "شهري", "soc_year": "سنوي", "soc_ctat": "خلّي صفحتك تفرق", "soc_ctad": "راسلنا وخبّرنا عن مشروعك، ونرجعلك بخطة وعرض سعر خاص.", "soc_wa": "💬 اطلب الخدمة عبر واتساب", "soc_note": "التسعير حسب حجم الحساب والمنصة · لا نطلب كلمة مرور حسابك"}, "en": {"dir": "ltr", "flag": "🇬🇧", "code": "EN", "nav_programs": "Programs", "mobile_programs": "📦 Programs", "foot_tag": "Practical digital software and tools by Kodna.", "foot_copy": "© 2026 Kodna — by Dhia Darem", "nav_services": "Services", "nav_plans": "Plans", "nav_wa": "💬 WhatsApp", "mobile_services": "🛠 Services", "mobile_plans": "📦 Plans", "hero_eyebrow": "Marketing services by Kodna", "soc_nav": "Social Growth", "soc_mnav": "📣 Social Growth", "soc_tag": "Marketing Services", "soc_title": "Page Support & <span>Social Media Management</span>", "soc_desc": "We don't just build software — we grow your digital presence: followers, engagement, full account management, and organized hashtag campaigns on X.", "soc_c1t": "Follower Growth", "soc_c1d": "Real page growth by targeting the right audience for your field.", "soc_c1a": "Instagram · Facebook · X · TikTok", "soc_c1b": "Targeting by country and interest", "soc_c1c": "Regular growth reports", "soc_c2t": "Engagement Boost", "soc_c2d": "Likes, comments, views and wider reach for your posts.", "soc_c2a": "Engagement on posts and reels", "soc_c2b": "Higher organic reach", "soc_c2c": "Daily or per-post packages", "soc_c3t": "Account Management", "soc_c3d": "Full daily management of your pages, from planning to replies.", "soc_c3a": "Monthly content plan", "soc_c3b": "Daily scheduling and publishing", "soc_c3c": "Replies to messages and comments", "soc_c4t": "X Campaigns & Trends", "soc_c4d": "Hashtag campaigns with planned timing and momentum — local or worldwide.", "soc_c4a": "Target one country or go global", "soc_c4b": "Publishing waves at peak hours", "soc_c4c": "Influencer coordination and live tracking", "soc_c5t": "Content Design", "soc_c5d": "Visual identity and post designs worthy of your name.", "soc_c5a": "Logo and brand identity", "soc_c5b": "Post and story designs", "soc_c5c": "Short reels editing", "soc_c6t": "Account Protection", "soc_c6d": "Securing your accounts and fixing technical issues.", "soc_c6a": "Two-factor authentication setup", "soc_c6b": "Shadowban check with UrCheck", "soc_c6c": "Account recovery consulting", "soc_c7t": "Impersonation & Content Theft Removal", "soc_c7d": "Is an account using your name or trademark? We follow the report until removal.", "soc_c7a": "Accounts impersonating your name or logo", "soc_c7b": "Copyright reports for stolen content", "soc_c7c": "Follow-up until the content is taken down", "soc_c8t": "Video Production", "soc_c8d": "A continuous video series — from idea to publishing, episode after episode.", "soc_c8a": "Scriptwriting and voice-over", "soc_c8b": "Long-form editing and short reels", "soc_c8c": "Subtitles and a scheduled publishing plan", "soc_p1t": "Starter", "soc_p1a": "One platform", "soc_p1b": "12 posts per month", "soc_p1c": "Monthly report", "soc_p2t": "Professional", "soc_p2a": "Three platforms", "soc_p2b": "30 posts + reels", "soc_p2c": "Follower and engagement growth", "soc_p3t": "Custom", "soc_p3a": "Full management", "soc_p3b": "Campaigns and trends", "soc_p3c": "Design and video editing", "soc_best": "Most popular", "soc_month": "Monthly", "soc_year": "Yearly", "soc_ctat": "Make your page stand out", "soc_ctad": "Tell us about your project and we'll come back with a plan and a custom quote.", "soc_wa": "💬 Order via WhatsApp", "soc_note": "Pricing depends on account size and platform · We never ask for your password"}, "ku": {"dir": "rtl", "flag": "🏔️", "code": "KU", "nav_programs": "بەرنامەکان", "mobile_programs": "📦 بەرنامەکان", "foot_tag": "نەرمەکاڵا و ئامرازی دیجیتاڵی پراکتیکی لە کۆدنا.", "foot_copy": "© 2026 کۆدنا — ضیاء دارم", "nav_services": "خزمەتگوزارییەکان", "nav_plans": "پاکێجەکان", "nav_wa": "💬 واتساپ", "mobile_services": "🛠 خزمەتگوزارییەکان", "mobile_plans": "📦 پاکێجەکان", "hero_eyebrow": "خزمەتگوزاری بازاڕگەری لە کۆدنا", "soc_nav": "پشتگیری پەڕەکان", "soc_mnav": "📣 پشتگیری پەڕەکان", "soc_tag": "خزمەتگوزاری بازاڕگەری", "soc_title": "پشتگیری پەڕەکان و <span>بەڕێوەبردنی سۆشیال میدیا</span>", "soc_desc": "تەنها پرۆگرام دروست ناکەین — لەگەڵت کار دەکەین بۆ گەشەی ئامادەبوونی دیجیتاڵیت: فۆڵۆوەر، کارلێک، بەڕێوەبردنی تەواوی هەژمارەکان و کەمپینی هاشتاگ لە X.", "soc_c1t": "زیادکردنی فۆڵۆوەر", "soc_c1d": "گەشەی ڕاستەقینەی پەڕە بە ئامانجگرتنی گونجاوی جەماوەر.", "soc_c1a": "ئینستاگرام · فەیسبووک · X · تیکتۆک", "soc_c1b": "ئامانجگرتن بەپێی وڵات و ئارەزوو", "soc_c1c": "ڕاپۆرتی گەشەی بەردەوام", "soc_c2t": "بەرزکردنەوەی کارلێک", "soc_c2d": "لایک، کۆمێنت، بینین و گەیشتنی زیاتر بۆ پۆستەکانت.", "soc_c2a": "کارلێک لەسەر پۆست و ڕیلز", "soc_c2b": "بەرزکردنەوەی ڕێژەی گەیشتن", "soc_c2c": "پاکێجی ڕۆژانە یان بۆ هەر پۆستێک", "soc_c3t": "بەڕێوەبردنی هەژمارەکان", "soc_c3d": "بەڕێوەبردنی ڕۆژانەی تەواو بۆ پەڕەکانت.", "soc_c3a": "پلانی ناوەڕۆکی مانگانە", "soc_c3b": "خشتەبەندی و بڵاوکردنەوەی ڕۆژانە", "soc_c3c": "وەڵامدانەوەی نامە و کۆمێنتەکان", "soc_c4t": "کەمپین و ترێندی X", "soc_c4d": "کەمپینی هاشتاگ بە کات و هێزی پلاندراو — ناوخۆیی یان جیهانی.", "soc_c4a": "ئامانجگرتنی وڵاتێک یان ترێندی جیهانی", "soc_c4b": "شەپۆلی بڵاوکردنەوە لە کاتی لووتکە", "soc_c4c": "هەماهەنگی لەگەڵ ئەفراندکاران و بەدواداچوون", "soc_c5t": "دیزاینی ناوەڕۆک", "soc_c5d": "ناسنامەی بینراو و دیزاینی پۆست کە شایستەی ناوت بێت.", "soc_c5a": "لۆگۆ و ناسنامەی بینراو", "soc_c5b": "دیزاینی پۆست و ستۆری", "soc_c5c": "مۆنتاژی ڕیلزی کورت", "soc_c6t": "پاراستنی هەژمار", "soc_c6d": "پاراستنی هەژمارەکانت و چارەسەری کێشە تەکنیکییەکان.", "soc_c6a": "چالاککردنی پاراستنی دووقۆناغی", "soc_c6b": "پشکنینی شادۆبان بە UrCheck", "soc_c6c": "ڕاوێژ بۆ گەڕاندنەوەی هەژمار", "soc_c7t": "لابردنی ناوی ساختە و ناوەڕۆکی دزراو", "soc_c7d": "هەژمارێک ناو یان مارکەکەت بەکاردەهێنێت؟ بەدوای سکاڵاکەدا دەچین تا لادەبرێت.", "soc_c7a": "هەژماری ساختە بە ناو یان لۆگۆی تۆ", "soc_c7b": "سکاڵای مافی چاپ بۆ ناوەڕۆکی دزراو", "soc_c7c": "بەدواداچوون تا لابردنی تەواو", "soc_c8t": "بەرهەمهێنانی ڤیدیۆ", "soc_c8d": "زنجیرەی ڤیدیۆی بەردەوام — لە بیرۆکەوە تا بڵاوکردنەوە.", "soc_c8a": "نووسینی سکریپت و دەنگ", "soc_c8b": "مۆنتاژی درێژ و ڕیلزی کورت", "soc_c8c": "وەرگێڕان و پلانی بڵاوکردنەوە", "soc_p1t": "دەستپێک", "soc_p1a": "یەک پلاتفۆرم", "soc_p1b": "١٢ پۆست لە مانگێکدا", "soc_p1c": "ڕاپۆرتی مانگانە", "soc_p2t": "پیشەیی", "soc_p2a": "سێ پلاتفۆرم", "soc_p2b": "٣٠ پۆست + ڕیلز", "soc_p2c": "زیادکردنی فۆڵۆوەر و کارلێک", "soc_p3t": "بەپێی داواکاری", "soc_p3a": "بەڕێوەبردنی تەواو", "soc_p3b": "کەمپین و ترێند", "soc_p3c": "دیزاین و مۆنتاژ", "soc_best": "زۆرترین داواکاری", "soc_month": "مانگانە", "soc_year": "ساڵانە", "soc_ctat": "با پەڕەکەت جیاواز بێت", "soc_ctad": "باسی پڕۆژەکەت بۆ بکە و پلان و نرخێکی تایبەتت بۆ دەنێرین.", "soc_wa": "💬 داواکاری لە ڕێگەی واتساپ", "soc_note": "نرخ بەپێی قەبارەی هەژمار و پلاتفۆرم · هەرگیز داوای وشەی نهێنی ناکەین"}, "zh": {"dir": "ltr", "flag": "🇨🇳", "code": "ZH", "nav_programs": "程序", "mobile_programs": "📦 程序", "foot_tag": "Kodna 的实用数字软件与工具。", "foot_copy": "© 2026 Kodna — Dhia Darem", "nav_services": "服务", "nav_plans": "套餐", "nav_wa": "💬 WhatsApp", "mobile_services": "🛠 服务", "mobile_plans": "📦 套餐", "hero_eyebrow": "Kodna 提供的营销服务", "soc_nav": "社交推广", "soc_mnav": "📣 社交推广", "soc_tag": "营销服务", "soc_title": "主页推广与<span>社交媒体运营</span>", "soc_desc": "我们不只是做软件——还帮你打造数字影响力：涨粉、提升互动、账号全托管，以及 X 平台的话题标签活动。", "soc_c1t": "粉丝增长", "soc_c1d": "通过精准受众定位实现真实增长。", "soc_c1a": "Instagram · Facebook · X · TikTok", "soc_c1b": "按国家和兴趣定向", "soc_c1c": "定期增长报告", "soc_c2t": "互动提升", "soc_c2d": "为你的帖子带来点赞、评论、播放与更广曝光。", "soc_c2a": "帖子与短视频互动", "soc_c2b": "提升自然触达率", "soc_c2c": "按天或按帖套餐", "soc_c3t": "账号运营", "soc_c3d": "主页的全面日常运营，从策划到回复。", "soc_c3a": "每月内容计划", "soc_c3b": "每日排期与发布", "soc_c3c": "回复私信与评论", "soc_c4t": "X 活动与热门话题", "soc_c4d": "规划时机与声量的话题活动——本地或全球。", "soc_c4a": "定向指定国家或全球热门", "soc_c4b": "高峰时段分波发布", "soc_c4c": "联动达人并实时追踪", "soc_c5t": "内容设计", "soc_c5d": "配得上你品牌的视觉形象与图文设计。", "soc_c5a": "Logo 与视觉识别", "soc_c5b": "帖子与快拍设计", "soc_c5c": "短视频剪辑", "soc_c6t": "账号安全", "soc_c6d": "保护账号并处理技术问题。", "soc_c6a": "开启两步验证", "soc_c6b": "用 UrCheck 检测限流", "soc_c6c": "账号找回咨询", "soc_c7t": "仿冒与盗用内容清除", "soc_c7d": "有账号冒用你的名称或商标？我们跟进举报直至删除。", "soc_c7a": "冒用你名称或标志的账号", "soc_c7b": "盗用内容的版权举报", "soc_c7c": "全程跟进直至下架", "soc_c8t": "视频制作", "soc_c8d": "持续更新的视频系列——从选题到发布。", "soc_c8a": "脚本撰写与配音", "soc_c8b": "长视频剪辑与短视频", "soc_c8c": "字幕与发布排期", "soc_p1t": "入门", "soc_p1a": "单一平台", "soc_p1b": "每月 12 条内容", "soc_p1c": "月度报告", "soc_p2t": "专业", "soc_p2a": "三个平台", "soc_p2b": "30 条内容 + 短视频", "soc_p2c": "涨粉与互动提升", "soc_p3t": "定制", "soc_p3a": "全面托管", "soc_p3b": "活动与热门话题", "soc_p3c": "设计与剪辑", "soc_best": "最受欢迎", "soc_month": "按月", "soc_year": "按年", "soc_ctat": "让你的主页脱颖而出", "soc_ctad": "把你的项目告诉我们，我们会回复方案与专属报价。", "soc_wa": "💬 通过 WhatsApp 下单", "soc_note": "价格视账号规模与平台而定 · 我们绝不索要你的密码"}, "es": {"dir": "ltr", "flag": "🇪🇸", "code": "ES", "nav_programs": "Programas", "mobile_programs": "📦 Programas", "foot_tag": "Software y herramientas digitales prácticas de Kodna.", "foot_copy": "© 2026 Kodna — por Dhia Darem", "nav_services": "Servicios", "nav_plans": "Planes", "nav_wa": "💬 WhatsApp", "mobile_services": "🛠 Servicios", "mobile_plans": "📦 Planes", "hero_eyebrow": "Servicios de marketing de Kodna", "soc_nav": "Redes Sociales", "soc_mnav": "📣 Redes Sociales", "soc_tag": "Servicios de marketing", "soc_title": "Impulso de páginas y <span>gestión de redes sociales</span>", "soc_desc": "No solo creamos software: hacemos crecer tu presencia digital con seguidores, interacción, gestión completa de cuentas y campañas de hashtags en X.", "soc_c1t": "Crecimiento de seguidores", "soc_c1d": "Crecimiento real de tu página con el público adecuado.", "soc_c1a": "Instagram · Facebook · X · TikTok", "soc_c1b": "Segmentación por país e intereses", "soc_c1c": "Informe de crecimiento periódico", "soc_c2t": "Más interacción", "soc_c2d": "Me gusta, comentarios, visualizaciones y mayor alcance.", "soc_c2a": "Interacción en publicaciones y reels", "soc_c2b": "Mayor alcance orgánico", "soc_c2c": "Paquetes diarios o por publicación", "soc_c3t": "Gestión de cuentas", "soc_c3d": "Gestión diaria completa de tus páginas, del plan a las respuestas.", "soc_c3a": "Plan de contenido mensual", "soc_c3b": "Programación y publicación diaria", "soc_c3c": "Respuesta a mensajes y comentarios", "soc_c4t": "Campañas y tendencias en X", "soc_c4d": "Campañas de hashtags con timing y volumen planificados, locales o globales.", "soc_c4a": "Un país concreto o tendencia global", "soc_c4b": "Oleadas de publicación en hora punta", "soc_c4c": "Coordinación con influencers y seguimiento", "soc_c5t": "Diseño de contenido", "soc_c5d": "Identidad visual y diseños a la altura de tu marca.", "soc_c5a": "Logo e identidad visual", "soc_c5b": "Diseños de publicaciones e historias", "soc_c5c": "Edición de reels cortos", "soc_c6t": "Protección de la cuenta", "soc_c6d": "Aseguramos tus cuentas y resolvemos problemas técnicos.", "soc_c6a": "Activación de verificación en dos pasos", "soc_c6b": "Chequeo de shadowban con UrCheck", "soc_c6c": "Asesoría para recuperar cuentas", "soc_c7t": "Retirada de suplantaciones y contenido robado", "soc_c7d": "¿Alguien usa tu nombre o tu marca? Damos seguimiento hasta la retirada.", "soc_c7a": "Cuentas que suplantan tu nombre o logo", "soc_c7b": "Reclamaciones de derechos de autor", "soc_c7c": "Seguimiento hasta la eliminación", "soc_c8t": "Producción de vídeo", "soc_c8d": "Una serie de vídeos continua: de la idea a la publicación.", "soc_c8a": "Guion y locución", "soc_c8b": "Edición larga y reels cortos", "soc_c8c": "Subtítulos y plan de publicación", "soc_p1t": "Inicial", "soc_p1a": "Una plataforma", "soc_p1b": "12 publicaciones al mes", "soc_p1c": "Informe mensual", "soc_p2t": "Profesional", "soc_p2a": "Tres plataformas", "soc_p2b": "30 publicaciones + reels", "soc_p2c": "Crecimiento de seguidores e interacción", "soc_p3t": "A medida", "soc_p3a": "Gestión completa", "soc_p3b": "Campañas y tendencias", "soc_p3c": "Diseño y edición", "soc_best": "Más solicitado", "soc_month": "Mensual", "soc_year": "Anual", "soc_ctat": "Haz que tu página destaque", "soc_ctad": "Cuéntanos tu proyecto y te enviamos un plan y un presupuesto a medida.", "soc_wa": "💬 Solicitar por WhatsApp", "soc_note": "El precio depende del tamaño de la cuenta y la plataforma · Nunca pedimos tu contraseña"}, "ru": {"dir": "ltr", "flag": "🇷🇺", "code": "RU", "nav_programs": "Программы", "mobile_programs": "📦 Программы", "foot_tag": "Практичные цифровые программы и инструменты от Kodna.", "foot_copy": "© 2026 Kodna — Dhia Darem", "nav_services": "Услуги", "nav_plans": "Тарифы", "nav_wa": "💬 WhatsApp", "mobile_services": "🛠 Услуги", "mobile_plans": "📦 Тарифы", "hero_eyebrow": "Маркетинговые услуги от Kodna", "soc_nav": "Продвижение", "soc_mnav": "📣 Продвижение", "soc_tag": "Маркетинговые услуги", "soc_title": "Продвижение страниц и <span>ведение соцсетей</span>", "soc_desc": "Мы не только пишем программы — мы развиваем ваше присутствие в сети: подписчики, вовлечённость, полное ведение аккаунтов и хэштег-кампании в X.", "soc_c1t": "Рост подписчиков", "soc_c1d": "Реальный рост страницы за счёт точного подбора аудитории.", "soc_c1a": "Instagram · Facebook · X · TikTok", "soc_c1b": "Таргетинг по стране и интересам", "soc_c1c": "Регулярный отчёт о росте", "soc_c2t": "Рост вовлечённости", "soc_c2d": "Лайки, комментарии, просмотры и больший охват.", "soc_c2a": "Активность под постами и Reels", "soc_c2b": "Повышение охвата", "soc_c2c": "Пакеты на день или на пост", "soc_c3t": "Ведение аккаунтов", "soc_c3d": "Полное ежедневное ведение ваших страниц.", "soc_c3a": "Ежемесячный контент-план", "soc_c3b": "Ежедневный постинг по расписанию", "soc_c3c": "Ответы на сообщения и комментарии", "soc_c4t": "Кампании и тренды в X", "soc_c4d": "Хэштег-кампании с продуманным таймингом — локально или по всему миру.", "soc_c4a": "Отдельная страна или мировой тренд", "soc_c4b": "Волны публикаций в часы пик", "soc_c4c": "Работа с блогерами и мониторинг", "soc_c5t": "Дизайн контента", "soc_c5d": "Визуальный стиль и оформление постов под ваш бренд.", "soc_c5a": "Логотип и фирменный стиль", "soc_c5b": "Оформление постов и сторис", "soc_c5c": "Монтаж коротких Reels", "soc_c6t": "Защита аккаунта", "soc_c6d": "Защищаем аккаунты и решаем технические проблемы.", "soc_c6a": "Настройка двухфакторной защиты", "soc_c6b": "Проверка теневого бана в UrCheck", "soc_c6c": "Консультация по возврату аккаунта", "soc_c7t": "Удаление подделок и краденого контента", "soc_c7d": "Кто-то использует ваше имя или бренд? Ведём жалобу до удаления.", "soc_c7a": "Аккаунты, выдающие себя за вас", "soc_c7b": "Жалоба по авторским правам", "soc_c7c": "Сопровождение до удаления", "soc_c8t": "Производство видео", "soc_c8d": "Постоянная серия видео — от идеи до публикации.", "soc_c8a": "Сценарий и озвучка", "soc_c8b": "Длинный монтаж и короткие Reels", "soc_c8c": "Субтитры и план публикаций", "soc_p1t": "Старт", "soc_p1a": "Одна платформа", "soc_p1b": "12 публикаций в месяц", "soc_p1c": "Ежемесячный отчёт", "soc_p2t": "Профи", "soc_p2a": "Три платформы", "soc_p2b": "30 публикаций + Reels", "soc_p2c": "Рост подписчиков и вовлечённости", "soc_p3t": "Индивидуально", "soc_p3a": "Полное ведение", "soc_p3b": "Кампании и тренды", "soc_p3c": "Дизайн и монтаж", "soc_best": "Чаще всего берут", "soc_month": "Месяц", "soc_year": "Год", "soc_ctat": "Пусть вашу страницу заметят", "soc_ctad": "Напишите о проекте — вернёмся с планом и индивидуальной ценой.", "soc_wa": "💬 Заказать в WhatsApp", "soc_note": "Цена зависит от размера аккаунта и платформы · Мы никогда не просим ваш пароль"}};
+const KEY='kodna_lang';
+function detectLang(){
+  const sv=localStorage.getItem(KEY);
+  if(sv&&T[sv])return sv;
+  const bl=(navigator.language||navigator.userLanguage||'ar').toLowerCase();
+  if(bl.startsWith('ar'))return 'ar';
+  if(bl.startsWith('ku')||bl.startsWith('ckb'))return 'ku';
+  if(bl.startsWith('zh'))return 'zh';
+  if(bl.startsWith('es'))return 'es';
+  if(bl.startsWith('ru'))return 'ru';
+  if(bl.startsWith('en'))return 'en';
+  return 'ar';
+}
+function applyLang(lang){
+  if(!T[lang])lang='ar';
+  localStorage.setItem(KEY,lang);
+  const t=T[lang], root=document.getElementById('htmlRoot');
+  root.setAttribute('lang',lang); root.setAttribute('dir',t.dir);
+  document.body.className='lang-'+lang;
+  const fl=document.getElementById('langFlag'), cd=document.getElementById('langCode');
+  if(fl)fl.textContent=t.flag; if(cd)cd.textContent=t.code;
+  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(t[k]!==undefined) el.textContent=t[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml; if(t[k]!==undefined) el.innerHTML=t[k];});
+}
+function setLang(lang){applyLang(lang);closeLangMenu();}
+function toggleLangMenu(){const m=document.getElementById('langMenu'),b=document.getElementById('langBtn');const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}
+function closeLangMenu(){document.getElementById('langMenu')?.classList.remove('open');document.getElementById('langBtn')?.classList.remove('open');}
+document.addEventListener('click',e=>{if(!document.getElementById('langSw')?.contains(e.target))closeLangMenu();});
+function toggleMenu(){const h=document.getElementById('hamburger'),n=document.getElementById('mobileNav');const o=h.classList.toggle('open');n.classList.toggle('open',o);h.setAttribute('aria-expanded',o);}
+window.addEventListener('scroll',()=>{document.getElementById('hamburger')?.classList.remove('open');document.getElementById('mobileNav')?.classList.remove('open');},{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{
+  applyLang(detectLang());
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.07});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+});
+</script>
+</body>
+</html>
