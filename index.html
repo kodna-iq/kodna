@@ -449,6 +449,42 @@ html[dir=ltr] .footer-bottom{flex-direction:row-reverse}
 html[dir=ltr] .footer-col ul{align-items:flex-start}
 html[dir=ltr] .about-item-text h4{text-align:left}
 html[dir=ltr] .cta-inner{direction:ltr}
+
+/* ── SOCIAL SERVICES SECTION ───────────────── */
+.kd-social{padding:96px 20px;background:var(--bg);color:var(--text);position:relative;overflow:hidden}
+.kd-social::before{content:"";position:absolute;inset:auto 50% -40% auto;transform:translateX(50%);width:700px;height:700px;background:radial-gradient(circle,rgba(0,229,255,.10),transparent 65%);pointer-events:none}
+.kd-social .kd-wrap{max-width:1140px;margin:0 auto;position:relative;z-index:1}
+.kd-social .kd-eyebrow{display:inline-block;font-size:13px;letter-spacing:.08em;color:var(--accent);border:1px solid rgba(0,229,255,.3);border-radius:999px;padding:6px 16px;margin-bottom:18px}
+.kd-social h2{font-size:clamp(28px,4.4vw,46px);line-height:1.25;margin:0 0 14px;font-weight:800}
+.kd-social h2 span{color:var(--accent)}
+.kd-social .kd-lead{color:var(--muted);font-size:17px;max-width:640px;margin:0 0 52px;line-height:1.8}
+.kd-social .kd-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.kd-social .kd-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:18px;padding:26px 24px;transition:.25s ease}
+.kd-social .kd-card:hover{transform:translateY(-4px);border-color:rgba(0,229,255,.35);background:rgba(0,229,255,.04)}
+.kd-social .kd-ico{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;font-size:22px;background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.22);margin-bottom:16px}
+.kd-social .kd-card h3{margin:0 0 8px;font-size:19px;font-weight:700}
+.kd-social .kd-card p{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.75}
+.kd-social .kd-card ul{margin:0;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.kd-social .kd-card li{padding:5px 0;position:relative;padding-inline-start:20px}
+.kd-social .kd-card li::before{content:"\25B8";position:absolute;inset-inline-start:0;color:var(--accent);font-size:12px;transform:scaleX(1)}
+[dir="rtl"] .kd-social .kd-card li::before{transform:scaleX(-1)}
+.kd-social .kd-plans{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:56px}
+.kd-social .kd-plan{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-align:center}
+.kd-social .kd-plan.kd-best{border-color:rgba(0,229,255,.45);background:rgba(0,229,255,.05);position:relative}
+.kd-social .kd-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#04121a;font-size:12px;font-weight:800;padding:4px 14px;border-radius:999px;white-space:nowrap}
+.kd-social .kd-plan h4{margin:0 0 14px;font-size:19px}
+.kd-social .kd-terms{display:flex;gap:8px;justify-content:center;margin:0 0 6px;flex-wrap:wrap}
+.kd-social .kd-term{font-size:14px;font-weight:700;color:var(--accent);background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.25);border-radius:999px;padding:7px 18px}
+.kd-social .kd-plan ul{list-style:none;margin:16px 0 0;padding:0;color:var(--muted);font-size:14px;text-align:start}
+.kd-social .kd-plan li{padding:7px 0;position:relative;padding-inline-start:20px;border-top:1px solid var(--border)}
+.kd-social .kd-plan li::before{content:"\2713";position:absolute;inset-inline-start:0;color:var(--accent)}
+.kd-social .kd-cta{margin-top:56px;text-align:center;background:linear-gradient(180deg,rgba(0,229,255,.07),transparent);border:1px solid var(--border);border-radius:22px;padding:44px 24px}
+.kd-social .kd-cta h3{margin:0 0 10px;font-size:clamp(20px,3vw,28px)}
+.kd-social .kd-cta p{color:var(--muted);margin:0 0 24px}
+.kd-social .kd-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#04121a;font-weight:800;text-decoration:none;padding:14px 30px;border-radius:12px;transition:.2s}
+.kd-social .kd-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.kd-social .kd-note{margin-top:18px;font-size:13px;color:var(--muted)}
+@media(max-width:600px){.kd-social{padding:70px 16px}}
 </style>
 </head>
 
@@ -467,6 +503,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
     <li><a href="#programs" data-i18n="nav_programs">البرامج</a></li>
     <li><a href="#pro" data-i18n="nav_pro">احترافي</a></li>
     <li><a href="#online" data-i18n="nav_online">خدمات أون لاين</a></li>
+    <li><a href="#social" data-i18n="soc_nav">دعم الصفحات</a></li>
     <li><a href="#about" data-i18n="nav_about">من نحن</a></li>
     <li><a href="#contact" data-i18n="nav_contact">تواصل</a></li>
   </ul>
@@ -498,6 +535,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
   <a href="#programs" onclick="toggleMenu()" data-i18n="mobile_programs">📦 البرامج</a>
   <a href="#pro" onclick="toggleMenu()" data-i18n="mobile_pro">⭐ احترافي</a>
   <a href="#online" onclick="toggleMenu()" data-i18n="mobile_online">🛠 خدمات أون لاين</a>
+  <a href="#social" onclick="toggleMenu()" data-i18n="soc_mnav">📣 دعم الصفحات</a>
   <a href="#about" onclick="toggleMenu()" data-i18n="mobile_about">👥 من نحن</a>
   <a href="#contact" onclick="toggleMenu()" data-i18n="mobile_contact">📬 تواصل</a>
   <a href="urdown.html">⬇ UrDown</a>
@@ -701,6 +739,140 @@ html[dir=ltr] .cta-inner{direction:ltr}
 
 <div class="divider"></div>
 
+<!-- ═══ SOCIAL SERVICES ═══ -->
+<section class="kd-social rev" id="social" aria-label="Social Media Services">
+  <div class="kd-wrap">
+
+    <span class="kd-eyebrow" data-i18n="soc_tag">خدمات تسويقية</span>
+    <h2 data-i18n-html="soc_title">دعم الصفحات و<span>إدارة السوشل ميديا</span></h2>
+    <p class="kd-lead" data-i18n="soc_desc">ما نبني برامج بس — نشتغل وياك على حضورك الرقمي: متابعين، تفاعل، إدارة كاملة لحساباتك، وحملات هاشتاق منظّمة على منصة X.</p>
+
+    <div class="kd-grid">
+      <div class="kd-card">
+        <div class="kd-ico">📈</div>
+        <h3 data-i18n="soc_c1t">زيادة المتابعين</h3>
+        <p data-i18n="soc_c1d">نمو حقيقي للصفحة عبر استهداف الجمهور المناسب لمجالك.</p>
+        <ul>
+          <li data-i18n="soc_c1a">إنستغرام · فيسبوك · X · تيك توك</li>
+          <li data-i18n="soc_c1b">استهداف حسب البلد والاهتمام</li>
+          <li data-i18n="soc_c1c">تقرير نمو دوري</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">❤️</div>
+        <h3 data-i18n="soc_c2t">رفع التفاعل</h3>
+        <p data-i18n="soc_c2d">لايكات، تعليقات، مشاهدات ووصول أعلى لمنشوراتك.</p>
+        <ul>
+          <li data-i18n="soc_c2a">تفاعل على المنشورات والريلز</li>
+          <li data-i18n="soc_c2b">رفع نسبة الوصول</li>
+          <li data-i18n="soc_c2c">باقات يومية أو لكل منشور</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🧑‍💻</div>
+        <h3 data-i18n="soc_c3t">إدارة الحسابات</h3>
+        <p data-i18n="soc_c3d">إدارة يومية كاملة لصفحاتك من التخطيط للنشر والرد.</p>
+        <ul>
+          <li data-i18n="soc_c3a">خطة محتوى شهرية</li>
+          <li data-i18n="soc_c3b">جدولة ونشر يومي</li>
+          <li data-i18n="soc_c3c">رد على الرسائل والتعليقات</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🔥</div>
+        <h3 data-i18n="soc_c4t">حملات وترندات X</h3>
+        <p data-i18n="soc_c4d">حملات هاشتاق بتوقيت وزخم مدروس — محلياً أو عالمياً.</p>
+        <ul>
+          <li data-i18n="soc_c4a">استهداف دولة محددة أو ترند عالمي</li>
+          <li data-i18n="soc_c4b">جدولة موجات النشر بتوقيت الذروة</li>
+          <li data-i18n="soc_c4c">تنسيق مع مؤثرين ومتابعة الأداء</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🎨</div>
+        <h3 data-i18n="soc_c5t">تصميم المحتوى</h3>
+        <p data-i18n="soc_c5d">هوية بصرية وتصاميم منشورات تليق باسمك.</p>
+        <ul>
+          <li data-i18n="soc_c5a">لوغو وهوية بصرية</li>
+          <li data-i18n="soc_c5b">تصاميم منشورات وستوري</li>
+          <li data-i18n="soc_c5c">مونتاج ريلز قصيرة</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🛡️</div>
+        <h3 data-i18n="soc_c6t">حماية الحساب</h3>
+        <p data-i18n="soc_c6d">تأمين حساباتك ومعالجة المشاكل التقنية.</p>
+        <ul>
+          <li data-i18n="soc_c6a">تفعيل الحماية الثنائية</li>
+          <li data-i18n="soc_c6b">فحص الشادوبان بأداة UrCheck</li>
+          <li data-i18n="soc_c6c">استشارة استرجاع الحسابات</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🚫</div>
+        <h3 data-i18n="soc_c7t">إزالة الانتحال والمحتوى المسروق</h3>
+        <p data-i18n="soc_c7d">حساب ينتحل اسمك أو علامتك التجارية؟ نتابع البلاغ لحد الإزالة.</p>
+        <ul>
+          <li data-i18n="soc_c7a">حسابات تنتحل اسمك أو لوغوك</li>
+          <li data-i18n="soc_c7b">بلاغ حقوق نشر للمحتوى المسروق</li>
+          <li data-i18n="soc_c7c">متابعة البلاغ حتى الإزالة</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🎬</div>
+        <h3 data-i18n="soc_c8t">إنتاج الفيديو</h3>
+        <p data-i18n="soc_c8d">سلسلة فيديوهات متواصلة — من الفكرة للنشر، حلقة ورا حلقة.</p>
+        <ul>
+          <li data-i18n="soc_c8a">كتابة سكربت وتعليق صوتي</li>
+          <li data-i18n="soc_c8b">مونتاج طويل وريلز قصيرة</li>
+          <li data-i18n="soc_c8c">ترجمة وخطة نشر مجدولة</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kd-plans">
+      <div class="kd-plan">
+        <h4 data-i18n="soc_p1t">البداية</h4>
+        <div class="kd-terms"><span class="kd-term" data-i18n="soc_month">شهري</span><span class="kd-term" data-i18n="soc_year">سنوي</span></div>
+        <ul>
+          <li data-i18n="soc_p1a">منصة واحدة</li>
+          <li data-i18n="soc_p1b">12 منشور شهرياً</li>
+          <li data-i18n="soc_p1c">تقرير شهري</li>
+        </ul>
+      </div>
+      <div class="kd-plan kd-best">
+        <span class="kd-badge" data-i18n="soc_best">الأكثر طلباً</span>
+        <h4 data-i18n="soc_p2t">الاحترافي</h4>
+        <div class="kd-terms"><span class="kd-term" data-i18n="soc_month">شهري</span><span class="kd-term" data-i18n="soc_year">سنوي</span></div>
+        <ul>
+          <li data-i18n="soc_p2a">ثلاث منصات</li>
+          <li data-i18n="soc_p2b">30 منشور + ريلز</li>
+          <li data-i18n="soc_p2c">زيادة متابعين وتفاعل</li>
+        </ul>
+      </div>
+      <div class="kd-plan">
+        <h4 data-i18n="soc_p3t">حسب الطلب</h4>
+        <div class="kd-terms"><span class="kd-term" data-i18n="soc_month">شهري</span><span class="kd-term" data-i18n="soc_year">سنوي</span></div>
+        <ul>
+          <li data-i18n="soc_p3a">إدارة كاملة</li>
+          <li data-i18n="soc_p3b">حملات وترندات</li>
+          <li data-i18n="soc_p3c">تصميم ومونتاج</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kd-cta">
+      <h3 data-i18n="soc_ctat">خلّي صفحتك تفرق</h3>
+      <p data-i18n="soc_ctad">راسلنا وخبّرنا عن مشروعك، ونرجعلك بخطة وعرض سعر خاص.</p>
+      <a class="kd-btn" href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AF%D8%B9%D9%85%20%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A7%D8%AA" target="_blank" rel="noopener" data-i18n="soc_wa">💬 اطلب الخدمة عبر واتساب</a>
+      <div class="kd-note" data-i18n="soc_note">التسعير حسب حجم الحساب والمنصة · لا نطلب كلمة مرور حسابك</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ═══ ABOUT ═══ -->
 <section class="about rev" id="about" aria-label="About Kodna">
   <div class="about-inner">
@@ -830,6 +1002,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
 ───────────────────────────────────────────── */
 const T = {
 ar:{dir:'rtl',flag:'🇮🇶',code:'AR',
+ soc_nav:"دعم الصفحات",soc_mnav:"📣 دعم الصفحات",soc_tag:"خدمات تسويقية",soc_title:"دعم الصفحات و<span>إدارة السوشل ميديا</span>",soc_desc:"ما نبني برامج بس — نشتغل وياك على حضورك الرقمي: متابعين، تفاعل، إدارة كاملة لحساباتك، وحملات هاشتاق منظّمة على منصة X.",soc_c1t:"زيادة المتابعين",soc_c1d:"نمو حقيقي للصفحة عبر استهداف الجمهور المناسب لمجالك.",soc_c1a:"إنستغرام · فيسبوك · X · تيك توك",soc_c1b:"استهداف حسب البلد والاهتمام",soc_c1c:"تقرير نمو دوري",soc_c2t:"رفع التفاعل",soc_c2d:"لايكات، تعليقات، مشاهدات ووصول أعلى لمنشوراتك.",soc_c2a:"تفاعل على المنشورات والريلز",soc_c2b:"رفع نسبة الوصول",soc_c2c:"باقات يومية أو لكل منشور",soc_c3t:"إدارة الحسابات",soc_c3d:"إدارة يومية كاملة لصفحاتك من التخطيط للنشر والرد.",soc_c3a:"خطة محتوى شهرية",soc_c3b:"جدولة ونشر يومي",soc_c3c:"رد على الرسائل والتعليقات",soc_c4t:"حملات وترندات X",soc_c4d:"حملات هاشتاق بتوقيت وزخم مدروس — محلياً أو عالمياً.",soc_c4a:"استهداف دولة محددة أو ترند عالمي",soc_c4b:"جدولة موجات النشر بتوقيت الذروة",soc_c4c:"تنسيق مع مؤثرين ومتابعة الأداء",soc_c5t:"تصميم المحتوى",soc_c5d:"هوية بصرية وتصاميم منشورات تليق باسمك.",soc_c5a:"لوغو وهوية بصرية",soc_c5b:"تصاميم منشورات وستوري",soc_c5c:"مونتاج ريلز قصيرة",soc_c6t:"حماية الحساب",soc_c6d:"تأمين حساباتك ومعالجة المشاكل التقنية.",soc_c6a:"تفعيل الحماية الثنائية",soc_c6b:"فحص الشادوبان بأداة UrCheck",soc_c6c:"استشارة استرجاع الحسابات",soc_c7t:"إزالة الانتحال والمحتوى المسروق",soc_c7d:"حساب ينتحل اسمك أو علامتك التجارية؟ نتابع البلاغ لحد الإزالة.",soc_c7a:"حسابات تنتحل اسمك أو لوغوك",soc_c7b:"بلاغ حقوق نشر للمحتوى المسروق",soc_c7c:"متابعة البلاغ حتى الإزالة",soc_c8t:"إنتاج الفيديو",soc_c8d:"سلسلة فيديوهات متواصلة — من الفكرة للنشر، حلقة ورا حلقة.",soc_c8a:"كتابة سكربت وتعليق صوتي",soc_c8b:"مونتاج طويل وريلز قصيرة",soc_c8c:"ترجمة وخطة نشر مجدولة",soc_p1t:"البداية",soc_p1a:"منصة واحدة",soc_p1b:"12 منشور شهرياً",soc_p1c:"تقرير شهري",soc_p2t:"الاحترافي",soc_p2a:"ثلاث منصات",soc_p2b:"30 منشور + ريلز",soc_p2c:"زيادة متابعين وتفاعل",soc_p3t:"حسب الطلب",soc_p3a:"إدارة كاملة",soc_p3b:"حملات وترندات",soc_p3c:"تصميم ومونتاج",soc_best:"الأكثر طلباً",soc_month:"شهري",soc_year:"سنوي",soc_ctat:"خلّي صفحتك تفرق",soc_ctad:"راسلنا وخبّرنا عن مشروعك، ونرجعلك بخطة وعرض سعر خاص.",soc_wa:"💬 اطلب الخدمة عبر واتساب",soc_note:"التسعير حسب حجم الحساب والمنصة · لا نطلب كلمة مرور حسابك",
  pwgen_name:'مولّد كلمات المرور',pwgen_desc:'أنشئ كلمات مرور عشوائية قوية بطول وخيارات قابلة للضبط — كلها داخل متصفحك.',
  nav_online:'خدمات أون لاين',mobile_online:'🛠 خدمات أون لاين',sec_online:'خدمات أون لاين',online_title:'خدمات وأدوات أون لاين مجانية',online_desc:'أدوات تعمل مباشرة في متصفحك بلا تثبيت ولا تسجيل.',twofa_name:'مولّد رمز 2FA',twofa_desc:'مولّد رمز المصادقة الثنائية (TOTP) — أدخل المفتاح واحصل على رمز يتغيّر كل 30 ثانية، داخل متصفحك.',tag_online:'أونلاين',
   nav_pro:'احترافي',mobile_pro:'⭐ احترافي',sec_pro:'الإصدار الاحترافي',pro_title:'برامج احترافية مدفوعة',pro_desc:'أدوات متقدمة باشتراك مدفوع، مع دعم وتحديثات مستمرة.',badge_pro:'مدفوع',urcheck_desc:'فاحص حالة حسابات X (تويتر): نشط، موقوف، محذوف، محمي — مع المتابعين والتغريدات وتصدير النتائج.',urplay_desc:'مشغّل بث إذاعي احترافي بمحرك VLC حقيقي: Equalizer 10 نطاقات، Crossfade، تطبيع صوت، ومؤقت توقف ذكي.',
@@ -867,6 +1040,7 @@ ar:{dir:'rtl',flag:'🇮🇶',code:'AR',
   tg_or:'أو انضم لقناة كودنا',tg_channel:'📢\u00a0 قناة كودنا – أخبار وتحديثات',
 },
 en:{dir:'ltr',flag:'🇬🇧',code:'EN',
+ soc_nav:"Social Growth",soc_mnav:"📣 Social Growth",soc_tag:"Marketing Services",soc_title:"Page Support & <span>Social Media Management</span>",soc_desc:"We don't just build software — we grow your digital presence: followers, engagement, full account management, and organized hashtag campaigns on X.",soc_c1t:"Follower Growth",soc_c1d:"Real page growth by targeting the right audience for your field.",soc_c1a:"Instagram · Facebook · X · TikTok",soc_c1b:"Targeting by country and interest",soc_c1c:"Regular growth reports",soc_c2t:"Engagement Boost",soc_c2d:"Likes, comments, views and wider reach for your posts.",soc_c2a:"Engagement on posts and reels",soc_c2b:"Higher organic reach",soc_c2c:"Daily or per-post packages",soc_c3t:"Account Management",soc_c3d:"Full daily management of your pages, from planning to replies.",soc_c3a:"Monthly content plan",soc_c3b:"Daily scheduling and publishing",soc_c3c:"Replies to messages and comments",soc_c4t:"X Campaigns & Trends",soc_c4d:"Hashtag campaigns with planned timing and momentum — local or worldwide.",soc_c4a:"Target one country or go global",soc_c4b:"Publishing waves at peak hours",soc_c4c:"Influencer coordination and live tracking",soc_c5t:"Content Design",soc_c5d:"Visual identity and post designs worthy of your name.",soc_c5a:"Logo and brand identity",soc_c5b:"Post and story designs",soc_c5c:"Short reels editing",soc_c6t:"Account Protection",soc_c6d:"Securing your accounts and fixing technical issues.",soc_c6a:"Two-factor authentication setup",soc_c6b:"Shadowban check with UrCheck",soc_c6c:"Account recovery consulting",soc_c7t:"Impersonation & Content Theft Removal",soc_c7d:"Is an account using your name or trademark? We follow the report until removal.",soc_c7a:"Accounts impersonating your name or logo",soc_c7b:"Copyright reports for stolen content",soc_c7c:"Follow-up until the content is taken down",soc_c8t:"Video Production",soc_c8d:"A continuous video series — from idea to publishing, episode after episode.",soc_c8a:"Scriptwriting and voice-over",soc_c8b:"Long-form editing and short reels",soc_c8c:"Subtitles and a scheduled publishing plan",soc_p1t:"Starter",soc_p1a:"One platform",soc_p1b:"12 posts per month",soc_p1c:"Monthly report",soc_p2t:"Professional",soc_p2a:"Three platforms",soc_p2b:"30 posts + reels",soc_p2c:"Follower and engagement growth",soc_p3t:"Custom",soc_p3a:"Full management",soc_p3b:"Campaigns and trends",soc_p3c:"Design and video editing",soc_best:"Most popular",soc_month:"Monthly",soc_year:"Yearly",soc_ctat:"Make your page stand out",soc_ctad:"Tell us about your project and we'll come back with a plan and a custom quote.",soc_wa:"💬 Order via WhatsApp",soc_note:"Pricing depends on account size and platform · We never ask for your password",
  pwgen_name:'Password Generator',pwgen_desc:'Create strong random passwords with adjustable length and options — all in your browser.',
  nav_online:'Online Services',mobile_online:'🛠 Online Services',sec_online:'Online Services',online_title:'Free online tools & services',online_desc:'Tools that run right in your browser — no install, no signup.',twofa_name:'2FA Authenticator',twofa_desc:'2FA (TOTP) code generator — enter your secret and get a code that refreshes every 30s, in your browser.',tag_online:'Online',
   nav_pro:'Pro',mobile_pro:'⭐ Pro',sec_pro:'Premium',pro_title:'Pro Paid Tools',pro_desc:'Advanced tools with a paid license, full support and continuous updates.',badge_pro:'Paid',urcheck_desc:'X (Twitter) account status checker: active, suspended, deleted, protected — with followers, tweets and result export.',urplay_desc:'A professional broadcast radio playout app with a real VLC engine: 10-band EQ, crossfade, loudness normalization and a smart sleep timer.',
@@ -904,6 +1078,7 @@ en:{dir:'ltr',flag:'🇬🇧',code:'EN',
   tg_or:'Or join the Kodna channel',tg_channel:'📢\u00a0 Kodna Channel – News & Updates',
 },
 ku:{dir:'rtl',flag:'🏔️',code:'KU',
+ soc_nav:"پشتگیری پەڕەکان",soc_mnav:"📣 پشتگیری پەڕەکان",soc_tag:"خزمەتگوزاری بازاڕگەری",soc_title:"پشتگیری پەڕەکان و <span>بەڕێوەبردنی سۆشیال میدیا</span>",soc_desc:"تەنها پرۆگرام دروست ناکەین — لەگەڵت کار دەکەین بۆ گەشەی ئامادەبوونی دیجیتاڵیت: فۆڵۆوەر، کارلێک، بەڕێوەبردنی تەواوی هەژمارەکان و کەمپینی هاشتاگ لە X.",soc_c1t:"زیادکردنی فۆڵۆوەر",soc_c1d:"گەشەی ڕاستەقینەی پەڕە بە ئامانجگرتنی گونجاوی جەماوەر.",soc_c1a:"ئینستاگرام · فەیسبووک · X · تیکتۆک",soc_c1b:"ئامانجگرتن بەپێی وڵات و ئارەزوو",soc_c1c:"ڕاپۆرتی گەشەی بەردەوام",soc_c2t:"بەرزکردنەوەی کارلێک",soc_c2d:"لایک، کۆمێنت، بینین و گەیشتنی زیاتر بۆ پۆستەکانت.",soc_c2a:"کارلێک لەسەر پۆست و ڕیلز",soc_c2b:"بەرزکردنەوەی ڕێژەی گەیشتن",soc_c2c:"پاکێجی ڕۆژانە یان بۆ هەر پۆستێک",soc_c3t:"بەڕێوەبردنی هەژمارەکان",soc_c3d:"بەڕێوەبردنی ڕۆژانەی تەواو بۆ پەڕەکانت.",soc_c3a:"پلانی ناوەڕۆکی مانگانە",soc_c3b:"خشتەبەندی و بڵاوکردنەوەی ڕۆژانە",soc_c3c:"وەڵامدانەوەی نامە و کۆمێنتەکان",soc_c4t:"کەمپین و ترێندی X",soc_c4d:"کەمپینی هاشتاگ بە کات و هێزی پلاندراو — ناوخۆیی یان جیهانی.",soc_c4a:"ئامانجگرتنی وڵاتێک یان ترێندی جیهانی",soc_c4b:"شەپۆلی بڵاوکردنەوە لە کاتی لووتکە",soc_c4c:"هەماهەنگی لەگەڵ ئەفراندکاران و بەدواداچوون",soc_c5t:"دیزاینی ناوەڕۆک",soc_c5d:"ناسنامەی بینراو و دیزاینی پۆست کە شایستەی ناوت بێت.",soc_c5a:"لۆگۆ و ناسنامەی بینراو",soc_c5b:"دیزاینی پۆست و ستۆری",soc_c5c:"مۆنتاژی ڕیلزی کورت",soc_c6t:"پاراستنی هەژمار",soc_c6d:"پاراستنی هەژمارەکانت و چارەسەری کێشە تەکنیکییەکان.",soc_c6a:"چالاککردنی پاراستنی دووقۆناغی",soc_c6b:"پشکنینی شادۆبان بە UrCheck",soc_c6c:"ڕاوێژ بۆ گەڕاندنەوەی هەژمار",soc_c7t:"لابردنی ناوی ساختە و ناوەڕۆکی دزراو",soc_c7d:"هەژمارێک ناو یان مارکەکەت بەکاردەهێنێت؟ بەدوای سکاڵاکەدا دەچین تا لادەبرێت.",soc_c7a:"هەژماری ساختە بە ناو یان لۆگۆی تۆ",soc_c7b:"سکاڵای مافی چاپ بۆ ناوەڕۆکی دزراو",soc_c7c:"بەدواداچوون تا لابردنی تەواو",soc_c8t:"بەرهەمهێنانی ڤیدیۆ",soc_c8d:"زنجیرەی ڤیدیۆی بەردەوام — لە بیرۆکەوە تا بڵاوکردنەوە.",soc_c8a:"نووسینی سکریپت و دەنگ",soc_c8b:"مۆنتاژی درێژ و ڕیلزی کورت",soc_c8c:"وەرگێڕان و پلانی بڵاوکردنەوە",soc_p1t:"دەستپێک",soc_p1a:"یەک پلاتفۆرم",soc_p1b:"١٢ پۆست لە مانگێکدا",soc_p1c:"ڕاپۆرتی مانگانە",soc_p2t:"پیشەیی",soc_p2a:"سێ پلاتفۆرم",soc_p2b:"٣٠ پۆست + ڕیلز",soc_p2c:"زیادکردنی فۆڵۆوەر و کارلێک",soc_p3t:"بەپێی داواکاری",soc_p3a:"بەڕێوەبردنی تەواو",soc_p3b:"کەمپین و ترێند",soc_p3c:"دیزاین و مۆنتاژ",soc_best:"زۆرترین داواکاری",soc_month:"مانگانە",soc_year:"ساڵانە",soc_ctat:"با پەڕەکەت جیاواز بێت",soc_ctad:"باسی پڕۆژەکەت بۆ بکە و پلان و نرخێکی تایبەتت بۆ دەنێرین.",soc_wa:"💬 داواکاری لە ڕێگەی واتساپ",soc_note:"نرخ بەپێی قەبارەی هەژمار و پلاتفۆرم · هەرگیز داوای وشەی نهێنی ناکەین",
  pwgen_name:'دروستکەری وشەی نهێنی',pwgen_desc:'وشەی نهێنی بەهێز و هەڕەمەکی دروست بکە بە درێژی و هەڵبژاردنی گونجاو — هەمووی لە وێبگەڕەکەتدا.',
  nav_online:'خزمەتگوزاری ئۆنڵاین',mobile_online:'🛠 خزمەتگوزاری ئۆنڵاین',sec_online:'خزمەتگوزاری ئۆنڵاین',online_title:'ئامراز و خزمەتگوزاری ئۆنڵاینی بەخۆڕایی',online_desc:'ئامرازەکان ڕاستەوخۆ لە وێبگەڕەکەتدا کار دەکەن بەبێ دامەزراندن.',twofa_name:'دروستکەری کۆدی 2FA',twofa_desc:'دروستکەری کۆدی 2FA (TOTP) — کلیل بنووسە و کۆدێک وەربگرە کە هەر ٣٠ چرکە دەگۆڕێت.',tag_online:'ئۆنڵاین',
   nav_pro:'پیشەیی',mobile_pro:'⭐ پیشەیی',sec_pro:'نوسخەی پیشەیی',pro_title:'بەرنامەی پیشەیی پارەدان',pro_desc:'ئامرازی پێشکەوتوو بە مۆڵەتی پارەدان، لەگەڵ پشتگیری و نوێکردنەوەی بەردەوام.',badge_pro:'پارەدان',urcheck_desc:'پشکنینی دۆخی هەژماری X (تویتەر): چالاک، ڕاگیراو، سڕاوەتەوە، پارێزراو — لەگەڵ شوێنکەوتووان و تویت و هەناردەکردنی ئەنجام.',urplay_desc:'بەرنامەیەکی پیشەیی بۆ لێدانی ڕادیۆی بەرنامەیی بە ماتۆڕی VLC ڕاستەقینە: Equalizer ١٠ بەند، Crossfade، یەکسانکردنی دەنگ، و مۆڵەتی خەوی زیرەک.',
@@ -941,6 +1116,7 @@ ku:{dir:'rtl',flag:'🏔️',code:'KU',
   tg_or:'یان بەشداربە لە کەناڵی Kodna',tg_channel:'📢\u00a0 کەناڵی Kodna – هەواڵ و نوێکارییەکان',
 },
 zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',
+ soc_nav:"社交推广",soc_mnav:"📣 社交推广",soc_tag:"营销服务",soc_title:"主页推广与<span>社交媒体运营</span>",soc_desc:"我们不只是做软件——还帮你打造数字影响力：涨粉、提升互动、账号全托管，以及 X 平台的话题标签活动。",soc_c1t:"粉丝增长",soc_c1d:"通过精准受众定位实现真实增长。",soc_c1a:"Instagram · Facebook · X · TikTok",soc_c1b:"按国家和兴趣定向",soc_c1c:"定期增长报告",soc_c2t:"互动提升",soc_c2d:"为你的帖子带来点赞、评论、播放与更广曝光。",soc_c2a:"帖子与短视频互动",soc_c2b:"提升自然触达率",soc_c2c:"按天或按帖套餐",soc_c3t:"账号运营",soc_c3d:"主页的全面日常运营，从策划到回复。",soc_c3a:"每月内容计划",soc_c3b:"每日排期与发布",soc_c3c:"回复私信与评论",soc_c4t:"X 活动与热门话题",soc_c4d:"规划时机与声量的话题活动——本地或全球。",soc_c4a:"定向指定国家或全球热门",soc_c4b:"高峰时段分波发布",soc_c4c:"联动达人并实时追踪",soc_c5t:"内容设计",soc_c5d:"配得上你品牌的视觉形象与图文设计。",soc_c5a:"Logo 与视觉识别",soc_c5b:"帖子与快拍设计",soc_c5c:"短视频剪辑",soc_c6t:"账号安全",soc_c6d:"保护账号并处理技术问题。",soc_c6a:"开启两步验证",soc_c6b:"用 UrCheck 检测限流",soc_c6c:"账号找回咨询",soc_c7t:"仿冒与盗用内容清除",soc_c7d:"有账号冒用你的名称或商标？我们跟进举报直至删除。",soc_c7a:"冒用你名称或标志的账号",soc_c7b:"盗用内容的版权举报",soc_c7c:"全程跟进直至下架",soc_c8t:"视频制作",soc_c8d:"持续更新的视频系列——从选题到发布。",soc_c8a:"脚本撰写与配音",soc_c8b:"长视频剪辑与短视频",soc_c8c:"字幕与发布排期",soc_p1t:"入门",soc_p1a:"单一平台",soc_p1b:"每月 12 条内容",soc_p1c:"月度报告",soc_p2t:"专业",soc_p2a:"三个平台",soc_p2b:"30 条内容 + 短视频",soc_p2c:"涨粉与互动提升",soc_p3t:"定制",soc_p3a:"全面托管",soc_p3b:"活动与热门话题",soc_p3c:"设计与剪辑",soc_best:"最受欢迎",soc_month:"按月",soc_year:"按年",soc_ctat:"让你的主页脱颖而出",soc_ctad:"把你的项目告诉我们，我们会回复方案与专属报价。",soc_wa:"💬 通过 WhatsApp 下单",soc_note:"价格视账号规模与平台而定 · 我们绝不索要你的密码",
  pwgen_name:'密码生成器',pwgen_desc:'生成长度与选项可调的强随机密码 — 全部在浏览器中完成。',
  nav_online:'在线服务',mobile_online:'🛠 在线服务',sec_online:'在线服务',online_title:'免费在线工具与服务',online_desc:'直接在浏览器中运行，无需安装或注册。',twofa_name:'2FA 验证器',twofa_desc:'2FA (TOTP) 验证码生成器 — 输入密钥即可获得每 30 秒更新的代码。',tag_online:'在线',
   nav_pro:'专业版',mobile_pro:'⭐ 专业版',sec_pro:'高级版',pro_title:'专业付费工具',pro_desc:'高级付费工具，提供完整支持与持续更新。',badge_pro:'付费',urcheck_desc:'X（推特）账号状态检测：活跃、封禁、删除、私密 — 含粉丝数、推文数和结果导出。',urplay_desc:'专业广播电台播出软件，配备真实的 VLC 引擎：10段均衡器、交叉淡入淡出、响度归一化和智能睡眠定时器。',
@@ -978,6 +1154,7 @@ zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',
   tg_or:'或加入 Kodna 频道',tg_channel:'📢\u00a0 Kodna 频道 – 新闻与更新',
 },
 es:{dir:'ltr',flag:'🇪🇸',code:'ES',
+ soc_nav:"Redes Sociales",soc_mnav:"📣 Redes Sociales",soc_tag:"Servicios de marketing",soc_title:"Impulso de páginas y <span>gestión de redes sociales</span>",soc_desc:"No solo creamos software: hacemos crecer tu presencia digital con seguidores, interacción, gestión completa de cuentas y campañas de hashtags en X.",soc_c1t:"Crecimiento de seguidores",soc_c1d:"Crecimiento real de tu página con el público adecuado.",soc_c1a:"Instagram · Facebook · X · TikTok",soc_c1b:"Segmentación por país e intereses",soc_c1c:"Informe de crecimiento periódico",soc_c2t:"Más interacción",soc_c2d:"Me gusta, comentarios, visualizaciones y mayor alcance.",soc_c2a:"Interacción en publicaciones y reels",soc_c2b:"Mayor alcance orgánico",soc_c2c:"Paquetes diarios o por publicación",soc_c3t:"Gestión de cuentas",soc_c3d:"Gestión diaria completa de tus páginas, del plan a las respuestas.",soc_c3a:"Plan de contenido mensual",soc_c3b:"Programación y publicación diaria",soc_c3c:"Respuesta a mensajes y comentarios",soc_c4t:"Campañas y tendencias en X",soc_c4d:"Campañas de hashtags con timing y volumen planificados, locales o globales.",soc_c4a:"Un país concreto o tendencia global",soc_c4b:"Oleadas de publicación en hora punta",soc_c4c:"Coordinación con influencers y seguimiento",soc_c5t:"Diseño de contenido",soc_c5d:"Identidad visual y diseños a la altura de tu marca.",soc_c5a:"Logo e identidad visual",soc_c5b:"Diseños de publicaciones e historias",soc_c5c:"Edición de reels cortos",soc_c6t:"Protección de la cuenta",soc_c6d:"Aseguramos tus cuentas y resolvemos problemas técnicos.",soc_c6a:"Activación de verificación en dos pasos",soc_c6b:"Chequeo de shadowban con UrCheck",soc_c6c:"Asesoría para recuperar cuentas",soc_c7t:"Retirada de suplantaciones y contenido robado",soc_c7d:"¿Alguien usa tu nombre o tu marca? Damos seguimiento hasta la retirada.",soc_c7a:"Cuentas que suplantan tu nombre o logo",soc_c7b:"Reclamaciones de derechos de autor",soc_c7c:"Seguimiento hasta la eliminación",soc_c8t:"Producción de vídeo",soc_c8d:"Una serie de vídeos continua: de la idea a la publicación.",soc_c8a:"Guion y locución",soc_c8b:"Edición larga y reels cortos",soc_c8c:"Subtítulos y plan de publicación",soc_p1t:"Inicial",soc_p1a:"Una plataforma",soc_p1b:"12 publicaciones al mes",soc_p1c:"Informe mensual",soc_p2t:"Profesional",soc_p2a:"Tres plataformas",soc_p2b:"30 publicaciones + reels",soc_p2c:"Crecimiento de seguidores e interacción",soc_p3t:"A medida",soc_p3a:"Gestión completa",soc_p3b:"Campañas y tendencias",soc_p3c:"Diseño y edición",soc_best:"Más solicitado",soc_month:"Mensual",soc_year:"Anual",soc_ctat:"Haz que tu página destaque",soc_ctad:"Cuéntanos tu proyecto y te enviamos un plan y un presupuesto a medida.",soc_wa:"💬 Solicitar por WhatsApp",soc_note:"El precio depende del tamaño de la cuenta y la plataforma · Nunca pedimos tu contraseña",
  pwgen_name:'Generador de contraseñas',pwgen_desc:'Crea contraseñas aleatorias fuertes con longitud y opciones ajustables — todo en tu navegador.',
  nav_online:'Servicios online',mobile_online:'🛠 Servicios online',sec_online:'Servicios online',online_title:'Herramientas y servicios online gratis',online_desc:'Herramientas que funcionan en tu navegador, sin instalar ni registrarse.',twofa_name:'Autenticador 2FA',twofa_desc:'Generador de códigos 2FA (TOTP) — introduce tu clave y obtén un código que cambia cada 30 s.',tag_online:'Online',
   nav_pro:'Pro',mobile_pro:'⭐ Pro',sec_pro:'Premium',pro_title:'Herramientas Pro de pago',pro_desc:'Herramientas avanzadas con licencia de pago, soporte y actualizaciones continuas.',badge_pro:'De pago',urcheck_desc:'Verificador de estado de cuentas de X (Twitter): activa, suspendida, eliminada, protegida — con seguidores, tweets y exportación.',urplay_desc:'Una app profesional de reproducción para radiodifusión con un motor VLC real: ecualizador de 10 bandas, crossfade, normalización de volumen y temporizador de apagado inteligente.',
@@ -1015,6 +1192,7 @@ es:{dir:'ltr',flag:'🇪🇸',code:'ES',
   tg_or:'O únete al canal de Kodna',tg_channel:'📢\u00a0 Canal Kodna – Noticias y Actualizaciones',
 },
 ru:{dir:'ltr',flag:'🇷🇺',code:'RU',
+ soc_nav:"Продвижение",soc_mnav:"📣 Продвижение",soc_tag:"Маркетинговые услуги",soc_title:"Продвижение страниц и <span>ведение соцсетей</span>",soc_desc:"Мы не только пишем программы — мы развиваем ваше присутствие в сети: подписчики, вовлечённость, полное ведение аккаунтов и хэштег-кампании в X.",soc_c1t:"Рост подписчиков",soc_c1d:"Реальный рост страницы за счёт точного подбора аудитории.",soc_c1a:"Instagram · Facebook · X · TikTok",soc_c1b:"Таргетинг по стране и интересам",soc_c1c:"Регулярный отчёт о росте",soc_c2t:"Рост вовлечённости",soc_c2d:"Лайки, комментарии, просмотры и больший охват.",soc_c2a:"Активность под постами и Reels",soc_c2b:"Повышение охвата",soc_c2c:"Пакеты на день или на пост",soc_c3t:"Ведение аккаунтов",soc_c3d:"Полное ежедневное ведение ваших страниц.",soc_c3a:"Ежемесячный контент-план",soc_c3b:"Ежедневный постинг по расписанию",soc_c3c:"Ответы на сообщения и комментарии",soc_c4t:"Кампании и тренды в X",soc_c4d:"Хэштег-кампании с продуманным таймингом — локально или по всему миру.",soc_c4a:"Отдельная страна или мировой тренд",soc_c4b:"Волны публикаций в часы пик",soc_c4c:"Работа с блогерами и мониторинг",soc_c5t:"Дизайн контента",soc_c5d:"Визуальный стиль и оформление постов под ваш бренд.",soc_c5a:"Логотип и фирменный стиль",soc_c5b:"Оформление постов и сторис",soc_c5c:"Монтаж коротких Reels",soc_c6t:"Защита аккаунта",soc_c6d:"Защищаем аккаунты и решаем технические проблемы.",soc_c6a:"Настройка двухфакторной защиты",soc_c6b:"Проверка теневого бана в UrCheck",soc_c6c:"Консультация по возврату аккаунта",soc_c7t:"Удаление подделок и краденого контента",soc_c7d:"Кто-то использует ваше имя или бренд? Ведём жалобу до удаления.",soc_c7a:"Аккаунты, выдающие себя за вас",soc_c7b:"Жалоба по авторским правам",soc_c7c:"Сопровождение до удаления",soc_c8t:"Производство видео",soc_c8d:"Постоянная серия видео — от идеи до публикации.",soc_c8a:"Сценарий и озвучка",soc_c8b:"Длинный монтаж и короткие Reels",soc_c8c:"Субтитры и план публикаций",soc_p1t:"Старт",soc_p1a:"Одна платформа",soc_p1b:"12 публикаций в месяц",soc_p1c:"Ежемесячный отчёт",soc_p2t:"Профи",soc_p2a:"Три платформы",soc_p2b:"30 публикаций + Reels",soc_p2c:"Рост подписчиков и вовлечённости",soc_p3t:"Индивидуально",soc_p3a:"Полное ведение",soc_p3b:"Кампании и тренды",soc_p3c:"Дизайн и монтаж",soc_best:"Чаще всего берут",soc_month:"Месяц",soc_year:"Год",soc_ctat:"Пусть вашу страницу заметят",soc_ctad:"Напишите о проекте — вернёмся с планом и индивидуальной ценой.",soc_wa:"💬 Заказать в WhatsApp",soc_note:"Цена зависит от размера аккаунта и платформы · Мы никогда не просим ваш пароль",
  pwgen_name:'Генератор паролей',pwgen_desc:'Создавайте надёжные случайные пароли с настраиваемой длиной — всё в браузере.',
  nav_online:'Онлайн-сервисы',mobile_online:'🛠 Онлайн-сервисы',sec_online:'Онлайн-сервисы',online_title:'Бесплатные онлайн-инструменты и сервисы',online_desc:'Инструменты прямо в браузере — без установки и регистрации.',twofa_name:'Генератор 2FA',twofa_desc:'Генератор кодов 2FA (TOTP) — введите ключ и получите код, меняющийся каждые 30 секунд.',tag_online:'Онлайн',
   nav_pro:'Pro',mobile_pro:'⭐ Pro',sec_pro:'Премиум',pro_title:'Профессиональные платные инструменты',pro_desc:'Продвинутые инструменты по платной лицензии, с поддержкой и постоянными обновлениями.',badge_pro:'Платно',urcheck_desc:'Проверка статуса аккаунтов X (Twitter): активен, заблокирован, удалён, защищён — с подписчиками, твитами и экспортом.',urplay_desc:'Профессиональное приложение для радиовещания с настоящим движком VLC: 10-полосный эквалайзер, кроссфейд, нормализация громкости и умный таймер сна.',
