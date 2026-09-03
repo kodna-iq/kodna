@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07090d">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self';">
+<title>تطوير مواقع وتطبيقات أندرويد | Website &amp; Android App Development · Kodna</title>
+<meta name="description" content="كودنا لتطوير المواقع وتطبيقات أندرويد من الصفر: حجز دومين، استضافة، تصميم واجهات، برمجة، نشر على Google Play، ولوحة تحكم ودعم. Kodna builds websites and Android apps from scratch: domain, hosting, UI design, development and support.">
+<meta name="keywords" content="تصميم مواقع,تطوير موقع,تطبيق اندرويد,حجز دومين,استضافة مواقع,برمجة تطبيقات,كودنا,web development,android app development,domain,hosting,Kodna">
+<meta name="author" content="Kodna / Dhia Darem">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://kodna.org/dev.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kodna.org/dev.html">
+<meta property="og:title" content="تطوير مواقع وتطبيقات أندرويد · Kodna">
+<meta property="og:description" content="موقع أو تطبيق من الصفر: دومين، استضافة، تصميم، برمجة، نشر ودعم.">
+<meta property="og:site_name" content="Kodna">
+<meta property="og:image" content="https://kodna.org/og-kodna.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Website &amp; Android App Development · Kodna">
+<meta name="twitter:description" content="Websites and Android apps built from scratch: domain, hosting, design, development and support.">
+<meta name="twitter:image" content="https://kodna.org/og-kodna.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Kodna Web & Mobile Development","serviceType":"Website and Android application development","provider":{"@type":"Organization","name":"Kodna","url":"https://kodna.org"},"areaServed":"Worldwide","availableLanguage":["ar","en","ku","zh","es","ru"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+
+
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --bg:#07090d;--surface:#0e1117;--card:#12151c;
+  --accent:#00e5ff;--accent2:#7c3aed;
+  --text:#e8eaf0;--muted:#6b7280;
+  --border:#1a1f2e;--border2:#232840;
+  --r:14px;--r-lg:22px;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Plus Jakarta Sans','Cairo',sans-serif;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+body.lang-ar,body.lang-ku{font-family:'Cairo',sans-serif}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+section{position:relative;z-index:1}
+
+/* ═══════════════════════════════════════════
+   AMBIENT
+═══════════════════════════════════════════ */
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,229,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,229,255,.025) 1px,transparent 1px);
+  background-size:70px 70px;animation:gridMove 25s linear infinite;
+}
+@keyframes gridMove{to{background-position:70px 70px}}
+.blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+.blob1{width:600px;height:600px;background:rgba(124,58,237,.1);top:-200px;left:-150px;animation:bf 14s ease-in-out infinite}
+.blob2{width:500px;height:500px;background:rgba(0,229,255,.07);bottom:-150px;right:-100px;animation:bf 18s ease-in-out infinite reverse}
+@keyframes bf{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,30px)}}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:rgba(7,9,13,.92);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-icon{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:900;flex-shrink:0;
+  box-shadow:0 4px 18px rgba(124,58,237,.4);font-family:'Cairo',sans-serif;color:#fff;
+}
+.brand-text{font-family:'Space Mono',monospace;font-size:1.15rem;font-weight:700;color:var(--text)}
+.brand-text span{color:var(--accent)}
+.nav-center{display:flex;gap:24px;list-style:none}
+.nav-center a{color:var(--muted);font-size:.9rem;font-weight:600;transition:color .2s}
+.nav-center a:hover{color:var(--accent)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn-nav{padding:8px 18px;border-radius:8px;font-weight:700;font-size:.85rem;transition:all .2s;cursor:pointer;border:none;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.btn-nav.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-nav.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-nav.fill{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff}
+.btn-nav.fill:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+
+/* Lang Switcher */
+.lang-sw{position:relative}
+.lang-btn{
+  display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;font-weight:600;transition:all .2s;
+}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn .chev{font-size:.6rem;transition:transform .2s}
+.lang-btn.open .chev{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;top:calc(100%+8px);right:0;
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:var(--r);padding:6px;min-width:162px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  display:none;flex-direction:column;gap:2px;z-index:500;
+}
+html[dir=ltr] .lang-menu{right:0;left:auto}
+html[dir=rtl] .lang-menu{left:0;right:auto}
+.lang-menu.open{display:flex}
+.lang-item{
+  display:flex;align-items:center;gap:9px;padding:9px 12px;
+  border-radius:8px;border:none;background:transparent;
+  color:var(--muted);font-size:.83rem;font-weight:600;
+  text-align:right;width:100%;cursor:pointer;transition:all .15s;
+}
+html[dir=ltr] .lang-item{text-align:left}
+.lang-item:hover{background:var(--surface);color:var(--text)}
+.lang-item.active{background:rgba(0,229,255,.08);color:var(--accent);border:1px solid rgba(0,229,255,.15)}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{
+  display:none;position:fixed;top:67px;left:0;right:0;z-index:999;
+  background:rgba(7,9,13,.98);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);padding:20px 5%;flex-direction:column;gap:0;
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--muted);font-size:1rem;font-weight:600;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s}
+.mobile-nav a:hover{color:var(--accent)}
+.mobile-nav a:last-of-type{border-bottom:none}
+.mob-lang-row{padding:14px 0;border-top:1px solid var(--border);display:flex;gap:7px;flex-wrap:wrap}
+.mob-lang-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--muted);cursor:pointer;font-size:.82rem;transition:all .2s}
+.mob-lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:100px 5% 60px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);
+  border-radius:100px;padding:7px 18px;
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  color:#a78bfa;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:28px;animation:fadeUp .8s ease both;
+}
+.eyebrow-dot{width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
+.hero-title{
+  font-size:clamp(2.6rem,8vw,7rem);font-weight:900;
+  line-height:1.05;letter-spacing:-1px;
+  animation:fadeUp .8s .1s ease both;
+}
+.hero-title .k{color:var(--accent)}
+.hero-title .line2{
+  display:block;font-size:clamp(.95rem,2.8vw,1.85rem);
+  font-weight:400;color:var(--muted);letter-spacing:0;margin-top:10px;
+}
+.hero-desc{
+  margin-top:20px;font-size:clamp(.9rem,2vw,1.05rem);
+  color:var(--muted);line-height:1.9;max-width:540px;
+  animation:fadeUp .8s .2s ease both;
+}
+.hero-desc strong{color:var(--text)}
+.hero-cta{
+  display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s .3s ease both;
+}
+.btn-hero-main{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  color:#fff;font-weight:700;font-size:clamp(.9rem,2vw,1rem);
+  padding:14px 28px;border-radius:14px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(124,58,237,.35);transition:all .2s;
+}
+.btn-hero-main:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(124,58,237,.5)}
+.btn-hero-ghost{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:transparent;color:var(--text);font-weight:600;
+  font-size:clamp(.9rem,2vw,1rem);padding:14px 24px;border-radius:14px;
+  text-decoration:none;border:1px solid var(--border);transition:all .2s;
+}
+.btn-hero-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.hero-stats{
+  display:flex;gap:32px;margin-top:52px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s .45s ease both;
+}
+.stat{text-align:center}
+.stat-num{font-family:'Space Mono',monospace;font-size:clamp(1.4rem,4vw,2rem);font-weight:700}
+.stat-num span{color:var(--accent)}
+.stat-label{font-size:.78rem;color:var(--muted);margin-top:4px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 5%}
+
+/* ═══════════════════════════════════════════
+   PROGRAMS
+═══════════════════════════════════════════ */
+.programs{padding:80px 5%}
+.sec-header{margin-bottom:44px}
+.sec-tag{
+  display:inline-block;font-family:'Space Mono',monospace;
+  font-size:.68rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);padding:5px 14px;
+  border:1px solid rgba(0,229,255,.25);border-radius:100px;
+  background:rgba(0,229,255,.06);margin-bottom:14px;
+}
+.sec-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1px;line-height:1.1}
+.sec-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:480px;margin-top:10px}
+.programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.prog-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  text-decoration:none;color:inherit;display:block;
+}
+.prog-card:not(.dim):hover{transform:translateY(-6px);box-shadow:0 28px 56px rgba(0,0,0,.5)}
+.prog-card.featured{border-color:rgba(0,229,255,.25);box-shadow:0 0 50px rgba(0,229,255,.1)}
+.prog-card.featured:hover{border-color:rgba(0,229,255,.5)}
+.prog-card.dim{opacity:.5;cursor:default}
+.prog-card-top{padding:22px 22px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.prog-icon-wrap{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.prog-card-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 9px;border-radius:100px;font-weight:700}
+.badge.new{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.badge.soon{background:rgba(251,146,60,.12);color:#fb923c;border:1px solid rgba(251,146,60,.25)}
+.badge.beta{background:rgba(244,114,182,.12);color:#f472b6;border:1px solid rgba(244,114,182,.25)}
+.badge.free{background:rgba(0,229,255,.1);color:var(--accent);border:1px solid rgba(0,229,255,.2)}
+.prog-card-body{padding:0 22px 22px}
+.prog-name{font-family:'Space Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.prog-desc{color:var(--muted);font-size:.83rem;line-height:1.7}
+.prog-card-footer{padding:13px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.prog-tags{display:flex;gap:5px;flex-wrap:wrap}
+.prog-tag{font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--surface);color:var(--muted);border:1px solid var(--border)}
+.prog-arrow{color:var(--muted);transition:transform .2s,color .2s}
+html[dir=rtl] .prog-card:not(.dim):hover .prog-arrow{transform:translateX(-4px);color:var(--accent)}
+html[dir=ltr] .prog-card:not(.dim):hover .prog-arrow{transform:translateX(4px);color:var(--accent)}
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+.about{padding:80px 5%}
+.about-inner{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:24px;padding:52px 44px;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+}
+.about-visual{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px}
+.about-code{font-family:'Space Mono',monospace;font-size:.8rem;line-height:2;color:var(--muted)}
+.code-line{display:flex;gap:10px}
+.code-num{color:rgba(255,255,255,.1);width:20px;text-align:right;flex-shrink:0}
+.c-kw{color:#a78bfa}.c-fn{color:var(--accent)}.c-str{color:#86efac}.c-op{color:var(--muted)}.c-cmt{color:rgba(255,255,255,.2)}.c-num{color:#fb923c}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--accent);margin-right:2px;vertical-align:middle;animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.about-list{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.about-item{display:flex;align-items:flex-start;gap:12px}
+.about-item-icon{width:34px;height:34px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px}
+.about-item-text h4{font-weight:700;font-size:.88rem;margin-bottom:3px}
+.about-item-text p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+/* ═══════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════ */
+.cta-section{padding:60px 5%}
+.cta-inner{
+  background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(0,229,255,.08));
+  border:1px solid rgba(124,58,237,.25);border-radius:24px;
+  padding:60px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.cta-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,.07) 0%,transparent 70%);pointer-events:none}
+.cta-title{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:900;margin-bottom:14px}
+.cta-desc{color:var(--muted);font-size:clamp(.88rem,2vw,1rem);max-width:440px;margin:0 auto 32px;line-height:1.8}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{border-top:1px solid var(--border);padding:44px 5% 26px}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.footer-brand p{color:var(--muted);font-size:.83rem;line-height:1.7;margin-top:8px;max-width:260px}
+.footer-col h5{font-weight:700;font-size:.86rem;margin-bottom:12px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-col ul li a{color:var(--muted);text-decoration:none;font-size:.83rem;transition:color .2s}
+.footer-col ul li a:hover{color:var(--accent)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-copy{color:var(--muted);font-size:.78rem}
+.footer-socials{display:flex;gap:8px}
+.social-btn{width:32px;height:32px;border-radius:7px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.85rem;transition:all .2s}
+.social-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════
+   TELEGRAM MODAL
+═══════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-box{
+  background:#12151c;border:1px solid rgba(0,229,255,.2);
+  border-radius:24px;padding:40px 36px;max-width:440px;width:100%;
+  position:relative;text-align:center;
+  box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(0,229,255,.1);
+  transform:translateY(30px) scale(.96);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.active .modal-box{transform:translateY(0) scale(1)}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  color:var(--muted);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+html[dir=rtl] .modal-close{right:auto;left:16px}
+.modal-close:hover{background:rgba(255,255,255,.12);color:var(--text)}
+.tg-icon-wrap{width:72px;height:72px;border-radius:20px;margin:0 auto 20px;background:linear-gradient(135deg,#0088cc,#00aaff);display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 8px 32px rgba(0,136,204,.4)}
+.modal-title{font-size:1.4rem;font-weight:900;margin-bottom:8px}
+.modal-desc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:28px}
+.modal-desc span{color:var(--text);font-weight:600}
+.btn-tg-main{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(135deg,#0088cc,#00aaff);color:#fff;font-weight:700;font-size:1rem;padding:15px 28px;border-radius:13px;text-decoration:none;box-shadow:0 8px 28px rgba(0,136,204,.35);transition:transform .2s,box-shadow .2s}
+.btn-tg-main:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,136,204,.5)}
+.modal-note{margin-top:16px;font-size:.78rem;color:var(--muted)}
+.modal-note a{color:var(--accent);text-decoration:none}
+.modal-divider{height:1px;background:var(--border);margin:20px 0}
+.modal-alt{display:flex;flex-direction:column;gap:10px}
+.modal-alt-title{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:4px}
+.btn-tg-alt{display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--text);font-weight:600;font-size:.88rem;padding:12px 20px;border-radius:10px;text-decoration:none;border:1px solid var(--border);transition:all .2s}
+.btn-tg-alt:hover{border-color:rgba(0,136,204,.5);color:#00aaff;transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.rev{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .programs-grid{grid-template-columns:repeat(2,1fr)}
+  .btn-nav.ghost{display:none}
+  .about-inner{gap:40px;padding:40px 32px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-brand{grid-column:1/-1}
+}
+@media(max-width:768px){
+  .nav-center,.nav-actions{display:none}
+  .hamburger{display:flex}
+  .hero{padding:88px 5% 48px}
+  .hero-stats{gap:20px}
+  .programs{padding:60px 5%}
+  .programs-grid{grid-template-columns:repeat(2,1fr)}
+  .about-inner{grid-template-columns:1fr;gap:32px;padding:32px 24px}
+  .cta-inner{padding:44px 28px}
+  .footer-top{grid-template-columns:1fr 1fr}
+  /* Keep lang-sw visible */
+  .lang-sw{display:block!important}
+}
+@media(max-width:520px){
+  nav{padding:12px 4%;gap:8px}
+  .brand-text{font-size:1rem}
+  .hero{padding:78px 4% 40px}
+  .hero-eyebrow{font-size:.62rem;padding:6px 12px}
+  .hero-cta{flex-direction:column;align-items:center;max-width:320px;margin-left:auto;margin-right:auto}
+  .btn-hero-main,.btn-hero-ghost{width:100%;justify-content:center}
+  .hero-stats{gap:14px}
+  .stat{min-width:70px}
+  .programs{padding:48px 4%}
+  .programs-grid{grid-template-columns:1fr}
+  .about{padding:48px 4%}
+  .about-inner{padding:22px 16px}
+  .cta-section{padding:40px 4%}
+  .cta-inner{padding:32px 16px}
+  .cta-actions{flex-direction:column;align-items:stretch}
+  footer{padding:36px 4% 22px}
+  .footer-top{grid-template-columns:1fr;gap:22px}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:380px){
+  .hero-title{font-size:2.2rem;letter-spacing:-.5px}
+  .hero-title .line2{font-size:.82rem}
+  .brand-text{font-size:.88rem}
+  .hero-stats{gap:8px}
+  .stat-num{font-size:1.2rem}
+}
+/* RTL */
+html[dir=ltr] .nav-center{flex-direction:row}
+html[dir=ltr] .footer-bottom{flex-direction:row-reverse}
+html[dir=ltr] .footer-col ul{align-items:flex-start}
+html[dir=ltr] .about-item-text h4{text-align:left}
+html[dir=ltr] .cta-inner{direction:ltr}
+
+
+
+/* UrCheck product page */
+.uc-hero{display:grid;grid-template-columns:1fr 1.35fr;gap:52px;align-items:center;padding:120px 5% 60px;max-width:1320px;margin:0 auto}
+.uc-badges{display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap}
+.uc-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--border2);box-shadow:0 24px 60px rgba(0,0,0,.5);background:#000;cursor:pointer}
+.uc-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.uc-video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uc-video .uc-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;border:none;background:rgba(29,155,240,.95);color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px rgba(0,0,0,.55);transition:transform .2s}
+.uc-video:hover .uc-play{transform:translate(-50%,-50%) scale(1.12)}
+.uc-note{color:var(--muted);font-size:.8rem;margin-top:14px}
+.uc-section{max-width:1200px;margin:0 auto;padding:40px 5%}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:transform .2s,border-color .2s}
+.feat-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.feat-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;background:linear-gradient(135deg,rgba(29,155,240,.16),rgba(0,229,255,.08));border:1px solid rgba(29,155,240,.25)}
+.feat-card h4{font-size:.95rem;margin-bottom:6px}
+.feat-card p{color:var(--muted);font-size:.83rem;line-height:1.7}
+.buy-card{max-width:560px;margin:10px auto 0;background:var(--card);border:1px solid rgba(251,191,36,.25);border-radius:20px;padding:34px;text-align:center}
+.buy-price{font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700;color:#fbbf24;margin:6px 0 4px}
+.uc-foot{border-top:1px solid var(--border);margin-top:40px;padding:34px 5%;text-align:center;color:var(--muted)}
+.uc-foot .fb{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+.uc-foot .fl{display:flex;gap:18px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+.uc-foot a{color:var(--muted)}.uc-foot a:hover{color:var(--accent)}
+@media(max-width:900px){.uc-hero{grid-template-columns:1fr;gap:30px;padding:96px 5% 40px}.feat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+
+
+/* ── SOCIAL SERVICES ── */
+.kd-social{padding:64px 20px;background:var(--bg);color:var(--text);position:relative;overflow:hidden}
+.kd-social::before{content:"";position:absolute;inset:auto 50% -40% auto;transform:translateX(50%);width:700px;height:700px;background:radial-gradient(circle,rgba(0,229,255,.10),transparent 65%);pointer-events:none}
+.kd-social .kd-wrap{max-width:1140px;margin:0 auto;position:relative;z-index:1}
+.kd-social .kd-eyebrow{display:inline-block;font-size:13px;letter-spacing:.08em;color:var(--accent);border:1px solid rgba(0,229,255,.3);border-radius:999px;padding:6px 16px;margin-bottom:18px}
+.kd-social h2{font-size:clamp(28px,4.4vw,46px);line-height:1.25;margin:0 0 14px;font-weight:800}
+.kd-social h2 span{color:var(--accent)}
+.kd-social .kd-lead{color:var(--muted);font-size:17px;max-width:640px;margin:0 0 52px;line-height:1.8}
+.kd-social .kd-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.kd-social .kd-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:18px;padding:26px 24px;transition:.25s ease}
+.kd-social .kd-card:hover{transform:translateY(-4px);border-color:rgba(0,229,255,.35);background:rgba(0,229,255,.04)}
+.kd-social .kd-ico{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;font-size:22px;background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.22);margin-bottom:16px}
+.kd-social .kd-card h3{margin:0 0 8px;font-size:19px;font-weight:700}
+.kd-social .kd-card p{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.75}
+.kd-social .kd-card ul{margin:0;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.kd-social .kd-card li{padding:5px 0;position:relative;padding-inline-start:20px}
+.kd-social .kd-card li::before{content:"\25B8";position:absolute;inset-inline-start:0;color:var(--accent);font-size:12px;transform:scaleX(1)}
+[dir="rtl"] .kd-social .kd-card li::before{transform:scaleX(-1)}
+.kd-social .kd-plans{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:56px}
+.kd-social .kd-plan{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-align:center}
+.kd-social .kd-plan.kd-best{border-color:rgba(0,229,255,.45);background:rgba(0,229,255,.05);position:relative}
+.kd-social .kd-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#04121a;font-size:12px;font-weight:800;padding:4px 14px;border-radius:999px;white-space:nowrap}
+.kd-social .kd-plan h4{margin:0 0 14px;font-size:19px}
+.kd-social .kd-terms{display:flex;gap:8px;justify-content:center;margin:0 0 6px;flex-wrap:wrap}
+.kd-social .kd-term{font-size:14px;font-weight:700;color:var(--accent);background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.25);border-radius:999px;padding:7px 18px}
+.kd-social .kd-plan ul{list-style:none;margin:16px 0 0;padding:0;color:var(--muted);font-size:14px;text-align:start}
+.kd-social .kd-plan li{padding:7px 0;position:relative;padding-inline-start:20px;border-top:1px solid var(--border)}
+.kd-social .kd-plan li::before{content:"\2713";position:absolute;inset-inline-start:0;color:var(--accent)}
+.kd-social .kd-cta{margin-top:56px;text-align:center;background:linear-gradient(180deg,rgba(0,229,255,.07),transparent);border:1px solid var(--border);border-radius:22px;padding:44px 24px}
+.kd-social .kd-cta h3{margin:0 0 10px;font-size:clamp(20px,3vw,28px)}
+.kd-social .kd-cta p{color:var(--muted);margin:0 0 24px}
+.kd-social .kd-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#04121a;font-weight:800;text-decoration:none;padding:14px 30px;border-radius:12px;transition:.2s}
+.kd-social .kd-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.kd-social .kd-note{margin-top:18px;font-size:13px;color:var(--muted)}
+@media(max-width:600px){.kd-social{padding:70px 16px}}
+.kd-social .kd-lead{margin-inline:auto}
+.kd-hero{max-width:900px;margin:0 auto;padding:110px 20px 10px;text-align:center}
+.kd-hero h1{font-size:clamp(30px,5vw,52px);line-height:1.25;margin:14px 0 16px;font-weight:900}
+.kd-hero h1 span{color:var(--accent)}
+.kd-hero p{color:var(--muted);font-size:17px;line-height:1.85;max-width:660px;margin:0 auto 26px}
+
+.kd-social .kd-ico{font-weight:900;color:var(--accent)}
+</style>
+</head>
+<body class="lang-ar">
+<div class="grid-bg" aria-hidden="true"></div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-brand" href="index.html" aria-label="Kodna home">
+    <div class="brand-icon" aria-hidden="true">ك</div>
+    <span class="brand-text">Kodna<span>.</span></span>
+  </a>
+  <ul class="nav-center" aria-label="Site sections">
+    <li><a href="index.html#programs" data-i18n="nav_programs">البرامج</a></li>
+    <li><a href="#services" data-i18n="dev_navsrv">الخدمات</a></li>
+    <li><a href="#process" data-i18n="dev_navpro">مراحل العمل</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="lang-sw" id="langSw">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()" aria-label="Change language" aria-haspopup="true">
+        <span id="langFlag">🇮🇶</span><span id="langCode">AR</span>
+        <i class="fa-solid fa-chevron-down chev" id="langChev"></i>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button class="lang-item" onclick="setLang('ar')" data-lang="ar" role="menuitem">🇮🇶 العربية</button>
+        <button class="lang-item" onclick="setLang('en')" data-lang="en" role="menuitem">🇬🇧 English</button>
+        <button class="lang-item" onclick="setLang('ku')" data-lang="ku" role="menuitem">🏔️ کوردی</button>
+        <button class="lang-item" onclick="setLang('zh')" data-lang="zh" role="menuitem">🇨🇳 中文</button>
+        <button class="lang-item" onclick="setLang('es')" data-lang="es" role="menuitem">🇪🇸 Español</button>
+        <button class="lang-item" onclick="setLang('ru')" data-lang="ru" role="menuitem">🇷🇺 Русский</button>
+      </div>
+    </div>
+    <a class="btn-nav fill" href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%85%D9%88%D9%82%D8%B9%20%D8%A3%D9%88%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82" target="_blank" rel="noopener" data-i18n="nav_wa">💬 واتساب</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav" role="navigation">
+  <a href="index.html#programs" onclick="toggleMenu()" data-i18n="mobile_programs">📦 البرامج</a>
+  <a href="#services" onclick="toggleMenu()" data-i18n="dev_msrv">🛠 الخدمات</a>
+  <a href="#process" onclick="toggleMenu()" data-i18n="dev_mpro">🚀 مراحل العمل</a>
+  <div class="mob-lang-row">
+    <button class="mob-lang-btn" onclick="setLang('ar');toggleMenu()">🇮🇶 AR</button>
+    <button class="mob-lang-btn" onclick="setLang('en');toggleMenu()">🇬🇧 EN</button>
+    <button class="mob-lang-btn" onclick="setLang('ku');toggleMenu()">🏔️ KU</button>
+    <button class="mob-lang-btn" onclick="setLang('zh');toggleMenu()">🇨🇳 ZH</button>
+    <button class="mob-lang-btn" onclick="setLang('es');toggleMenu()">🇪🇸 ES</button>
+    <button class="mob-lang-btn" onclick="setLang('ru');toggleMenu()">🇷🇺 RU</button>
+  </div>
+</div>
+
+<header class="kd-hero">
+  <div class="hero-eyebrow" style="justify-content:center"><div class="eyebrow-dot" aria-hidden="true"></div><span data-i18n="dev_eyebrow">خدمات تطوير من كودنا</span></div>
+  <h1 data-i18n-html="dev_title">تطوير مواقع و<span>تطبيقات أندرويد</span></h1>
+  <p data-i18n="dev_desc">نبنيلك موقعك أو تطبيقك من الصفر حسب متطلباتك — من حجز الدومين والاستضافة، للتصميم والبرمجة والتسليم والدعم.</p>
+  <div class="hero-cta" style="justify-content:center">
+    <a class="btn-hero-main" href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%85%D9%88%D9%82%D8%B9%20%D8%A3%D9%88%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82" target="_blank" rel="noopener" data-i18n="dev_wa">💬 ناقش مشروعك عبر واتساب</a>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<section class="kd-social rev" id="services" aria-label="Development services">
+  <div class="kd-wrap">
+    <span class="kd-eyebrow" data-i18n="dev_tag">خدمات تطوير</span>
+    <div class="kd-grid" style="margin-top:26px">
+      <div class="kd-card">
+        <div class="kd-ico">🌐</div>
+        <h3 data-i18n="dev_c1t">موقع من الصفر</h3>
+        <p data-i18n="dev_c1d">موقع مبني على قياسك، مو قالب جاهز.</p>
+        <ul>
+          <li data-i18n="dev_c1a">تصميم مخصص لهويتك</li>
+          <li data-i18n="dev_c1b">متجاوب مع الموبايل والتابلت</li>
+          <li data-i18n="dev_c1c">سرعة تحميل وتحسين لمحركات البحث</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">📱</div>
+        <h3 data-i18n="dev_c2t">تطبيق أندرويد</h3>
+        <p data-i18n="dev_c2d">تطبيق أصلي مع نشره على متجر جوجل.</p>
+        <ul>
+          <li data-i18n="dev_c2a">تطبيق أصلي بلغة Kotlin</li>
+          <li data-i18n="dev_c2b">إشعارات وربط مع الموقع</li>
+          <li data-i18n="dev_c2c">رفع ونشر على Google Play</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🔗</div>
+        <h3 data-i18n="dev_c3t">حجز الدومين</h3>
+        <p data-i18n="dev_c3d">نأمّنلك اسم النطاق باسم العميل، مو باسمنا.</p>
+        <ul>
+          <li data-i18n="dev_c3a">com. · org. · iq. وغيرها</li>
+          <li data-i18n="dev_c3b">ضبط DNS والبريد</li>
+          <li data-i18n="dev_c3c">تنبيه وتجديد سنوي</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🗄️</div>
+        <h3 data-i18n="dev_c4t">استضافة ومساحة</h3>
+        <p data-i18n="dev_c4d">سيرفر مناسب لحجم مشروعك مع حماية.</p>
+        <ul>
+          <li data-i18n="dev_c4a">شهادة SSL</li>
+          <li data-i18n="dev_c4b">نسخ احتياطي دوري</li>
+          <li data-i18n="dev_c4c">بريد إلكتروني باسم موقعك</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">🎨</div>
+        <h3 data-i18n="dev_c5t">تصميم الواجهات</h3>
+        <p data-i18n="dev_c5d">واجهة سهلة وشكل يليق باسمك.</p>
+        <ul>
+          <li data-i18n="dev_c5a">تصميم UI/UX</li>
+          <li data-i18n="dev_c5b">نموذج أولي قبل البرمجة</li>
+          <li data-i18n="dev_c5c">هوية بصرية ولوغو</li>
+        </ul>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">⚙️</div>
+        <h3 data-i18n="dev_c6t">لوحة تحكم ودعم</h3>
+        <p data-i18n="dev_c6d">تتحكم بمحتواك بنفسك بعد التسليم.</p>
+        <ul>
+          <li data-i18n="dev_c6a">لوحة تحكم بالعربي</li>
+          <li data-i18n="dev_c6b">تدريب على الاستخدام</li>
+          <li data-i18n="dev_c6c">صيانة وتحديثات بعد التسليم</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="kd-social rev" id="process" aria-label="How we work">
+  <div class="kd-wrap">
+    <span class="kd-eyebrow" data-i18n="dev_secpro">مراحل العمل</span>
+    <h2 data-i18n="dev_proTitle">من الفكرة للتسليم</h2>
+    <div class="kd-grid" style="margin-top:26px">
+      <div class="kd-card">
+        <div class="kd-ico">1</div>
+        <h3 data-i18n="dev_s1t">استشارة وتحديد المتطلبات</h3>
+        <p style="margin:0" data-i18n="dev_s1d">نسمع فكرتك ونحدد الميزات والوقت والكلفة قبل ما نبدي.</p>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">2</div>
+        <h3 data-i18n="dev_s2t">تصميم ونموذج أولي</h3>
+        <p style="margin:0" data-i18n="dev_s2d">تشوف شكل الموقع أو التطبيق وتوافق عليه قبل البرمجة.</p>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">3</div>
+        <h3 data-i18n="dev_s3t">برمجة وتجربة</h3>
+        <p style="margin:0" data-i18n="dev_s3d">ننفّذ المشروع ونختبره على أجهزة ومتصفحات مختلفة.</p>
+      </div>
+      <div class="kd-card">
+        <div class="kd-ico">4</div>
+        <h3 data-i18n="dev_s4t">تسليم ودعم</h3>
+        <p style="margin:0" data-i18n="dev_s4d">رفع على الدومين والاستضافة، تسليم الحسابات باسمك، مع فترة دعم.</p>
+      </div>
+    </div>
+
+    <div class="kd-cta">
+      <h3 data-i18n="dev_ctat">عندك فكرة مشروع؟</h3>
+      <p data-i18n="dev_ctad">خبّرنا شنو تحتاج — موقع، تطبيق، أو الاثنين — ونرجعلك بخطة وعرض سعر.</p>
+      <a class="kd-btn" href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%85%D9%88%D9%82%D8%B9%20%D8%A3%D9%88%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82" target="_blank" rel="noopener" data-i18n="dev_wa">💬 ناقش مشروعك عبر واتساب</a>
+      <div class="kd-note" data-i18n="dev_note">الكلفة والمدة حسب حجم المشروع · الدومين والاستضافة تُسجّل باسم العميل</div>
+    </div>
+  </div>
+</section>
+
+<footer class="uc-foot">
+  <div class="fb"><strong style="color:var(--text)">Kodna</strong></div>
+  <p data-i18n="foot_tag">برامج وأدوات رقمية عملية من كودنا.</p>
+  <div class="fl">
+    <a href="index.html" data-i18n="nav_programs">البرامج</a>
+    <a href="social.html">Social</a>
+    <a href="https://wa.me/9647901300262?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%85%D9%88%D9%82%D8%B9%20%D8%A3%D9%88%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <p style="font-size:.8rem" data-i18n="foot_copy">© 2026 كودنا — تطوير ضياء دارم</p>
+</footer>
+
+<script>
+const T = {"ar": {"dir": "rtl", "flag": "🇮🇶", "code": "AR", "nav_programs": "البرامج", "mobile_programs": "📦 البرامج", "foot_tag": "برامج وأدوات رقمية عملية من كودنا.", "foot_copy": "© 2026 كودنا — تطوير ضياء دارم", "nav_wa": "💬 واتساب", "dev_tag": "خدمات تطوير", "dev_title": "تطوير مواقع و<span>تطبيقات أندرويد</span>", "dev_desc": "نبنيلك موقعك أو تطبيقك من الصفر حسب متطلباتك — من حجز الدومين والاستضافة، للتصميم والبرمجة والتسليم والدعم.", "dev_c1t": "موقع من الصفر", "dev_c1d": "موقع مبني على قياسك، مو قالب جاهز.", "dev_c1a": "تصميم مخصص لهويتك", "dev_c1b": "متجاوب مع الموبايل والتابلت", "dev_c1c": "سرعة تحميل وتحسين لمحركات البحث", "dev_c2t": "تطبيق أندرويد", "dev_c2d": "تطبيق أصلي مع نشره على متجر جوجل.", "dev_c2a": "تطبيق أصلي بلغة Kotlin", "dev_c2b": "إشعارات وربط مع الموقع", "dev_c2c": "رفع ونشر على Google Play", "dev_c3t": "حجز الدومين", "dev_c3d": "نأمّنلك اسم النطاق باسم العميل، مو باسمنا.", "dev_c3a": "com. · org. · iq. وغيرها", "dev_c3b": "ضبط DNS والبريد", "dev_c3c": "تنبيه وتجديد سنوي", "dev_c4t": "استضافة ومساحة", "dev_c4d": "سيرفر مناسب لحجم مشروعك مع حماية.", "dev_c4a": "شهادة SSL", "dev_c4b": "نسخ احتياطي دوري", "dev_c4c": "بريد إلكتروني باسم موقعك", "dev_c5t": "تصميم الواجهات", "dev_c5d": "واجهة سهلة وشكل يليق باسمك.", "dev_c5a": "تصميم UI/UX", "dev_c5b": "نموذج أولي قبل البرمجة", "dev_c5c": "هوية بصرية ولوغو", "dev_c6t": "لوحة تحكم ودعم", "dev_c6d": "تتحكم بمحتواك بنفسك بعد التسليم.", "dev_c6a": "لوحة تحكم بالعربي", "dev_c6b": "تدريب على الاستخدام", "dev_c6c": "صيانة وتحديثات بعد التسليم", "dev_s1t": "استشارة وتحديد المتطلبات", "dev_s1d": "نسمع فكرتك ونحدد الميزات والوقت والكلفة قبل ما نبدي.", "dev_s2t": "تصميم ونموذج أولي", "dev_s2d": "تشوف شكل الموقع أو التطبيق وتوافق عليه قبل البرمجة.", "dev_s3t": "برمجة وتجربة", "dev_s3d": "ننفّذ المشروع ونختبره على أجهزة ومتصفحات مختلفة.", "dev_s4t": "تسليم ودعم", "dev_s4d": "رفع على الدومين والاستضافة، تسليم الحسابات باسمك، مع فترة دعم.", "dev_ctat": "عندك فكرة مشروع؟", "dev_ctad": "خبّرنا شنو تحتاج — موقع، تطبيق، أو الاثنين — ونرجعلك بخطة وعرض سعر.", "dev_wa": "💬 ناقش مشروعك عبر واتساب", "dev_note": "الكلفة والمدة حسب حجم المشروع · الدومين والاستضافة تُسجّل باسم العميل", "dev_navsrv": "الخدمات", "dev_navpro": "مراحل العمل", "dev_msrv": "🛠 الخدمات", "dev_mpro": "🚀 مراحل العمل", "dev_eyebrow": "خدمات تطوير من كودنا", "dev_secpro": "مراحل العمل", "dev_proTitle": "من الفكرة للتسليم"}, "en": {"dir": "ltr", "flag": "🇬🇧", "code": "EN", "nav_programs": "Programs", "mobile_programs": "📦 Programs", "foot_tag": "Practical digital software and tools by Kodna.", "foot_copy": "© 2026 Kodna — by Dhia Darem", "nav_wa": "💬 WhatsApp", "dev_tag": "Development Services", "dev_title": "Website & <span>Android App Development</span>", "dev_desc": "We build your website or app from scratch to your requirements — from domain and hosting to design, development, delivery and support.", "dev_c1t": "Website from scratch", "dev_c1d": "A site built to your measure, not a ready-made template.", "dev_c1a": "Custom design for your identity", "dev_c1b": "Responsive on mobile and tablet", "dev_c1c": "Fast loading and SEO-ready", "dev_c2t": "Android app", "dev_c2d": "A native app, published on Google Play.", "dev_c2a": "Native app built in Kotlin", "dev_c2b": "Notifications and website integration", "dev_c2c": "Publishing on Google Play", "dev_c3t": "Domain registration", "dev_c3d": "We register the domain in the client’s name, not ours.", "dev_c3a": ".com · .org · .iq and others", "dev_c3b": "DNS and email setup", "dev_c3c": "Renewal reminders every year", "dev_c4t": "Hosting & storage", "dev_c4d": "A server sized to your project, with protection.", "dev_c4a": "SSL certificate", "dev_c4b": "Regular backups", "dev_c4c": "Email on your own domain", "dev_c5t": "Interface design", "dev_c5d": "An easy interface and a look worthy of your name.", "dev_c5a": "UI/UX design", "dev_c5b": "Prototype before development", "dev_c5c": "Brand identity and logo", "dev_c6t": "Dashboard & support", "dev_c6d": "You manage your own content after delivery.", "dev_c6a": "Arabic-friendly dashboard", "dev_c6b": "Training on how to use it", "dev_c6c": "Maintenance and updates after delivery", "dev_s1t": "Consultation & requirements", "dev_s1d": "We listen to your idea and define features, timeline and cost before starting.", "dev_s2t": "Design & prototype", "dev_s2d": "You see the site or app and approve it before any coding.", "dev_s3t": "Development & testing", "dev_s3d": "We build it and test on different devices and browsers.", "dev_s4t": "Delivery & support", "dev_s4d": "Deployment to your domain and hosting, accounts handed over in your name, with a support period.", "dev_ctat": "Have a project in mind?", "dev_ctad": "Tell us what you need — a site, an app, or both — and we’ll come back with a plan and a quote.", "dev_wa": "💬 Discuss your project on WhatsApp", "dev_note": "Cost and timeline depend on project size · Domain and hosting are registered in the client’s name", "dev_navsrv": "Services", "dev_navpro": "How we work", "dev_msrv": "🛠 Services", "dev_mpro": "🚀 How we work", "dev_eyebrow": "Development services by Kodna", "dev_secpro": "How we work", "dev_proTitle": "From idea to delivery"}, "ku": {"dir": "rtl", "flag": "🏔️", "code": "KU", "nav_programs": "بەرنامەکان", "mobile_programs": "📦 بەرنامەکان", "foot_tag": "نەرمەکاڵا و ئامرازی دیجیتاڵی پراکتیکی لە کۆدنا.", "foot_copy": "© 2026 کۆدنا — ضیاء دارم", "nav_wa": "💬 واتساپ", "dev_tag": "خزمەتگوزاری گەشەپێدان", "dev_title": "دروستکردنی ماڵپەڕ و <span>ئەپی ئەندرۆید</span>", "dev_desc": "ماڵپەڕ یان ئەپەکەت لە سفرەوە بەپێی پێداویستییەکانت دروست دەکەین — لە دۆمەین و هۆستینگەوە تا دیزاین و بەرنامەسازی و پشتگیری.", "dev_c1t": "ماڵپەڕ لە سفرەوە", "dev_c1d": "ماڵپەڕێک بەپێی پێویستی تۆ، نەک قاڵبی ئامادە.", "dev_c1a": "دیزاینی تایبەت بە ناسنامەکەت", "dev_c1b": "گونجاو لەگەڵ مۆبایل و تابلێت", "dev_c1c": "خێرایی بارکردن و گونجاندن بۆ گەڕان", "dev_c2t": "ئەپی ئەندرۆید", "dev_c2d": "ئەپێکی ڕەسەن لەگەڵ بڵاوکردنەوەی لە گووگڵ پلەی.", "dev_c2a": "ئەپی ڕەسەن بە Kotlin", "dev_c2b": "ئاگادارکردنەوە و بەستن بە ماڵپەڕ", "dev_c2c": "بڵاوکردنەوە لە Google Play", "dev_c3t": "تۆمارکردنی دۆمەین", "dev_c3d": "دۆمەین بە ناوی کڕیار تۆمار دەکەین، نەک بە ناوی خۆمان.", "dev_c3a": "com. · org. · iq. و هیتر", "dev_c3b": "ڕێکخستنی DNS و ئیمەیڵ", "dev_c3c": "بیرخستنەوە و نوێکردنەوەی ساڵانە", "dev_c4t": "هۆستینگ و بۆشایی", "dev_c4d": "سێرڤەری گونجاو بۆ قەبارەی پڕۆژەکەت لەگەڵ پاراستن.", "dev_c4a": "بڕوانامەی SSL", "dev_c4b": "باکئەپی بەردەوام", "dev_c4c": "ئیمەیڵ بە ناوی ماڵپەڕەکەت", "dev_c5t": "دیزاینی ڕووکار", "dev_c5d": "ڕووکارێکی ئاسان و شێوەیەک کە شایستەی ناوت بێت.", "dev_c5a": "دیزاینی UI/UX", "dev_c5b": "نموونەی سەرەتایی پێش بەرنامەسازی", "dev_c5c": "ناسنامەی بینراو و لۆگۆ", "dev_c6t": "پانێڵی بەڕێوەبردن و پشتگیری", "dev_c6d": "دوای وەرگرتن خۆت ناوەڕۆکەکەت بەڕێوە دەبەیت.", "dev_c6a": "پانێڵی بەڕێوەبردن بە عەرەبی", "dev_c6b": "ڕاهێنان لەسەر بەکارهێنان", "dev_c6c": "چاکسازی و نوێکردنەوە دوای وەرگرتن", "dev_s1t": "ڕاوێژ و دیاریکردنی پێداویستی", "dev_s1d": "گوێ لە بیرۆکەکەت دەگرین و تایبەتمەندی و کات و تێچوو دیاری دەکەین پێش دەستپێکردن.", "dev_s2t": "دیزاین و نموونەی سەرەتایی", "dev_s2d": "شێوەی ماڵپەڕ یان ئەپ دەبینیت و پەسەندی دەکەیت پێش بەرنامەسازی.", "dev_s3t": "بەرنامەسازی و تاقیکردنەوە", "dev_s3d": "پڕۆژەکە دەنووسین و لەسەر ئامێر و وێبگەڕی جیاواز تاقی دەکەینەوە.", "dev_s4t": "وەرگرتن و پشتگیری", "dev_s4d": "بارکردن بۆ دۆمەین و هۆستینگ، هەژمارەکان بە ناوی تۆ، لەگەڵ ماوەی پشتگیری.", "dev_ctat": "بیرۆکەی پڕۆژەت هەیە؟", "dev_ctad": "پێمان بڵێ چیت پێویستە — ماڵپەڕ، ئەپ، یان هەردووکیان — پلان و نرخت بۆ دەنێرین.", "dev_wa": "💬 باسی پڕۆژەکەت بکە لە واتساپ", "dev_note": "تێچوو و ماوە بەپێی قەبارەی پڕۆژە · دۆمەین و هۆستینگ بە ناوی کڕیار تۆمار دەکرێن", "dev_navsrv": "خزمەتگوزارییەکان", "dev_navpro": "قۆناغەکانی کار", "dev_msrv": "🛠 خزمەتگوزارییەکان", "dev_mpro": "🚀 قۆناغەکانی کار", "dev_eyebrow": "خزمەتگوزاری گەشەپێدان لە کۆدنا", "dev_secpro": "قۆناغەکانی کار", "dev_proTitle": "لە بیرۆکەوە تا وەرگرتن"}, "zh": {"dir": "ltr", "flag": "🇨🇳", "code": "ZH", "nav_programs": "程序", "mobile_programs": "📦 程序", "foot_tag": "Kodna 的实用数字软件与工具。", "foot_copy": "© 2026 Kodna — Dhia Darem", "nav_wa": "💬 WhatsApp", "dev_tag": "开发服务", "dev_title": "网站与<span>安卓应用开发</span>", "dev_desc": "按你的需求从零搭建网站或应用——从域名和主机到设计、开发、交付与维护。", "dev_c1t": "从零开发网站", "dev_c1d": "为你量身打造，而不是套用模板。", "dev_c1a": "契合品牌的定制设计", "dev_c1b": "手机与平板自适应", "dev_c1c": "加载快、利于搜索收录", "dev_c2t": "安卓应用", "dev_c2d": "原生应用，并上架 Google Play。", "dev_c2a": "使用 Kotlin 的原生应用", "dev_c2b": "推送通知与网站打通", "dev_c2c": "上架 Google Play", "dev_c3t": "域名注册", "dev_c3d": "域名注册在客户名下，而非我们名下。", "dev_c3a": ".com · .org · .iq 等", "dev_c3b": "DNS 与邮箱配置", "dev_c3c": "每年到期提醒与续费", "dev_c4t": "主机与空间", "dev_c4d": "按项目规模配置服务器并做好防护。", "dev_c4a": "SSL 证书", "dev_c4b": "定期备份", "dev_c4c": "使用你自己域名的邮箱", "dev_c5t": "界面设计", "dev_c5d": "易用的界面，配得上你的品牌。", "dev_c5a": "UI/UX 设计", "dev_c5b": "开发前先出原型", "dev_c5c": "品牌视觉与 Logo", "dev_c6t": "后台与支持", "dev_c6d": "交付后你可以自行管理内容。", "dev_c6a": "中文/阿拉伯语后台", "dev_c6b": "使用培训", "dev_c6c": "交付后的维护与更新", "dev_s1t": "沟通与需求梳理", "dev_s1d": "先听你的想法，确定功能、周期与费用，再开工。", "dev_s2t": "设计与原型", "dev_s2d": "先看到网站或应用的样子并确认，再开始编码。", "dev_s3t": "开发与测试", "dev_s3d": "完成开发并在不同设备与浏览器上测试。", "dev_s4t": "交付与维护", "dev_s4d": "部署到你的域名与主机，账号以你的名义移交，并提供支持期。", "dev_ctat": "有项目想做？", "dev_ctad": "告诉我们你需要什么——网站、应用或两者——我们会回复方案与报价。", "dev_wa": "💬 通过 WhatsApp 沟通项目", "dev_note": "费用与周期取决于项目规模 · 域名与主机以客户名义注册", "dev_navsrv": "服务", "dev_navpro": "工作流程", "dev_msrv": "🛠 服务", "dev_mpro": "🚀 工作流程", "dev_eyebrow": "Kodna 提供的开发服务", "dev_secpro": "工作流程", "dev_proTitle": "从想法到交付"}, "es": {"dir": "ltr", "flag": "🇪🇸", "code": "ES", "nav_programs": "Programas", "mobile_programs": "📦 Programas", "foot_tag": "Software y herramientas digitales prácticas de Kodna.", "foot_copy": "© 2026 Kodna — por Dhia Darem", "nav_wa": "💬 WhatsApp", "dev_tag": "Servicios de desarrollo", "dev_title": "Desarrollo de webs y <span>apps Android</span>", "dev_desc": "Creamos tu web o tu app desde cero según tus necesidades: dominio, alojamiento, diseño, programación, entrega y soporte.", "dev_c1t": "Web desde cero", "dev_c1d": "Un sitio hecho a tu medida, no una plantilla.", "dev_c1a": "Diseño a medida de tu identidad", "dev_c1b": "Adaptable a móvil y tablet", "dev_c1c": "Carga rápida y lista para SEO", "dev_c2t": "App Android", "dev_c2d": "Una app nativa, publicada en Google Play.", "dev_c2a": "App nativa en Kotlin", "dev_c2b": "Notificaciones e integración con la web", "dev_c2c": "Publicación en Google Play", "dev_c3t": "Registro de dominio", "dev_c3d": "Registramos el dominio a nombre del cliente, no del nuestro.", "dev_c3a": ".com · .org · .iq y otros", "dev_c3b": "Configuración de DNS y correo", "dev_c3c": "Aviso y renovación anual", "dev_c4t": "Alojamiento y espacio", "dev_c4d": "Un servidor acorde a tu proyecto, con protección.", "dev_c4a": "Certificado SSL", "dev_c4b": "Copias de seguridad periódicas", "dev_c4c": "Correo con tu propio dominio", "dev_c5t": "Diseño de interfaz", "dev_c5d": "Una interfaz sencilla y a la altura de tu marca.", "dev_c5a": "Diseño UI/UX", "dev_c5b": "Prototipo antes de programar", "dev_c5c": "Identidad visual y logo", "dev_c6t": "Panel y soporte", "dev_c6d": "Tú gestionas tu contenido tras la entrega.", "dev_c6a": "Panel de administración", "dev_c6b": "Formación para usarlo", "dev_c6c": "Mantenimiento y actualizaciones", "dev_s1t": "Consulta y requisitos", "dev_s1d": "Escuchamos tu idea y definimos funciones, plazos y coste antes de empezar.", "dev_s2t": "Diseño y prototipo", "dev_s2d": "Ves cómo quedará la web o la app y lo apruebas antes de programar.", "dev_s3t": "Desarrollo y pruebas", "dev_s3d": "Lo construimos y lo probamos en distintos dispositivos y navegadores.", "dev_s4t": "Entrega y soporte", "dev_s4d": "Publicación en tu dominio y alojamiento, cuentas a tu nombre y periodo de soporte.", "dev_ctat": "¿Tienes un proyecto en mente?", "dev_ctad": "Cuéntanos qué necesitas —web, app o ambas— y te enviamos un plan y un presupuesto.", "dev_wa": "💬 Habla de tu proyecto por WhatsApp", "dev_note": "El coste y el plazo dependen del tamaño del proyecto · El dominio y el alojamiento se registran a nombre del cliente", "dev_navsrv": "Servicios", "dev_navpro": "Cómo trabajamos", "dev_msrv": "🛠 Servicios", "dev_mpro": "🚀 Cómo trabajamos", "dev_eyebrow": "Servicios de desarrollo de Kodna", "dev_secpro": "Cómo trabajamos", "dev_proTitle": "De la idea a la entrega"}, "ru": {"dir": "ltr", "flag": "🇷🇺", "code": "RU", "nav_programs": "Программы", "mobile_programs": "📦 Программы", "foot_tag": "Практичные цифровые программы и инструменты от Kodna.", "foot_copy": "© 2026 Kodna — Dhia Darem", "nav_wa": "💬 WhatsApp", "dev_tag": "Услуги разработки", "dev_title": "Разработка сайтов и <span>Android-приложений</span>", "dev_desc": "Создаём сайт или приложение с нуля под ваши задачи — от домена и хостинга до дизайна, разработки, запуска и поддержки.", "dev_c1t": "Сайт с нуля", "dev_c1d": "Сайт под вас, а не готовый шаблон.", "dev_c1a": "Индивидуальный дизайн под ваш бренд", "dev_c1b": "Адаптив для телефона и планшета", "dev_c1c": "Быстрая загрузка и готовность к SEO", "dev_c2t": "Android-приложение", "dev_c2d": "Нативное приложение с публикацией в Google Play.", "dev_c2a": "Нативное приложение на Kotlin", "dev_c2b": "Уведомления и связь с сайтом", "dev_c2c": "Публикация в Google Play", "dev_c3t": "Регистрация домена", "dev_c3d": "Домен оформляем на клиента, а не на себя.", "dev_c3a": ".com · .org · .iq и другие", "dev_c3b": "Настройка DNS и почты", "dev_c3c": "Напоминание и продление раз в год", "dev_c4t": "Хостинг и место", "dev_c4d": "Сервер под размер проекта и с защитой.", "dev_c4a": "SSL-сертификат", "dev_c4b": "Регулярные резервные копии", "dev_c4c": "Почта на вашем домене", "dev_c5t": "Дизайн интерфейса", "dev_c5d": "Понятный интерфейс и вид, достойный вашего имени.", "dev_c5a": "UI/UX-дизайн", "dev_c5b": "Прототип до разработки", "dev_c5c": "Фирменный стиль и логотип", "dev_c6t": "Панель и поддержка", "dev_c6d": "После сдачи вы сами управляете контентом.", "dev_c6a": "Административная панель", "dev_c6b": "Обучение работе с ней", "dev_c6c": "Обслуживание и обновления после сдачи", "dev_s1t": "Консультация и требования", "dev_s1d": "Слушаем идею и определяем функции, сроки и стоимость до старта.", "dev_s2t": "Дизайн и прототип", "dev_s2d": "Вы видите будущий сайт или приложение и утверждаете его до кода.", "dev_s3t": "Разработка и тестирование", "dev_s3d": "Собираем проект и проверяем на разных устройствах и браузерах.", "dev_s4t": "Запуск и поддержка", "dev_s4d": "Размещение на вашем домене и хостинге, передача аккаунтов на ваше имя, период поддержки.", "dev_ctat": "Есть идея проекта?", "dev_ctad": "Расскажите, что нужно — сайт, приложение или всё вместе — вернёмся с планом и ценой.", "dev_wa": "💬 Обсудить проект в WhatsApp", "dev_note": "Стоимость и сроки зависят от объёма проекта · Домен и хостинг оформляются на клиента", "dev_navsrv": "Услуги", "dev_navpro": "Как мы работаем", "dev_msrv": "🛠 Услуги", "dev_mpro": "🚀 Как мы работаем", "dev_eyebrow": "Услуги разработки от Kodna", "dev_secpro": "Как мы работаем", "dev_proTitle": "От идеи до запуска"}};
+const KEY='kodna_lang';
+function detectLang(){
+  const sv=localStorage.getItem(KEY);
+  if(sv&&T[sv])return sv;
+  const bl=(navigator.language||navigator.userLanguage||'ar').toLowerCase();
+  if(bl.startsWith('ar'))return 'ar';
+  if(bl.startsWith('ku')||bl.startsWith('ckb'))return 'ku';
+  if(bl.startsWith('zh'))return 'zh';
+  if(bl.startsWith('es'))return 'es';
+  if(bl.startsWith('ru'))return 'ru';
+  if(bl.startsWith('en'))return 'en';
+  return 'ar';
+}
+function applyLang(lang){
+  if(!T[lang])lang='ar';
+  localStorage.setItem(KEY,lang);
+  const t=T[lang], root=document.getElementById('htmlRoot');
+  root.setAttribute('lang',lang); root.setAttribute('dir',t.dir);
+  document.body.className='lang-'+lang;
+  const fl=document.getElementById('langFlag'), cd=document.getElementById('langCode');
+  if(fl)fl.textContent=t.flag; if(cd)cd.textContent=t.code;
+  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(t[k]!==undefined) el.textContent=t[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml; if(t[k]!==undefined) el.innerHTML=t[k];});
+}
+function setLang(lang){applyLang(lang);closeLangMenu();}
+function toggleLangMenu(){const m=document.getElementById('langMenu'),b=document.getElementById('langBtn');const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}
+function closeLangMenu(){document.getElementById('langMenu')?.classList.remove('open');document.getElementById('langBtn')?.classList.remove('open');}
+document.addEventListener('click',e=>{if(!document.getElementById('langSw')?.contains(e.target))closeLangMenu();});
+function toggleMenu(){const h=document.getElementById('hamburger'),n=document.getElementById('mobileNav');const o=h.classList.toggle('open');n.classList.toggle('open',o);h.setAttribute('aria-expanded',o);}
+window.addEventListener('scroll',()=>{document.getElementById('hamburger')?.classList.remove('open');document.getElementById('mobileNav')?.classList.remove('open');},{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{
+  applyLang(detectLang());
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.07});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+});
+</script>
+</body>
+</html>
