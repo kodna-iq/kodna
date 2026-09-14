@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07090d">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self';">
+<title>Ur_X — أتمتة ونشر احترافي لحسابات X (تويتر) | X Account Automation · Kodna</title>
+<meta name="description" content="Ur_X: تطبيق أندرويد لأتمتة ونشر حسابات X (تويتر) بالجملة — نشر متزامن على عشرات الحسابات، توليد تغريدات بالذكاء الاصطناعي، Health Score، وإحماء ذكي. Android app for bulk X (Twitter) account automation — parallel posting, AI generation, health scoring, smart warmup.">
+<meta name="keywords" content="Ur_X,أتمتة تويتر,نشر جماعي X,أتمتة حسابات X,بوت X,X automation,twitter bot,bulk posting android,AI tweet generator,Kodna">
+<meta name="author" content="Kodna / Dhia Darem">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://kodna.org/urx.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kodna.org/urx.html">
+<meta property="og:title" content="Ur_X — X Account Automation · Kodna">
+<meta property="og:description" content="أتمتة ونشر احترافي لحسابات X من هاتفك. Professional X (Twitter) account automation from your phone.">
+<meta property="og:site_name" content="Kodna">
+<meta property="og:image" content="https://kodna.org/urx_icon_512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ur_X — X Account Automation">
+<meta name="twitter:description" content="أتمتة ونشر احترافي لحسابات X / Professional X account automation. By Kodna.">
+<meta name="twitter:image" content="https://kodna.org/urx_icon_512.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ur_X","operatingSystem":"Android","applicationCategory":"SocialNetworkingApplication","description":"Bulk X (Twitter) account automation for Android: parallel posting, AI-generated tweets, account health scoring, smart warmup.","offers":{"@type":"Offer","priceCurrency":"USD","price":"0"},"publisher":{"@type":"Organization","name":"Kodna"},"inLanguage":["ar","en","ku","zh","es","ru"]}
+</script>
+<link rel="icon" type="image/png" href="urx_icon_512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --bg:#07090d;--surface:#0e1117;--card:#12151c;
+  --accent:#00e5ff;--accent2:#7c3aed;
+  --text:#e8eaf0;--muted:#6b7280;
+  --border:#1a1f2e;--border2:#232840;
+  --r:14px;--r-lg:22px;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Plus Jakarta Sans','Cairo',sans-serif;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+body.lang-ar,body.lang-ku{font-family:'Cairo',sans-serif}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+section{position:relative;z-index:1}
+
+/* ═══════════════════════════════════════════
+   AMBIENT
+═══════════════════════════════════════════ */
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,229,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,229,255,.025) 1px,transparent 1px);
+  background-size:70px 70px;animation:gridMove 25s linear infinite;
+}
+@keyframes gridMove{to{background-position:70px 70px}}
+.blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+.blob1{width:600px;height:600px;background:rgba(124,58,237,.1);top:-200px;left:-150px;animation:bf 14s ease-in-out infinite}
+.blob2{width:500px;height:500px;background:rgba(0,229,255,.07);bottom:-150px;right:-100px;animation:bf 18s ease-in-out infinite reverse}
+@keyframes bf{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,30px)}}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:rgba(7,9,13,.92);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-icon{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:900;flex-shrink:0;
+  box-shadow:0 4px 18px rgba(124,58,237,.4);font-family:'Cairo',sans-serif;color:#fff;
+}
+.brand-text{font-family:'Space Mono',monospace;font-size:1.15rem;font-weight:700;color:var(--text)}
+.brand-text span{color:var(--accent)}
+.nav-center{display:flex;gap:24px;list-style:none}
+.nav-center a{color:var(--muted);font-size:.9rem;font-weight:600;transition:color .2s}
+.nav-center a:hover{color:var(--accent)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn-nav{padding:8px 18px;border-radius:8px;font-weight:700;font-size:.85rem;transition:all .2s;cursor:pointer;border:none;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.btn-nav.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-nav.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-nav.fill{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff}
+.btn-nav.fill:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+
+/* Lang Switcher */
+.lang-sw{position:relative}
+.lang-btn{
+  display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;font-weight:600;transition:all .2s;
+}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn .chev{font-size:.6rem;transition:transform .2s}
+.lang-btn.open .chev{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;top:calc(100%+8px);right:0;
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:var(--r);padding:6px;min-width:162px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  display:none;flex-direction:column;gap:2px;z-index:500;
+}
+html[dir=ltr] .lang-menu{right:0;left:auto}
+html[dir=rtl] .lang-menu{left:0;right:auto}
+.lang-menu.open{display:flex}
+.lang-item{
+  display:flex;align-items:center;gap:9px;padding:9px 12px;
+  border-radius:8px;border:none;background:transparent;
+  color:var(--muted);font-size:.83rem;font-weight:600;
+  text-align:right;width:100%;cursor:pointer;transition:all .15s;
+}
+html[dir=ltr] .lang-item{text-align:left}
+.lang-item:hover{background:var(--surface);color:var(--text)}
+.lang-item.active{background:rgba(0,229,255,.08);color:var(--accent);border:1px solid rgba(0,229,255,.15)}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{
+  display:none;position:fixed;top:67px;left:0;right:0;z-index:999;
+  background:rgba(7,9,13,.98);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);padding:20px 5%;flex-direction:column;gap:0;
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--muted);font-size:1rem;font-weight:600;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s}
+.mobile-nav a:hover{color:var(--accent)}
+.mobile-nav a:last-of-type{border-bottom:none}
+.mob-lang-row{padding:14px 0;border-top:1px solid var(--border);display:flex;gap:7px;flex-wrap:wrap}
+.mob-lang-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--muted);cursor:pointer;font-size:.82rem;transition:all .2s}
+.mob-lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ═══════════════════════════════════════════
+   HERO / SECTIONS (shared tokens)
+═══════════════════════════════════════════ */
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);
+  border-radius:100px;padding:7px 18px;
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  color:#a78bfa;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:28px;animation:fadeUp .8s ease both;
+}
+.eyebrow-dot{width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
+.hero-title{font-size:clamp(2.6rem,8vw,7rem);font-weight:900;line-height:1.05;letter-spacing:-1px;animation:fadeUp .8s .1s ease both}
+.hero-desc{margin-top:20px;font-size:clamp(.9rem,2vw,1.05rem);color:var(--muted);line-height:1.9;max-width:540px;animation:fadeUp .8s .2s ease both}
+.hero-desc strong{color:var(--text)}
+.hero-cta{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .3s ease both}
+.btn-hero-main{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;font-weight:700;font-size:clamp(.9rem,2vw,1rem);padding:14px 28px;border-radius:14px;text-decoration:none;box-shadow:0 8px 32px rgba(124,58,237,.35);transition:all .2s}
+.btn-hero-main:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(124,58,237,.5)}
+.btn-hero-ghost{display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;color:var(--text);font-weight:600;font-size:clamp(.9rem,2vw,1rem);padding:14px 24px;border-radius:14px;text-decoration:none;border:1px solid var(--border);transition:all .2s}
+.btn-hero-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 5%}
+.sec-header{margin-bottom:44px}
+.sec-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);padding:5px 14px;border:1px solid rgba(0,229,255,.25);border-radius:100px;background:rgba(0,229,255,.06);margin-bottom:14px}
+.sec-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1px;line-height:1.1}
+.badge{font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 9px;border-radius:100px;font-weight:700}
+.badge.new{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.badge.pro{background:rgba(244,114,182,.1);color:#f472b6;border:1px solid rgba(244,114,182,.25)}
+.badge.free{background:rgba(0,229,255,.1);color:var(--accent);border:1px solid rgba(0,229,255,.2)}
+
+/* ═══════════════════════════════════════════
+   CTA / FOOTER
+═══════════════════════════════════════════ */
+.cta-section{padding:60px 5%}
+.cta-inner{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(0,229,255,.08));border:1px solid rgba(124,58,237,.25);border-radius:24px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,.07) 0%,transparent 70%);pointer-events:none}
+.cta-title{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:900;margin-bottom:14px}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS / RESPONSIVE
+═══════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.rev{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+@media(max-width:1024px){.btn-nav.ghost{display:none}}
+@media(max-width:768px){.nav-center,.nav-actions{display:none}.hamburger{display:flex}.lang-sw{display:block!important}}
+html[dir=ltr] .nav-center{flex-direction:row}
+html[dir=ltr] .cta-inner{direction:ltr}
+
+/* ═══════════════════════════════════════════
+   Ur_X PRODUCT PAGE
+═══════════════════════════════════════════ */
+.uc-hero{display:grid;grid-template-columns:1fr 1.35fr;gap:52px;align-items:center;padding:120px 5% 60px;max-width:1320px;margin:0 auto}
+.uc-badges{display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap}
+.uc-note{color:var(--muted);font-size:.8rem;margin-top:14px}
+.uc-section{max-width:1200px;margin:0 auto;padding:40px 5%}
+.sec-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:480px;margin-top:10px}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:transform .2s,border-color .2s}
+.feat-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.feat-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;background:linear-gradient(135deg,rgba(0,229,255,.16),rgba(124,58,237,.1));border:1px solid rgba(0,229,255,.25)}
+.feat-card h4{font-size:.95rem;margin-bottom:6px}
+.feat-card p{color:var(--muted);font-size:.83rem;line-height:1.7}
+
+/* Spec panel replacing the video area (no demo video yet) */
+.spec-panel{background:var(--card);border:1px solid var(--border2);border-radius:18px;padding:30px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.spec-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.spec-row:last-child{border-bottom:none}
+.spec-ic{width:36px;height:36px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2)}
+.spec-row h4{font-size:.85rem;margin-bottom:3px}
+.spec-row p{color:var(--muted);font-size:.78rem;line-height:1.6}
+
+/* Specs table section */
+.specs-table{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.specs-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.specs-item .k{color:var(--muted);font-size:.82rem}
+.specs-item .v{font-weight:700;font-size:.85rem;text-align:left}
+html[dir=rtl] .specs-item .v{text-align:left}
+
+.buy-card{max-width:560px;margin:10px auto 0;background:var(--card);border:1px solid rgba(0,229,255,.25);border-radius:20px;padding:34px;text-align:center}
+.buy-price{font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--accent);margin:6px 0 4px}
+.uc-foot{border-top:1px solid var(--border);margin-top:40px;padding:34px 5%;text-align:center;color:var(--muted)}
+.uc-foot .fb{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+.uc-foot .fl{display:flex;gap:18px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+.uc-foot a{color:var(--muted)}.uc-foot a:hover{color:var(--accent)}
+@media(max-width:900px){.uc-hero{grid-template-columns:1fr;gap:30px;padding:96px 5% 40px}.feat-grid{grid-template-columns:1fr 1fr}.specs-table{grid-template-columns:1fr}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body class="lang-ar">
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="blob blob1" aria-hidden="true"></div>
+<div class="blob blob2" aria-hidden="true"></div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-brand" href="index.html" aria-label="Kodna home">
+    <div class="brand-icon" aria-hidden="true">ك</div>
+    <span class="brand-text">Kodna<span>.</span></span>
+  </a>
+  <ul class="nav-center" aria-label="Site sections">
+    <li><a href="index.html#programs" data-i18n="nav_programs">البرامج</a></li>
+    <li><a href="#features" data-i18n="nav_features">المميزات</a></li>
+    <li><a href="#get" data-i18n="nav_get">الحصول عليه</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="lang-sw" id="langSw">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()" aria-label="Change language" aria-haspopup="true">
+        <span id="langFlag">🇮🇶</span><span id="langCode">AR</span>
+        <i class="fa-solid fa-chevron-down chev" id="langChev"></i>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button class="lang-item" onclick="setLang('ar')" data-lang="ar" role="menuitem">🇮🇶 العربية</button>
+        <button class="lang-item" onclick="setLang('en')" data-lang="en" role="menuitem">🇬🇧 English</button>
+        <button class="lang-item" onclick="setLang('ku')" data-lang="ku" role="menuitem">🏔️ کوردی</button>
+        <button class="lang-item" onclick="setLang('zh')" data-lang="zh" role="menuitem">🇨🇳 中文</button>
+        <button class="lang-item" onclick="setLang('es')" data-lang="es" role="menuitem">🇪🇸 Español</button>
+        <button class="lang-item" onclick="setLang('ru')" data-lang="ru" role="menuitem">🇷🇺 Русский</button>
+      </div>
+    </div>
+    <a class="btn-nav fill dl-link" href="#" download rel="noopener" data-i18n="nav_download">⬇ تحميل</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav" role="navigation">
+  <a href="index.html#programs" onclick="toggleMenu()" data-i18n="mobile_programs">📦 البرامج</a>
+  <a href="#features" onclick="toggleMenu()" data-i18n="mobile_features">⭐ المميزات</a>
+  <a href="#get" onclick="toggleMenu()" data-i18n="mobile_get">⬇ الحصول عليه</a>
+  <div class="mob-lang-row">
+    <button class="mob-lang-btn" onclick="setLang('ar');toggleMenu()">🇮🇶 AR</button>
+    <button class="mob-lang-btn" onclick="setLang('en');toggleMenu()">🇬🇧 EN</button>
+    <button class="mob-lang-btn" onclick="setLang('ku');toggleMenu()">🏔️ KU</button>
+    <button class="mob-lang-btn" onclick="setLang('zh');toggleMenu()">🇨🇳 ZH</button>
+    <button class="mob-lang-btn" onclick="setLang('es');toggleMenu()">🇪🇸 ES</button>
+    <button class="mob-lang-btn" onclick="setLang('ru');toggleMenu()">🇷🇺 RU</button>
+  </div>
+</div>
+
+<header class="uc-hero">
+  <div>
+    <img src="urx_icon_512.png" alt="Ur_X logo" width="88" height="88" style="display:block;margin-bottom:14px;border-radius:20px;filter:drop-shadow(0 8px 22px rgba(0,229,255,.35))">
+    <div class="hero-eyebrow"><div class="eyebrow-dot" aria-hidden="true"></div><span data-i18n="hero_eyebrow">برنامج احترافي من كودنا</span></div>
+    <h1 class="hero-title" style="margin-top:14px">Ur_X</h1>
+    <div class="uc-badges">
+      <span class="badge new" data-i18n="badge_new">جديد</span>
+      <span class="badge pro" data-i18n="badge_paid">مدفوع</span>
+      <span class="badge free" data-i18n="badge_android">Android</span>
+    </div>
+    <p class="hero-desc" data-i18n="hero_desc">أتمتة احترافية لحسابات X.</p>
+    <div class="hero-cta">
+      <a class="btn-hero-main dl-link" href="#" download rel="noopener" data-i18n="btn_download">⬇ تحميل Ur_X</a>
+      <a class="btn-hero-ghost" href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20Ur_X" target="_blank" rel="noopener" data-i18n="btn_license">🔑 احصل على ترخيص</a>
+    </div>
+  </div>
+  <div>
+    <div class="spec-panel">
+      <div class="spec-row">
+        <div class="spec-ic">🔒</div>
+        <div><h4 data-i18n="sp1t">ترخيص مرتبط بالجهاز</h4><p data-i18n="sp1d">حماية حقيقية — كل اشتراك يعمل على جهاز واحد فقط.</p></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-ic">👥</div>
+        <div><h4 data-i18n="sp2t">عدد حسابات غير محدود</h4><p data-i18n="sp2d">أدِر عشرات أو مئات حسابات X من جهاز واحد.</p></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-ic">🤖</div>
+        <div><h4 data-i18n="sp3t">ذكاء اصطناعي مدمج</h4><p data-i18n="sp3d">توليد نصوص التغريدات داخل التطبيق مباشرة.</p></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-ic">⚡</div>
+        <div><h4 data-i18n="sp4t">Android 8.0 فأعلى</h4><p data-i18n="sp4d">خفيف وسريع، قائمة حسابات تفتح فوراً مهما كبر عددها.</p></div>
+      </div>
+    </div>
+    <p class="uc-note" data-i18n="video_note">التحميل مباشر، والتفعيل عبر ترخيص مرتبط بجهازك.</p>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<section class="uc-section rev" id="features">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_features">المميزات</div>
+    <h2 class="sec-title" data-i18n="features_title">كل ما تحتاجه لإدارة حساباتك على X</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card"><div class="feat-ic">🚀</div><h4 data-i18n="f1t">نشر متعدد الحسابات</h4><p data-i18n="f1d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">🤖</div><h4 data-i18n="f2t">توليد بالذكاء الاصطناعي</h4><p data-i18n="f2d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">🩺</div><h4 data-i18n="f3t">Health Score</h4><p data-i18n="f3d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">🔥</div><h4 data-i18n="f4t">إحماء ذكي للحسابات</h4><p data-i18n="f4d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">🔒</div><h4 data-i18n="f5t">ترخيص مرتبط بالجهاز</h4><p data-i18n="f5d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">⚡</div><h4 data-i18n="f6t">أداء سريع وخفيف</h4><p data-i18n="f6d">.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="uc-section rev">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_specs">المواصفات</div>
+    <h2 class="sec-title" data-i18n="specs_title">المواصفات التقنية</h2>
+  </div>
+  <div class="specs-table">
+    <div class="specs-item"><span class="k" data-i18n="sk1">نظام التشغيل</span><span class="v">Android 8.0+</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk2">عدد الحسابات المدعومة</span><span class="v" data-i18n="sv2">غير محدود</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk3">نظام الترخيص</span><span class="v" data-i18n="sv3">مرتبط بالجهاز</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk4">الاتصال بالإنترنت</span><span class="v" data-i18n="sv4">مطلوب للتفعيل والتحقق</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk5">التحديثات</span><span class="v" data-i18n="sv5">مستمرة عبر كودنا</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk6">لغة الواجهة</span><span class="v" data-i18n="sv6">العربية</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="cta-section rev" id="get">
+  <div class="cta-inner" style="text-align:center;max-width:640px;margin:0 auto">
+    <div class="sec-tag" data-i18n="sec_get" style="display:inline-block">الحصول على Ur_X</div>
+    <h2 class="cta-title" style="margin-top:12px" data-i18n="get_title">حمّل التطبيق وفعّله</h2>
+    <div class="buy-card">
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.8" data-i18n="get_desc">.</p>
+      <div class="buy-price" data-i18n="get_price">تواصل لمعرفة السعر</div>
+      <div class="hero-cta" style="justify-content:center;margin-top:18px">
+        <a class="btn-hero-main dl-link" href="#" download rel="noopener" data-i18n="btn_download2">⬇ تحميل Ur_X</a>
+        <a class="btn-hero-ghost" href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20Ur_X" target="_blank" rel="noopener" data-i18n="btn_license2">🔑 تفعيل عبر واتساب</a>
+      </div>
+      <p class="uc-note" data-i18n="get_note">.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="uc-foot">
+  <div class="fb"><img src="urx_icon_512.png" width="30" height="30" alt="" style="border-radius:7px"><strong style="color:var(--text)">Ur_X</strong></div>
+  <p data-i18n="foot_tag">برامج وأدوات رقمية عملية من كودنا.</p>
+  <div class="fl">
+    <a href="index.html" data-i18n="nav_programs">البرامج</a>
+    <a href="urcheck.html">UrCheck</a>
+    <a href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20Ur_X" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <p style="font-size:.8rem" data-i18n="foot_copy">© 2026 كودنا — تطوير ضياء دارم</p>
+</footer>
+
+<script>
+const T = {
+"ar":{"dir":"rtl","flag":"🇮🇶","code":"AR","nav_programs":"البرامج","nav_features":"المميزات","nav_get":"الحصول عليه","nav_download":"⬇ تحميل","hero_eyebrow":"برنامج احترافي من كودنا","badge_new":"جديد","badge_paid":"مدفوع","badge_android":"Android","hero_desc":"أتمتة احترافية لحسابات X (تويتر) من هاتفك مباشرة — نشر متزامن على عشرات الحسابات، توليد تغريدات بالذكاء الاصطناعي، وحماية الحسابات بنظام Health Score ذكي.","btn_download":"⬇ تحميل Ur_X","btn_license":"🔑 احصل على ترخيص","sp1t":"ترخيص مرتبط بالجهاز","sp1d":"حماية حقيقية — كل اشتراك يعمل على جهاز واحد فقط.","sp2t":"عدد حسابات غير محدود","sp2d":"أدِر عشرات أو مئات حسابات X من جهاز واحد.","sp3t":"ذكاء اصطناعي مدمج","sp3d":"توليد نصوص التغريدات داخل التطبيق مباشرة.","sp4t":"Android 8.0 فأعلى","sp4d":"خفيف وسريع، قائمة حسابات تفتح فوراً مهما كبر عددها.","video_note":"التحميل مباشر، والتفعيل عبر ترخيص مرتبط بجهازك.","sec_features":"المميزات","features_title":"كل ما تحتاجه لإدارة حساباتك على X","f1t":"نشر متعدد الحسابات","f1d":"انشر تغريدة أو حملة كاملة على عشرات الحسابات دفعة واحدة، بجدولة أو توزيع زمني.","f2t":"توليد بالذكاء الاصطناعي","f2d":"أنشئ نصوص تغريدات جاهزة عبر الذكاء الاصطناعي مباشرة داخل التطبيق.","f3t":"Health Score","f3d":"نظام يراقب صحة كل حساب لحظياً وينبّهك قبل أي خطر حظر.","f4t":"إحماء ذكي للحسابات","f4d":"إحماء تلقائي أو يدوي للحسابات الجديدة قبل الاستخدام الفعلي، يقلّل احتمال التقييد.","f5t":"ترخيص مرتبط بالجهاز","f5d":"تشفير مرتبط ببصمة جهازك يمنع نسخ التطبيق أو مشاركته مع أجهزة أخرى.","f6t":"أداء سريع وخفيف","f6d":"قائمة حسابات تفتح فوراً حتى مع المئات، بلا أي تهنيج أو انهيار.","sec_specs":"المواصفات","specs_title":"المواصفات التقنية","sk1":"نظام التشغيل","sk2":"عدد الحسابات المدعومة","sv2":"غير محدود","sk3":"نظام الترخيص","sv3":"مرتبط بالجهاز","sk4":"الاتصال بالإنترنت","sv4":"مطلوب للتفعيل والتحقق","sk5":"التحديثات","sv5":"مستمرة عبر كودنا","sk6":"لغة الواجهة","sv6":"العربية","sec_get":"الحصول على Ur_X","get_title":"حمّل التطبيق وفعّله","get_desc":"التحميل مجاني. لتفعيل التطبيق تحتاج ترخيصاً مرتبطاً بجهازك، تحصل عليه بالتواصل عبر واتساب.","get_price":"تواصل لمعرفة السعر والخطط","btn_download2":"⬇ تحميل Ur_X","btn_license2":"🔑 تفعيل عبر واتساب","get_note":"متوافق مع Android 8.0 فأعلى — يتطلب ترخيصاً للتفعيل.","mobile_programs":"📦 البرامج","mobile_features":"⭐ المميزات","mobile_get":"⬇ الحصول عليه","foot_tag":"برامج وأدوات رقمية عملية من كودنا.","foot_copy":"© 2026 كودنا — تطوير ضياء دارم"},
+"en":{"dir":"ltr","flag":"🇬🇧","code":"EN","nav_programs":"Programs","nav_features":"Features","nav_get":"Get it","nav_download":"⬇ Download","hero_eyebrow":"A Pro app by Kodna","badge_new":"New","badge_paid":"Paid","badge_android":"Android","hero_desc":"Professional X (Twitter) account automation right from your phone — parallel posting across dozens of accounts, AI-generated tweets, and account protection via a smart Health Score.","btn_download":"⬇ Download Ur_X","btn_license":"🔑 Get a license","sp1t":"Device-bound license","sp1d":"Real protection — each subscription works on one device only.","sp2t":"Unlimited accounts","sp2d":"Manage dozens or hundreds of X accounts from a single device.","sp3t":"Built-in AI","sp3d":"Generate tweet text directly inside the app.","sp4t":"Android 8.0+","sp4d":"Light and fast — the account list opens instantly no matter how many accounts you have.","video_note":"Direct download; activation is via a device-bound license.","sec_features":"Features","features_title":"Everything you need to manage your X accounts","f1t":"Multi-account posting","f1d":"Post a tweet or a full campaign to dozens of accounts at once, scheduled or spread over time.","f2t":"AI-generated content","f2d":"Generate ready-to-post tweet text with AI, right inside the app.","f3t":"Health Score","f3d":"A system that monitors each account's health in real time and warns you before any ban risk.","f4t":"Smart account warmup","f4d":"Automatic or manual warmup for new accounts before real use, lowering the risk of restrictions.","f5t":"Device-bound license","f5d":"Encryption tied to your device fingerprint prevents copying or sharing the app with other devices.","f6t":"Fast, lightweight performance","f6d":"The account list opens instantly even with hundreds of accounts — no lag, no crashes.","sec_specs":"Specifications","specs_title":"Technical specifications","sk1":"Operating system","sk2":"Supported accounts","sv2":"Unlimited","sk3":"License system","sv3":"Device-bound","sk4":"Internet connection","sv4":"Required for activation and checks","sk5":"Updates","sv5":"Continuous, via Kodna","sk6":"Interface language","sv6":"Arabic","sec_get":"Get Ur_X","get_title":"Download and activate","get_desc":"Download is free. To activate the app you need a device-bound license, obtained by contacting us on WhatsApp.","get_price":"Contact us for pricing & plans","btn_download2":"⬇ Download Ur_X","btn_license2":"🔑 Activate via WhatsApp","get_note":"Compatible with Android 8.0+ — a license is required to activate.","mobile_programs":"📦 Programs","mobile_features":"⭐ Features","mobile_get":"⬇ Get it","foot_tag":"Practical digital software and tools by Kodna.","foot_copy":"© 2026 Kodna — by Dhia Darem"},
+"ku":{"dir":"rtl","flag":"🏔️","code":"KU","nav_programs":"بەرنامەکان","nav_features":"تایبەتمەندییەکان","nav_get":"بەدەستهێنان","nav_download":"⬇ داگرتن","hero_eyebrow":"بەرنامەیەکی پیشەیی لە کۆدنا","badge_new":"نوێ","badge_paid":"پارەدان","badge_android":"Android","hero_desc":"ئۆتۆماتیکردنی پیشەیی بۆ هەژمارەکانی X (تویتەر) ڕاستەوخۆ لە مۆبایلەکەتەوە — بڵاوکردنەوەی هاوکات بۆ دەیان هەژمار، دروستکردنی تویت بە زیرەکی دەستکرد، و پاراستنی هەژمار بە سیستەمی Health Score زیرەک.","btn_download":"⬇ داگرتنی Ur_X","btn_license":"🔑 مۆڵەت وەربگرە","sp1t":"مۆڵەتی بەستراو بە ئامێر","sp1d":"پاراستنی ڕاستەقینە — هەر بەشداریەک تەنها لەسەر یەک ئامێر کار دەکات.","sp2t":"ژمارەی هەژماری بێسنوور","sp2d":"دەیان یان سەدان هەژماری X بەڕێوە ببە لە یەک ئامێرەوە.","sp3t":"زیرەکی دەستکردی تێکەڵکراو","sp3d":"دروستکردنی دەقی تویت لەناو بەرنامەکەدا ڕاستەوخۆ.","sp4t":"Android 8.0 و سەرەوە","sp4d":"سووک و خێرا، لیستی هەژمارەکان دەستبەجێ دەکرێتەوە هەرچەندە زۆر بن.","video_note":"داگرتن ڕاستەوخۆیە، چالاککردنیش بە مۆڵەتی بەستراو بە ئامێرەکەتە.","sec_features":"تایبەتمەندییەکان","features_title":"هەرچی پێویستە بۆ بەڕێوەبردنی هەژمارەکانت لە X","f1t":"بڵاوکردنەوە بۆ چەند هەژمار","f1d":"تویتێک یان کەمپینێکی تەواو بنێرە بۆ دەیان هەژمار بە یەک جار، بە خشتەبەندی یان دابەشکردن بەسەر کاتدا.","f2t":"ناوەڕۆکی دروستکراو بە AI","f2d":"دەقی تویتی ئامادە دروست بکە بە زیرەکی دەستکرد، ڕاستەوخۆ لەناو بەرنامەکەدا.","f3t":"Health Score","f3d":"سیستەمێک چاودێری تەندروستی هەر هەژمارێک دەکات و پێش هەر مەترسی ڕاگرتنێک ئاگادارت دەکاتەوە.","f4t":"گەرمکردنەوەی زیرەکی هەژمار","f4d":"گەرمکردنەوەی ئۆتۆماتیکی یان بەدەستی بۆ هەژماری نوێ پێش بەکارهێنانی ڕاستەقینە.","f5t":"مۆڵەتی بەستراو بە ئامێر","f5d":"نهێنیکردنی بەستراو بە شوێنپێی ئامێرەکەت ڕێگری لە کۆپیکردن یان هاوبەشکردنی بەرنامەکە دەکات.","f6t":"کارایی خێرا و سووک","f6d":"لیستی هەژمارەکان دەستبەجێ دەکرێتەوە تەنانەت لەگەڵ سەدان هەژماریش — بێ کێشە.","sec_specs":"تایبەتمەندییە تەکنیکییەکان","specs_title":"تایبەتمەندییە تەکنیکییەکان","sk1":"سیستەمی کارپێکردن","sk2":"ژمارەی هەژماری پشتگیریکراو","sv2":"بێسنوور","sk3":"سیستەمی مۆڵەت","sv3":"بەستراو بە ئامێر","sk4":"پەیوەندی ئینتەرنێت","sv4":"پێویستە بۆ چالاککردن و پشکنین","sk5":"نوێکردنەوەکان","sv5":"بەردەوام لە ڕێگەی کۆدنا","sk6":"زمانی ڕووکار","sv6":"عەرەبی","sec_get":"بەدەستهێنانی Ur_X","get_title":"داگرتن و چالاککردن","get_desc":"داگرتن بەخۆڕاییە. بۆ چالاککردنی بەرنامەکە مۆڵەتێکی بەستراو بە ئامێرت پێویستە، لە ڕێگەی واتسئاپەوە بەدەستی دەهێنیت.","get_price":"پەیوەندی بکە بۆ نرخ و پلان","btn_download2":"⬇ داگرتنی Ur_X","btn_license2":"🔑 چالاککردن لە واتسئاپ","get_note":"گونجاو لەگەڵ Android 8.0 و سەرەوە — بۆ چالاککردن مۆڵەت پێویستە.","mobile_programs":"📦 بەرنامەکان","mobile_features":"⭐ تایبەتمەندییەکان","mobile_get":"⬇ بەدەستهێنان","foot_tag":"نەرمەکاڵا و ئامرازی دیجیتاڵی پراکتیکی لە کۆدنا.","foot_copy":"© 2026 کۆدنا — ضیاء دارم"},
+"zh":{"dir":"ltr","flag":"🇨🇳","code":"ZH","nav_programs":"程序","nav_features":"功能","nav_get":"获取","nav_download":"⬇ 下载","hero_eyebrow":"Kodna 出品的专业应用","badge_new":"新","badge_paid":"付费","badge_android":"Android","hero_desc":"直接在手机上专业自动化管理 X（推特）账号 — 同时向数十个账号发帖、AI 生成推文内容，并通过智能 Health Score 系统保护账号安全。","btn_download":"⬇ 下载 Ur_X","btn_license":"🔑 获取授权","sp1t":"设备绑定授权","sp1d":"真正的保护 — 每个订阅仅限一台设备使用。","sp2t":"账号数量不限","sp2d":"在一台设备上管理数十甚至数百个 X 账号。","sp3t":"内置人工智能","sp3d":"直接在应用内生成推文文案。","sp4t":"Android 8.0 及以上","sp4d":"轻量快速，无论账号多少，列表都能瞬间打开。","video_note":"直接下载，激活需要设备绑定授权。","sec_features":"功能","features_title":"管理 X 账号所需的一切","f1t":"多账号批量发帖","f1d":"一次性向数十个账号发布推文或完整活动，可定时或分时段发送。","f2t":"AI 生成内容","f2d":"直接在应用内用人工智能生成可发布的推文文案。","f3t":"Health Score 健康分","f3d":"实时监控每个账号的健康状况，在有封号风险前提前预警。","f4t":"智能账号养号","f4d":"新账号使用前的自动或手动养号，降低限制风险。","f5t":"设备绑定授权","f5d":"与设备指纹绑定的加密机制，防止应用被复制或分享到其他设备。","f6t":"快速轻量的性能","f6d":"即使有数百个账号，列表也能瞬间打开 — 不卡顿、不崩溃。","sec_specs":"技术规格","specs_title":"技术规格","sk1":"操作系统","sk2":"支持账号数","sv2":"不限","sk3":"授权系统","sv3":"设备绑定","sk4":"网络连接","sv4":"激活与验证需要联网","sk5":"更新","sv5":"由 Kodna 持续提供","sk6":"界面语言","sv6":"阿拉伯语","sec_get":"获取 Ur_X","get_title":"下载并激活","get_desc":"下载免费。激活应用需要设备绑定授权，通过 WhatsApp 联系我们获取。","get_price":"联系我们了解价格与套餐","btn_download2":"⬇ 下载 Ur_X","btn_license2":"🔑 通过 WhatsApp 激活","get_note":"兼容 Android 8.0 及以上 — 激活需要授权。","mobile_programs":"📦 程序","mobile_features":"⭐ 功能","mobile_get":"⬇ 获取","foot_tag":"Kodna 的实用数字软件与工具。","foot_copy":"© 2026 Kodna — Dhia Darem"},
+"es":{"dir":"ltr","flag":"🇪🇸","code":"ES","nav_programs":"Programas","nav_features":"Funciones","nav_get":"Obtener","nav_download":"⬇ Descargar","hero_eyebrow":"Una app Pro de Kodna","badge_new":"Nuevo","badge_paid":"De pago","badge_android":"Android","hero_desc":"Automatización profesional de cuentas de X (Twitter) directamente desde tu teléfono — publicación paralela en decenas de cuentas, tweets generados con IA y protección de cuentas con un Health Score inteligente.","btn_download":"⬇ Descargar Ur_X","btn_license":"🔑 Obtener licencia","sp1t":"Licencia vinculada al dispositivo","sp1d":"Protección real — cada suscripción funciona en un solo dispositivo.","sp2t":"Cuentas ilimitadas","sp2d":"Gestiona decenas o cientos de cuentas de X desde un solo dispositivo.","sp3t":"IA integrada","sp3d":"Genera el texto de los tweets directamente dentro de la app.","sp4t":"Android 8.0 o superior","sp4d":"Ligera y rápida — la lista de cuentas se abre al instante sin importar cuántas tengas.","video_note":"Descarga directa; la activación es mediante licencia vinculada al dispositivo.","sec_features":"Funciones","features_title":"Todo lo que necesitas para gestionar tus cuentas de X","f1t":"Publicación multicuenta","f1d":"Publica un tweet o una campaña completa en decenas de cuentas a la vez, programado o distribuido en el tiempo.","f2t":"Contenido generado por IA","f2d":"Genera texto de tweets listo para publicar con IA, dentro de la propia app.","f3t":"Health Score","f3d":"Un sistema que vigila la salud de cada cuenta en tiempo real y te avisa antes de cualquier riesgo de suspensión.","f4t":"Calentamiento inteligente de cuentas","f4d":"Calentamiento automático o manual para cuentas nuevas antes del uso real, reduciendo el riesgo de restricciones.","f5t":"Licencia vinculada al dispositivo","f5d":"Un cifrado ligado a la huella de tu dispositivo impide copiar o compartir la app con otros equipos.","f6t":"Rendimiento rápido y ligero","f6d":"La lista de cuentas se abre al instante incluso con cientos de cuentas — sin retrasos ni caídas.","sec_specs":"Especificaciones","specs_title":"Especificaciones técnicas","sk1":"Sistema operativo","sk2":"Cuentas soportadas","sv2":"Ilimitadas","sk3":"Sistema de licencia","sv3":"Vinculada al dispositivo","sk4":"Conexión a internet","sv4":"Necesaria para activar y verificar","sk5":"Actualizaciones","sv5":"Continuas, por Kodna","sk6":"Idioma de la interfaz","sv6":"Árabe","sec_get":"Obtener Ur_X","get_title":"Descargar y activar","get_desc":"La descarga es gratis. Para activar la app necesitas una licencia vinculada al dispositivo, que obtienes contactándonos por WhatsApp.","get_price":"Contáctanos para precios y planes","btn_download2":"⬇ Descargar Ur_X","btn_license2":"🔑 Activar por WhatsApp","get_note":"Compatible con Android 8.0 o superior — se requiere licencia para activar.","mobile_programs":"📦 Programas","mobile_features":"⭐ Funciones","mobile_get":"⬇ Obtener","foot_tag":"Software y herramientas digitales prácticas de Kodna.","foot_copy":"© 2026 Kodna — por Dhia Darem"},
+"ru":{"dir":"ltr","flag":"🇷🇺","code":"RU","nav_programs":"Программы","nav_features":"Возможности","nav_get":"Получить","nav_download":"⬇ Скачать","hero_eyebrow":"Профессиональное приложение от Kodna","badge_new":"Новое","badge_paid":"Платно","badge_android":"Android","hero_desc":"Профессиональная автоматизация аккаунтов X (Twitter) прямо с телефона — параллельная публикация на десятках аккаунтов, генерация твитов с помощью ИИ и защита аккаунтов через умный Health Score.","btn_download":"⬇ Скачать Ur_X","btn_license":"🔑 Получить лицензию","sp1t":"Лицензия привязана к устройству","sp1d":"Настоящая защита — каждая подписка работает только на одном устройстве.","sp2t":"Неограниченное число аккаунтов","sp2d":"Управляйте десятками или сотнями аккаунтов X с одного устройства.","sp3t":"Встроенный ИИ","sp3d":"Генерация текста твитов прямо внутри приложения.","sp4t":"Android 8.0 и выше","sp4d":"Лёгкое и быстрое — список аккаунтов открывается мгновенно, сколько бы их ни было.","video_note":"Прямая загрузка; активация — по лицензии, привязанной к устройству.","sec_features":"Возможности","features_title":"Всё для управления вашими аккаунтами X","f1t":"Публикация на нескольких аккаунтах","f1d":"Публикуйте твит или целую кампанию сразу на десятках аккаунтов, по расписанию или с разбивкой по времени.","f2t":"Контент, созданный ИИ","f2d":"Генерируйте готовый текст твитов с помощью ИИ прямо в приложении.","f3t":"Health Score","f3d":"Система следит за состоянием каждого аккаунта в реальном времени и предупреждает о риске блокировки заранее.","f4t":"Умный прогрев аккаунтов","f4d":"Автоматический или ручной прогрев новых аккаунтов перед реальным использованием — снижает риск ограничений.","f5t":"Лицензия привязана к устройству","f5d":"Шифрование, привязанное к отпечатку устройства, не позволяет копировать или передавать приложение на другие устройства.","f6t":"Быстрая и лёгкая работа","f6d":"Список аккаунтов открывается мгновенно даже при сотнях аккаунтов — без зависаний и сбоев.","sec_specs":"Характеристики","specs_title":"Технические характеристики","sk1":"Операционная система","sk2":"Поддерживаемые аккаунты","sv2":"Неограниченно","sk3":"Система лицензирования","sv3":"Привязана к устройству","sk4":"Подключение к интернету","sv4":"Требуется для активации и проверки","sk5":"Обновления","sv5":"Постоянные, от Kodna","sk6":"Язык интерфейса","sv6":"Арабский","sec_get":"Получить Ur_X","get_title":"Скачать и активировать","get_desc":"Скачивание бесплатно. Для активации приложения нужна лицензия, привязанная к устройству — свяжитесь с нами в WhatsApp.","get_price":"Свяжитесь по ценам и тарифам","btn_download2":"⬇ Скачать Ur_X","btn_license2":"🔑 Активировать через WhatsApp","get_note":"Совместимо с Android 8.0 и выше — для активации нужна лицензия.","mobile_programs":"📦 Программы","mobile_features":"⭐ Возможности","mobile_get":"⬇ Получить","foot_tag":"Практичные цифровые программы и инструменты от Kodna.","foot_copy":"© 2026 Kodna — Dhia Darem"}
+};
+const KEY='kodna_lang';
+function detectLang(){
+  const sv=localStorage.getItem(KEY);
+  if(sv&&T[sv])return sv;
+  const bl=(navigator.language||navigator.userLanguage||'ar').toLowerCase();
+  if(bl.startsWith('ar'))return 'ar';
+  if(bl.startsWith('ku')||bl.startsWith('ckb'))return 'ku';
+  if(bl.startsWith('zh'))return 'zh';
+  if(bl.startsWith('es'))return 'es';
+  if(bl.startsWith('ru'))return 'ru';
+  if(bl.startsWith('en'))return 'en';
+  return 'ar';
+}
+function applyLang(lang){
+  if(!T[lang])lang='ar';
+  localStorage.setItem(KEY,lang);
+  const t=T[lang], root=document.getElementById('htmlRoot');
+  root.setAttribute('lang',lang); root.setAttribute('dir',t.dir);
+  document.body.className='lang-'+lang;
+  const fl=document.getElementById('langFlag'), cd=document.getElementById('langCode');
+  if(fl)fl.textContent=t.flag; if(cd)cd.textContent=t.code;
+  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(t[k]!==undefined) el.textContent=t[k];});
+}
+function setLang(lang){applyLang(lang);closeLangMenu();}
+function toggleLangMenu(){const m=document.getElementById('langMenu'),b=document.getElementById('langBtn');const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}
+function closeLangMenu(){document.getElementById('langMenu')?.classList.remove('open');document.getElementById('langBtn')?.classList.remove('open');}
+document.addEventListener('click',e=>{if(!document.getElementById('langSw')?.contains(e.target))closeLangMenu();});
+function toggleMenu(){const h=document.getElementById('hamburger'),n=document.getElementById('mobileNav');const o=h.classList.toggle('open');n.classList.toggle('open',o);h.setAttribute('aria-expanded',o);}
+window.addEventListener('scroll',()=>{document.getElementById('hamburger')?.classList.remove('open');document.getElementById('mobileNav')?.classList.remove('open');},{passive:true});
+
+/* ====== رابط التحميل المباشر — غيّره من هنا فقط عند رفع نسخة جديدة ======
+   ضع هنا رابط ملف الـ APK الموقّع (مثلاً GitHub Releases، نفس أسلوب UrCheck) */
+const DOWNLOAD_URL = "https://github.com/kodna-iq/urx/releases/download/v2.0.0/Ur_X__android_2.0.apk";
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.dl-link').forEach(a=>{ a.href = DOWNLOAD_URL; a.setAttribute('download',''); });
+  applyLang(detectLang());
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.07});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+});
+</script>
+</body>
+</html>
