@@ -798,6 +798,16 @@ html[dir=rtl] .cmp-table td:first-child{text-align:right}
   .cmp-table th,.cmp-table td{padding:10px 12px;font-size:.78rem}
   .android-mockup-wrap{gap:24px}
 }
+
+/* ── Downloads disabled: updating ── */
+.btn-dl-main,.btn-nav-dl,.btn-pl.a,.app-dl-btn,.m-btn-dl,.phone-dl-btn,
+.btn-dl-main.android-mode{
+  pointer-events:none !important;cursor:not-allowed !important;
+  opacity:.6;filter:grayscale(.5);
+  background:var(--surface) !important;color:var(--muted) !important;
+  border:1px solid var(--border2) !important;box-shadow:none !important;
+}
+.ban-link{display:none !important}
 </style>
 </head>
 
@@ -1714,6 +1724,19 @@ ru:{dir:'ltr',flag:'🇷🇺',code:'RU',
 /* ─────────────────────────────────────────────
    GITHUB API
 ───────────────────────────────────────────── */
+const UPD_LONG={
+  en:'Updating to a new version…',
+  ar:'جاري تحديث البرنامج لنسخة جديدة',
+  ku:'بەرنامەکە نوێ دەکرێتەوە بۆ وەشانێکی نوێ',
+  zh:'正在更新到新版本…',
+  es:'Actualizando a una nueva versión…',
+  ru:'Идёт обновление до новой версии…'};
+const UPD_SHORT={en:'Updating…',ar:'جاري التحديث',ku:'نوێ دەکرێتەوە',zh:'更新中…',es:'Actualizando…',ru:'Обновление…'};
+for(const l in T){
+  T[l].btn_win=UPD_LONG[l];T[l].btn_and=UPD_LONG[l];
+  T[l].nav_dl_btn=UPD_SHORT[l];T[l].ban_text=UPD_LONG[l];T[l].ban_link='';
+}
+
 const GH_LATEST = 'https://api.github.com/repos/kodna-iq/urdown/releases/latest';
 const GH_ALL    = 'https://api.github.com/repos/kodna-iq/urdown/releases';
 // Initial fallback — updated by API
@@ -1852,17 +1875,7 @@ async function fetchGH(){
 /* ─────────────────────────────────────────────
    DOWNLOAD
 ───────────────────────────────────────────── */
-function startDownload(url){
-  const u=url||window._dlUrl;
-  if(!u)return;
-  const a=document.createElement('a');
-  a.href=u;
-  a.download=u.split('/').pop()||'UrDown_setup.exe';
-  a.rel='noopener noreferrer';
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(()=>document.body.removeChild(a),300);
-}
+function startDownload(){ return false; }
 
 /* ─────────────────────────────────────────────
    LANGUAGE
@@ -2010,7 +2023,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       if(btnSpan){
         btnSpan.setAttribute('data-i18n','btn_and');
         const lang=document.documentElement.lang||detectLang();
-        btnSpan.textContent=(lang==='ar')?'تحميل للـ Android':'Download for Android';
+        btnSpan.textContent=T[currentLang].btn_and;
       }
       heroBtn.onclick=()=>{
         const andBtn=document.getElementById('androidBtn');
