@@ -1,56 +1,150 @@
-#!/usr/bin/env python3
-"""Usage: python3 disable_downloads.py urdown.html
-Creates urdown_updating.html with all download buttons disabled and
-a "program is updating to a new version" message in all 6 languages."""
-import re, sys
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="r">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#00E5FF">
+<title>UrDown – Video Downloader | Kodna</title>
+<meta name="description" content="UrDown – Powerful video downloader for Windows, Mac & Android. Currently updating to a new version.">
+<link rel="canonical" href="https://kodna.org/urdown.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2300E5FF'/%3E%3Crect x='16' y='46' width='32' height='5' rx='2.5'/%3E%3Crect x='29.5' y='12' width='5' height='28' rx='2.5'/%3E%3Cpath d='M20 30 L32 42 L44 30' stroke='%23000' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090d;--sf:#0e1117;--card:#12151c;--ac:#00e5ff;--ac2:#7c3aed;--gr:#4ade80;--tx:#e8eaf0;--mu:#6b7280;--bd:#1a1f2e;--bd2:#232840}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'Plus Jakarta Sans','Cairo',sans-serif;overflow-x:clip;line-height:1.6}
+body.ar,body.ku{font-family:'Cairo',sans-serif}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;width:100%;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 5%;background:rgba(7,9,13,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd)}
+.logo{display:flex;align-items:center;gap:10px;font-family:monospace;font-weight:700}
+.logo b{width:34px;height:34px;border-radius:8px;background:var(--ac);display:grid;place-items:center}
+.logo span{color:var(--ac)}
+.links{display:flex;gap:22px}
+.links a{color:var(--mu);font-size:.86rem;font-weight:700}
+.links a:hover{color:var(--ac)}
+.nr{display:flex;gap:10px;align-items:center}
+select{background:var(--sf);color:var(--tx);border:1px solid var(--bd2);border-radius:8px;padding:7px 10px;font:inherit;font-size:.82rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 26px;border-radius:12px;font-weight:800;font-size:.95rem;background:var(--sf);color:var(--mu);border:1px solid var(--bd2);cursor:not-allowed;opacity:.85;user-select:none}
+.btn.sm{padding:8px 14px;font-size:.8rem;border-radius:8px}
+.sp{width:14px;height:14px;border:2px solid var(--mu);border-top-color:var(--ac);border-radius:50%;animation:s 1s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+.ban{margin-top:58px;padding:11px 5%;text-align:center;font-weight:700;font-size:.88rem;background:linear-gradient(90deg,rgba(0,229,255,.12),rgba(124,58,237,.14));border-bottom:1px solid rgba(0,229,255,.25)}
+.hero{max-width:1100px;margin:0 auto;padding:70px 5% 50px;text-align:center}
+.hl{width:86px;height:86px;margin:0 auto 22px;border-radius:22px;overflow:hidden;box-shadow:0 12px 40px rgba(0,229,255,.3)}
+.bdg{display:inline-block;padding:6px 16px;border-radius:100px;font-size:.7rem;letter-spacing:2px;color:var(--ac);background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2);margin-bottom:18px}
+h1{font-size:clamp(3.4rem,10vw,6.5rem);font-weight:900;line-height:1;letter-spacing:-3px;direction:ltr}
+h1 span{color:var(--ac)}
+.sub{margin-top:14px;font-size:1.2rem;font-weight:700}
+.desc{margin:10px auto 0;max-width:560px;color:var(--mu)}
+.desc b{color:var(--tx)}
+.hero .btn{margin-top:28px}
+.note{margin-top:14px;color:var(--mu);font-size:.8rem}
+.wrap{max-width:1100px;margin:0 auto;padding:60px 5%}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;margin-bottom:26px;text-align:center}
+.alt{background:var(--sf);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:26px 20px;text-align:center}
+.card .i{font-size:2rem;margin-bottom:8px}
+.card h3{font-size:1.05rem;margin-bottom:4px}
+.card p{color:var(--mu);font-size:.8rem;margin-bottom:16px}
+.card .btn{width:100%}
+.f{padding:22px;text-align:start}
+.f .i{font-size:1.6rem}
+.f h3{margin:8px 0 0;font-size:.98rem}
+.faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px 20px}
+details[open]{border-color:rgba(0,229,255,.25)}
+summary{cursor:pointer;font-weight:700;font-size:.92rem}
+details p{margin-top:10px;color:var(--mu);font-size:.86rem}
+footer{border-top:1px solid var(--bd);padding:26px 5%;text-align:center;color:var(--mu);font-size:.8rem}
+footer a{color:var(--ac)}
+@media(max-width:800px){.links{display:none}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><b><svg viewBox="0 0 64 64" width="26" height="26" fill="none"><rect x="16" y="46" width="32" height="5" rx="2.5" fill="#000"/><rect x="29.5" y="12" width="5" height="28" rx="2.5" fill="#000"/><path d="M20 30 L32 42 L44 30" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></b>Kodna/<span>UrDown</span></a>
+  <div class="links"><a href="#download" data-i="nav_dl">Download</a><a href="#features" data-i="nav_ft">Features</a><a href="#faq" data-i="nav_faq">FAQ</a></div>
+  <div class="nr">
+    <select id="lg" onchange="setLang(this.value)" aria-label="Language">
+      <option value="en">🇬🇧 English</option><option value="ar">🇮🇶 العربية</option><option value="ku">🏔️ کوردی</option><option value="zh">🇨🇳 中文</option><option value="es">🇪🇸 Español</option><option value="ru">🇷🇺 Русский</option>
+    </select>
+    <span class="btn sm" aria-disabled="true"><i class="sp"></i><span data-i="updS">Updating…</span></span>
+  </div>
+</nav>
 
-src = sys.argv[1] if len(sys.argv) > 1 else "urdown.html"
-dst = src.rsplit(".", 1)[0] + "_updating.html"
-html = open(src, encoding="utf-8").read()
+<div class="ban">🔄 <span data-i="upd">Updating to a new version…</span></div>
 
-def once(old, new, s):
-    assert old in s, "anchor not found: " + old[:60]
-    return s.replace(old, new, 1)
+<section class="hero">
+  <div class="hl"><svg viewBox="0 0 1024 1024" fill="none" width="100%" height="100%"><rect width="1024" height="1024" rx="210" fill="#00E5FF"/><rect x="262" y="740" width="500" height="80" rx="40" fill="#07090d"/><rect x="477" y="190" width="70" height="450" rx="35" fill="#07090d"/><path d="M330 450 L512 632 L694 450" stroke="#07090d" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="bdg" data-i="badge">FREE & OPEN SOURCE</div>
+  <h1>Ur<span>Down</span></h1>
+  <p class="sub" data-i="sub">Powerful Video Downloader</p>
+  <p class="desc" data-h="desc">Download videos from <b>1000+ websites</b>.</p>
+  <div class="btn" aria-disabled="true"><i class="sp"></i><span data-i="upd">Updating to a new version…</span></div>
+  <p class="note" data-i="note">Downloads will be back soon with the new version.</p>
+</section>
 
-# 1) CSS: grey out and disable every download button
-css = """
-/* ── Downloads disabled: updating ── */
-.btn-dl-main,.btn-nav-dl,.btn-pl.a,.app-dl-btn,.m-btn-dl,.phone-dl-btn,
-.btn-dl-main.android-mode{
-  pointer-events:none !important;cursor:not-allowed !important;
-  opacity:.6;filter:grayscale(.5);
-  background:var(--surface) !important;color:var(--muted) !important;
-  border:1px solid var(--border2) !important;box-shadow:none !important;
+<section class="alt" id="download"><div class="wrap">
+  <h2 data-i="nav_dl">Download</h2>
+  <div class="grid">
+    <div class="card"><div class="i">🪟</div><h3>Windows</h3><p>Windows 10/11 · 64-bit</p><div class="btn" aria-disabled="true"><i class="sp"></i><span data-i="updS">Updating…</span></div></div>
+    <div class="card"><div class="i">🍎</div><h3>macOS</h3><p>macOS 12+</p><div class="btn" aria-disabled="true"><span data-i="soon">Coming Soon</span></div></div>
+    <div class="card"><div class="i">🤖</div><h3>Android</h3><p>Android 8+ · APK</p><div class="btn" aria-disabled="true"><i class="sp"></i><span data-i="updS">Updating…</span></div></div>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <h2 data-i="nav_ft">Features</h2>
+  <div class="grid">
+    <div class="card f"><div class="i">🌐</div><h3 data-i="f1">1000+ Websites</h3></div>
+    <div class="card f"><div class="i">📡</div><h3 data-i="f2">Live Stream Recording</h3></div>
+    <div class="card f"><div class="i">📋</div><h3 data-i="f3">Playlist Downloads</h3></div>
+    <div class="card f"><div class="i">🔄</div><h3 data-i="f4">Automatic Updates</h3></div>
+    <div class="card f"><div class="i">🌙</div><h3 data-i="f5">Dark Mode</h3></div>
+    <div class="card f"><div class="i">⚡</div><h3 data-i="f6">High Speed</h3></div>
+  </div>
+</div></section>
+
+<section class="alt" id="faq"><div class="wrap">
+  <h2 data-i="nav_faq">FAQ</h2>
+  <div class="faq">
+    <details><summary data-i="q1"></summary><p data-i="a1"></p></details>
+    <details><summary data-i="q2"></summary><p data-i="a2"></p></details>
+    <details><summary data-i="q3"></summary><p data-i="a3"></p></details>
+  </div>
+</div></section>
+
+<footer><span data-i="foot">© 2026 Kodna — Developed by Dhia Darem</span> · <a href="index.html" data-i="back">← Back to Kodna</a> · <a href="https://t.me/kodna_iq" target="_blank" rel="noopener noreferrer">Telegram</a></footer>
+
+<script>
+const L={
+en:{d:'ltr',nav_dl:'Download',nav_ft:'Features',nav_faq:'FAQ',upd:'Updating to a new version…',updS:'Updating…',soon:'Coming Soon',badge:'FREE & OPEN SOURCE',sub:'Powerful Video Downloader for Windows, Mac & Android',desc:'Download videos from <b>1000+ websites</b> with high speed and advanced features.',note:'Downloads will be back soon with the new version.',f1:'1000+ Websites',f2:'Live Stream Recording',f3:'Playlist Downloads',f4:'Automatic Updates',f5:'Dark Mode',f6:'High Speed',q1:'Is UrDown free?',a1:'Yes. It is 100% free and open source, with no registration.',q2:'Which sites are supported?',a2:'YouTube, TikTok, Instagram, Twitter, Facebook, Twitch and hundreds more.',q3:'Why are downloads unavailable?',a3:'The program is being updated to a new version. Downloads will return soon.',foot:'© 2026 Kodna — Developed by Dhia Darem',back:'← Back to Kodna'},
+ar:{d:'rtl',nav_dl:'تحميل',nav_ft:'المميزات',nav_faq:'الأسئلة',upd:'جاري تحديث البرنامج لنسخة جديدة',updS:'جاري التحديث',soon:'قريباً',badge:'مجاني ومفتوح المصدر',sub:'محمّل فيديو احترافي لـ Windows و Mac و Android',desc:'حمّل الفيديوهات من <b>أكثر من 1000 موقع</b> بسرعة عالية ومميزات متقدمة.',note:'سيعود التحميل قريباً مع النسخة الجديدة.',f1:'أكثر من 1000 موقع',f2:'تسجيل البث المباشر',f3:'تحميل قوائم التشغيل',f4:'تحديثات تلقائية',f5:'الوضع الداكن',f6:'سرعة عالية',q1:'هل UrDown مجاني؟',a1:'نعم. مجاني 100% ومفتوح المصدر وبدون تسجيل.',q2:'ما المواقع المدعومة؟',a2:'يوتيوب، تيك توك، إنستغرام، تويتر، فيسبوك، تويتش والمئات غيرها.',q3:'لماذا التحميل غير متاح؟',a3:'البرنامج قيد التحديث لنسخة جديدة، وسيعود التحميل قريباً.',foot:'© 2026 كودنا — تطوير ضياء دارم',back:'العودة إلى كودنا →'},
+ku:{d:'rtl',nav_dl:'داونلۆد',nav_ft:'تایبەتمەندییەکان',nav_faq:'پرسیارەکان',upd:'بەرنامەکە نوێ دەکرێتەوە بۆ وەشانێکی نوێ',updS:'نوێ دەکرێتەوە',soon:'بەمزوانە',badge:'بەخۆڕایی و سەرچاوەکراوە',sub:'داونلۆدەرێکی بەهێز بۆ Windows و Mac و Android',desc:'ڤیدیۆ داونلۆد بکە لە <b>زیاتر لە ١٠٠٠ مالپەڕ</b> بە خێرایی بەرز.',note:'داونلۆد بەمزوانە دەگەڕێتەوە لەگەڵ وەشانی نوێ.',f1:'زیاتر لە ١٠٠٠ مالپەڕ',f2:'تۆمارکردنی پەخشی ڕاستەوخۆ',f3:'داونلۆدی لیستی لێدان',f4:'نوێکارییە خۆکارەکان',f5:'دۆخی تاریک',f6:'خێرایی بەرز',q1:'ئایا UrDown خۆڕاییە؟',a1:'بەڵێ. ١٠٠٪ خۆڕاییە و سەرچاوەکراوەیە.',q2:'چ مالپەڕێک پشتگیری دەکرێت؟',a2:'یوتیوب، تیکتۆک، ئینستاگرام، تویتەر، فەیسبووک و سەدان تر.',q3:'بۆچی داونلۆد بەردەست نییە؟',a3:'بەرنامەکە نوێ دەکرێتەوە بۆ وەشانێکی نوێ.',foot:'© 2026 Kodna — پەرەپێدانی ضیاء دارم',back:'گەڕانەوە بۆ Kodna →'},
+zh:{d:'ltr',nav_dl:'下载',nav_ft:'功能',nav_faq:'常见问题',upd:'正在更新到新版本…',updS:'更新中…',soon:'即将推出',badge:'免费开源',sub:'适用于 Windows、Mac 和 Android 的强大视频下载器',desc:'以高速从 <b>1000+ 个网站</b>下载视频。',note:'新版本发布后将恢复下载。',f1:'1000+ 网站',f2:'直播录制',f3:'播放列表下载',f4:'自动更新',f5:'深色模式',f6:'高速下载',q1:'UrDown 免费吗？',a1:'是的，100% 免费开源，无需注册。',q2:'支持哪些网站？',a2:'YouTube、TikTok、Instagram、Twitter、Facebook、Twitch 等数百个网站。',q3:'为什么暂时无法下载？',a3:'程序正在更新到新版本，下载即将恢复。',foot:'© 2026 Kodna — 由 Dhia Darem 开发',back:'← 返回 Kodna'},
+es:{d:'ltr',nav_dl:'Descargar',nav_ft:'Características',nav_faq:'FAQ',upd:'Actualizando a una nueva versión…',updS:'Actualizando…',soon:'Próximamente',badge:'GRATIS Y OPEN SOURCE',sub:'Potente descargador de vídeos para Windows, Mac y Android',desc:'Descarga vídeos de <b>más de 1000 sitios</b> con alta velocidad.',note:'Las descargas volverán pronto con la nueva versión.',f1:'Más de 1000 sitios',f2:'Grabación en vivo',f3:'Descarga de listas',f4:'Actualizaciones automáticas',f5:'Modo oscuro',f6:'Alta velocidad',q1:'¿UrDown es gratis?',a1:'Sí. 100% gratis y de código abierto, sin registro.',q2:'¿Qué sitios admite?',a2:'YouTube, TikTok, Instagram, Twitter, Facebook, Twitch y cientos más.',q3:'¿Por qué no hay descargas?',a3:'El programa se está actualizando a una nueva versión. Volverán pronto.',foot:'© 2026 Kodna — Desarrollado por Dhia Darem',back:'← Volver a Kodna'},
+ru:{d:'ltr',nav_dl:'Скачать',nav_ft:'Функции',nav_faq:'FAQ',upd:'Идёт обновление до новой версии…',updS:'Обновление…',soon:'Скоро',badge:'БЕСПЛАТНО И OPEN SOURCE',sub:'Мощный загрузчик видео для Windows, Mac и Android',desc:'Загружайте видео с <b>1000+ сайтов</b> с высокой скоростью.',note:'Загрузка скоро вернётся с новой версией.',f1:'1000+ сайтов',f2:'Запись трансляций',f3:'Загрузка плейлистов',f4:'Автообновления',f5:'Тёмная тема',f6:'Высокая скорость',q1:'UrDown бесплатный?',a1:'Да. 100% бесплатно, открытый код, без регистрации.',q2:'Какие сайты поддерживаются?',a2:'YouTube, TikTok, Instagram, Twitter, Facebook, Twitch и сотни других.',q3:'Почему загрузка недоступна?',a3:'Программа обновляется до новой версии. Скоро всё вернётся.',foot:'© 2026 Kodna — Разработано Dhia Darem',back:'← Вернуться к Kodna'}
+};
+function setLang(l){
+  if(!L[l])l='ar';
+  const t=L[l],r=document.getElementById('r');
+  r.lang=l;r.dir=t.d;document.body.className=l;
+  document.getElementById('lg').value=l;
+  document.querySelectorAll('[data-i]').forEach(e=>{if(t[e.dataset.i]!==undefined)e.textContent=t[e.dataset.i]});
+  document.querySelectorAll('[data-h]').forEach(e=>{if(t[e.dataset.h]!==undefined)e.innerHTML=t[e.dataset.h]});
+  try{localStorage.setItem('kodna_lang',l)}catch(e){}
 }
-.ban-link{display:none !important}
-</style>"""
-html = once("</style>", css, html)
-
-# 2) JS: override translations (placed right before the GitHub section)
-js = """const UPD_LONG={
-  en:'Updating to a new version…',
-  ar:'جاري تحديث البرنامج لنسخة جديدة',
-  ku:'بەرنامەکە نوێ دەکرێتەوە بۆ وەشانێکی نوێ',
-  zh:'正在更新到新版本…',
-  es:'Actualizando a una nueva versión…',
-  ru:'Идёт обновление до новой версии…'};
-const UPD_SHORT={en:'Updating…',ar:'جاري التحديث',ku:'نوێ دەکرێتەوە',zh:'更新中…',es:'Actualizando…',ru:'Обновление…'};
-for(const l in T){
-  T[l].btn_win=UPD_LONG[l];T[l].btn_and=UPD_LONG[l];
-  T[l].nav_dl_btn=UPD_SHORT[l];T[l].ban_text=UPD_LONG[l];T[l].ban_link='';
-}
-
-const GH_LATEST ="""
-html = once("const GH_LATEST =", js, html)
-
-# 3) JS: disable the download function
-html, n = re.subn(r"function startDownload\(url\)\{.*?\n\}\n",
-                  "function startDownload(){ return false; }\n", html, count=1, flags=re.S)
-assert n == 1, "startDownload not found"
-
-# 4) JS: Android detection must not overwrite the text with 'Download'
-html = once("btnSpan.textContent=(lang==='ar')?'تحميل للـ Android':'Download for Android';",
-            "btnSpan.textContent=T[currentLang].btn_and;", html)
-
-open(dst, "w", encoding="utf-8").write(html)
-print("Done ->", dst)
+(function(){
+  let l=null;
+  try{l=localStorage.getItem('kodna_lang')}catch(e){}
+  if(!l||!L[l]){
+    const n=(navigator.language||'ar').slice(0,2).toLowerCase();
+    l=L[n]?n:(n==='ck'?'ku':'ar');
+  }
+  setLang(l);
+})();
+</script>
+</body>
+</html>
