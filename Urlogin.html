@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07090d">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self';">
+<title>UrLogin — تجاوز تحقق «أنا إنسان» (QR) على X تلقائياً عبر ADB | Auto-Pass X Human Verification · Kodna</title>
+<meta name="description" content="UrLogin: برنامج ويندوز يفتح حسابات X التي تطلب تأكيد «أنا إنسان» (مسح QR) تلقائياً من داخل تطبيق X الحقيقي على أجهزة أندرويد حقيقية عبر ADB، مع فحص صحة الحسابات عبر API، تعبئة 2FA تلقائياً، ودعم عدة أجهزة متزامنة. Windows program that automatically passes X's 'confirm you are human' QR verification from inside the real X app on real Android devices via ADB — API account verification, automatic 2FA, multi-device support.">
+<meta name="keywords" content="UrLogin,تجاوز تحقق الإنسان X,confirm you are human X,X QR verification bypass,أتمتة تسجيل الدخول X,ADB automation,bulk X login,تسجيل دخول جماعي,Kodna">
+<meta name="author" content="Kodna / Dhia Darem">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://kodna.org/urlogin.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kodna.org/urlogin.html">
+<meta property="og:title" content="UrLogin — Auto-Pass X's Human Verification (QR) via ADB · Kodna">
+<meta property="og:description" content="يفتح حسابات X المطلوب تأكيدها بمسح QR تلقائياً عبر تطبيق X الحقيقي على هاتف متصل بالكمبيوتر. Automatically passes X's QR human-verification check via a real connected Android phone.">
+<meta property="og:site_name" content="Kodna">
+<meta property="og:image" content="https://kodna.org/urlogin_icon_512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UrLogin — Auto-Pass X's Human Verification (QR) via ADB">
+<meta name="twitter:description" content="يفتح حسابات X المطلوب تأكيدها تلقائياً من هاتف حقيقي متصل / Auto-passes X's human verification from a real connected phone. By Kodna.">
+<meta name="twitter:image" content="https://kodna.org/urlogin_icon_512.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UrLogin","operatingSystem":"Windows 10, Windows 11","applicationCategory":"UtilitiesApplication","description":"Automatically passes X (Twitter)'s 'confirm you are human' QR verification by opening flagged accounts inside the real X app on real Android devices connected via ADB — plus API account verification, automatic 2FA, and multi-device support.","offers":{"@type":"Offer","priceCurrency":"USD","price":"0"},"publisher":{"@type":"Organization","name":"Kodna"},"inLanguage":["ar","en","ku","zh","es","ru"]}
+</script>
+<link rel="icon" type="image/png" href="urlogin_icon_512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --bg:#07090d;--surface:#0e1117;--card:#12151c;
+  --accent:#00e5ff;--accent2:#7c3aed;
+  --text:#e8eaf0;--muted:#6b7280;
+  --border:#1a1f2e;--border2:#232840;
+  --r:14px;--r-lg:22px;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Plus Jakarta Sans','Cairo',sans-serif;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+body.lang-ar,body.lang-ku{font-family:'Cairo',sans-serif}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+section{position:relative;z-index:1}
+
+/* ═══════════════════════════════════════════
+   AMBIENT
+═══════════════════════════════════════════ */
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,229,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,229,255,.025) 1px,transparent 1px);
+  background-size:70px 70px;animation:gridMove 25s linear infinite;
+}
+@keyframes gridMove{to{background-position:70px 70px}}
+.blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+.blob1{width:600px;height:600px;background:rgba(124,58,237,.1);top:-200px;left:-150px;animation:bf 14s ease-in-out infinite}
+.blob2{width:500px;height:500px;background:rgba(0,229,255,.07);bottom:-150px;right:-100px;animation:bf 18s ease-in-out infinite reverse}
+@keyframes bf{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,30px)}}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:rgba(7,9,13,.92);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-icon{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:900;flex-shrink:0;
+  box-shadow:0 4px 18px rgba(124,58,237,.4);font-family:'Cairo',sans-serif;color:#fff;
+}
+.brand-text{font-family:'Space Mono',monospace;font-size:1.15rem;font-weight:700;color:var(--text)}
+.brand-text span{color:var(--accent)}
+.nav-center{display:flex;gap:24px;list-style:none}
+.nav-center a{color:var(--muted);font-size:.9rem;font-weight:600;transition:color .2s}
+.nav-center a:hover{color:var(--accent)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn-nav{padding:8px 18px;border-radius:8px;font-weight:700;font-size:.85rem;transition:all .2s;cursor:pointer;border:none;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.btn-nav.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-nav.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-nav.fill{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff}
+.btn-nav.fill:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+
+/* Lang Switcher */
+.lang-sw{position:relative}
+.lang-btn{
+  display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;font-weight:600;transition:all .2s;
+}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-btn .chev{font-size:.6rem;transition:transform .2s}
+.lang-btn.open .chev{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;top:calc(100%+8px);right:0;
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:var(--r);padding:6px;min-width:162px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  display:none;flex-direction:column;gap:2px;z-index:500;
+}
+html[dir=ltr] .lang-menu{right:0;left:auto}
+html[dir=rtl] .lang-menu{left:0;right:auto}
+.lang-menu.open{display:flex}
+.lang-item{
+  display:flex;align-items:center;gap:9px;padding:9px 12px;
+  border-radius:8px;border:none;background:transparent;
+  color:var(--muted);font-size:.83rem;font-weight:600;
+  text-align:right;width:100%;cursor:pointer;transition:all .15s;
+}
+html[dir=ltr] .lang-item{text-align:left}
+.lang-item:hover{background:var(--surface);color:var(--text)}
+.lang-item.active{background:rgba(0,229,255,.08);color:var(--accent);border:1px solid rgba(0,229,255,.15)}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{
+  display:none;position:fixed;top:67px;left:0;right:0;z-index:999;
+  background:rgba(7,9,13,.98);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);padding:20px 5%;flex-direction:column;gap:0;
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--muted);font-size:1rem;font-weight:600;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s}
+.mobile-nav a:hover{color:var(--accent)}
+.mobile-nav a:last-of-type{border-bottom:none}
+.mob-lang-row{padding:14px 0;border-top:1px solid var(--border);display:flex;gap:7px;flex-wrap:wrap}
+.mob-lang-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--muted);cursor:pointer;font-size:.82rem;transition:all .2s}
+.mob-lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ═══════════════════════════════════════════
+   HERO / SECTIONS (shared tokens)
+═══════════════════════════════════════════ */
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);
+  border-radius:100px;padding:7px 18px;
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  color:#a78bfa;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:28px;animation:fadeUp .8s ease both;
+}
+.eyebrow-dot{width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
+.hero-title{font-size:clamp(2.6rem,8vw,7rem);font-weight:900;line-height:1.05;letter-spacing:-1px;animation:fadeUp .8s .1s ease both}
+.hero-desc{margin-top:20px;font-size:clamp(.9rem,2vw,1.05rem);color:var(--muted);line-height:1.9;max-width:540px;animation:fadeUp .8s .2s ease both}
+.hero-desc strong{color:var(--text)}
+.hero-cta{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .3s ease both}
+.btn-hero-main{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;font-weight:700;font-size:clamp(.9rem,2vw,1rem);padding:14px 28px;border-radius:14px;text-decoration:none;box-shadow:0 8px 32px rgba(124,58,237,.35);transition:all .2s}
+.btn-hero-main:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(124,58,237,.5)}
+.btn-hero-ghost{display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;color:var(--text);font-weight:600;font-size:clamp(.9rem,2vw,1rem);padding:14px 24px;border-radius:14px;text-decoration:none;border:1px solid var(--border);transition:all .2s}
+.btn-hero-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 5%}
+.sec-header{margin-bottom:44px}
+.sec-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);padding:5px 14px;border:1px solid rgba(0,229,255,.25);border-radius:100px;background:rgba(0,229,255,.06);margin-bottom:14px}
+.sec-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1px;line-height:1.1}
+.badge{font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 9px;border-radius:100px;font-weight:700}
+.badge.new{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.badge.pro{background:rgba(244,114,182,.1);color:#f472b6;border:1px solid rgba(244,114,182,.25)}
+.badge.free{background:rgba(0,229,255,.1);color:var(--accent);border:1px solid rgba(0,229,255,.2)}
+
+/* ═══════════════════════════════════════════
+   CTA / FOOTER
+═══════════════════════════════════════════ */
+.cta-section{padding:60px 5%}
+.cta-inner{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(0,229,255,.08));border:1px solid rgba(124,58,237,.25);border-radius:24px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,.07) 0%,transparent 70%);pointer-events:none}
+.cta-title{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:900;margin-bottom:14px}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS / RESPONSIVE
+═══════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.rev{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+@media(max-width:1024px){.btn-nav.ghost{display:none}}
+@media(max-width:768px){.nav-center,.nav-actions{display:none}.hamburger{display:flex}.lang-sw{display:block!important}}
+html[dir=ltr] .nav-center{flex-direction:row}
+html[dir=ltr] .cta-inner{direction:ltr}
+
+/* ═══════════════════════════════════════════
+   UrLogin PRODUCT PAGE
+═══════════════════════════════════════════ */
+.uc-hero{display:grid;grid-template-columns:1fr 1.35fr;gap:52px;align-items:center;padding:120px 5% 60px;max-width:1320px;margin:0 auto}
+.uc-badges{display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap}
+.uc-note{color:var(--muted);font-size:.8rem;margin-top:14px}
+.uc-section{max-width:1200px;margin:0 auto;padding:40px 5%}
+.sec-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:480px;margin-top:10px}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:transform .2s,border-color .2s}
+.feat-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.feat-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;background:linear-gradient(135deg,rgba(0,229,255,.16),rgba(124,58,237,.1));border:1px solid rgba(0,229,255,.25)}
+.feat-card h4{font-size:.95rem;margin-bottom:6px}
+.feat-card p{color:var(--muted);font-size:.83rem;line-height:1.7}
+
+/* Spec panel replacing the video area (no demo video yet) */
+.spec-panel{background:var(--card);border:1px solid var(--border2);border-radius:18px;padding:30px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.spec-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.spec-row:last-child{border-bottom:none}
+.spec-ic{width:36px;height:36px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2)}
+.spec-row h4{font-size:.85rem;margin-bottom:3px}
+.spec-row p{color:var(--muted);font-size:.78rem;line-height:1.6}
+
+/* Problem → Solution section (X human-verification QR challenge) */
+.problem-grid{display:grid;grid-template-columns:1fr auto 1.15fr;gap:30px;align-items:center;margin-top:36px}
+.challenge-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.challenge-bar{display:flex;gap:6px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--surface)}
+.challenge-bar span{width:9px;height:9px;border-radius:50%;background:var(--border2)}
+.challenge-body{padding:28px 24px;text-align:center}
+.challenge-body h3{font-size:1.15rem;margin-bottom:8px}
+.challenge-body p{color:var(--muted);font-size:.82rem;margin-bottom:20px}
+.qr-mock{width:118px;height:118px;margin:0 auto;background:#fff;border-radius:8px;padding:9px;display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);gap:2px}
+.qr-mock i{background:#0a0d12;border-radius:1px}
+.qr-mock i.off{background:transparent}
+.qr-finder{position:relative}
+.problem-arrow{font-size:1.6rem;color:var(--accent);text-align:center;transition:transform .2s}
+html[dir=ltr] .problem-arrow{transform:scaleX(-1)}
+.solution-steps{display:flex;flex-direction:column;gap:16px}
+.p-step{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px}
+.p-ic{width:38px;height:38px;flex-shrink:0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;background:linear-gradient(135deg,rgba(0,229,255,.16),rgba(124,58,237,.1));border:1px solid rgba(0,229,255,.25)}
+.p-step h4{font-size:.9rem;margin-bottom:4px}
+.p-step p{color:var(--muted);font-size:.8rem;line-height:1.7}
+@media(max-width:900px){.problem-grid{grid-template-columns:1fr}html[dir] .problem-arrow{transform:rotate(90deg)}}
+
+/* Demo video (inline, native — not an iframe) */
+.demo-stage{position:relative;width:100%;max-width:880px;margin:36px auto 0;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:radial-gradient(900px 420px at 15% -10%,rgba(0,229,255,.08),transparent 60%),radial-gradient(760px 420px at 110% 110%,rgba(124,58,237,.1),transparent 60%),var(--surface);border:1px solid var(--border2);box-shadow:0 30px 70px -30px rgba(0,0,0,.6)}
+.demo-scene{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:4% 6%;opacity:0;transform:scale(1.015);transition:opacity .5s ease,transform .6s ease}
+.demo-scene.active{display:flex;opacity:1;transform:scale(1)}
+.demo-cap{position:absolute;left:5%;right:5%;bottom:6%;text-align:center;z-index:5}
+.demo-cap span{display:inline-block;background:rgba(7,9,13,.82);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:12px;padding:10px 18px;font-size:clamp(12px,1.7vw,16px);font-weight:600;color:var(--text);line-height:1.6;max-width:94%}
+.demo-duo{display:flex;align-items:center;justify-content:center;gap:4%;width:100%;height:100%}
+.demo-lap{width:52%;max-width:420px;aspect-ratio:16/10.5;background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:3%;position:relative;box-shadow:0 18px 40px -20px rgba(0,0,0,.7)}
+.demo-lap:before{content:"";position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);width:30%;height:6px;background:var(--border2);border-radius:0 0 7px 7px}
+.demo-lap-head{display:flex;align-items:center;gap:5px;margin-bottom:8%}
+.demo-lap-head i{width:6px;height:6px;border-radius:50%;background:var(--border2);display:block}
+.demo-lap-body{font-size:11px;color:var(--text);height:78%;display:flex;flex-direction:column;gap:6%}
+.demo-phone{width:22%;max-width:140px;aspect-ratio:9/18.5;background:var(--card);border:3px solid var(--border2);border-radius:24px;padding:5% 4%;position:relative;box-shadow:0 18px 40px -20px rgba(0,0,0,.7)}
+.demo-phone:before{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:28%;height:4px;border-radius:3px;background:var(--border2)}
+.demo-ph-body{font-size:9px;color:var(--text);height:100%;display:flex;flex-direction:column;gap:5%}
+.demo-cable{width:50px;height:3px;background:linear-gradient(90deg,var(--border2),var(--accent));border-radius:3px;position:relative}
+.demo-cable .p{position:absolute;top:-3px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:demoTravel 1.6s linear infinite}
+@keyframes demoTravel{0%{left:0}100%{left:calc(100% - 9px)}}
+.demo-row{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:5% 6%}
+.demo-btn{background:var(--accent);color:#07090d;font-weight:800;border-radius:7px;padding:6% 4%;text-align:center}
+.demo-pill{font-size:9px;font-weight:800;padding:3px 7px;border-radius:999px}
+.demo-pill.ok{background:rgba(52,211,153,.14);color:#34d399}
+.demo-pill.wait{background:rgba(107,114,128,.18);color:var(--muted)}
+.demo-switch{width:28px;height:15px;border-radius:999px;background:var(--surface);border:1px solid var(--border2);position:relative}
+.demo-switch.on{background:rgba(0,229,255,.25)}
+.demo-switch i{position:absolute;top:1px;width:11px;height:11px;border-radius:50%;background:var(--accent);transition:all .3s;left:calc(100% - 13px)}
+.demo-qr-mini{width:72px;height:72px;margin:0 auto;background:#fff;border-radius:6px;padding:6px;display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);gap:1.4px}
+.demo-qr-mini i{background:#0a0d12;border-radius:1px}
+.demo-qr-mini i.off{background:transparent}
+.demo-toast{background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.35);color:#34d399;font-size:9px;font-weight:700;border-radius:8px;padding:6px 10px;text-align:center}
+.demo-controls{display:flex;align-items:center;gap:10px;margin:16px auto 0;max-width:880px}
+.demo-ctrl{width:38px;height:38px;border-radius:50%;border:1px solid var(--border2);background:var(--card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px}
+.demo-ctrl.main{background:var(--accent);color:#07090d;border:none;width:44px;height:44px}
+.demo-scrub{flex:1;display:flex;gap:3px;height:24px;align-items:center}
+.demo-seg{flex:1;height:5px;border-radius:4px;background:var(--surface);border:1px solid var(--border);cursor:pointer;position:relative;overflow:hidden}
+.demo-seg .f{position:absolute;inset:0;width:0%;background:var(--accent)}
+.demo-time{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:70px;text-align:center;font-weight:600}
+@media(max-width:640px){.demo-lap-body{font-size:9px}.demo-ph-body{font-size:7.5px}}
+
+/* Specs table section */
+.specs-table{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.specs-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.specs-item .k{color:var(--muted);font-size:.82rem}
+.specs-item .v{font-weight:700;font-size:.85rem;text-align:left}
+html[dir=rtl] .specs-item .v{text-align:left}
+
+.buy-card{max-width:560px;margin:10px auto 0;background:var(--card);border:1px solid rgba(0,229,255,.25);border-radius:20px;padding:34px;text-align:center}
+.buy-price{font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--accent);margin:6px 0 4px}
+.uc-foot{border-top:1px solid var(--border);margin-top:40px;padding:34px 5%;text-align:center;color:var(--muted)}
+.uc-foot .fb{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+.uc-foot .fl{display:flex;gap:18px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+.uc-foot a{color:var(--muted)}.uc-foot a:hover{color:var(--accent)}
+@media(max-width:900px){.uc-hero{grid-template-columns:1fr;gap:30px;padding:96px 5% 40px}.feat-grid{grid-template-columns:1fr 1fr}.specs-table{grid-template-columns:1fr}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body class="lang-ar">
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="blob blob1" aria-hidden="true"></div>
+<div class="blob blob2" aria-hidden="true"></div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-brand" href="index.html" aria-label="Kodna home">
+    <div class="brand-icon" aria-hidden="true">ك</div>
+    <span class="brand-text">Kodna<span>.</span></span>
+  </a>
+  <ul class="nav-center" aria-label="Site sections">
+    <li><a href="index.html#programs" data-i18n="nav_programs">البرامج</a></li>
+    <li><a href="#problem" data-i18n="nav_problem">تأكيد الإنسان</a></li>
+    <li><a href="#features" data-i18n="nav_features">المميزات</a></li>
+    <li><a href="#get" data-i18n="nav_get">الحصول عليه</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="lang-sw" id="langSw">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()" aria-label="Change language" aria-haspopup="true">
+        <span id="langFlag">🇮🇶</span><span id="langCode">AR</span>
+        <i class="fa-solid fa-chevron-down chev" id="langChev"></i>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button class="lang-item" onclick="setLang('ar')" data-lang="ar" role="menuitem">🇮🇶 العربية</button>
+        <button class="lang-item" onclick="setLang('en')" data-lang="en" role="menuitem">🇬🇧 English</button>
+        <button class="lang-item" onclick="setLang('ku')" data-lang="ku" role="menuitem">🏔️ کوردی</button>
+        <button class="lang-item" onclick="setLang('zh')" data-lang="zh" role="menuitem">🇨🇳 中文</button>
+        <button class="lang-item" onclick="setLang('es')" data-lang="es" role="menuitem">🇪🇸 Español</button>
+        <button class="lang-item" onclick="setLang('ru')" data-lang="ru" role="menuitem">🇷🇺 Русский</button>
+      </div>
+    </div>
+    <a class="btn-nav fill dl-link" href="#" download rel="noopener" data-i18n="nav_download">⬇ تحميل</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav" role="navigation">
+  <a href="index.html#programs" onclick="toggleMenu()" data-i18n="mobile_programs">📦 البرامج</a>
+  <a href="#problem" onclick="toggleMenu()" data-i18n="mobile_problem">🤖 تأكيد الإنسان</a>
+  <a href="#features" onclick="toggleMenu()" data-i18n="mobile_features">⭐ المميزات</a>
+  <a href="#get" onclick="toggleMenu()" data-i18n="mobile_get">⬇ الحصول عليه</a>
+  <div class="mob-lang-row">
+    <button class="mob-lang-btn" onclick="setLang('ar');toggleMenu()">🇮🇶 AR</button>
+    <button class="mob-lang-btn" onclick="setLang('en');toggleMenu()">🇬🇧 EN</button>
+    <button class="mob-lang-btn" onclick="setLang('ku');toggleMenu()">🏔️ KU</button>
+    <button class="mob-lang-btn" onclick="setLang('zh');toggleMenu()">🇨🇳 ZH</button>
+    <button class="mob-lang-btn" onclick="setLang('es');toggleMenu()">🇪🇸 ES</button>
+    <button class="mob-lang-btn" onclick="setLang('ru');toggleMenu()">🇷🇺 RU</button>
+  </div>
+</div>
+
+<header class="uc-hero">
+  <div>
+    <img src="urlogin_icon_512.png" alt="UrLogin logo" width="88" height="88" style="display:block;margin-bottom:14px;border-radius:20px;filter:drop-shadow(0 8px 22px rgba(0,229,255,.35))">
+    <div class="hero-eyebrow"><div class="eyebrow-dot" aria-hidden="true"></div><span data-i18n="hero_eyebrow">برنامج احترافي من كودنا</span></div>
+    <h1 class="hero-title" style="margin-top:14px">UrLogin</h1>
+    <div class="uc-badges">
+      <span class="badge new" data-i18n="badge_new">جديد</span>
+      <span class="badge pro" data-i18n="badge_paid">مدفوع</span>
+      <span class="badge free" data-i18n="badge_windows">Windows</span>
+    </div>
+    <p class="hero-desc" data-i18n="hero_desc">أتمتة تسجيل الدخول الجماعي لحسابات X.</p>
+    <div class="hero-cta">
+      <a class="btn-hero-main dl-link" href="#" download rel="noopener" data-i18n="btn_download">⬇ تحميل UrLogin</a>
+      <a class="btn-hero-ghost" href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20UrLogin" target="_blank" rel="noopener" data-i18n="btn_license">🔑 احصل على ترخيص</a>
+    </div>
+  </div>
+  <div>
+    <div class="spec-panel">
+      <div class="spec-row">
+        <div class="spec-ic">🔒</div>
+        <div><h4 data-i18n="sp1t">ترخيص مرتبط بالجهاز</h4><p data-i18n="sp1d">حماية حقيقية — كل اشتراك يعمل على جهاز واحد فقط.</p></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-ic">📱</div>
+        <div><h4 data-i18n="sp2t">دعم عدة أجهزة أندرويد معاً</h4><p data-i18n="sp2d">شغّل وراقب عدة هواتف متصلة في آنٍ واحد من شاشة واحدة.</p></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-ic">🌍</div>
+        <div><h4 data-i18n="sp3t">واجهة بثلاث لغات</h4><p data-i18n="sp3d">العربية والإنجليزية والروسية، قابلة للتبديل الفوري.</p></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-ic">💻</div>
+        <div><h4 data-i18n="sp4t">Windows 10/11</h4><p data-i18n="sp4d">برنامج سطح مكتب خفيف، لا يحتاج تثبيت Python أو أي أدوات إضافية.</p></div>
+      </div>
+    </div>
+    <p class="uc-note" data-i18n="video_note">التحميل مباشر، والتفعيل عبر ترخيص مرتبط بجهازك.</p>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<section class="uc-section rev" id="problem">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_problem">المشكلة</div>
+    <h2 class="sec-title" data-i18n="problem_title">تأكيد «أنا إنسان» الذي يطلبه X — ويحلّه UrLogin تلقائياً</h2>
+    <p class="sec-desc" data-i18n="problem_desc">أحياناً يوقف X حساباً ويطلب تأكيد أنه ملكٌ لإنسان حقيقي، عبر مسح رمز QR بكاميرا هاتف مثبَّت عليه تطبيق X. مع عشرات أو مئات الحسابات، هذا يعني مسحاً يدوياً حساباً بعد حساب.</p>
+  </div>
+  <div class="problem-grid">
+    <div class="challenge-card" aria-hidden="true">
+      <div class="challenge-bar"><span></span><span></span><span></span></div>
+      <div class="challenge-body">
+        <h3 data-i18n="challenge_title">تأكيد أنك إنسان</h3>
+        <p data-i18n="challenge_sub">امسح الرمز بكاميرا الهاتف للمتابعة</p>
+        <div class="qr-mock"><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i></div>
+      </div>
+    </div>
+    <div class="problem-arrow" aria-hidden="true">⟵</div>
+    <div class="solution-steps">
+      <div class="p-step">
+        <div class="p-ic">⚠️</div>
+        <div><h4 data-i18n="pstep1t">متى يظهر هذا التحدي؟</h4><p data-i18n="pstep1d">عند حسابات جديدة، كثيرة النشاط الآلي، أو مُستخدَمة من جهاز/موقع غير معتاد.</p></div>
+      </div>
+      <div class="p-step">
+        <div class="p-ic">📱</div>
+        <div><h4 data-i18n="pstep2t">كيف يحلّه UrLogin؟</h4><p data-i18n="pstep2d">يفتح كل حساب فعلياً داخل تطبيق X الحقيقي على هاتف أندرويد متصل بالكمبيوتر — فيبدو الحساب وكأنه يُستخدَم من هاتف إنسان حقيقي.</p></div>
+      </div>
+      <div class="p-step">
+        <div class="p-ic">✅</div>
+        <div><h4 data-i18n="pstep3t">النتيجة</h4><p data-i18n="pstep3d">التحقق يُجتاز تلقائياً لعدد كبير من الحسابات دفعة واحدة، دون مسح QR يدوي لكل حساب على حدة.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="uc-section rev" id="demo">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_demo">شاهد كيف يعمل</div>
+    <h2 class="sec-title" data-i18n="demo_title">من QR إلى حساب مؤكَّد — بالفيديو</h2>
+    <p class="sec-desc" data-i18n="demo_desc">عرض تفاعلي مباشر لكل خطوة، من التحدي الذي يطرحه X حتى تأكيد الحساب تلقائياً.</p>
+  </div>
+
+  <div class="demo-stage" id="demoStage">
+    <div class="demo-scene active" data-idx="0">
+      <div style="text-align:center">
+        <h4 data-i18n="challenge_title" style="margin-bottom:4px">تأكيد أنك إنسان</h4>
+        <p style="color:var(--muted);font-size:.75rem;margin-bottom:14px" data-i18n="challenge_sub">امسح الرمز بكاميرا الهاتف للمتابعة</p>
+        <div class="demo-qr-mini"><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i></div>
+      </div>
+    </div>
+    <div class="demo-scene" data-idx="1">
+      <div class="demo-duo">
+        <div class="demo-lap"><div class="demo-lap-head"><i></i><i></i><i></i></div>
+          <div class="demo-lap-body" style="align-items:center;justify-content:center;text-align:center;font-weight:800">UrLogin</div></div>
+        <div class="demo-cable"><div class="p"></div></div>
+        <div class="demo-phone"><div class="demo-ph-body" style="align-items:center;justify-content:center;text-align:center;color:var(--accent)">📱</div></div>
+      </div>
+    </div>
+    <div class="demo-scene" data-idx="2">
+      <div class="demo-duo">
+        <div class="demo-lap"><div class="demo-lap-head"><i></i><i></i><i></i></div>
+          <div class="demo-lap-body"><div class="demo-row"><span>Connected Devices</span><span style="color:var(--muted)">—</span></div></div></div>
+        <div class="demo-cable"><div class="p"></div></div>
+        <div class="demo-phone"><div class="demo-ph-body" style="align-items:center;justify-content:center;text-align:center;color:var(--muted)">USB</div></div>
+      </div>
+    </div>
+    <div class="demo-scene" data-idx="3">
+      <div class="demo-phone" style="margin:0 auto">
+        <div class="demo-ph-body">
+          <div style="font-size:8px;color:var(--muted);font-weight:700">About phone</div>
+          <div class="demo-row"><span>Build number</span><span id="demoTapN" style="color:var(--accent);font-weight:800">1</span></div>
+          <div class="demo-toast" id="demoDevToast" style="margin-top:auto;opacity:0;transition:opacity .4s">✓ Developer mode</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-scene" data-idx="4">
+      <div class="demo-phone" style="margin:0 auto">
+        <div class="demo-ph-body">
+          <div style="font-size:8px;color:var(--muted);font-weight:700">Developer options</div>
+          <div class="demo-row"><span>USB debugging</span><div class="demo-switch on"><i></i></div></div>
+          <div class="demo-toast" id="demoUsbToast" style="margin-top:auto;opacity:0;transition:opacity .4s">✓ Allowed</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-scene" data-idx="5">
+      <div class="demo-lap" style="margin:0 auto">
+        <div class="demo-lap-head"><i></i><i></i><i></i></div>
+        <div class="demo-lap-body">
+          <div class="demo-btn">Check All Accounts</div>
+          <div class="demo-row"><span>user_01</span><span class="demo-pill ok" id="demoP1">✓</span></div>
+          <div class="demo-row"><span>user_02</span><span class="demo-pill wait" id="demoP2">…</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-scene" data-idx="6">
+      <div class="demo-duo">
+        <div class="demo-lap"><div class="demo-lap-head"><i></i><i></i><i></i></div>
+          <div class="demo-lap-body" style="align-items:center;justify-content:center;text-align:center;color:#34d399;font-weight:700">✓ 10 accounts</div></div>
+        <div class="demo-cable"><div class="p"></div></div>
+        <div class="demo-phone"><div class="demo-ph-body" style="align-items:center;justify-content:center;text-align:center" id="demoPhoneResult">
+          <div class="demo-qr-mini" id="demoQrFade" style="width:46px;height:46px;transition:opacity .5s"><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i></div>
+          <div style="color:#34d399;font-weight:800;opacity:0;transition:opacity .5s;margin-top:6px" id="demoCheckMark">✓</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="demo-scene" data-idx="7">
+      <div style="text-align:center">
+        <div style="font-weight:900;font-size:clamp(20px,3vw,30px)">Ur<span style="color:var(--accent)">Login</span></div>
+      </div>
+    </div>
+
+    <div class="demo-cap"><span id="demoCapTxt" data-i18n="demo_cap1">X يوقف حساباً ويطلب مسح رمز QR بكاميرا هاتف فيه تطبيقه لتأكيد أنك إنسان</span></div>
+  </div>
+
+  <div class="demo-controls">
+    <button class="demo-ctrl" id="demoPrev" aria-label="Previous">⟨</button>
+    <button class="demo-ctrl main" id="demoPlay" aria-label="Play/Pause">❚❚</button>
+    <button class="demo-ctrl" id="demoNext" aria-label="Next">⟩</button>
+    <div class="demo-scrub" id="demoScrub"></div>
+    <div class="demo-time" id="demoTime">0:00 / 0:00</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="uc-section rev" id="features">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_features">المميزات</div>
+    <h2 class="sec-title" data-i18n="features_title">كل ما تحتاجه لإدارة حساباتك على X</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card"><div class="feat-ic">🔐</div><h4 data-i18n="f1t">أتمتة تسجيل دخول جماعية</h4><p data-i18n="f1d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">📱</div><h4 data-i18n="f2t">عدة أجهزة متزامنة</h4><p data-i18n="f2d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">🔍</div><h4 data-i18n="f3t">فحص صحة الحسابات عبر API</h4><p data-i18n="f3d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">🔢</div><h4 data-i18n="f4t">تعبئة 2FA تلقائياً</h4><p data-i18n="f4d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">🛡️</div><h4 data-i18n="f5t">حماية الحسابات من الفقدان</h4><p data-i18n="f5d">.</p></div>
+    <div class="feat-card"><div class="feat-ic">🌍</div><h4 data-i18n="f6t">واجهة ثلاثية اللغة</h4><p data-i18n="f6d">.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="uc-section rev">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_specs">المواصفات</div>
+    <h2 class="sec-title" data-i18n="specs_title">المواصفات التقنية</h2>
+  </div>
+  <div class="specs-table">
+    <div class="specs-item"><span class="k" data-i18n="sk1">نظام التشغيل</span><span class="v">Windows 10 / 11</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk2">جهاز أندرويد مطلوب</span><span class="v" data-i18n="sv2">نعم، عبر USB مع تفعيل تصحيح USB</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk3">نظام الترخيص</span><span class="v" data-i18n="sv3">مرتبط بالجهاز</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk4">الاتصال بالإنترنت</span><span class="v" data-i18n="sv4">مطلوب للتفعيل وفحص الحسابات</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk5">التحديثات</span><span class="v" data-i18n="sv5">مستمرة عبر كودنا</span></div>
+    <div class="specs-item"><span class="k" data-i18n="sk6">لغة الواجهة</span><span class="v" data-i18n="sv6">العربية، الإنجليزية، الروسية</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="cta-section rev" id="get">
+  <div class="cta-inner" style="text-align:center;max-width:640px;margin:0 auto">
+    <div class="sec-tag" data-i18n="sec_get" style="display:inline-block">الحصول على UrLogin</div>
+    <h2 class="cta-title" style="margin-top:12px" data-i18n="get_title">حمّل البرنامج وفعّله</h2>
+    <div class="buy-card">
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.8" data-i18n="get_desc">.</p>
+      <div class="buy-price" data-i18n="get_price">تواصل لمعرفة السعر</div>
+      <div class="hero-cta" style="justify-content:center;margin-top:18px">
+        <a class="btn-hero-main dl-link" href="#" download rel="noopener" data-i18n="btn_download2">⬇ تحميل UrLogin</a>
+        <a class="btn-hero-ghost" href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20UrLogin" target="_blank" rel="noopener" data-i18n="btn_license2">🔑 تفعيل عبر واتساب</a>
+      </div>
+      <p class="uc-note" data-i18n="get_note">.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="uc-foot">
+  <div class="fb"><img src="urlogin_icon_512.png" width="30" height="30" alt="" style="border-radius:7px"><strong style="color:var(--text)">UrLogin</strong></div>
+  <p data-i18n="foot_tag">برامج وأدوات رقمية عملية من كودنا.</p>
+  <div class="fl">
+    <a href="index.html" data-i18n="nav_programs">البرامج</a>
+    <a href="urx.html">Ur_X</a>
+    <a href="https://wa.me/9647901300262?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20UrLogin" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <p style="font-size:.8rem" data-i18n="foot_copy">© 2026 كودنا — تطوير ضياء دارم</p>
+</footer>
+
+<script>
+const T = {
+"ar":{"dir":"rtl","flag":"🇮🇶","code":"AR","nav_programs":"البرامج","nav_problem":"تأكيد الإنسان","sec_demo":"شاهد كيف يعمل","demo_title":"من QR إلى حساب مؤكَّد — بالفيديو","demo_desc":"عرض تفاعلي مباشر لكل خطوة، من التحدي الذي يطرحه X حتى تأكيد الحساب تلقائياً.","demo_cap1":"X يوقف حساباً ويطلب مسح رمز QR بكاميرا هاتف فيه تطبيقه لتأكيد أنك إنسان","demo_cap2":"UrLogin يحلّ هذا تلقائياً — يفتح كل حساب داخل تطبيق X الحقيقي على هاتف متصل بالكمبيوتر","demo_cap3":"وصّل هاتف أندرويد بالكمبيوتر عبر كيبل USB أصلي","demo_cap4":"فعّل خيارات المطوّر بالنقر على «رقم البناء» سبع مرات متتالية","demo_cap5":"فعّل «تصحيح USB» ووافق على نافذة التأكيد على الهاتف","demo_cap6":"افتح UrLogin، أضف حساباتك، وافحصها عبر API بضغطة زر","demo_cap7":"يفتح البرنامج كل حساب داخل X الحقيقي على الهاتف — فيتجاوز تحقق «أنا إنسان» تلقائياً","demo_cap8":"UrLogin — حسابات مؤكَّدة، بلا مسح QR يدوي","mobile_problem":"🤖 تأكيد الإنسان","nav_features":"المميزات","nav_get":"الحصول عليه","nav_download":"⬇ تحميل","hero_eyebrow":"برنامج احترافي من كودنا","badge_new":"جديد","badge_paid":"مدفوع","badge_windows":"Windows","hero_desc":"يفتح حسابات X التي تطلب تأكيد «أنا إنسان» (مسح QR) من داخل تطبيق X الحقيقي، على أجهزة أندرويد متصلة بكمبيوترك عبر ADB — فيتجاوز هذا التحقق لعدد كبير من الحسابات دفعة واحدة، مع فحص صلاحية الحسابات عبر API وتعبئة رموز 2FA تلقائياً.","sec_problem":"المشكلة","problem_title":"تأكيد «أنا إنسان» الذي يطلبه X — ويحلّه UrLogin تلقائياً","problem_desc":"أحياناً يوقف X حساباً ويطلب تأكيد أنه ملكٌ لإنسان حقيقي، عبر مسح رمز QR بكاميرا هاتف مثبَّت عليه تطبيق X. مع عشرات أو مئات الحسابات، هذا يعني مسحاً يدوياً حساباً بعد حساب.","challenge_title":"تأكيد أنك إنسان","challenge_sub":"امسح الرمز بكاميرا الهاتف للمتابعة","pstep1t":"متى يظهر هذا التحدي؟","pstep1d":"عند حسابات جديدة، كثيرة النشاط الآلي، أو مُستخدَمة من جهاز/موقع غير معتاد.","pstep2t":"كيف يحلّه UrLogin؟","pstep2d":"يفتح كل حساب فعلياً داخل تطبيق X الحقيقي على هاتف أندرويد متصل بالكمبيوتر — فيبدو الحساب وكأنه يُستخدَم من هاتف إنسان حقيقي.","pstep3t":"النتيجة","pstep3d":"التحقق يُجتاز تلقائياً لعدد كبير من الحسابات دفعة واحدة، دون مسح QR يدوي لكل حساب على حدة.","btn_download":"⬇ تحميل UrLogin","btn_license":"🔑 احصل على ترخيص","sp1t":"ترخيص مرتبط بالجهاز","sp1d":"حماية حقيقية — كل اشتراك يعمل على جهاز واحد فقط.","sp2t":"دعم عدة أجهزة أندرويد معاً","sp2d":"شغّل وراقب عدة هواتف متصلة في آنٍ واحد من شاشة واحدة.","sp3t":"واجهة بثلاث لغات","sp3d":"العربية والإنجليزية والروسية، قابلة للتبديل الفوري.","sp4t":"Windows 10/11","sp4d":"برنامج سطح مكتب خفيف، لا يحتاج تثبيت Python أو أي أدوات إضافية.","video_note":"التحميل مباشر، والتفعيل عبر ترخيص مرتبط بجهازك.","sec_features":"المميزات","features_title":"كل ما تحتاجه لتسجيل الدخول الجماعي لحسابات X","f1t":"أتمتة تسجيل دخول جماعية","f1d":"يسجّل دخول عدد كبير من حسابات X تلقائياً عبر ADB، واحداً تلو الآخر، بلا تدخل يدوي متكرر.","f2t":"عدة أجهزة متزامنة","f2d":"وصِّل أكثر من هاتف أندرويد بالكمبيوتر، وشغّلهم جميعاً معاً من نفس الواجهة لمضاعفة السرعة.","f3t":"فحص صحة الحسابات عبر API","f3d":"يتحقق من صلاحية كل حساب (auth_token) مباشرة عبر واجهة X، بسرعة فحص متوازية قابلة للتخصيص.","f4t":"تعبئة 2FA تلقائياً","f4d":"يولّد رمز التحقق بخطوتين (TOTP) ويكتبه تلقائياً، مع حماية ذكية من انتهاء صلاحية الرمز.","f5t":"حماية الحسابات من الفقدان","f5d":"أي حساب قيد المعالجة يُسترجَع تلقائياً عند إعادة التشغيل، حتى بعد انقطاع كهرباء أو إغلاق غير متوقّع.","f6t":"واجهة ثلاثية اللغة","f6d":"عربي، إنجليزي، وروسي، بتبديل فوري من قائمة واحدة، تشمل الواجهة والسجلّ بالكامل.","sec_specs":"المواصفات","specs_title":"المواصفات التقنية","sk1":"نظام التشغيل","sk2":"جهاز أندرويد مطلوب","sv2":"نعم، عبر USB مع تفعيل تصحيح USB","sk3":"نظام الترخيص","sv3":"مرتبط بالجهاز","sk4":"الاتصال بالإنترنت","sv4":"مطلوب للتفعيل وفحص الحسابات","sk5":"التحديثات","sv5":"مستمرة عبر كودنا","sk6":"لغة الواجهة","sv6":"العربية، الإنجليزية، الروسية","sec_get":"الحصول على UrLogin","get_title":"حمّل البرنامج وفعّله","get_desc":"التحميل مجاني. لتفعيل البرنامج تحتاج ترخيصاً مرتبطاً بجهازك، تحصل عليه بالتواصل عبر واتساب.","get_price":"تواصل لمعرفة السعر والخطط","btn_download2":"⬇ تحميل UrLogin","btn_license2":"🔑 تفعيل عبر واتساب","get_note":"متوافق مع Windows 10/11 — يتطلب ترخيصاً للتفعيل، وجهاز أندرويد واحداً على الأقل.","mobile_programs":"📦 البرامج","mobile_features":"⭐ المميزات","mobile_get":"⬇ الحصول عليه","foot_tag":"برامج وأدوات رقمية عملية من كودنا.","foot_copy":"© 2026 كودنا — تطوير ضياء دارم"},
+"en":{"dir":"ltr","flag":"🇬🇧","code":"EN","nav_programs":"Programs","nav_problem":"Human check","sec_demo":"See It In Action","demo_title":"From QR to Verified — Step by Step","demo_desc":"An interactive walkthrough of every step, from X's challenge to automatic verification.","demo_cap1":"X locks an account and asks you to scan a QR code with the X app to confirm you're human","demo_cap2":"UrLogin solves this automatically — opening each account inside the real X app on a connected phone","demo_cap3":"Connect an Android phone to the computer with a genuine USB cable","demo_cap4":"Enable Developer Options by tapping “Build Number” seven times","demo_cap5":"Turn on “USB debugging” and accept the prompt on the phone","demo_cap6":"Open UrLogin, add your accounts, and check them via the API in one click","demo_cap7":"The program opens each account inside the real X app — automatically passing the “human” check","demo_cap8":"UrLogin — verified accounts, no manual QR scanning","mobile_problem":"🤖 Human check","nav_features":"Features","nav_get":"Get it","nav_download":"⬇ Download","hero_eyebrow":"A Pro app by Kodna","badge_new":"New","badge_paid":"Paid","badge_windows":"Windows","hero_desc":"Opens X accounts flagged with the “confirm you're human” QR check from inside the real X app, on Android devices connected to your computer via ADB — passing that check for a large number of accounts at once, while verifying account validity via the API and auto-filling 2FA codes.","sec_problem":"The Problem","problem_title":"X's “confirm you're human” check — solved automatically by UrLogin","problem_desc":"X sometimes locks an account and asks you to prove it belongs to a real human, by scanning a QR code with a phone that has the X app installed. With dozens or hundreds of accounts, that means scanning one by one, by hand.","challenge_title":"Let's confirm you are a human","challenge_sub":"Scan the code with a phone camera to continue","pstep1t":"When does this appear?","pstep1d":"On new accounts, heavily automated ones, or ones used from an unfamiliar device or location.","pstep2t":"How UrLogin solves it","pstep2d":"It opens each account for real, inside the genuine X app on an Android phone connected to your computer — so the account behaves exactly like it's being used from a real human's phone.","pstep3t":"The result","pstep3d":"The check passes automatically for a large number of accounts at once — no manual QR scanning, one account at a time.","btn_download":"⬇ Download UrLogin","btn_license":"🔑 Get a license","sp1t":"Device-bound license","sp1d":"Real protection — each subscription works on one device only.","sp2t":"Multiple Android devices at once","sp2d":"Run and monitor several connected phones at the same time from one screen.","sp3t":"3-language interface","sp3d":"Arabic, English, and Russian, switchable instantly.","sp4t":"Windows 10/11","sp4d":"A lightweight desktop program — no need to install Python or any extra tools.","video_note":"Direct download; activation is via a device-bound license.","sec_features":"Features","features_title":"Everything you need for bulk X account logins","f1t":"Bulk login automation","f1d":"Automatically logs in a large number of X accounts via ADB, one after another, without repetitive manual work.","f2t":"Multiple devices at once","f2d":"Connect more than one Android phone to the computer and run them all together from the same interface to multiply your speed.","f3t":"API-based account verification","f3d":"Checks each account's validity (auth_token) directly via X's API, with an adjustable, parallel check speed.","f4t":"Automatic 2FA entry","f4d":"Generates the two-factor (TOTP) code and types it automatically, with smart protection against the code expiring.","f5t":"Account-loss protection","f5d":"Any account being processed is automatically recovered on restart, even after a power cut or unexpected shutdown.","f6t":"3-language interface","f6d":"Arabic, English, and Russian, switched instantly from one menu — covering the whole interface and the activity log.","sec_specs":"Specifications","specs_title":"Technical specifications","sk1":"Operating system","sk2":"Android device required","sv2":"Yes, via USB with USB debugging enabled","sk3":"License system","sv3":"Device-bound","sk4":"Internet connection","sv4":"Required for activation and account checks","sk5":"Updates","sv5":"Continuous, via Kodna","sk6":"Interface language","sv6":"Arabic, English, Russian","sec_get":"Get UrLogin","get_title":"Download and activate","get_desc":"Download is free. To activate the program you need a device-bound license, obtained by contacting us on WhatsApp.","get_price":"Contact us for pricing & plans","btn_download2":"⬇ Download UrLogin","btn_license2":"🔑 Activate via WhatsApp","get_note":"Compatible with Windows 10/11 — a license is required to activate, plus at least one Android device.","mobile_programs":"📦 Programs","mobile_features":"⭐ Features","mobile_get":"⬇ Get it","foot_tag":"Practical digital software and tools by Kodna.","foot_copy":"© 2026 Kodna — by Dhia Darem"},
+"ku":{"dir":"rtl","flag":"🏔️","code":"KU","nav_programs":"بەرنامەکان","nav_problem":"پشتڕاستکردنەوەی مرۆڤ","sec_demo":"ببینە چۆن کار دەکات","demo_title":"لە QR بۆ هەژماری پشتڕاستکراو — بە ڤیدیۆ","demo_desc":"پیشاندانێکی ئینتەراکتیڤی ڕاستەوخۆ بۆ هەر هەنگاوێک، لە ئاستەنگەکەی X تا پشتڕاستکردنەوەی خۆکار.","demo_cap1":"X هەژمارێک دەگرێت و داوای سکانکردنی کۆدی QR دەکات بە کامێرای مۆبایلێک کە ئەپی X لەسەریەتی بۆ پشتڕاستکردنەوەی مرۆڤبوونت","demo_cap2":"UrLogin ئەمە بەخۆکار چارەسەر دەکات — هەر هەژمارێک لەناو ئەپی ڕاستەقینەی X دەکاتەوە لەسەر مۆبایلێکی بەستراوەوە","demo_cap3":"مۆبایلێکی ئەندرۆید بە کۆمپیوتەرەکە ببەستەوە لە ڕێگەی USB","demo_cap4":"چالاککردنی هەڵبژاردنەکانی گەشەپێدەر بە کرتەکردن لەسەر «ژمارەی بنیاتنان» حەوت جار","demo_cap5":"«USB debugging» چالاک بکە و پشتڕاستبوونەوە لەسەر مۆبایل قبوڵ بکە","demo_cap6":"UrLogin بکەرەوە، هەژمارەکانت زیاد بکە، و لە ڕێگەی API بیانپشکنە","demo_cap7":"بەرنامەکە هەر هەژمارێک لەناو X ڕاستەقینە دەکاتەوە — بۆیە پشتڕاستکردنەوەی «مرۆڤم» بەخۆکار تێدەپەڕێت","demo_cap8":"UrLogin — هەژماری پشتڕاستکراو، بەبێ سکانکردنی دەستی QR","mobile_problem":"🤖 پشتڕاستکردنەوەی مرۆڤ","nav_features":"تایبەتمەندییەکان","nav_get":"بەدەستهێنان","nav_download":"⬇ داگرتن","hero_eyebrow":"بەرنامەیەکی پیشەیی لە کۆدنا","badge_new":"نوێ","badge_paid":"پارەدان","badge_windows":"Windows","hero_desc":"هەژمارەکانی X کە داوای پشتڕاستکردنەوەی «من مرۆڤم» (سکانی QR) دەکەن بەخۆکار لەناو ئەپی ڕاستەقینەی X دەکاتەوە، لەسەر ئامێری ئەندرۆیدی بەستراوەوە بە کۆمپیوتەرەکەتەوە لە ڕێگەی ADB — ئەم پشتڕاستکردنەوەیە بۆ ژمارەیەکی زۆر لە هەژمار یەکجار تێدەپەڕێنێت، لەگەڵ پشکنینی دروستی هەژمار لە ڕێگەی API و پڕکردنەوەی کۆدی 2FA بەخۆکار.","sec_problem":"کێشەکە","problem_title":"پشتڕاستکردنەوەی «من مرۆڤم» کە X داوای دەکات — UrLogin بەخۆکار چارەسەری دەکات","problem_desc":"هەندێک جار X هەژمارێک دەگرێت و داوای پشتڕاستکردنەوە دەکات کە خاوەنی مرۆڤێکی ڕاستەقینەیە، لە ڕێگەی سکانکردنی کۆدی QR بە کامێرای مۆبایلێک کە ئەپی X لەسەری دامەزراوە. لەگەڵ دەیان یان سەدان هەژمار، ئەمە مانای سکانکردنی دەستی هەژمار دوای هەژمارە.","challenge_title":"پشتڕاستبکەوە کە مرۆڤیت","challenge_sub":"کۆدەکە بە کامێرای مۆبایل سکان بکە بۆ بەردەوامبوون","pstep1t":"کەی ئەم ئاستەنگە دەردەکەوێت؟","pstep1d":"لەسەر هەژماری نوێ، هەژمارێک کە زۆر بەخۆکار کار دەکات، یان لە ئامێر/شوێنێکی نائاسایی بەکارهاتووە.","pstep2t":"UrLogin چۆن چارەسەری دەکات؟","pstep2d":"هەر هەژمارێک ڕاستەوخۆ لەناو ئەپی ڕاستەقینەی X دەکاتەوە، لەسەر مۆبایلێکی ئەندرۆید بەستراوەوە بە کۆمپیوتەرەکەتەوە — بۆیە هەژمارەکە وەک ئەوە دیارە کە لە مۆبایلی مرۆڤێکی ڕاستەقینەوە بەکاردەهێنرێت.","pstep3t":"ئەنجامەکە","pstep3d":"پشتڕاستکردنەوەکە بەخۆکار بۆ ژمارەیەکی زۆر لە هەژمار یەکجار تێدەپەڕێت — بەبێ سکانکردنی دەستی بۆ هەر هەژمارێک بەتەنیا.","btn_download":"⬇ داگرتنی UrLogin","btn_license":"🔑 مۆڵەت وەربگرە","sp1t":"مۆڵەتی بەستراو بە ئامێر","sp1d":"پاراستنی ڕاستەقینە — هەر بەشداریەک تەنها لەسەر یەک ئامێر کار دەکات.","sp2t":"پشتگیری چەندین ئامێری ئەندرۆید بەیەکەوە","sp2d":"چەندین مۆبایلی بەستراوەوە بەیەکەوە بەکاربهێنە و چاودێری بکە لە یەک شاشەوە.","sp3t":"ڕووکاری سێ زمانی","sp3d":"عەرەبی، ئینگلیزی، و ڕووسی، گۆڕینیان دەستبەجێیە.","sp4t":"Windows 10/11","sp4d":"بەرنامەیەکی ڕوومیزی سووک، پێویستی بە دامەزراندنی Python یان هیچ ئامرازێکی زیاتر نییە.","video_note":"داگرتن ڕاستەوخۆیە، چالاککردنیش بە مۆڵەتی بەستراو بە ئامێرەکەتە.","sec_features":"تایبەتمەندییەکان","features_title":"هەرچی پێویستە بۆ چوونەژوورەوەی کۆمەڵایەتی هەژمارەکانی X","f1t":"ئۆتۆماتیکی چوونەژوورەوەی کۆمەڵایەتی","f1d":"بەخۆکار چوونەژوورەوەی ژمارەیەکی زۆر لە هەژماری X دەکات لە ڕێگەی ADB، یەک دوای یەک، بەبێ کارکردنی دەستی دووبارەبووەوە.","f2t":"چەندین ئامێر بەیەکەوە","f2d":"زیاتر لە یەک مۆبایلی ئەندرۆید بە کۆمپیوتەرەکە ببەستەوە و هەمووی بەیەکەوە بەکاربهێنە لە هەمان ڕووکارەوە بۆ زیادکردنی خێرایی.","f3t":"پشکنینی هەژمار لە ڕێگەی API","f3d":"دروستی هەر هەژمارێک (auth_token) ڕاستەوخۆ لە ڕێگەی API ـی X پشکنین دەکات، بە خێرایی پشکنینی هاوکات و گۆڕاو.","f4t":"پڕکردنەوەی بەخۆکاری 2FA","f4d":"کۆدی دوو هەنگاوی (TOTP) دروست دەکات و بەخۆکار دەینووسێتەوە، لەگەڵ پاراستنێکی زیرەک لە بەسەرچوونی کاتی کۆدەکە.","f5t":"پاراستنی هەژمار لە ونبوون","f5d":"هەر هەژمارێک لە پرۆسەی کارکردندایە بەخۆکار دەگەڕێتەوە کاتێک بەرنامەکە دووبارە دەکرێتەوە، تەنانەت دوای بڕینی کارەبا یان داخستنی چاوەڕواننەکراو.","f6t":"ڕووکاری سێ زمانی","f6d":"عەرەبی، ئینگلیزی، و ڕووسی، گۆڕینیان دەستبەجێیە لە یەک لیستەوە — هەموو ڕووکارەکە و تۆمارەکەی چالاکی دەگرێتەوە.","sec_specs":"تایبەتمەندییە تەکنیکییەکان","specs_title":"تایبەتمەندییە تەکنیکییەکان","sk1":"سیستەمی کارپێکردن","sk2":"ئامێری ئەندرۆید پێویستە","sv2":"بەڵێ، لە ڕێگەی USB لەگەڵ چالاککردنی USB debugging","sk3":"سیستەمی مۆڵەت","sv3":"بەستراو بە ئامێر","sk4":"پەیوەندی ئینتەرنێت","sv4":"پێویستە بۆ چالاککردن و پشکنینی هەژمارەکان","sk5":"نوێکردنەوەکان","sv5":"بەردەوام لە ڕێگەی کۆدنا","sk6":"زمانی ڕووکار","sv6":"عەرەبی، ئینگلیزی، ڕووسی","sec_get":"بەدەستهێنانی UrLogin","get_title":"داگرتن و چالاککردن","get_desc":"داگرتن بەخۆڕاییە. بۆ چالاککردنی بەرنامەکە مۆڵەتێکی بەستراو بە ئامێرت پێویستە، لە ڕێگەی واتسئاپەوە بەدەستی دەهێنیت.","get_price":"پەیوەندی بکە بۆ نرخ و پلان","btn_download2":"⬇ داگرتنی UrLogin","btn_license2":"🔑 چالاککردن لە واتسئاپ","get_note":"گونجاو لەگەڵ Windows 10/11 — بۆ چالاککردن مۆڵەت پێویستە، هەروەها بەلایەنی کەم یەک ئامێری ئەندرۆید.","mobile_programs":"📦 بەرنامەکان","mobile_features":"⭐ تایبەتمەندییەکان","mobile_get":"⬇ بەدەستهێنان","foot_tag":"نەرمەکاڵا و ئامرازی دیجیتاڵی پراکتیکی لە کۆدنا.","foot_copy":"© 2026 کۆدنا — ضیاء دارم"},
+"zh":{"dir":"ltr","flag":"🇨🇳","code":"ZH","nav_programs":"程序","nav_problem":"真人验证","sec_demo":"实际效果演示","demo_title":"从二维码到验证通过 — 分步演示","demo_desc":"交互式演示每一步，从 X 的验证挑战到自动通过验证。","demo_cap1":"X 锁定账号，要求用装有 X 应用的手机扫描二维码以证明你是真人","demo_cap2":"UrLogin 自动解决这个问题 — 在连接的手机上，通过真正的 X 应用打开每个账号","demo_cap3":"用正规 USB 数据线将安卓手机连接到电脑","demo_cap4":"连续点击「版本号」七次以开启开发者选项","demo_cap5":"打开「USB 调试」，并在手机上同意确认提示","demo_cap6":"打开 UrLogin，添加账号，一键通过 API 检查","demo_cap7":"程序在真正的 X 应用内打开每个账号 — 自动通过「真人验证」","demo_cap8":"UrLogin — 账号已验证，无需手动扫码","mobile_problem":"🤖 真人验证","nav_features":"功能","nav_get":"获取","nav_download":"⬇ 下载","hero_eyebrow":"Kodna 出品的专业应用","badge_new":"新","badge_paid":"付费","badge_windows":"Windows","hero_desc":"自动在连接到电脑的安卓设备上，通过真正的 X 应用打开被要求「确认你是真人」（扫码）的账号 — 一次性为大量账号通过该验证，同时直接通过 API 验证账号有效性，并自动填写 2FA 验证码。","sec_problem":"痛点","problem_title":"X 要求的「确认你是真人」验证 — UrLogin 自动帮你解决","problem_desc":"X 有时会锁定账号，要求用安装了 X 应用的手机扫描二维码来证明账号属于真人。账号数量一多，就意味着要一个一个手动扫码。","challenge_title":"确认你是真人","challenge_sub":"用手机摄像头扫描二维码以继续","pstep1t":"什么情况下会出现？","pstep1d":"新注册的账号、自动化操作较多的账号，或在陌生设备/地点登录的账号。","pstep2t":"UrLogin 如何解决？","pstep2d":"它会在连接到电脑的安卓手机上，用真正的 X 应用真实打开每个账号 — 账号的表现就如同是在真人的手机上使用一样。","pstep3t":"结果","pstep3d":"大量账号可以一次性自动通过验证，无需逐个手动扫码。","btn_download":"⬇ 下载 UrLogin","btn_license":"🔑 获取授权","sp1t":"设备绑定授权","sp1d":"真正的保护 — 每个订阅仅限一台设备使用。","sp2t":"同时支持多台安卓设备","sp2d":"在一个界面同时运行并监控多台已连接的手机。","sp3t":"三语界面","sp3d":"阿拉伯语、英语、俄语，可即时切换。","sp4t":"Windows 10/11","sp4d":"轻量级桌面程序，无需安装 Python 或任何额外工具。","video_note":"直接下载，激活需要设备绑定授权。","sec_features":"功能","features_title":"批量登录 X 账号所需的一切","f1t":"批量登录自动化","f1d":"通过 ADB 自动依次登录大量 X 账号，无需重复的人工操作。","f2t":"多台设备同时运行","f2d":"将多台安卓手机连接到电脑，在同一界面中一起运行以成倍提升速度。","f3t":"基于 API 的账号验证","f3d":"直接通过 X 的 API 检查每个账号的有效性（auth_token），验证速度可调且支持并行。","f4t":"自动填写 2FA","f4d":"自动生成两步验证（TOTP）代码并输入，并智能防止验证码过期。","f5t":"账号防丢失保护","f5d":"重启后会自动恢复正在处理中的账号，即使遇到断电或意外关闭也不会丢失。","f6t":"三语界面","f6d":"阿拉伯语、英语、俄语，通过一个菜单即时切换 — 涵盖整个界面与活动日志。","sec_specs":"技术规格","specs_title":"技术规格","sk1":"操作系统","sk2":"是否需要安卓设备","sv2":"是，通过 USB 连接并启用 USB 调试","sk3":"授权系统","sv3":"设备绑定","sk4":"网络连接","sv4":"激活与账号检查需要联网","sk5":"更新","sv5":"由 Kodna 持续提供","sk6":"界面语言","sv6":"阿拉伯语、英语、俄语","sec_get":"获取 UrLogin","get_title":"下载并激活","get_desc":"下载免费。激活程序需要设备绑定授权，通过 WhatsApp 联系我们获取。","get_price":"联系我们了解价格与套餐","btn_download2":"⬇ 下载 UrLogin","btn_license2":"🔑 通过 WhatsApp 激活","get_note":"兼容 Windows 10/11 — 激活需要授权，并至少需要一台安卓设备。","mobile_programs":"📦 程序","mobile_features":"⭐ 功能","mobile_get":"⬇ 获取","foot_tag":"Kodna 的实用数字软件与工具。","foot_copy":"© 2026 Kodna — Dhia Darem"},
+"es":{"dir":"ltr","flag":"🇪🇸","code":"ES","nav_programs":"Programas","nav_problem":"Verificación humana","sec_demo":"Véalo en acción","demo_title":"Del QR a la cuenta verificada — paso a paso","demo_desc":"Un recorrido interactivo de cada paso, desde el reto de X hasta la verificación automática.","demo_cap1":"X bloquea una cuenta y pide escanear un QR con la app de X para confirmar que eres humano","demo_cap2":"UrLogin lo resuelve automáticamente — abre cada cuenta dentro de la app real de X en un teléfono conectado","demo_cap3":"Conecta un teléfono Android a la computadora con un cable USB genuino","demo_cap4":"Activa Opciones de desarrollador tocando «Número de compilación» siete veces","demo_cap5":"Activa «Depuración USB» y acepta el aviso en el teléfono","demo_cap6":"Abre UrLogin, añade tus cuentas y verifícalas vía API con un clic","demo_cap7":"El programa abre cada cuenta dentro de la X real — superando automáticamente la verificación humana","demo_cap8":"UrLogin — cuentas verificadas, sin escanear QR a mano","mobile_problem":"🤖 Verificación humana","nav_features":"Funciones","nav_get":"Obtener","nav_download":"⬇ Descargar","hero_eyebrow":"Una app Pro de Kodna","badge_new":"Nuevo","badge_paid":"De pago","badge_windows":"Windows","hero_desc":"Abre cuentas de X marcadas con la verificación «confirma que eres humano» (QR) desde la app real de X, en dispositivos Android conectados a tu computadora vía ADB — superando esa verificación para muchas cuentas a la vez, mientras verifica su validez vía la API y completa los códigos 2FA automáticamente.","sec_problem":"El problema","problem_title":"La verificación «confirma que eres humano» de X — resuelta automáticamente por UrLogin","problem_desc":"A veces X bloquea una cuenta y pide confirmar que pertenece a una persona real, escaneando un código QR con un teléfono que tenga la app de X instalada. Con decenas o cientos de cuentas, eso significa escanear una por una, a mano.","challenge_title":"Confirma que eres humano","challenge_sub":"Escanea el código con la cámara del teléfono para continuar","pstep1t":"¿Cuándo aparece?","pstep1d":"En cuentas nuevas, muy automatizadas, o usadas desde un dispositivo o ubicación inusual.","pstep2t":"¿Cómo lo resuelve UrLogin?","pstep2d":"Abre cada cuenta de verdad, dentro de la app real de X en un teléfono Android conectado a tu computadora — la cuenta se comporta como si la usara una persona real desde su propio teléfono.","pstep3t":"El resultado","pstep3d":"La verificación se supera automáticamente para muchas cuentas a la vez, sin escanear el QR manualmente una por una.","btn_download":"⬇ Descargar UrLogin","btn_license":"🔑 Obtener licencia","sp1t":"Licencia vinculada al dispositivo","sp1d":"Protección real — cada suscripción funciona en un solo dispositivo.","sp2t":"Varios dispositivos Android a la vez","sp2d":"Ejecuta y supervisa varios teléfonos conectados al mismo tiempo desde una sola pantalla.","sp3t":"Interfaz en tres idiomas","sp3d":"Árabe, inglés y ruso, con cambio instantáneo.","sp4t":"Windows 10/11","sp4d":"Un programa de escritorio ligero — no necesitas instalar Python ni herramientas adicionales.","video_note":"Descarga directa; la activación es mediante licencia vinculada al dispositivo.","sec_features":"Funciones","features_title":"Todo lo que necesitas para iniciar sesión en cuentas de X de forma masiva","f1t":"Automatización de inicio de sesión masivo","f1d":"Inicia sesión automáticamente en un gran número de cuentas de X vía ADB, una tras otra, sin trabajo manual repetitivo.","f2t":"Varios dispositivos a la vez","f2d":"Conecta más de un teléfono Android a la computadora y ejecútalos todos juntos desde la misma interfaz para multiplicar tu velocidad.","f3t":"Verificación de cuentas vía API","f3d":"Comprueba la validez de cada cuenta (auth_token) directamente a través de la API de X, con una velocidad de verificación ajustable y en paralelo.","f4t":"Entrada automática de 2FA","f4d":"Genera el código de verificación en dos pasos (TOTP) y lo escribe automáticamente, con protección inteligente contra la expiración del código.","f5t":"Protección contra pérdida de cuentas","f5d":"Cualquier cuenta en proceso se recupera automáticamente al reiniciar, incluso tras un corte de luz o un cierre inesperado.","f6t":"Interfaz en tres idiomas","f6d":"Árabe, inglés y ruso, cambiados al instante desde un solo menú — cubre toda la interfaz y el registro de actividad.","sec_specs":"Especificaciones","specs_title":"Especificaciones técnicas","sk1":"Sistema operativo","sk2":"Dispositivo Android requerido","sv2":"Sí, por USB con la depuración USB activada","sk3":"Sistema de licencia","sv3":"Vinculada al dispositivo","sk4":"Conexión a internet","sv4":"Necesaria para activar y verificar cuentas","sk5":"Actualizaciones","sv5":"Continuas, por Kodna","sk6":"Idioma de la interfaz","sv6":"Árabe, inglés, ruso","sec_get":"Obtener UrLogin","get_title":"Descargar y activar","get_desc":"La descarga es gratis. Para activar el programa necesitas una licencia vinculada al dispositivo, que obtienes contactándonos por WhatsApp.","get_price":"Contáctanos para precios y planes","btn_download2":"⬇ Descargar UrLogin","btn_license2":"🔑 Activar por WhatsApp","get_note":"Compatible con Windows 10/11 — se requiere licencia para activar, además de al menos un dispositivo Android.","mobile_programs":"📦 Programas","mobile_features":"⭐ Funciones","mobile_get":"⬇ Obtener","foot_tag":"Software y herramientas digitales prácticas de Kodna.","foot_copy":"© 2026 Kodna — por Dhia Darem"},
+"ru":{"dir":"ltr","flag":"🇷🇺","code":"RU","nav_programs":"Программы","nav_problem":"Проверка человека","sec_demo":"Смотрите в действии","demo_title":"От QR до подтверждённого аккаунта — шаг за шагом","demo_desc":"Интерактивный показ каждого шага, от проверки X до автоматического подтверждения.","demo_cap1":"X блокирует аккаунт и просит отсканировать QR-код в приложении X, чтобы подтвердить, что вы человек","demo_cap2":"UrLogin решает это автоматически — открывает каждый аккаунт внутри настоящего приложения X на подключённом телефоне","demo_cap3":"Подключите Android-телефон к компьютеру настоящим USB-кабелем","demo_cap4":"Включите режим разработчика, нажав «Номер сборки» семь раз","demo_cap5":"Включите «Отладку по USB» и подтвердите запрос на телефоне","demo_cap6":"Откройте UrLogin, добавьте аккаунты и проверьте их через API одним кликом","demo_cap7":"Программа открывает каждый аккаунт в настоящем X — автоматически проходя проверку «вы человек»","demo_cap8":"UrLogin — проверенные аккаунты, без ручного сканирования QR","mobile_problem":"🤖 Проверка человека","nav_features":"Возможности","nav_get":"Получить","nav_download":"⬇ Скачать","hero_eyebrow":"Профессиональное приложение от Kodna","badge_new":"Новое","badge_paid":"Платно","badge_windows":"Windows","hero_desc":"Открывает аккаунты X, помеченные проверкой «подтвердите, что вы человек» (QR), изнутри настоящего приложения X, на Android-устройствах, подключённых к компьютеру через ADB — проходя эту проверку сразу для множества аккаунтов, одновременно проверяя их действительность через API и автоматически вводя коды 2FA.","sec_problem":"Проблема","problem_title":"Проверка X «подтвердите, что вы человек» — решается автоматически в UrLogin","problem_desc":"Иногда X блокирует аккаунт и просит подтвердить, что им владеет реальный человек, отсканировав QR-код телефоном с установленным приложением X. При десятках или сотнях аккаунтов это означает сканирование вручную, один за другим.","challenge_title":"Подтвердите, что вы человек","challenge_sub":"Отсканируйте код камерой телефона, чтобы продолжить","pstep1t":"Когда это появляется?","pstep1d":"На новых аккаунтах, сильно автоматизированных, или использованных с непривычного устройства или места.","pstep2t":"Как это решает UrLogin","pstep2d":"Он по-настоящему открывает каждый аккаунт внутри настоящего приложения X на Android-телефоне, подключённом к компьютеру — аккаунт ведёт себя так, будто им пользуется реальный человек со своего телефона.","pstep3t":"Результат","pstep3d":"Проверка проходит автоматически сразу для большого числа аккаунтов — без ручного сканирования QR для каждого по отдельности.","btn_download":"⬇ Скачать UrLogin","btn_license":"🔑 Получить лицензию","sp1t":"Лицензия привязана к устройству","sp1d":"Настоящая защита — каждая подписка работает только на одном устройстве.","sp2t":"Несколько устройств Android одновременно","sp2d":"Запускайте и отслеживайте несколько подключённых телефонов одновременно с одного экрана.","sp3t":"Интерфейс на трёх языках","sp3d":"Арабский, английский и русский, мгновенное переключение.","sp4t":"Windows 10/11","sp4d":"Лёгкая настольная программа — не требует установки Python или дополнительных инструментов.","video_note":"Прямая загрузка; активация — по лицензии, привязанной к устройству.","sec_features":"Возможности","features_title":"Всё необходимое для массового входа в аккаунты X","f1t":"Автоматизация массового входа","f1d":"Автоматически выполняет вход в большое количество аккаунтов X через ADB, один за другим, без повторяющейся ручной работы.","f2t":"Несколько устройств одновременно","f2d":"Подключите к компьютеру более одного телефона Android и запустите их все вместе из одного интерфейса, чтобы умножить скорость.","f3t":"Проверка аккаунтов через API","f3d":"Проверяет действительность каждого аккаунта (auth_token) напрямую через API X, с настраиваемой и параллельной скоростью проверки.","f4t":"Автоматический ввод 2FA","f4d":"Генерирует код двухфакторной аутентификации (TOTP) и вводит его автоматически, с умной защитой от истечения срока действия кода.","f5t":"Защита аккаунтов от потери","f5d":"Любой обрабатываемый аккаунт автоматически восстанавливается при перезапуске, даже после отключения питания или неожиданного закрытия.","f6t":"Интерфейс на трёх языках","f6d":"Арабский, английский и русский, переключаются мгновенно из одного меню — охватывает весь интерфейс и журнал активности.","sec_specs":"Характеристики","specs_title":"Технические характеристики","sk1":"Операционная система","sk2":"Требуется устройство Android","sv2":"Да, через USB с включённой отладкой по USB","sk3":"Система лицензирования","sv3":"Привязана к устройству","sk4":"Подключение к интернету","sv4":"Требуется для активации и проверки аккаунтов","sk5":"Обновления","sv5":"Постоянные, от Kodna","sk6":"Язык интерфейса","sv6":"Арабский, английский, русский","sec_get":"Получить UrLogin","get_title":"Скачать и активировать","get_desc":"Скачивание бесплатно. Для активации программы нужна лицензия, привязанная к устройству — свяжитесь с нами в WhatsApp.","get_price":"Свяжитесь по ценам и тарифам","btn_download2":"⬇ Скачать UrLogin","btn_license2":"🔑 Активировать через WhatsApp","get_note":"Совместимо с Windows 10/11 — для активации нужна лицензия, а также минимум одно устройство Android.","mobile_programs":"📦 Программы","mobile_features":"⭐ Возможности","mobile_get":"⬇ Получить","foot_tag":"Практичные цифровые программы и инструменты от Kodna.","foot_copy":"© 2026 Kodna — Dhia Darem"}
+};
+const KEY='kodna_lang';
+function detectLang(){
+  const sv=localStorage.getItem(KEY);
+  if(sv&&T[sv])return sv;
+  const bl=(navigator.language||navigator.userLanguage||'ar').toLowerCase();
+  if(bl.startsWith('ar'))return 'ar';
+  if(bl.startsWith('ku')||bl.startsWith('ckb'))return 'ku';
+  if(bl.startsWith('zh'))return 'zh';
+  if(bl.startsWith('es'))return 'es';
+  if(bl.startsWith('ru'))return 'ru';
+  if(bl.startsWith('en'))return 'en';
+  return 'ar';
+}
+function applyLang(lang){
+  if(!T[lang])lang='ar';
+  localStorage.setItem(KEY,lang);
+  const t=T[lang], root=document.getElementById('htmlRoot');
+  root.setAttribute('lang',lang); root.setAttribute('dir',t.dir);
+  document.body.className='lang-'+lang;
+  const fl=document.getElementById('langFlag'), cd=document.getElementById('langCode');
+  if(fl)fl.textContent=t.flag; if(cd)cd.textContent=t.code;
+  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(t[k]!==undefined) el.textContent=t[k];});
+}
+function setLang(lang){applyLang(lang);closeLangMenu();}
+function toggleLangMenu(){const m=document.getElementById('langMenu'),b=document.getElementById('langBtn');const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}
+function closeLangMenu(){document.getElementById('langMenu')?.classList.remove('open');document.getElementById('langBtn')?.classList.remove('open');}
+document.addEventListener('click',e=>{if(!document.getElementById('langSw')?.contains(e.target))closeLangMenu();});
+function toggleMenu(){const h=document.getElementById('hamburger'),n=document.getElementById('mobileNav');const o=h.classList.toggle('open');n.classList.toggle('open',o);h.setAttribute('aria-expanded',o);}
+window.addEventListener('scroll',()=>{document.getElementById('hamburger')?.classList.remove('open');document.getElementById('mobileNav')?.classList.remove('open');},{passive:true});
+
+/* ====== رابط التحميل المباشر — غيّره من هنا فقط عند رفع نسخة جديدة ======
+   ⚠️ ضع هنا رابط ملف UrLogin_Setup.exe الفعلي بعد رفعه (مثلاً GitHub
+   Releases، نفس أسلوب باقي برامج الموقع). الرابط أدناه مؤقت/نموذجي فقط —
+   يجب استبداله برابط حقيقي بعد بناء المثبّت (UrLogin.iss عبر Inno Setup)
+   ورفعه فعلياً، وإلا فزر التحميل لن يعمل. */
+const DOWNLOAD_URL = "https://github.com/kodna-iq/urlogin/releases/download/v1.0.0/UrLogin_Setup.exe";
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.dl-link').forEach(a=>{ a.href = DOWNLOAD_URL; a.setAttribute('download',''); });
+  applyLang(detectLang());
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.07});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+  initDemo();
+});
+
+/* ====== مشغّل الفيديو التعليمي المدمج (demo) ======
+   يقرأ نص كل مشهد من نفس عناصر data-i18n الموجودة أصلاً في الصفحة
+   (demo_cap1..demo_cap8)، فيتزامن تلقائياً مع مبدّل اللغة العام للموقع —
+   بلا أي نظام ترجمة منفصل خاص بالفيديو. */
+function initDemo(){
+  const DUR = [5,4,4,6,5,5,5,4]; // ثوانٍ لكل مشهد (8 مشاهد)
+  const stage = document.getElementById('demoStage');
+  if (!stage) return;
+  const scenes = Array.from(stage.querySelectorAll('.demo-scene'));
+  const capTxt = document.getElementById('demoCapTxt');
+  const scrub = document.getElementById('demoScrub');
+  const timeTxt = document.getElementById('demoTime');
+  const playBtn = document.getElementById('demoPlay');
+  let idx = 0, elapsed = 0, playing = true, raf = null, lastTs = null;
+  const total = DUR.reduce((a,b)=>a+b,0);
+  const fmt = t => Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
+
+  scrub.innerHTML = '';
+  DUR.forEach((d,i)=>{
+    const b = document.createElement('div');
+    b.className = 'demo-seg';
+    b.style.flexGrow = d;
+    b.innerHTML = '<div class="f"></div>';
+    b.addEventListener('click', ()=> goTo(i));
+    scrub.appendChild(b);
+  });
+
+  function runSceneFX(i){
+    if (i === 3){ // Developer options tap counter
+      const el = document.getElementById('demoTapN');
+      const toast = document.getElementById('demoDevToast');
+      if (!el) return;
+      let n = 1; el.textContent = n; if(toast) toast.style.opacity = 0;
+      const iv = setInterval(()=>{ n++; el.textContent = n; if(n>=7){ clearInterval(iv); if(toast) toast.style.opacity = 1; } }, 500);
+    }
+    if (i === 4){
+      const toast = document.getElementById('demoUsbToast');
+      if (toast){ toast.style.opacity = 0; setTimeout(()=>{ toast.style.opacity = 1; }, 1400); }
+    }
+    if (i === 5){
+      const p2 = document.getElementById('demoP2');
+      if (p2){ p2.textContent='…'; p2.className='demo-pill wait';
+        setTimeout(()=>{ p2.textContent='✓'; p2.className='demo-pill ok'; }, 2000); }
+    }
+    if (i === 6){
+      const qr = document.getElementById('demoQrFade'), ck = document.getElementById('demoCheckMark');
+      if (qr && ck){ qr.style.opacity = 1; ck.style.opacity = 0;
+        setTimeout(()=>{ qr.style.opacity = 0; ck.style.opacity = 1; }, 1800); }
+    }
+  }
+
+  function render(){
+    scenes.forEach(s => s.classList.toggle('active', Number(s.dataset.idx) === idx));
+    const key = 'demo_cap' + (idx+1);
+    const lang = document.getElementById('htmlRoot').getAttribute('lang') || 'ar';
+    const t = (typeof T !== 'undefined' && T[lang]) ? T[lang] : null;
+    if (t && t[key] !== undefined) capTxt.textContent = t[key];
+    capTxt.dataset.i18n = key;
+    runSceneFX(idx);
+  }
+  function updateUI(){
+    const segs = scrub.children;
+    for (let i=0;i<DUR.length;i++){
+      const f = segs[i].querySelector('.f');
+      if (i < idx) f.style.width = '100%';
+      else if (i === idx) f.style.width = ((elapsed/DUR[i])*100)+'%';
+      else f.style.width = '0%';
+    }
+    const elapsedTotal = DUR.slice(0,idx).reduce((a,b)=>a+b,0) + elapsed;
+    timeTxt.textContent = fmt(elapsedTotal) + ' / ' + fmt(total);
+  }
+  function goTo(i){
+    idx = Math.max(0, Math.min(DUR.length-1, i));
+    elapsed = 0;
+    render(); updateUI();
+  }
+  function tick(ts){
+    if (lastTs === null) lastTs = ts;
+    const dt = (ts - lastTs) / 1000; lastTs = ts;
+    if (playing){
+      elapsed += dt;
+      if (elapsed >= DUR[idx]){
+        if (idx < DUR.length-1) goTo(idx+1);
+        else { playing = false; playBtn.textContent = '►'; elapsed = DUR[idx]; }
+      }
+      updateUI();
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  document.getElementById('demoPrev').addEventListener('click', ()=> goTo(idx-1));
+  document.getElementById('demoNext').addEventListener('click', ()=> goTo(idx+1));
+  playBtn.addEventListener('click', ()=>{
+    playing = !playing; playBtn.textContent = playing ? '❚❚' : '►';
+    if (playing && idx===DUR.length-1 && elapsed>=DUR[idx]-0.05){ goTo(0); playing = true; }
+  });
+  render(); updateUI();
+  raf = requestAnimationFrame(tick);
+}
+</script>
+</body>
+</html>
