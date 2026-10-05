@@ -494,7 +494,7 @@ html[dir=rtl] .specs-item .v{text-align:left}
           <div class="demo-lap-body" style="align-items:center;justify-content:center;text-align:center;color:#34d399;font-weight:700">✓ 10 accounts</div></div>
         <div class="demo-cable"><div class="p"></div></div>
         <div class="demo-phone"><div class="demo-ph-body" style="align-items:center;justify-content:center;text-align:center" id="demoPhoneResult">
-          <div class="demo-qr-mini" id="demoQrFade" style="width:46px;height:46px;transition:opacity .5s"><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i></div>
+          <div class="demo-qr-mini" id="demoQrFade" style="width:46px;height:46px;transition:opacity .5s"><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i class="off"></i><i></i><i></i><i class="off"></i><i></i><i></i><i></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i><i class="off"></i><i></i></div>
           <div style="color:#34d399;font-weight:800;opacity:0;transition:opacity .5s;margin-top:6px" id="demoCheckMark">✓</div>
         </div></div>
       </div>
@@ -620,12 +620,8 @@ document.addEventListener('click',e=>{if(!document.getElementById('langSw')?.con
 function toggleMenu(){const h=document.getElementById('hamburger'),n=document.getElementById('mobileNav');const o=h.classList.toggle('open');n.classList.toggle('open',o);h.setAttribute('aria-expanded',o);}
 window.addEventListener('scroll',()=>{document.getElementById('hamburger')?.classList.remove('open');document.getElementById('mobileNav')?.classList.remove('open');},{passive:true});
 
-/* ====== رابط التحميل المباشر — غيّره من هنا فقط عند رفع نسخة جديدة ======
-   ⚠️ ضع هنا رابط ملف UrLogin_Setup.exe الفعلي بعد رفعه (مثلاً GitHub
-   Releases، نفس أسلوب باقي برامج الموقع). الرابط أدناه مؤقت/نموذجي فقط —
-   يجب استبداله برابط حقيقي بعد بناء المثبّت (UrLogin.iss عبر Inno Setup)
-   ورفعه فعلياً، وإلا فزر التحميل لن يعمل. */
-const DOWNLOAD_URL = "https://github.com/kodna-iq/urlogin/releases/download/v1.0.0/UrLogin_Setup.exe";
+/* ====== رابط التحميل المباشر — غيّره من هنا فقط عند رفع نسخة جديدة ====== */
+const DOWNLOAD_URL = "https://github.com/kodna-iq/kodna/releases/download/urlogin-v1.0.0/UrLogin_Setup.exe";
 
 document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.dl-link').forEach(a=>{ a.href = DOWNLOAD_URL; a.setAttribute('download',''); });
