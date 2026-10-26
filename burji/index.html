@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Burji · برجي — ابنِ برجك نحو السماء</title>
+<meta name="description" content="Burji لعبة تكديس مجانية تُلعب في المتصفح بلا تحميل: 19 عالماً بقواعد مختلفة، تحدَّ أصدقاءك برابط. من Kodna.">
+<meta name="author" content="Kodna">
+<meta name="copyright" content="© 2026 Kodna">
+<meta name="theme-color" content="#120E2A">
+<link rel="canonical" href="https://kodna.org/burji/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kodna">
+<meta property="og:title" content="Burji · برجي — ابنِ برجك نحو السماء">
+<meta property="og:description" content="العب مجاناً في المتصفح بلا تحميل. 19 عالماً، تحديات مع الأصدقاء، وسباق سرعة.">
+<meta property="og:url" content="https://kodna.org/burji/">
+<meta property="og:image" content="https://kodna.org/burji/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ar_IQ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Burji · برجي">
+<meta name="twitter:description" content="ابنِ برجك نحو السماء. مجاناً في المتصفح.">
+<meta name="twitter:image" content="https://kodna.org/burji/img/og.png">
+<link rel="icon" type="image/svg+xml" href="img/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"Burji · برجي","url":"https://kodna.org/burji/","image":"https://kodna.org/burji/img/og.png","description":"لعبة تكديس مجانية في المتصفح بـ19 عالماً وتحديات مع الأصدقاء.","genre":"Casual","gamePlatform":["Web browser"],"applicationCategory":"Game","inLanguage":["ar","en","ku","tr","fr","es","fa","ur","id","pt"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Kodna","url":"https://kodna.org/"}}
+</script>
+<style>
+@font-face{font-family:Lalezar;font-display:swap;src:url(fonts/lalezar-arabic-400-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFF}
+@font-face{font-family:Lalezar;font-display:swap;src:url(fonts/lalezar-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Vazirmatn;font-weight:400;font-display:swap;src:url(fonts/vazirmatn-arabic-400-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFF,U+200C-200F}
+@font-face{font-family:Vazirmatn;font-weight:700;font-display:swap;src:url(fonts/vazirmatn-arabic-700-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFF,U+200C-200F}
+@font-face{font-family:Vazirmatn;font-weight:800;font-display:swap;src:url(fonts/vazirmatn-arabic-800-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFF,U+200C-200F}
+@font-face{font-family:Vazirmatn;font-weight:400;font-display:swap;src:url(fonts/vazirmatn-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Vazirmatn;font-weight:700;font-display:swap;src:url(fonts/vazirmatn-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Vazirmatn;font-weight:800;font-display:swap;src:url(fonts/vazirmatn-latin-800-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+:root{--bg:#120E2A;--bg2:#1B1440;--ink:#F6F2FF;--muted:#ABA3CB;--line:rgba(246,242,255,.14);--card:rgba(246,242,255,.05);--gold:#FFC94D;--gold-ink:#2A1A00;--pink:#FF8FB8;--cyan:#7FE3FF;--green:#3DDC97}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Vazirmatn,system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.disp{font-family:Lalezar,Vazirmatn,sans-serif;font-weight:400;line-height:1.1}
+/* top bar */
+.bar{position:sticky;top:0;z-index:5;background:rgba(18,14,42,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800}
+.brand img{width:34px;height:34px;border-radius:9px}
+.brand b{font-family:Lalezar,Vazirmatn,sans-serif;font-weight:400;font-size:26px;color:var(--gold);line-height:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 26px;font:800 17px Vazirmatn,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn.gold{background:var(--gold);color:var(--gold-ink);box-shadow:0 5px 0 #B57B18}
+.btn.gold:hover{transform:translateY(-2px);box-shadow:0 7px 0 #B57B18}
+.btn.gold:active{transform:translateY(3px);box-shadow:0 2px 0 #B57B18}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.small{padding:8px 18px;font-size:15px}
+.btn:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+/* hero */
+.hero{position:relative;padding:56px 0 72px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(110,52,136,.55),rgba(110,52,136,0) 65%);pointer-events:none}
+.hero::after{content:"";position:absolute;left:-200px;bottom:-320px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(247,146,94,.35),rgba(247,146,94,0) 65%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center}
+.eyebrow{display:inline-block;font-weight:800;font-size:14px;color:var(--gold);background:rgba(255,201,77,.1);border:1px solid rgba(255,201,77,.35);border-radius:999px;padding:4px 14px;margin-bottom:18px}
+.hero h1{font-size:clamp(84px,14vw,168px);margin:0;color:var(--gold);text-shadow:0 8px 0 rgba(0,0,0,.25)}
+.hero .latin{font-weight:700;letter-spacing:.32em;color:var(--muted);font-size:16px;margin:2px 0 18px;direction:ltr;text-align:right}
+.hero .tag{font-size:clamp(24px,3.4vw,36px);font-weight:800;margin:0 0 12px}
+.hero p.lead{font-size:18px;color:var(--muted);max-width:520px;margin:0 0 28px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.soon{margin-top:18px;font-size:14px;color:var(--muted)}
+.soon b{color:var(--ink)}
+/* phone */
+.phone{position:relative;justify-self:center;width:min(330px,80vw);aspect-ratio:390/780;border-radius:44px;background:#0B0819;padding:10px;box-shadow:0 40px 80px rgba(0,0,0,.55),inset 0 0 0 2px rgba(246,242,255,.08)}
+.screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#000}
+.screen img,.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;object-position:top}
+.playhere{position:absolute;inset:auto 16px 22px;z-index:2}
+.playhere .btn{width:100%}
+/* sections */
+section{padding:72px 0}
+.sec-head{max-width:640px;margin-bottom:32px}
+.sec-head h2{font-size:clamp(34px,5vw,48px);margin:0 0 8px}
+.sec-head p{color:var(--muted);margin:0;font-size:17px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--gold-ink);font-family:Lalezar,sans-serif;font-size:24px;margin-bottom:12px}
+.step h3{margin:0 0 4px;font-size:20px}
+.step p{margin:0;color:var(--muted)}
+.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px}
+.feat svg{width:34px;height:34px;margin-bottom:10px}
+.feat h3{margin:0 0 6px;font-size:20px}
+.feat p{margin:0;color:var(--muted)}
+.chip{display:inline-block;vertical-align:middle;font-size:12px;font-weight:800;color:var(--gold-ink);background:var(--gold);border-radius:999px;padding:1px 9px;margin-inline-start:6px}
+.worlds{display:flex;flex-wrap:wrap;gap:8px}
+.worlds span{font-weight:700;font-size:15px;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:28px}
+.gallery figure{margin:0}
+.gallery img{width:100%;height:auto;aspect-ratio:1080/2338;object-fit:cover;border-radius:24px;border:6px solid #0B0819;box-shadow:0 20px 40px rgba(0,0,0,.4);display:block}
+.gallery figcaption{text-align:center;color:var(--muted);font-size:14px;margin-top:8px}
+.final{text-align:center;background:linear-gradient(180deg,transparent,rgba(110,52,136,.25));border-top:1px solid var(--line)}
+.final h2{font-size:clamp(40px,7vw,72px);margin:0 0 10px;color:var(--gold)}
+.final p{color:var(--muted);margin:0 0 26px;font-size:18px}
+footer{border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer nav{display:flex;gap:18px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+@media (max-width:880px){
+  .hero{padding:32px 0 56px}
+  .hero .wrap{grid-template-columns:1fr;gap:36px;text-align:center}
+  .hero .latin{text-align:center}
+  .hero p.lead{margin-inline:auto}
+  .ctas{justify-content:center}
+  .playhere{display:none}
+  .steps,.feats{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bar .btn{padding:7px 14px;font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Burji"><img src="img/icon-192.png" alt="" width="34" height="34"><b>Burji</b></a>
+    <a class="btn gold small" href="play.html">العب الآن</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">مجاناً · في المتصفح · بلا تحميل</span>
+        <h1 class="disp">Burji</h1>
+        <div class="latin">LAMSA</div>
+        <p class="tag">ابنِ برجك نحو السماء</p>
+        <p class="lead">لمسة واحدة تُسقط القطعة. ما يزيد يُقطع، وكل بضعة طوابق تدخل عالماً جديداً بقاعدة جديدة، من غروب المدينة إلى حافة الزمن.</p>
+        <div class="ctas">
+          <a class="btn gold" href="play.html">العب الآن مجاناً</a>
+          <a class="btn ghost" href="#how">كيف تلعب؟</a>
+        </div>
+        <p class="soon">قريباً على <b>Android</b> و<b>iOS</b></p>
+      </div>
+      <div class="phone">
+        <div class="screen" id="screen">
+          <img src="img/shot-2.jpg" alt="لقطة من لعبة Burji في عالم أعماق المحيط" width="1080" height="2338">
+          <div class="playhere"><button class="btn gold" type="button" id="playHere">العب هنا مباشرة</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp">كيف تلعب؟</h2><p>تتعلمها في ثانية، وتحتاج أياماً لتصل إلى العالم الأخير.</p></div>
+      <div class="steps">
+        <div class="step"><h3>المس لتُسقط</h3><p>القطعة تتحرك يميناً ويساراً. المس الشاشة في اللحظة المناسبة.</p></div>
+        <div class="step"><h3>طابِق الحواف</h3><p>الجزء الزائد يسقط، واللمسات المثالية المتتالية تكبّر القطعة من جديد.</p></div>
+        <div class="step"><h3>اصعد للعوالم</h3><p>كل عالم يغيّر القواعد: رياح، ظلام، جليد، مرايا، ثقب أسود… وأكثر.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp">لماذا ستعود كل يوم</h2><p>Burji لعبة مصممة لتلعبها مع من تعرف. <span class="soon-note">الميزات المعلّمة «قريباً» تصل قريباً.</span></p></div>
+      <div class="feats">
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="#FFC94D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M6 21V10l6-6 6 6v11"/><path d="M10 21v-5h4v5"/></svg><h3>19 عالماً</h3><p>لكل عالم ألوانه وموسيقاه وقاعدته الخاصة، وفي القمة «العُلا» و«اللانهاية»: ثلاث قواعد معاً ولا مساعدات، واللانهاية لا تنتهي أبداً.</p></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8FB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg><h3>تحدَّ أصدقاءك</h3><p>أرسل رقمك برابط على واتساب، ويظهر خط هدفك عند صديقك وهو يلعب.</p></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="#3DDC97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.5-4.5 4-5"/></svg><h3>مجموعات واتساب <span class="chip">قريباً</span></h3><p>ترتيب خاص لعائلتك أو صفّك أو أصدقائك، يتجدد كل أسبوع.</p></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="#7FE3FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><h3>سباق السرعة</h3><p>من يصل للطابق 25 أسرع؟ سرعتك تظهر أثناء اللعب<span class="soon-note">، ولوحة الأسرع ولقب «البرق» قريباً</span>.</p></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="#FFC94D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18l-2-10-4 4-3-7-3 7-4-4z"/></svg><h3>ألقاب تنتقل <span class="chip">قريباً</span></h3><p>الأسطورة، ملك البرج، بطل اليوم. إذا تجاوزك أحد، ينتقل لقبك إليه.</p></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8FB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg><h3>تحدٍّ يومي</h3><p>قاعدة جديدة كل يوم، ونفس التحدي للجميع حتى منتصف الليل بتوقيت بغداد.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp">العوالم التسعة عشر</h2><p>كم عالماً ستصل؟</p></div>
+      <div class="worlds">
+        <span style="background:linear-gradient(135deg,#4A286E,#F7925E)">غروب المدينة</span>
+        <span style="background:linear-gradient(135deg,#3860B2,#FCBCD0)">فوق الغيوم</span>
+        <span style="background:linear-gradient(135deg,#0A0E2E,#343470)">ليل النجوم</span>
+        <span style="background:linear-gradient(135deg,#050310,#20123E)">المدار</span>
+        <span style="background:linear-gradient(135deg,#041222,#124E5E)">الشفق القطبي</span>
+        <span style="background:linear-gradient(135deg,#1A0428,#641658)">قلب الكون</span>
+        <span style="background:linear-gradient(135deg,#021834,#086888)">أعماق المحيط</span>
+        <span style="background:linear-gradient(135deg,#6E2E16,#E8A458)">عاصفة الصحراء</span>
+        <span style="background:linear-gradient(135deg,#1A1E3A,#8498C4)">عالم المرايا</span>
+        <span style="background:linear-gradient(135deg,#1C0404,#96220A)">قلب البركان</span>
+        <span style="background:linear-gradient(135deg,#000002,#1A0826)">الثقب الأسود</span>
+        <span style="background:linear-gradient(135deg,#041A14,#2C643E)">الغابة المسحورة</span>
+        <span style="background:linear-gradient(135deg,#363E4E,#A4AEBA)">وادي الضباب</span>
+        <span style="background:linear-gradient(135deg,#08021C,#380A56)">المدينة الرقمية</span>
+        <span style="background:linear-gradient(135deg,#241448,#DE748C)">عالم التوأم</span>
+        <span style="background:linear-gradient(135deg,#0E121C,#424C60)">قلب الإعصار</span>
+        <span style="background:linear-gradient(135deg,#0E0820,#462E0E)">حافة الزمن</span>
+        <span style="background:linear-gradient(135deg,#1E2C5A,#7C8CC0)">🏔️ العُلا</span>
+        <span style="background:linear-gradient(135deg,#02000C,#3A1870)">♾️ اللانهاية</span>
+      </div>
+      <div class="gallery">
+        <figure><img src="img/shot-1.jpg" alt="عالم غروب المدينة" loading="lazy" width="1080" height="2338"><figcaption>غروب المدينة</figcaption></figure>
+        <figure><img src="img/shot-2.jpg" alt="عالم أعماق المحيط" loading="lazy" width="1080" height="2338"><figcaption>أعماق المحيط</figcaption></figure>
+        <figure><img src="img/shot-3.jpg" alt="عالم الثقب الأسود" loading="lazy" width="1080" height="2338"><figcaption>الثقب الأسود</figcaption></figure>
+        <figure><img src="img/shot-4.jpg" alt="عالم حافة الزمن" loading="lazy" width="1080" height="2338"><figcaption>حافة الزمن</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2 class="disp">جاهز للصعود؟</h2>
+      <p>لا تحميل ولا تسجيل. اضغط والعب الآن.</p>
+      <a class="btn gold" href="play.html">العب الآن مجاناً</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Kodna · جميع الحقوق محفوظة</span>
+    <nav aria-label="روابط"><a href="privacy.html">سياسة الخصوصية</a><a href="https://kodna.org/">kodna.org</a></nav>
+  </div>
+</footer>
+
+<script src="lamsa-config.js"></script>
+<script>
+  // Once the online services are switched on (lamsa-config.js), the "coming soon" marks go away
+  if (window.LAMSA_FIREBASE && window.LAMSA_FIREBASE.apiKey) document.querySelectorAll('.chip, .soon-note').forEach(e => e.remove());
+</script>
+<script>
+  // Load the live game inside the phone only when asked, so the page stays light
+  document.getElementById('playHere').addEventListener('click', () => {
+    const s = document.getElementById('screen');
+    const f = document.createElement('iframe');
+    f.src = 'play.html'; f.title = 'Burji'; f.allow = 'autoplay; fullscreen';
+    s.textContent = ''; s.appendChild(f); f.focus();
+  });
+</script>
+</body>
+</html>
