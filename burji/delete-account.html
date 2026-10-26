@@ -24,46 +24,263 @@ p,li{color:#DCD6F2}
 .en{direction:ltr;text-align:left;border-top:1px solid var(--line);margin-top:48px;padding-top:32px}
 .back{display:inline-block;margin-bottom:24px;text-decoration:none;font-weight:800}
 .steps{padding-inline-start:22px}.box{border:1px solid var(--line);border-radius:14px;padding:14px 18px;background:rgba(246,242,255,.04)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.top .back{margin:0}
+.lp{position:relative;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:0 10px;height:36px;color:var(--muted)}
+.lp svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}
+.lp select{appearance:none;-webkit-appearance:none;background:transparent;border:0;color:var(--ink);font:700 14px Vazirmatn,system-ui,sans-serif;cursor:pointer}
+.lp select option{color:#120E2A}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.doc:not([hidden])~.doc:not([hidden]){border-top:1px solid var(--line);margin-top:48px;padding-top:32px}
+.doc[dir=ltr]{text-align:left}
+.doc p,.doc li{overflow-wrap:anywhere}
+.doc h1,.doc h2{overflow-wrap:break-word;hyphens:auto}
+@media (max-width:520px){.doc h1{font-size:27px;line-height:1.3}.doc h2{font-size:19px}}
 </style>
 </head>
 <body>
 <main>
-  <a class="back" href="./">← Burji</a>
-  <h1>حذف الحساب والبيانات</h1>
-  <p class="meta">لعبة «Burji · برجي» من Kodna</p>
-
-  <h2>من داخل اللعبة (فوري)</h2>
-  <ol class="steps">
-    <li>افتح اللعبة واضغط زر الإعدادات 🌐 في الأعلى.</li>
-    <li>انزل إلى أسفل الصفحة واضغط «حذف حسابي».</li>
-    <li>أكّد الحذف. إذا كان حسابك مربوطاً بـ Google سيُطلب منك تأكيد الدخول أولاً.</li>
-  </ol>
-  <p>يُحذف فوراً من الخادم ومن جهازك: حسابك، ونتائجك في كل اللوحات، واسم المستخدم @، وتقدّمك المحفوظ (الجواهر والعناصر والمساعدات والمستوى)، ورسائلك في المجموعات والرسائل الخاصة، وهداياك، ومكانك في دوري الدرجات.</p>
-
-  <h2>دون فتح اللعبة</h2>
-  <div class="box">
-    <p>أرسل لنا رسالة على تيليغرام <a href="https://t.me/kodna_iq">@kodna_iq</a> واكتب فيها: «أريد حذف حسابي في برجي» مع اسمك في اللعبة أو اسم المستخدم @، أو معرّف اللاعب الظاهر في شاشة «حول اللعبة» (ID).</p>
-    <p>نحذف الحساب وكل البيانات المذكورة أعلاه خلال 30 يوماً كحد أقصى، ونرد عليك عند الانتهاء.</p>
-  </div>
-  <p>البلاغات التي أرسلتها أنت عن رسائل لاعبين آخرين قد تبقى عندنا لمراجعة المخالفات فقط. لمزيد من التفاصيل راجع <a href="privacy.html">سياسة الخصوصية</a>.</p>
-
-  <section class="en">
+  <div class="top"><a class="back" href="./">← Burji</a><label class="lp"><span class="sr" data-t="lang">اللغة</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><select id="langPick"></select></label></div>
+  <article class="doc" lang="ar" dir="rtl">
+    <h1>حذف الحساب والبيانات</h1>
+      <p class="meta">لعبة «Burji · برجي» من Kodna</p>
+    
+      <h2>من داخل اللعبة (فوري)</h2>
+      <ol class="steps">
+        <li>افتح اللعبة واضغط زر الإعدادات 🌐 في الأعلى.</li>
+        <li>انزل إلى أسفل الصفحة واضغط «حذف حسابي».</li>
+        <li>أكّد الحذف. إذا كان حسابك مربوطاً بـ Google سيُطلب منك تأكيد الدخول أولاً.</li>
+      </ol>
+      <p>يُحذف فوراً من الخادم ومن جهازك: حسابك، ونتائجك في كل اللوحات، واسم المستخدم @، وتقدّمك المحفوظ (الجواهر والعناصر والمساعدات والمستوى)، ورسائلك في المجموعات والرسائل الخاصة، وهداياك، ومكانك في دوري الدرجات.</p>
+    
+      <h2>دون فتح اللعبة</h2>
+      <div class="box">
+        <p>أرسل لنا رسالة على تيليغرام <a href="https://t.me/kodna_iq">@kodna_iq</a> واكتب فيها: «أريد حذف حسابي في برجي» مع اسمك في اللعبة أو اسم المستخدم @، أو معرّف اللاعب الظاهر في شاشة «حول اللعبة» (ID).</p>
+        <p>نحذف الحساب وكل البيانات المذكورة أعلاه خلال 30 يوماً كحد أقصى، ونرد عليك عند الانتهاء.</p>
+      </div>
+      <p>البلاغات التي أرسلتها أنت عن رسائل لاعبين آخرين قد تبقى عندنا لمراجعة المخالفات فقط. لمزيد من التفاصيل راجع <a href="privacy.html">سياسة الخصوصية</a>.</p>
+  </article>
+  <article class="doc" lang="en" dir="ltr">
     <h1>Delete your account and data</h1>
-    <p class="meta">“Burji · برجي” by Kodna</p>
-    <h2>Inside the game (immediate)</h2>
-    <ol class="steps">
-      <li>Open the game and tap the settings button 🌐 at the top.</li>
-      <li>Scroll to the bottom and tap “Delete my account”.</li>
-      <li>Confirm. If your account is linked to Google, you will be asked to confirm your sign-in first.</li>
-    </ol>
-    <p>This immediately deletes from the server and your device: your account, your scores on every leaderboard, your @username, your saved progress (gems, items, boosters, level), your group and private messages, your gifts and your division place.</p>
-    <h2>Without opening the game</h2>
-    <div class="box">
-      <p>Send us a message on Telegram <a href="https://t.me/kodna_iq">@kodna_iq</a> saying “Delete my Burji account”, with your in-game name or @username, or the player ID shown on the game’s “About” screen.</p>
-      <p>We delete the account and all the data listed above within 30 days at most, and reply when it’s done.</p>
-    </div>
-    <p>Reports you sent about other players’ messages may be kept only to review abuse. See the <a href="privacy.html">privacy policy</a> for details.</p>
-  </section>
+        <p class="meta">“Burji · برجي” by Kodna</p>
+        <h2>Inside the game (immediate)</h2>
+        <ol class="steps">
+          <li>Open the game and tap the settings button 🌐 at the top.</li>
+          <li>Scroll to the bottom and tap “Delete my account”.</li>
+          <li>Confirm. If your account is linked to Google, you will be asked to confirm your sign-in first.</li>
+        </ol>
+        <p>This immediately deletes from the server and your device: your account, your scores on every leaderboard, your @username, your saved progress (gems, items, boosters, level), your group and private messages, your gifts and your division place.</p>
+        <h2>Without opening the game</h2>
+        <div class="box">
+          <p>Send us a message on Telegram <a href="https://t.me/kodna_iq">@kodna_iq</a> saying “Delete my Burji account”, with your in-game name or @username, or the player ID shown on the game’s “About” screen.</p>
+          <p>We delete the account and all the data listed above within 30 days at most, and reply when it’s done.</p>
+        </div>
+        <p>Reports you sent about other players’ messages may be kept only to review abuse. See the <a href="privacy.html">privacy policy</a> for details.</p>
+  </article>
+  <article class="doc" lang="ku" dir="rtl" hidden>
+    <h1>سڕینەوەی هەژمار و داتاکان</h1>
+      <p class="meta">یاریی «Burji · برجي» لە Kodna</p>
+    
+      <h2>لە ناو یارییەکەوە (دەستبەجێ)</h2>
+      <ol class="steps">
+        <li>یارییەکە بکەرەوە و دوگمەی ڕێکخستنەکان 🌐 لە سەرەوە دابگرە.</li>
+        <li>بۆ خوارەوەی پەڕەکە بڕۆ و «سڕینەوەی هەژمارەکەم» دابگرە.</li>
+        <li>سڕینەوەکە پشتڕاست بکەرەوە. ئەگەر هەژمارەکەت بە Googleەوە بەسترابێت، سەرەتا داوات لێدەکرێت چوونەژوورەوەکەت پشتڕاست بکەیتەوە.</li>
+      </ol>
+      <p>ئەمانە دەستبەجێ لە ڕاژەکار و لە ئامێرەکەت دەسڕدرێنەوە: هەژمارەکەت، ئەنجامەکانت لە هەموو تەختەکاندا، ناوی بەکارهێنەری @، پێشکەوتنە پاشەکەوتکراوەکەت (گەوهەر و شتەکان و یارمەتیدەرەکان و ئاست)، نامەکانت لە گرووپەکان و نامە تایبەتەکان، دیارییەکانت، و شوێنەکەت لە خولی پلەکاندا.</p>
+    
+      <h2>بەبێ کردنەوەی یارییەکە</h2>
+      <div class="box">
+        <p>لە Telegram نامەیەکمان بۆ بنێرە <a href="https://t.me/kodna_iq">@kodna_iq</a> و تێیدا بنووسە: «دەمەوێت هەژمارەکەم لە Burji بسڕمەوە» لەگەڵ ناوەکەت لە یارییەکەدا یان ناوی بەکارهێنەری @، یان ناسێنەری یاریزان کە لە شاشەی «دەربارەی یارییەکە»دا دیارە (ID).</p>
+        <p>هەژمارەکە و هەموو ئەو داتایانەی لە سەرەوە باسکران لە ماوەی 30 ڕۆژدا بە لایەنی زۆرەوە دەسڕینەوە، و کاتێک تەواو بوو وەڵامت دەدەینەوە.</p>
+      </div>
+      <p>ئەو سکاڵایانەی خۆت دەربارەی نامەی یاریزانانی تر ناردووتن لەوانەیە لای ئێمە بمێننەوە، تەنها بۆ پێداچوونەوەی سەرپێچییەکان. بۆ وردەکاریی زیاتر سەیری <a href="privacy.html">سیاسەتی تایبەتمەندی</a> بکە.</p>
+  </article>
+  <article class="doc" lang="tr" dir="ltr" hidden>
+    <h1>Hesabı ve verileri silme</h1>
+      <p class="meta">Kodna'nın “Burji · برجي” oyunu</p>
+    
+      <h2>Oyunun içinden (anında)</h2>
+      <ol class="steps">
+        <li>Oyunu aç ve üstteki ayarlar düğmesine 🌐 dokun.</li>
+        <li>Sayfanın en altına in ve “Hesabımı sil” seçeneğine dokun.</li>
+        <li>Silme işlemini onayla. Hesabın Google'a bağlıysa önce oturum açmanı onaylaman istenir.</li>
+      </ol>
+      <p>Şunlar sunucudan ve cihazından anında silinir: hesabın, tüm tablolardaki skorların, @kullanıcı adın, kayıtlı ilerlemen (elmaslar, öğeler, güçlendiriciler ve seviye), gruplardaki mesajların ve özel mesajların, hediyelerin ve lig sıralamasındaki yerin.</p>
+    
+      <h2>Oyunu açmadan</h2>
+      <div class="box">
+        <p>Bize Telegram'dan <a href="https://t.me/kodna_iq">@kodna_iq</a> adresine bir mesaj gönder ve mesaja “Burji hesabımı silmek istiyorum” yazarak oyundaki adını veya @kullanıcı adını ya da “Hakkında” ekranında görünen oyuncu kimliğini (ID) ekle.</p>
+        <p>Hesabı ve yukarıda belirtilen tüm verileri en geç 30 gün içinde siler, işlem tamamlandığında sana yanıt veririz.</p>
+      </div>
+      <p>Diğer oyuncuların mesajları hakkında gönderdiğin şikâyetler yalnızca ihlalleri incelemek amacıyla bizde kalabilir. Daha fazla ayrıntı için <a href="privacy.html">gizlilik politikasına</a> bak.</p>
+  </article>
+  <article class="doc" lang="fr" dir="ltr" hidden>
+    <h1>Supprimer votre compte et vos données</h1>
+      <p class="meta">Le jeu « Burji · برجي » de Kodna</p>
+    
+      <h2>Depuis le jeu (immédiat)</h2>
+      <ol class="steps">
+        <li>Ouvrez le jeu et appuyez sur le bouton des paramètres 🌐 en haut.</li>
+        <li>Descendez en bas de la page et appuyez sur « Supprimer mon compte ».</li>
+        <li>Confirmez la suppression. Si votre compte est associé à Google, il vous sera d’abord demandé de confirmer votre connexion.</li>
+      </ol>
+      <p>Sont immédiatement supprimés du serveur et de votre appareil : votre compte, vos scores dans tous les classements, votre nom d’utilisateur @, votre progression enregistrée (gemmes, objets, bonus et niveau), vos messages dans les groupes et vos messages privés, vos cadeaux et votre place dans la ligue de divisions.</p>
+    
+      <h2>Sans ouvrir le jeu</h2>
+      <div class="box">
+        <p>Envoyez-nous un message sur Telegram <a href="https://t.me/kodna_iq">@kodna_iq</a> en écrivant : « Je veux supprimer mon compte Burji », avec votre nom dans le jeu ou votre nom d’utilisateur @, ou l’identifiant de joueur affiché sur l’écran « À propos » (ID).</p>
+        <p>Nous supprimons le compte et toutes les données mentionnées ci-dessus dans un délai de 30 jours maximum, et nous vous répondons une fois la suppression effectuée.</p>
+      </div>
+      <p>Les signalements que vous avez envoyés concernant les messages d’autres joueurs peuvent être conservés par nos soins uniquement pour examiner les infractions. Pour plus de détails, consultez la <a href="privacy.html">politique de confidentialité</a>.</p>
+  </article>
+  <article class="doc" lang="es" dir="ltr" hidden>
+    <h1>Eliminar la cuenta y los datos</h1>
+      <p class="meta">El juego «Burji · برجي» de Kodna</p>
+    
+      <h2>Desde el juego (inmediato)</h2>
+      <ol class="steps">
+        <li>Abre el juego y pulsa el botón de ajustes 🌐 de la parte superior.</li>
+        <li>Baja hasta el final de la página y pulsa «Eliminar mi cuenta».</li>
+        <li>Confirma la eliminación. Si tu cuenta está vinculada a Google, primero se te pedirá que confirmes el inicio de sesión.</li>
+      </ol>
+      <p>Se eliminan de inmediato del servidor y de tu dispositivo: tu cuenta, tus puntuaciones en todas las clasificaciones, tu nombre de usuario @, tu progreso guardado (gemas, objetos, potenciadores y nivel), tus mensajes en los grupos y tus mensajes privados, tus regalos y tu puesto en la liga de divisiones.</p>
+    
+      <h2>Sin abrir el juego</h2>
+      <div class="box">
+        <p>Envíanos un mensaje por Telegram a <a href="https://t.me/kodna_iq">@kodna_iq</a> escribiendo: «Quiero eliminar mi cuenta de Burji», junto con tu nombre en el juego o tu nombre de usuario @, o el identificador de jugador que aparece en la pantalla «Acerca de» (ID).</p>
+        <p>Eliminamos la cuenta y todos los datos mencionados arriba en un plazo máximo de 30 días, y te respondemos cuando terminemos.</p>
+      </div>
+      <p>Las denuncias que hayas enviado sobre mensajes de otros jugadores pueden conservarse únicamente para revisar infracciones. Para más detalles, consulta la <a href="privacy.html">política de privacidad</a>.</p>
+  </article>
+  <article class="doc" lang="fa" dir="rtl" hidden>
+    <h1>حذف حساب و داده‌ها</h1>
+      <p class="meta">بازی «Burji · برجي» از Kodna</p>
+    
+      <h2>از داخل بازی (فوری)</h2>
+      <ol class="steps">
+        <li>بازی را باز کنید و دکمهٔ تنظیمات 🌐 را در بالا بزنید.</li>
+        <li>به پایین صفحه بروید و «حذف حساب من» را بزنید.</li>
+        <li>حذف را تأیید کنید. اگر حسابتان به Google پیوند داده شده باشد، ابتدا از شما خواسته می‌شود ورودتان را تأیید کنید.</li>
+      </ol>
+      <p>این موارد فوراً از سرور و از دستگاه شما حذف می‌شوند: حسابتان، امتیازهایتان در همهٔ جدول‌ها، نام کاربری @، پیشرفت ذخیره‌شده‌تان (جواهرها، آیتم‌ها، بوسترها و سطح)، پیام‌هایتان در گروه‌ها و پیام‌های خصوصی، هدیه‌هایتان، و جایگاهتان در لیگ دسته‌ها.</p>
+    
+      <h2>بدون باز کردن بازی</h2>
+      <div class="box">
+        <p>در Telegram به <a href="https://t.me/kodna_iq">@kodna_iq</a> پیام بدهید و در آن بنویسید: «می‌خواهم حسابم در Burji را حذف کنم» همراه با نامتان در بازی یا نام کاربری @، یا شناسهٔ بازیکن که در صفحهٔ «درباره» نمایش داده می‌شود (ID).</p>
+        <p>حساب و همهٔ داده‌های ذکرشده در بالا را حداکثر ظرف 30 روز حذف می‌کنیم و پس از پایان کار به شما پاسخ می‌دهیم.</p>
+      </div>
+      <p>گزارش‌هایی که خودتان دربارهٔ پیام‌های بازیکنان دیگر فرستاده‌اید ممکن است فقط برای بررسی تخلفات نزد ما باقی بمانند. برای جزئیات بیشتر <a href="privacy.html">سیاست حفظ حریم خصوصی</a> را ببینید.</p>
+  </article>
+  <article class="doc" lang="ur" dir="rtl" hidden>
+    <h1>اکاؤنٹ اور ڈیٹا حذف کرنا</h1>
+      <p class="meta">Kodna کی گیم “Burji · برجي”</p>
+    
+      <h2>گیم کے اندر سے (فوری)</h2>
+      <ol class="steps">
+        <li>گیم کھولیں اور اوپر سیٹنگز کا بٹن 🌐 دبائیں۔</li>
+        <li>صفحے کے نیچے تک جائیں اور “میرا اکاؤنٹ حذف کریں” دبائیں۔</li>
+        <li>حذف کرنے کی تصدیق کریں۔ اگر آپ کا اکاؤنٹ Google سے لنک ہے تو پہلے آپ سے سائن اِن کی تصدیق کرنے کو کہا جائے گا۔</li>
+      </ol>
+      <p>سرور اور آپ کے ڈیوائس سے فوراً حذف ہو جاتا ہے: آپ کا اکاؤنٹ، تمام بورڈز پر آپ کے اسکورز، @یوزر نیم، آپ کی محفوظ پیش رفت (جواہرات، آئٹمز، بوسٹرز اور لیول)، گروپس میں آپ کے پیغامات اور نجی پیغامات، آپ کے تحائف، اور ڈویژن لیگ میں آپ کی جگہ۔</p>
+    
+      <h2>گیم کھولے بغیر</h2>
+      <div class="box">
+        <p>ہمیں Telegram پر <a href="https://t.me/kodna_iq">@kodna_iq</a> کو پیغام بھیجیں اور اس میں لکھیں: “میں Burji میں اپنا اکاؤنٹ حذف کرنا چاہتا ہوں”، ساتھ میں گیم میں اپنا نام یا @یوزر نیم، یا “گیم کے بارے میں” اسکرین پر نظر آنے والا کھلاڑی کا شناخت کنندہ (ID)۔</p>
+        <p>ہم اکاؤنٹ اور اوپر ذکر کردہ تمام ڈیٹا زیادہ سے زیادہ 30 دن کے اندر حذف کر دیتے ہیں، اور کام مکمل ہونے پر آپ کو جواب دیتے ہیں۔</p>
+      </div>
+      <p>دوسرے کھلاڑیوں کے پیغامات کے بارے میں آپ کی بھیجی ہوئی رپورٹس صرف خلاف ورزیوں کے جائزے کے لیے ہمارے پاس رہ سکتی ہیں۔ مزید تفصیلات کے لیے <a href="privacy.html">پرائیویسی پالیسی</a> دیکھیں۔</p>
+  </article>
+  <article class="doc" lang="id" dir="ltr" hidden>
+    <h1>Hapus akun dan data</h1>
+      <p class="meta">Game “Burji · برجي” dari Kodna</p>
+    
+      <h2>Dari dalam game (langsung)</h2>
+      <ol class="steps">
+        <li>Buka game dan ketuk tombol pengaturan 🌐 di bagian atas.</li>
+        <li>Gulir ke bagian bawah halaman dan ketuk “Hapus akun saya”.</li>
+        <li>Konfirmasi penghapusan. Jika akun Anda tertaut ke Google, Anda akan diminta mengonfirmasi login terlebih dahulu.</li>
+      </ol>
+      <p>Data berikut langsung dihapus dari server dan perangkat Anda: akun Anda, skor Anda di semua papan peringkat, nama pengguna @, progres tersimpan Anda (permata, item, booster, dan level), pesan Anda di grup dan pesan pribadi, hadiah Anda, serta posisi Anda di liga divisi.</p>
+    
+      <h2>Tanpa membuka game</h2>
+      <div class="box">
+        <p>Kirimi kami pesan di Telegram <a href="https://t.me/kodna_iq">@kodna_iq</a> dengan tulisan: “Saya ingin menghapus akun Burji saya” beserta nama Anda di game atau nama pengguna @, atau pengenal pemain yang ditampilkan di layar “Tentang” (ID).</p>
+        <p>Kami menghapus akun dan semua data yang disebutkan di atas paling lambat dalam 30 hari, dan membalas Anda setelah selesai.</p>
+      </div>
+      <p>Laporan yang Anda kirim tentang pesan pemain lain mungkin tetap kami simpan hanya untuk meninjau pelanggaran. Untuk detail lebih lanjut, lihat <a href="privacy.html">kebijakan privasi</a>.</p>
+  </article>
+  <article class="doc" lang="pt" dir="ltr" hidden>
+    <h1>Excluir conta e dados</h1>
+      <p class="meta">Jogo “Burji · برجي” da Kodna</p>
+    
+      <h2>Dentro do jogo (imediato)</h2>
+      <ol class="steps">
+        <li>Abra o jogo e toque no botão de configurações 🌐 no topo.</li>
+        <li>Role até o fim da página e toque em “Excluir minha conta”.</li>
+        <li>Confirme a exclusão. Se sua conta estiver vinculada ao Google, você precisará confirmar o login primeiro.</li>
+      </ol>
+      <p>São excluídos imediatamente do servidor e do seu dispositivo: sua conta, suas pontuações em todos os rankings, seu nome de usuário @, seu progresso salvo (gemas, itens, power-ups e nível), suas mensagens nos grupos e suas mensagens privadas, seus presentes e sua posição na liga de divisões.</p>
+    
+      <h2>Sem abrir o jogo</h2>
+      <div class="box">
+        <p>Envie uma mensagem para nós no Telegram <a href="https://t.me/kodna_iq">@kodna_iq</a> escrevendo: “Quero excluir minha conta do Burji”, com seu nome no jogo ou seu nome de usuário @, ou o identificador de jogador mostrado na tela “Sobre” (ID).</p>
+        <p>Excluímos a conta e todos os dados mencionados acima em no máximo 30 dias, e respondemos a você quando terminarmos.</p>
+      </div>
+      <p>As denúncias que você enviou sobre mensagens de outros jogadores podem ficar conosco apenas para análise de violações. Para mais detalhes, consulte a <a href="privacy.html">política de privacidade</a>.</p>
+  </article>
+  <article class="doc" lang="zh" dir="ltr" hidden>
+    <h1>删除账号和数据</h1>
+      <p class="meta">Kodna 出品的游戏“Burji · برجي”</p>
+    
+      <h2>在游戏内删除（立即生效）</h2>
+      <ol class="steps">
+        <li>打开游戏，点击顶部的设置按钮 🌐。</li>
+        <li>滑动到页面底部，点击“删除我的账号”。</li>
+        <li>确认删除。如果您的账号已关联 Google，系统会先要求您确认登录。</li>
+      </ol>
+      <p>以下内容会立即从服务器和您的设备上删除：您的账号、您在所有排行榜上的分数、@用户名、您保存的进度（宝石、物品、道具和等级）、您在群组中的消息和私信、您的礼物，以及您在段位联赛中的排名。</p>
+    
+      <h2>无需打开游戏</h2>
+      <div class="box">
+        <p>在 Telegram 上给 <a href="https://t.me/kodna_iq">@kodna_iq</a> 发送消息，写明：“我想删除我的 Burji 账号”，并附上您在游戏中的名字或 @用户名，或者“关于”界面中显示的玩家标识符（ID）。</p>
+        <p>我们最迟会在 30 天内删除账号及上述所有数据，并在完成后回复您。</p>
+      </div>
+      <p>您就其他玩家消息提交的举报可能会被我们保留，仅用于审核违规行为。更多详情请参阅<a href="privacy.html">隐私政策</a>。</p>
+  </article>
+  <article class="doc" lang="ru" dir="ltr" hidden>
+    <h1>Удаление аккаунта и данных</h1>
+      <p class="meta">Игра «Burji · برجي» от Kodna</p>
+    
+      <h2>В игре (сразу)</h2>
+      <ol class="steps">
+        <li>Откройте игру и нажмите кнопку настроек 🌐 вверху.</li>
+        <li>Прокрутите страницу до конца и нажмите «Удалить мой аккаунт».</li>
+        <li>Подтвердите удаление. Если ваш аккаунт привязан к Google, сначала потребуется подтвердить вход.</li>
+      </ol>
+      <p>С сервера и с вашего устройства сразу удаляются: ваш аккаунт, ваши результаты во всех таблицах, @имя пользователя, сохранённый прогресс (кристаллы, предметы, бустеры и уровень), ваши сообщения в группах и личные сообщения, ваши подарки и ваше место в лиге дивизионов.</p>
+    
+      <h2>Не открывая игру</h2>
+      <div class="box">
+        <p>Напишите нам в Telegram <a href="https://t.me/kodna_iq">@kodna_iq</a>: «Хочу удалить свой аккаунт в Burji» — и укажите своё имя в игре или @имя пользователя либо идентификатор игрока, показанный на экране «Об игре» (ID).</p>
+        <p>Мы удалим аккаунт и все перечисленные выше данные не позднее чем через 30 дней и ответим вам, когда всё будет готово.</p>
+      </div>
+      <p>Жалобы, которые вы отправили на сообщения других игроков, могут храниться у нас только для проверки нарушений. Подробнее — в <a href="privacy.html">политике конфиденциальности</a>.</p>
+  </article>
 </main>
+<script src="lang.js"></script>
+<script>
+  // Show the page in the visitor's language (same choice as the game and kodna.org)
+  (function(){
+    var LBL = {"ar": "اللغة", "en": "Language", "ku": "زمان", "tr": "Dil", "fr": "Langue", "es": "Idioma", "fa": "زبان", "ur": "زبان", "id": "Bahasa", "pt": "Idioma", "zh": "语言", "ru": "Язык"}, TTL = {"ar": "حذف الحساب", "en": "Delete account", "ku": "سڕینەوەی هەژمار", "tr": "Hesabı sil", "fr": "Supprimer le compte", "es": "Eliminar cuenta", "fa": "حذف حساب", "ur": "اکاؤنٹ حذف کریں", "id": "Hapus akun", "pt": "Excluir conta", "zh": "删除账号", "ru": "Удалить аккаунт"};
+    BurjiLang.init(function(l){
+      var shown = false;
+      document.querySelectorAll('.doc').forEach(function(a){ var on = a.lang === l; a.hidden = !on; if (on) shown = true; });
+      if (!shown) document.querySelector('.doc[lang=en]').hidden = false;
+      document.querySelector('[data-t=lang]').textContent = LBL[l] || LBL.en;
+      document.title = (TTL[l] || TTL.en) + ' · Burji';
+    });
+  })();
+</script>
 </body>
 </html>

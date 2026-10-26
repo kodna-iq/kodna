@@ -23,60 +23,437 @@ p,li{color:#DCD6F2}
 .meta{color:var(--muted);font-size:14px;margin-bottom:28px}
 .en{direction:ltr;text-align:left;border-top:1px solid var(--line);margin-top:48px;padding-top:32px}
 .back{display:inline-block;margin-bottom:24px;text-decoration:none;font-weight:800}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.top .back{margin:0}
+.lp{position:relative;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:0 10px;height:36px;color:var(--muted)}
+.lp svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}
+.lp select{appearance:none;-webkit-appearance:none;background:transparent;border:0;color:var(--ink);font:700 14px Vazirmatn,system-ui,sans-serif;cursor:pointer}
+.lp select option{color:#120E2A}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.doc:not([hidden])~.doc:not([hidden]){border-top:1px solid var(--line);margin-top:48px;padding-top:32px}
+.doc[dir=ltr]{text-align:left}
+.doc p,.doc li{overflow-wrap:anywhere}
+.doc h1,.doc h2{overflow-wrap:break-word;hyphens:auto}
+@media (max-width:520px){.doc h1{font-size:27px;line-height:1.3}.doc h2{font-size:19px}}
 </style>
 </head>
 <body>
 <main>
-  <a class="back" href="./">← Burji</a>
-  <h1>سياسة الخصوصية</h1>
-  <p class="meta">لعبة «Burji · برجي» من Kodna · آخر تحديث: 24 أكتوبر 2026</p>
-
-  <p>نحترم خصوصيتك. توضح هذه الصفحة البيانات التي تستخدمها لعبة Burji، ولماذا، وكيف تتحكم بها.</p>
-
-  <h2>1. البيانات المحفوظة على جهازك</h2>
-  <p>تحفظ اللعبة تقدمك على جهازك في متصفحك: أفضل نتيجة، والجواهر، والعناصر التي حصلت عليها، والإعدادات واللغة، وعدّادات بسيطة لعدد الجولات اليومية. عندما تكون الميزات الجماعية مفعّلة تُحفظ نسخة من هذا التقدم في حسابك على خادم اللعبة حتى لا تفقده، وإلا فلا تُرسل إلى أي جهة. يمكنك حذف النسخة المحلية بمسح بيانات الموقع من إعدادات المتصفح.</p>
-
-  <h2>2. الميزات الجماعية</h2>
-  <p>عند تشغيل الميزات الجماعية (لوحات الترتيب، التحديات، المجموعات، المباريات المباشرة، الألقاب)، نحفظ على خادم اللعبة: الاسم الذي تختاره أنت، ولون رفيقك، ونتائجك، ومستواك، ومعرّفاً عشوائياً لحسابك (لا نطلب بريدك ولا رقمك). خادم اللعبة هو خدمة Google Firebase، وتعالج Google هذه البيانات نيابة عنا وفق شروطها. الاسم ظاهر لبقية اللاعبين. إذا اخترت «حساب خاص» من الإعدادات يظهر اسمك «لاعب خاص» ولا تظهر في قائمة اللاعبين. وإذا اخترت حالة «مشغول» تظهر غير متصل.</p>
-  <p>ما يراه اللاعبون الآخرون: اسمك ولون رفيقك ونتائجك ومستواك، وهل أنت متصل الآن أو متى ظهرت آخر مرة، ونتيجتك أثناء المباراة المباشرة. إذا بدأت اللعب من رابط صديق نحفظ ذلك في سجلك لنمنحكما مكافأة الدعوة.</p>
-  <p>نحفظ أيضاً عدّادات استخدام مرتبطة بمعرّفك العشوائي: تاريخ أول لعب، وهل جئت من رابط، ولغتك، وعدد الجولات والمشاركات يومياً. نستخدمها فقط لنفهم هل اللعبة ممتعة ونحسّنها. تعالج Google Firebase أيضاً بيانات تقنية مثل عنوان IP ونوع الجهاز والمتصفح لتشغيل الخدمة وحمايتها. لا نبيع أي بيانات، ولا نشارك بيانات الخادم هذه (اسمك ونتائجك وعدّاداتك) مع المعلنين.</p>
-  <p><b>الرسائل:</b> الرسائل السريعة الجاهزة («مرحباً»، «مباراة؟»...) تُحفظ على الخادم حتى يستلمها اللاعب ثم تُحذف. رسائل دردشة المجموعة تُحفظ مع اسمك ويراها أعضاء المجموعة فقط. والرسائل الخاصة بين لاعبَين تُحفظ مع اسمك ولا يراها إلا هذان اللاعبان، وتُحذف مع حسابك إذا حذفته. تُخفى الشتائم والروابط وأرقام الهواتف تلقائياً، ويمكن لأي لاعب حظر لاعب آخر أو الإبلاغ عن رسالة؛ نراجع البلاغات ونحذف المخالف. يمكنك حذف رسائلك في أي وقت، وتُحذف كلها عند حذف حسابك.</p>
-  <p>ربط الحساب بـ Google اختياري. إذا ربطته نحفظ عبر Google Firebase بريدك الإلكتروني واسمك في Google مع معرّف حسابك، فقط لتستعيد تقدّمك على أي جهاز. لا نعرضهما لأحد ولا نرسل لك أي رسائل.</p>
-  <p>الإشعارات (دعوة لمباراة، لقب جديد) تصدر من جهازك نفسه، وتطلب إذنك أولاً، ولا نرسل أي معرّف إشعارات إلى خادم.</p>
-
-  <h2>3. الإعلانات والمنصات</h2>
-  <p>في تطبيق Burji على أندرويد تظهر إعلانات فيديو بمكافأة (جواهر مجانية، مضاعفة الجواهر، إكمال الجولة) من خدمة Google AdMob، ولا تظهر إلا عندما تضغط أنت زر الإعلان. لعرض هذه الإعلانات وقياسها ومنع الاحتيال، تجمع Google من جهازك معرّف الإعلانات، وعنوان IP، ونوع الجهاز، وتفاعلك مع الإعلان. وفي بعض الدول (مثل دول الاتحاد الأوروبي والمملكة المتحدة) تسألك اللعبة أولاً عن موافقتك على الإعلانات المخصّصة، ويمكنك تغيير اختيارك في أي وقت من «حول اللعبة» ← «إعدادات خصوصية الإعلانات». يمكنك أيضاً حذف معرّف الإعلانات أو إعادة ضبطه من إعدادات هاتفك (Google ← الإعلانات). تفاصيل استخدام Google للبيانات: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
-  <p>عند اللعب عبر منصات مثل CrazyGames، تعرض المنصة الإعلانات وتطبق سياسة الخصوصية الخاصة بها. الإعلانات التي تمنح جوائز اختيارية دائماً.</p>
-
-  <h2>4. المشتريات</h2>
-  <p>المشتريات بالمال الحقيقي، عند توفرها في تطبيق Burji، تتم عبر Google Play أو App Store، ولا نرى بيانات بطاقتك.</p>
-
-  <h2>5. الأطفال</h2>
-  <p>اللعبة مناسبة للجميع، لكنها غير موجهة للأطفال دون 13 عاماً بشكل خاص، ولا نجمع عن قصد بيانات شخصية منهم. إذا كنت ولي أمر وتعتقد أن طفلك أرسل لنا بيانات، تواصل معنا لحذفها.</p>
-
-  <h2 id="delete">6. مدة الحفظ وحذف بياناتك</h2>
-  <p>نحتفظ ببيانات حسابك ما دمت تلعب، ونحذف بيانات أي حساب لم يُستخدم منذ 12 شهراً.</p>
-  <p><b>حذف الحساب من داخل اللعبة:</b> افتح الإعدادات ← «حذف حسابي». يُحذف حسابك ونتائجك وتقدّمك من الخادم ومن الجهاز فوراً. ويمكنك أيضاً طلب الحذف دون فتح اللعبة من <a href="delete-account.html">صفحة حذف الحساب</a>.</p>
-  <p>يمكنك تغيير اسمك أو جعل حسابك خاصاً من الإعدادات داخل اللعبة. لحذف بياناتك من خادم اللعبة نهائياً: افتح «حول اللعبة» وانسخ المعرّف المكتوب بعد «ID»، ثم أرسله لنا عبر تيليغرام <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> أو من خلال <a href="https://kodna.org/">kodna.org</a>. نحذف البيانات خلال 30 يوماً من الطلب.</p>
-
-  <h2>7. التغييرات</h2>
-  <p>قد نحدّث هذه السياسة مع إضافة ميزات جديدة، وسنغيّر تاريخ «آخر تحديث» أعلاه.</p>
-
-  <div class="en">
+  <div class="top"><a class="back" href="./">← Burji</a><label class="lp"><span class="sr" data-t="lang">اللغة</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><select id="langPick"></select></label></div>
+  <article class="doc" lang="ar" dir="rtl">
+    <h1>سياسة الخصوصية</h1>
+      <p class="meta">لعبة «Burji · برجي» من Kodna · آخر تحديث: 24 أكتوبر 2026</p>
+    
+      <p>نحترم خصوصيتك. توضح هذه الصفحة البيانات التي تستخدمها لعبة Burji، ولماذا، وكيف تتحكم بها.</p>
+    
+      <h2>1. البيانات المحفوظة على جهازك</h2>
+      <p>تحفظ اللعبة تقدمك على جهازك في متصفحك: أفضل نتيجة، والجواهر، والعناصر التي حصلت عليها، والإعدادات واللغة، وعدّادات بسيطة لعدد الجولات اليومية. عندما تكون الميزات الجماعية مفعّلة تُحفظ نسخة من هذا التقدم في حسابك على خادم اللعبة حتى لا تفقده، وإلا فلا تُرسل إلى أي جهة. يمكنك حذف النسخة المحلية بمسح بيانات الموقع من إعدادات المتصفح.</p>
+    
+      <h2>2. الميزات الجماعية</h2>
+      <p>عند تشغيل الميزات الجماعية (لوحات الترتيب، التحديات، المجموعات، المباريات المباشرة، الألقاب)، نحفظ على خادم اللعبة: الاسم الذي تختاره أنت، ولون رفيقك، ونتائجك، ومستواك، ومعرّفاً عشوائياً لحسابك (لا نطلب بريدك ولا رقمك). خادم اللعبة هو خدمة Google Firebase، وتعالج Google هذه البيانات نيابة عنا وفق شروطها. الاسم ظاهر لبقية اللاعبين. إذا اخترت «حساب خاص» من الإعدادات يظهر اسمك «لاعب خاص» ولا تظهر في قائمة اللاعبين. وإذا اخترت حالة «مشغول» تظهر غير متصل.</p>
+      <p>ما يراه اللاعبون الآخرون: اسمك ولون رفيقك ونتائجك ومستواك، وهل أنت متصل الآن أو متى ظهرت آخر مرة، ونتيجتك أثناء المباراة المباشرة. إذا بدأت اللعب من رابط صديق نحفظ ذلك في سجلك لنمنحكما مكافأة الدعوة.</p>
+      <p>نحفظ أيضاً عدّادات استخدام مرتبطة بمعرّفك العشوائي: تاريخ أول لعب، وهل جئت من رابط، ولغتك، وعدد الجولات والمشاركات يومياً. نستخدمها فقط لنفهم هل اللعبة ممتعة ونحسّنها. تعالج Google Firebase أيضاً بيانات تقنية مثل عنوان IP ونوع الجهاز والمتصفح لتشغيل الخدمة وحمايتها. لا نبيع أي بيانات، ولا نشارك بيانات الخادم هذه (اسمك ونتائجك وعدّاداتك) مع المعلنين.</p>
+      <p><b>الرسائل:</b> الرسائل السريعة الجاهزة («مرحباً»، «مباراة؟»...) تُحفظ على الخادم حتى يستلمها اللاعب ثم تُحذف. رسائل دردشة المجموعة تُحفظ مع اسمك ويراها أعضاء المجموعة فقط. والرسائل الخاصة بين لاعبَين تُحفظ مع اسمك ولا يراها إلا هذان اللاعبان، وتُحذف مع حسابك إذا حذفته. تُخفى الشتائم والروابط وأرقام الهواتف تلقائياً، ويمكن لأي لاعب حظر لاعب آخر أو الإبلاغ عن رسالة؛ نراجع البلاغات ونحذف المخالف. يمكنك حذف رسائلك في أي وقت، وتُحذف كلها عند حذف حسابك.</p>
+      <p>ربط الحساب بـ Google اختياري. إذا ربطته نحفظ عبر Google Firebase بريدك الإلكتروني واسمك في Google مع معرّف حسابك، فقط لتستعيد تقدّمك على أي جهاز. لا نعرضهما لأحد ولا نرسل لك أي رسائل.</p>
+      <p>الإشعارات (دعوة لمباراة، لقب جديد) تصدر من جهازك نفسه، وتطلب إذنك أولاً، ولا نرسل أي معرّف إشعارات إلى خادم.</p>
+    
+      <h2>3. الإعلانات والمنصات</h2>
+      <p>في تطبيق Burji على أندرويد تظهر إعلانات فيديو بمكافأة (جواهر مجانية، مضاعفة الجواهر، إكمال الجولة) من خدمة Google AdMob، ولا تظهر إلا عندما تضغط أنت زر الإعلان. لعرض هذه الإعلانات وقياسها ومنع الاحتيال، تجمع Google من جهازك معرّف الإعلانات، وعنوان IP، ونوع الجهاز، وتفاعلك مع الإعلان. وفي بعض الدول (مثل دول الاتحاد الأوروبي والمملكة المتحدة) تسألك اللعبة أولاً عن موافقتك على الإعلانات المخصّصة، ويمكنك تغيير اختيارك في أي وقت من «حول اللعبة» ← «إعدادات خصوصية الإعلانات». يمكنك أيضاً حذف معرّف الإعلانات أو إعادة ضبطه من إعدادات هاتفك (Google ← الإعلانات). تفاصيل استخدام Google للبيانات: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>عند اللعب عبر منصات مثل CrazyGames، تعرض المنصة الإعلانات وتطبق سياسة الخصوصية الخاصة بها. الإعلانات التي تمنح جوائز اختيارية دائماً.</p>
+    
+      <h2>4. المشتريات</h2>
+      <p>المشتريات بالمال الحقيقي، عند توفرها في تطبيق Burji، تتم عبر Google Play أو App Store، ولا نرى بيانات بطاقتك.</p>
+    
+      <h2>5. الأطفال</h2>
+      <p>اللعبة مناسبة للجميع، لكنها غير موجهة للأطفال دون 13 عاماً بشكل خاص، ولا نجمع عن قصد بيانات شخصية منهم. إذا كنت ولي أمر وتعتقد أن طفلك أرسل لنا بيانات، تواصل معنا لحذفها.</p>
+    
+      <h2 id="delete">6. مدة الحفظ وحذف بياناتك</h2>
+      <p>نحتفظ ببيانات حسابك ما دمت تلعب، ونحذف بيانات أي حساب لم يُستخدم منذ 12 شهراً.</p>
+      <p><b>حذف الحساب من داخل اللعبة:</b> افتح الإعدادات ← «حذف حسابي». يُحذف حسابك ونتائجك وتقدّمك من الخادم ومن الجهاز فوراً. ويمكنك أيضاً طلب الحذف دون فتح اللعبة من <a href="delete-account.html">صفحة حذف الحساب</a>.</p>
+      <p>يمكنك تغيير اسمك أو جعل حسابك خاصاً من الإعدادات داخل اللعبة. لحذف بياناتك من خادم اللعبة نهائياً: افتح «حول اللعبة» وانسخ المعرّف المكتوب بعد «ID»، ثم أرسله لنا عبر تيليغرام <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> أو من خلال <a href="https://kodna.org/">kodna.org</a>. نحذف البيانات خلال 30 يوماً من الطلب.</p>
+    
+      <h2>7. التغييرات</h2>
+      <p>قد نحدّث هذه السياسة مع إضافة ميزات جديدة، وسنغيّر تاريخ «آخر تحديث» أعلاه.</p>
+  </article>
+  <article class="doc" lang="en" dir="ltr">
     <h1>Privacy Policy</h1>
-    <p class="meta">“Burji · برجي” by Kodna · Last updated: October 24, 2026</p>
-    <p><b>On your device.</b> The game stores your progress in your browser: best score, gems, unlocked items, settings, language and simple daily round counters. When online features are on, a copy of this progress is kept in your account on the game server so you don't lose it; otherwise it is not sent anywhere. Clear the site data in your browser to delete the local copy.</p>
-    <p><b>Online features.</b> When leaderboards, challenges, groups, live matches and titles are enabled, the game server stores the name you choose, your companion colour, your scores and level, and a random account identifier (we never ask for your email or phone number). The game server is Google Firebase, which processes this data on our behalf under its terms. Your name is visible to other players. A “private” account shows as “Private player” and is hidden from the players list; “busy” status makes you appear offline. Other players can see your name, companion colour, scores and level, whether you are online or when you were last seen, and your score during a live match. If you start from a friend's link, that link is stored on your record so both of you get the invite reward.</p>
-    <p><b>Usage counters and technical data.</b> We keep usage counters linked to your random identifier (first-play date, whether you came from a link, language, daily rounds and shares) only to improve the game. Google Firebase also processes technical data such as IP address and device/browser type to run and secure the service. We do not sell data, and we do not share this server data (your name, scores and counters) with advertisers.</p>
-    <p><b>Messages.</b> Quick preset messages (“Hi”, “Match?”…) are stored on the server until the other player receives them, then deleted. Group chat messages are stored with your name and visible to that group’s members only. Private messages between two players are stored with your name, visible only to those two players, and deleted with your account if you delete it. Swear words, links and phone numbers are hidden automatically; any player can block another player or report a message, and we review reports and remove what breaks the rules. You can delete your messages at any time, and they are all deleted when you delete your account.</p>
-    <p><b>Google account (optional).</b> If you link your Google account, Google Firebase stores your email address and Google name with your account identifier, only so you can restore your progress on any device. We never show them to others or email you.</p>
-    <p><b>Notifications.</b> Invite and title notifications are created on your device, ask for your permission first, and no push token is sent to any server.</p>
-    <p><b>Ads in the app.</b> The Burji Android app shows rewarded video ads (free gems, double gems, continue a round) from Google AdMob, only when you tap an ad button. To show and measure these ads and prevent fraud, Google collects your device's advertising ID, IP address, device type and your interaction with the ad. In some regions (such as the EU and UK) the game first asks for your consent to personalised ads; you can change your choice at any time in “About” → “Ad privacy settings”. You can also delete or reset your advertising ID in your phone settings (Google → Ads). How Google uses data: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
-    <p><b>Ads and platforms.</b> On platforms such as CrazyGames, ads are served by the platform under its own privacy policy. Rewarded ads are always optional.</p>
-    <p><b>Purchases.</b> Real-money purchases, when available in the Burji app, are handled by Google Play or the App Store; we never see your card details.</p>
-    <p><b>Children.</b> The game is suitable for everyone but is not specifically directed at children under 13, and we do not knowingly collect their personal data.</p>
-    <p><b>Retention and deletion.</b> We keep your account data while you play and delete data of accounts unused for 12 months. You can delete your account inside the game: Settings → “Delete my account” removes your account, scores and progress from the server and the device at once. You can also request deletion without opening the game on the <a href="delete-account.html">account deletion page</a>. Change your name or make your account private in the in-game settings. To delete your data from the game server, open “About”, copy the identifier shown after “ID”, and send it to us on Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> or via <a href="https://kodna.org/">kodna.org</a>. We delete it within 30 days of the request.</p>
-  </div>
+        <p class="meta">“Burji · برجي” by Kodna · Last updated: October 24, 2026</p>
+        <p><b>On your device.</b> The game stores your progress in your browser: best score, gems, unlocked items, settings, language and simple daily round counters. When online features are on, a copy of this progress is kept in your account on the game server so you don't lose it; otherwise it is not sent anywhere. Clear the site data in your browser to delete the local copy.</p>
+        <p><b>Online features.</b> When leaderboards, challenges, groups, live matches and titles are enabled, the game server stores the name you choose, your companion colour, your scores and level, and a random account identifier (we never ask for your email or phone number). The game server is Google Firebase, which processes this data on our behalf under its terms. Your name is visible to other players. A “private” account shows as “Private player” and is hidden from the players list; “busy” status makes you appear offline. Other players can see your name, companion colour, scores and level, whether you are online or when you were last seen, and your score during a live match. If you start from a friend's link, that link is stored on your record so both of you get the invite reward.</p>
+        <p><b>Usage counters and technical data.</b> We keep usage counters linked to your random identifier (first-play date, whether you came from a link, language, daily rounds and shares) only to improve the game. Google Firebase also processes technical data such as IP address and device/browser type to run and secure the service. We do not sell data, and we do not share this server data (your name, scores and counters) with advertisers.</p>
+        <p><b>Messages.</b> Quick preset messages (“Hi”, “Match?”…) are stored on the server until the other player receives them, then deleted. Group chat messages are stored with your name and visible to that group’s members only. Private messages between two players are stored with your name, visible only to those two players, and deleted with your account if you delete it. Swear words, links and phone numbers are hidden automatically; any player can block another player or report a message, and we review reports and remove what breaks the rules. You can delete your messages at any time, and they are all deleted when you delete your account.</p>
+        <p><b>Google account (optional).</b> If you link your Google account, Google Firebase stores your email address and Google name with your account identifier, only so you can restore your progress on any device. We never show them to others or email you.</p>
+        <p><b>Notifications.</b> Invite and title notifications are created on your device, ask for your permission first, and no push token is sent to any server.</p>
+        <p><b>Ads in the app.</b> The Burji Android app shows rewarded video ads (free gems, double gems, continue a round) from Google AdMob, only when you tap an ad button. To show and measure these ads and prevent fraud, Google collects your device's advertising ID, IP address, device type and your interaction with the ad. In some regions (such as the EU and UK) the game first asks for your consent to personalised ads; you can change your choice at any time in “About” → “Ad privacy settings”. You can also delete or reset your advertising ID in your phone settings (Google → Ads). How Google uses data: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+        <p><b>Ads and platforms.</b> On platforms such as CrazyGames, ads are served by the platform under its own privacy policy. Rewarded ads are always optional.</p>
+        <p><b>Purchases.</b> Real-money purchases, when available in the Burji app, are handled by Google Play or the App Store; we never see your card details.</p>
+        <p><b>Children.</b> The game is suitable for everyone but is not specifically directed at children under 13, and we do not knowingly collect their personal data.</p>
+        <p><b>Retention and deletion.</b> We keep your account data while you play and delete data of accounts unused for 12 months. You can delete your account inside the game: Settings → “Delete my account” removes your account, scores and progress from the server and the device at once. You can also request deletion without opening the game on the <a href="delete-account.html">account deletion page</a>. Change your name or make your account private in the in-game settings. To delete your data from the game server, open “About”, copy the identifier shown after “ID”, and send it to us on Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> or via <a href="https://kodna.org/">kodna.org</a>. We delete it within 30 days of the request.</p>
+  </article>
+  <article class="doc" lang="ku" dir="rtl" hidden>
+    <h1>سیاسەتی تایبەتمەندی</h1>
+      <p class="meta">یاریی «Burji · برجي» لە Kodna · دوایین نوێکردنەوە: 24ی تشرینی یەکەمی 2026</p>
+    
+      <p>ئێمە ڕێز لە تایبەتمەندیت دەگرین. ئەم پەڕەیە ڕوون دەکاتەوە کە یاریی Burji چ داتایەک بەکاردەهێنێت، بۆچی، و چۆن کۆنترۆڵی دەکەیت.</p>
+    
+      <h2>1. ئەو داتایانەی لەسەر ئامێرەکەت پاشەکەوت دەکرێن</h2>
+      <p>یارییەکە پێشکەوتنەکەت لەسەر ئامێرەکەت لە ناو وێبگەڕەکەتدا پاشەکەوت دەکات: باشترین ئەنجام، گەوهەرەکان، ئەو شتانەی بەدەستت هێناون، ڕێکخستنەکان و زمان، و ژمێرەری سادە بۆ ژمارەی گەڕە ڕۆژانەکان. کاتێک تایبەتمەندییە بەکۆمەڵەکان چالاک بن، کۆپییەکی ئەم پێشکەوتنە لە هەژمارەکەتدا لەسەر ڕاژەکاری یارییەکە پاشەکەوت دەکرێت تا لەدەستی نەدەیت، ئەگەرنا بۆ هیچ لایەنێک نانێردرێت. دەتوانیت کۆپییە ناوخۆییەکە بسڕیتەوە بە سڕینەوەی داتای ماڵپەڕەکە لە ڕێکخستنەکانی وێبگەڕەکەتەوە.</p>
+    
+      <h2>2. تایبەتمەندییە بەکۆمەڵەکان</h2>
+      <p>کاتێک تایبەتمەندییە بەکۆمەڵەکان کارا دەکەیت (تەختەکانی ڕیزبەندی، ململانێکان، گرووپەکان، یارییە ڕاستەوخۆکان، نازناوەکان)، ئەمانە لەسەر ڕاژەکاری یارییەکە پاشەکەوت دەکەین: ئەو ناوەی خۆت هەڵیدەبژێریت، ڕەنگی هاوەڵەکەت، ئەنجامەکانت، ئاستەکەت، و ناسێنەرێکی هەڕەمەکی بۆ هەژمارەکەت (داوای ئیمەیڵ یان ژمارە تەلەفۆنەکەت ناکەین). ڕاژەکاری یارییەکە خزمەتگوزاریی Google Firebaseە، و Google ئەم داتایانە لە جیاتی ئێمە و بەپێی مەرجەکانی خۆی چارەسەر دەکات. ناوەکە بۆ یاریزانانی تر دیارە. ئەگەر لە ڕێکخستنەکاندا «هەژماری تایبەت» هەڵبژێریت، ناوەکەت وەک «یاریزانی تایبەت» دەردەکەوێت و لە لیستی یاریزانەکاندا دەرناکەویت. ئەگەر دۆخی «سەرقاڵ» هەڵبژێریت، وەک ئۆفلاین دەردەکەویت.</p>
+      <p>ئەوەی یاریزانانی تر دەیبینن: ناوەکەت، ڕەنگی هاوەڵەکەت، ئەنجامەکانت و ئاستەکەت، ئایا ئێستا ئۆنلاینیت یان دوایین جار کەی دەرکەوتوویت، و ئەنجامەکەت لە کاتی یاریی ڕاستەوخۆدا. ئەگەر لە بەستەری هاوڕێیەکەوە دەست بە یاری بکەیت، ئەوە لە تۆمارەکەتدا پاشەکەوت دەکەین تا خەڵاتی بانگهێشتکردن بە هەردووکتان بدەین.</p>
+      <p>هەروەها ژمێرەرەکانی بەکارهێنان پاشەکەوت دەکەین کە بە ناسێنەرە هەڕەمەکییەکەتەوە بەستراون: بەرواری یەکەم یاریکردن، ئایا لە ڕێگەی بەستەرێکەوە هاتوویت، زمانەکەت، و ژمارەی گەڕەکان و هاوبەشکردنەکان لە ڕۆژێکدا. تەنها بۆ ئەوە بەکاریان دەهێنین کە تێبگەین ئایا یارییەکە خۆشە و باشتری بکەین. Google Firebase هەروەها داتای تەکنیکی وەک ناونیشانی IP و جۆری ئامێر و وێبگەڕ چارەسەر دەکات بۆ کارپێکردن و پاراستنی خزمەتگوزارییەکە. هیچ داتایەک نافرۆشین، و ئەم داتایانەی ڕاژەکار (ناوەکەت، ئەنجامەکانت و ژمێرەرەکانت) لەگەڵ ڕیکلامکەران هاوبەش ناکەین.</p>
+      <p><b>نامەکان:</b> نامە خێرا ئامادەکراوەکان («سڵاو»، «یاری دەکەیت؟»...) لەسەر ڕاژەکار پاشەکەوت دەکرێن تا یاریزانەکە وەریان دەگرێت، پاشان دەسڕدرێنەوە. نامەکانی چاتی گرووپ لەگەڵ ناوەکەت پاشەکەوت دەکرێن و تەنها ئەندامانی گرووپەکە دەیانبینن. نامە تایبەتەکانی نێوان دوو یاریزان لەگەڵ ناوەکەت پاشەکەوت دەکرێن و تەنها ئەو دوو یاریزانە دەیانبینن، و ئەگەر هەژمارەکەت بسڕیتەوە لەگەڵیدا دەسڕدرێنەوە. جنێو و بەستەر و ژمارە تەلەفۆن بە شێوەی خۆکار دەشاردرێنەوە، و هەر یاریزانێک دەتوانێت یاریزانێکی تر بلۆک بکات یان سکاڵا لە نامەیەک تۆمار بکات؛ ئێمە سکاڵاکان پێداچوونەوە دەکەین و ئەوەی سەرپێچی بێت دەیسڕینەوە. دەتوانیت لە هەر کاتێکدا نامەکانت بسڕیتەوە، و کاتێک هەژمارەکەت دەسڕیتەوە هەموویان دەسڕدرێنەوە.</p>
+      <p>بەستنەوەی هەژمار بە Googleەوە ئارەزوومەندانەیە. ئەگەر بیبەستیتەوە، لە ڕێگەی Google Firebaseەوە ئیمەیڵەکەت و ناوەکەت لە Google لەگەڵ ناسێنەری هەژمارەکەت پاشەکەوت دەکەین، تەنها بۆ ئەوەی بتوانیت پێشکەوتنەکەت لەسەر هەر ئامێرێک بگەڕێنیتەوە. نیشانی هیچ کەسێکیان نادەین و هیچ نامەیەکت بۆ نانێرین.</p>
+      <p>ئاگادارکردنەوەکان (بانگهێشت بۆ یاری، نازناوی نوێ) لە خودی ئامێرەکەتەوە دەردەچن، سەرەتا داوای مۆڵەتت لێ دەکەن، و هیچ ناسێنەرێکی ئاگادارکردنەوە بۆ هیچ ڕاژەکارێک نانێرین.</p>
+    
+      <h2>3. ڕیکلام و پلاتفۆرمەکان</h2>
+      <p>لە ئەپی Burji لەسەر ئەندرۆید، ڕیکلامی ڤیدیۆیی خەڵاتدار (گەوهەری خۆڕایی، دووقاتکردنەوەی گەوهەر، تەواوکردنی گەڕ) لە خزمەتگوزاریی Google AdMobەوە دەردەکەون، و تەنها کاتێک دەردەکەون کە خۆت دوگمەی ڕیکلامەکە دابگریت. بۆ پیشاندان و پێوانەکردنی ئەم ڕیکلامانە و ڕێگریکردن لە فێڵ، Google لە ئامێرەکەتەوە ناسێنەری ڕیکلام، ناونیشانی IP، جۆری ئامێر، و کارلێکی تۆ لەگەڵ ڕیکلامەکە کۆدەکاتەوە. لە هەندێک وڵاتدا (وەک وڵاتانی یەکێتیی ئەورووپا و شانشینی یەکگرتوو) یارییەکە سەرەتا ڕەزامەندیت لەسەر ڕیکلامی کەسیکراو دەپرسێت، و دەتوانیت لە هەر کاتێکدا هەڵبژاردنەکەت بگۆڕیت لە «دەربارەی یارییەکە» ← «ڕێکخستنەکانی تایبەتمەندیی ڕیکلام». هەروەها دەتوانیت ناسێنەری ڕیکلام بسڕیتەوە یان سفری بکەیتەوە لە ڕێکخستنەکانی مۆبایلەکەتەوە (Google ← ڕیکلامەکان). وردەکاریی بەکارهێنانی داتا لەلایەن Googleەوە: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>کاتێک لە ڕێگەی پلاتفۆرمێکی وەک CrazyGamesەوە یاری دەکەیت، پلاتفۆرمەکە ڕیکلامەکان پیشان دەدات و سیاسەتی تایبەتمەندیی خۆی جێبەجێ دەکات. ئەو ڕیکلامانەی خەڵات دەبەخشن هەمیشە ئارەزوومەندانەن.</p>
+    
+      <h2>4. کڕینەکان</h2>
+      <p>کڕین بە پارەی ڕاستەقینە، کاتێک لە ئەپی Burji بەردەست بێت، لە ڕێگەی Google Play یان App Storeەوە ئەنجام دەدرێت، و ئێمە زانیاریی کارتەکەت نابینین.</p>
+    
+      <h2>5. منداڵان</h2>
+      <p>یارییەکە بۆ هەمووان گونجاوە، بەڵام بە تایبەتی ئاراستەی منداڵانی خوار 13 ساڵ نەکراوە، و بە ئەنقەست هیچ داتایەکی کەسییان لێ کۆناکەینەوە. ئەگەر سەرپەرشتیاری منداڵێکیت و پێت وایە منداڵەکەت داتای بۆ ناردووین، پەیوەندیمان پێوە بکە بۆ ئەوەی بیسڕینەوە.</p>
+    
+      <h2 id="delete">6. ماوەی پاشەکەوتکردن و سڕینەوەی داتاکانت</h2>
+      <p>داتای هەژمارەکەت هەڵدەگرین تا ئەو کاتەی یاری دەکەیت، و داتای هەر هەژمارێک کە ماوەی 12 مانگە بەکارنەهاتووە دەسڕینەوە.</p>
+      <p><b>سڕینەوەی هەژمار لە ناو یارییەکەوە:</b> ڕێکخستنەکان بکەرەوە ← «سڕینەوەی هەژمارەکەم». هەژمارەکەت و ئەنجامەکانت و پێشکەوتنەکەت دەستبەجێ لە ڕاژەکار و لە ئامێرەکە دەسڕدرێنەوە. هەروەها دەتوانیت بەبێ کردنەوەی یارییەکە داوای سڕینەوە بکەیت لە <a href="delete-account.html">پەڕەی سڕینەوەی هەژمار</a>.</p>
+      <p>دەتوانیت ناوەکەت بگۆڕیت یان هەژمارەکەت بکەیتە تایبەت لە ڕێکخستنەکانی ناو یارییەکەوە. بۆ سڕینەوەی یەکجاریی داتاکانت لە ڕاژەکاری یارییەکە: «دەربارەی یارییەکە» بکەرەوە و ئەو ناسێنەرە کۆپی بکە کە لە دوای «ID» نووسراوە، پاشان لە ڕێگەی Telegram بۆمانی بنێرە <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> یان لە ڕێگەی <a href="https://kodna.org/">kodna.org</a>. داتاکان لە ماوەی 30 ڕۆژ لە داواکارییەکەوە دەسڕینەوە.</p>
+    
+      <h2>7. گۆڕانکارییەکان</h2>
+      <p>لەوانەیە ئەم سیاسەتە لەگەڵ زیادکردنی تایبەتمەندیی نوێدا نوێ بکەینەوە، و بەرواری «دوایین نوێکردنەوە» لە سەرەوە دەگۆڕین.</p>
+  </article>
+  <article class="doc" lang="tr" dir="ltr" hidden>
+    <h1>Gizlilik Politikası</h1>
+      <p class="meta">Kodna'nın “Burji · برجي” oyunu · Son güncelleme: 24 Ekim 2026</p>
+    
+      <p>Gizliliğine saygı duyuyoruz. Bu sayfa, Burji oyununun hangi verileri kullandığını, neden kullandığını ve bunları nasıl kontrol edebileceğini açıklar.</p>
+    
+      <h2>1. Cihazında saklanan veriler</h2>
+      <p>Oyun, ilerlemeni cihazında, tarayıcının içinde saklar: en iyi skor, elmaslar, edindiğin öğeler, ayarlar ve dil ile günlük tur sayısı için basit sayaçlar. Çevrimiçi özellikler etkinken, kaybetmemen için bu ilerlemenin bir kopyası oyun sunucusundaki hesabında saklanır; aksi hâlde hiçbir tarafa gönderilmez. Yerel kopyayı, tarayıcı ayarlarından site verilerini temizleyerek silebilirsin.</p>
+    
+      <h2>2. Çevrimiçi özellikler</h2>
+      <p>Çevrimiçi özellikleri (sıralama tabloları, meydan okumalar, gruplar, canlı maçlar, unvanlar) açtığında oyun sunucusunda şunları saklarız: kendi seçtiğin ad, yoldaşının rengi, skorların, seviyen ve hesabın için rastgele bir kimlik (e-postanı veya telefon numaranı istemeyiz). Oyun sunucusu Google Firebase hizmetidir ve Google bu verileri bizim adımıza, kendi koşulları çerçevesinde işler. Adın diğer oyuncular tarafından görülebilir. Ayarlardan “Gizli hesap” seçeneğini seçersen adın “Gizli oyuncu” olarak görünür ve oyuncu listesinde yer almazsın. “Meşgul” durumunu seçersen çevrimdışı görünürsün.</p>
+      <p>Diğer oyuncuların gördükleri: adın, yoldaşının rengi, skorların ve seviyen, şu anda çevrimiçi olup olmadığın veya en son ne zaman görüldüğün ve canlı maç sırasındaki skorun. Bir arkadaşının bağlantısından oynamaya başlarsan, ikinize de davet ödülünü verebilmek için bunu kaydına işleriz.</p>
+      <p>Ayrıca rastgele kimliğine bağlı kullanım sayaçları da saklarız: ilk oynama tarihi, bir bağlantıdan gelip gelmediğin, dilin ve günlük tur ve paylaşım sayısı. Bunları yalnızca oyunun eğlenceli olup olmadığını anlamak ve oyunu geliştirmek için kullanırız. Google Firebase ayrıca hizmeti çalıştırmak ve korumak için IP adresi, cihaz türü ve tarayıcı gibi teknik verileri de işler. Hiçbir veriyi satmayız ve bu sunucu verilerini (adın, skorların ve sayaçların) reklamverenlerle paylaşmayız.</p>
+      <p><b>Mesajlar:</b> Hazır hızlı mesajlar (“Merhaba”, “Maç?”...) oyuncu onları alana kadar sunucuda saklanır, ardından silinir. Grup sohbeti mesajları adınla birlikte saklanır ve yalnızca grup üyeleri tarafından görülür. İki oyuncu arasındaki özel mesajlar adınla birlikte saklanır, yalnızca bu iki oyuncu tarafından görülür ve hesabını silersen hesabınla birlikte silinir. Küfürler, bağlantılar ve telefon numaraları otomatik olarak gizlenir; her oyuncu başka bir oyuncuyu engelleyebilir veya bir mesajı şikâyet edebilir; şikâyetleri inceler ve kurallara aykırı olanları sileriz. Mesajlarını istediğin zaman silebilirsin; hesabını sildiğinde hepsi silinir.</p>
+      <p>Hesabı Google'a bağlamak isteğe bağlıdır. Bağlarsan, yalnızca ilerlemeni herhangi bir cihazda geri yükleyebilmen için Google Firebase aracılığıyla e-posta adresini ve Google'daki adını hesap kimliğinle birlikte saklarız. Bunları kimseye göstermeyiz ve sana hiçbir mesaj göndermeyiz.</p>
+      <p>Bildirimler (maç daveti, yeni unvan) doğrudan kendi cihazında oluşturulur, önce iznini ister ve hiçbir bildirim kimliğini bir sunucuya göndermeyiz.</p>
+    
+      <h2>3. Reklamlar ve platformlar</h2>
+      <p>Android'deki Burji uygulamasında Google AdMob hizmetinden ödüllü video reklamlar (ücretsiz elmas, elmasları ikiye katlama, tura devam etme) gösterilir ve bunlar yalnızca reklam düğmesine kendin dokunduğunda görünür. Bu reklamları göstermek, ölçmek ve dolandırıcılığı önlemek için Google cihazından reklam kimliğini, IP adresini, cihaz türünü ve reklamla etkileşimini toplar. Bazı ülkelerde (Avrupa Birliği ülkeleri ve Birleşik Krallık gibi) oyun önce kişiselleştirilmiş reklamlar için onayını ister; seçimini istediğin zaman “Hakkında” → “Reklam gizlilik ayarları” bölümünden değiştirebilirsin. Ayrıca reklam kimliğini telefonunun ayarlarından (Google → Reklamlar) silebilir veya sıfırlayabilirsin. Google'ın verileri nasıl kullandığına ilişkin ayrıntılar: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>CrazyGames gibi platformlar üzerinden oynadığında reklamları platform gösterir ve kendi gizlilik politikasını uygular. Ödül veren reklamlar her zaman isteğe bağlıdır.</p>
+    
+      <h2>4. Satın alımlar</h2>
+      <p>Gerçek parayla yapılan satın alımlar, Burji uygulamasında sunulduğunda, Google Play veya App Store üzerinden gerçekleştirilir ve kart bilgilerini görmeyiz.</p>
+    
+      <h2>5. Çocuklar</h2>
+      <p>Oyun herkes için uygundur, ancak özellikle 13 yaşın altındaki çocuklara yönelik değildir ve onlardan bilerek kişisel veri toplamayız. Bir ebeveyn veya vasiysen ve çocuğunun bize veri gönderdiğini düşünüyorsan, bu verilerin silinmesi için bizimle iletişime geç.</p>
+    
+      <h2 id="delete">6. Saklama süresi ve verilerinin silinmesi</h2>
+      <p>Hesap verilerini oynadığın sürece saklarız ve 12 aydır kullanılmayan her hesabın verilerini sileriz.</p>
+      <p><b>Hesabı oyunun içinden silme:</b> Ayarlar → “Hesabımı sil” yolunu izle. Hesabın, skorların ve ilerlemen sunucudan ve cihazdan hemen silinir. Silme talebini oyunu açmadan <a href="delete-account.html">hesap silme sayfasından</a> da gönderebilirsin.</p>
+      <p>Oyun içi ayarlardan adını değiştirebilir veya hesabını gizli yapabilirsin. Verilerini oyun sunucusundan kalıcı olarak silmek için: “Hakkında” bölümünü aç ve “ID” ifadesinden sonra yazan kimliği kopyala, ardından bize Telegram üzerinden <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> veya <a href="https://kodna.org/">kodna.org</a> aracılığıyla gönder. Verileri talepten itibaren 30 gün içinde sileriz.</p>
+    
+      <h2>7. Değişiklikler</h2>
+      <p>Yeni özellikler ekledikçe bu politikayı güncelleyebiliriz ve yukarıdaki “Son güncelleme” tarihini değiştiririz.</p>
+  </article>
+  <article class="doc" lang="fr" dir="ltr" hidden>
+    <h1>Politique de confidentialité</h1>
+      <p class="meta">Le jeu « Burji · برجي » de Kodna · Dernière mise à jour : 24 octobre 2026</p>
+    
+      <p>Nous respectons votre vie privée. Cette page explique quelles données le jeu Burji utilise, pourquoi, et comment vous pouvez les contrôler.</p>
+    
+      <h2>1. Données enregistrées sur votre appareil</h2>
+      <p>Le jeu enregistre votre progression sur votre appareil, dans votre navigateur : meilleur score, gemmes, objets obtenus, paramètres et langue, ainsi que de simples compteurs du nombre de parties quotidiennes. Lorsque les fonctionnalités en ligne sont activées, une copie de cette progression est enregistrée dans votre compte sur le serveur du jeu afin que vous ne la perdiez pas ; sinon, elle n’est envoyée à aucun tiers. Vous pouvez supprimer la copie locale en effaçant les données du site dans les paramètres du navigateur.</p>
+    
+      <h2>2. Fonctionnalités en ligne</h2>
+      <p>Lorsque vous activez les fonctionnalités en ligne (classements, défis, groupes, matchs en direct, titres), nous enregistrons sur le serveur du jeu : le nom que vous choisissez, la couleur de votre compagnon, vos scores, votre niveau et un identifiant aléatoire pour votre compte (nous ne demandons ni votre e-mail ni votre numéro de téléphone). Le serveur du jeu est le service Google Firebase, et Google traite ces données pour notre compte conformément à ses conditions. Le nom est visible par les autres joueurs. Si vous choisissez « Compte privé » dans les paramètres, votre nom s’affiche comme « Joueur privé » et vous n’apparaissez pas dans la liste des joueurs. Si vous choisissez le statut « Occupé », vous apparaissez hors ligne.</p>
+      <p>Ce que voient les autres joueurs : votre nom, la couleur de votre compagnon, vos scores et votre niveau, si vous êtes en ligne en ce moment ou quand vous avez été vu pour la dernière fois, et votre score pendant un match en direct. Si vous commencez à jouer à partir du lien d’un ami, nous l’enregistrons dans votre dossier afin de vous accorder à tous les deux la récompense d’invitation.</p>
+      <p>Nous enregistrons également des compteurs d’utilisation liés à votre identifiant aléatoire : date de la première partie, si vous êtes arrivé par un lien, votre langue, et le nombre de parties et de partages par jour. Nous les utilisons uniquement pour comprendre si le jeu est amusant et pour l’améliorer. Google Firebase traite aussi des données techniques telles que l’adresse IP, le type d’appareil et le navigateur afin de faire fonctionner et de protéger le service. Nous ne vendons aucune donnée et ne partageons pas ces données du serveur (votre nom, vos scores et vos compteurs) avec des annonceurs.</p>
+      <p><b>Messages :</b> les messages rapides prédéfinis (« Salut », « Un match ? »...) sont conservés sur le serveur jusqu’à ce que le joueur les reçoive, puis supprimés. Les messages du chat de groupe sont conservés avec votre nom et ne sont visibles que par les membres du groupe. Les messages privés entre deux joueurs sont conservés avec votre nom, ne sont visibles que par ces deux joueurs et sont supprimés avec votre compte si vous le supprimez. Les insultes, les liens et les numéros de téléphone sont masqués automatiquement, et tout joueur peut bloquer un autre joueur ou signaler un message ; nous examinons les signalements et supprimons ce qui enfreint les règles. Vous pouvez supprimer vos messages à tout moment, et ils sont tous supprimés lorsque vous supprimez votre compte.</p>
+      <p>L’association du compte à Google est facultative. Si vous l’associez, nous enregistrons via Google Firebase votre adresse e-mail et votre nom Google avec l’identifiant de votre compte, uniquement pour que vous puissiez récupérer votre progression sur n’importe quel appareil. Nous ne les montrons à personne et ne vous envoyons aucun message.</p>
+      <p>Les notifications (invitation à un match, nouveau titre) sont émises par votre appareil lui-même, demandent d’abord votre autorisation, et nous n’envoyons aucun identifiant de notification à un serveur.</p>
+    
+      <h2>3. Publicités et plateformes</h2>
+      <p>Dans l’application Burji sur Android, des publicités vidéo avec récompense (gemmes gratuites, gemmes doublées, poursuite de la partie) du service Google AdMob s’affichent, uniquement lorsque vous appuyez vous-même sur le bouton de la publicité. Pour afficher et mesurer ces publicités et prévenir la fraude, Google collecte depuis votre appareil l’identifiant publicitaire, l’adresse IP, le type d’appareil et votre interaction avec la publicité. Dans certains pays (comme les pays de l’Union européenne et le Royaume-Uni), le jeu vous demande d’abord votre consentement aux publicités personnalisées, et vous pouvez modifier votre choix à tout moment dans « À propos » → « Paramètres de confidentialité des annonces ». Vous pouvez également supprimer ou réinitialiser l’identifiant publicitaire dans les paramètres de votre téléphone (Google → Annonces). Détails sur l’utilisation des données par Google : <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>Lorsque vous jouez via des plateformes comme CrazyGames, la plateforme affiche les publicités et applique sa propre politique de confidentialité. Les publicités qui donnent des récompenses sont toujours facultatives.</p>
+    
+      <h2>4. Achats</h2>
+      <p>Les achats avec de l’argent réel, lorsqu’ils sont disponibles dans l’application Burji, s’effectuent via Google Play ou l’App Store, et nous ne voyons pas les données de votre carte.</p>
+    
+      <h2>5. Enfants</h2>
+      <p>Le jeu convient à tous, mais il ne s’adresse pas spécifiquement aux enfants de moins de 13 ans, et nous ne collectons pas sciemment de données personnelles les concernant. Si vous êtes parent ou tuteur et pensez que votre enfant nous a transmis des données, contactez-nous pour les faire supprimer.</p>
+    
+      <h2 id="delete">6. Durée de conservation et suppression de vos données</h2>
+      <p>Nous conservons les données de votre compte tant que vous jouez, et nous supprimons les données de tout compte inutilisé depuis 12 mois.</p>
+      <p><b>Supprimer le compte depuis le jeu :</b> ouvrez les Paramètres → « Supprimer mon compte ». Votre compte, vos scores et votre progression sont immédiatement supprimés du serveur et de l’appareil. Vous pouvez aussi demander la suppression sans ouvrir le jeu depuis la <a href="delete-account.html">page de suppression du compte</a>.</p>
+      <p>Vous pouvez changer votre nom ou rendre votre compte privé dans les paramètres du jeu. Pour supprimer définitivement vos données du serveur du jeu : ouvrez « À propos » et copiez l’identifiant écrit après « ID », puis envoyez-le-nous via Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> ou sur <a href="https://kodna.org/">kodna.org</a>. Nous supprimons les données dans les 30 jours suivant la demande.</p>
+    
+      <h2>7. Modifications</h2>
+      <p>Nous pouvons mettre à jour cette politique à mesure que de nouvelles fonctionnalités sont ajoutées, et nous modifierons alors la date de « Dernière mise à jour » ci-dessus.</p>
+  </article>
+  <article class="doc" lang="es" dir="ltr" hidden>
+    <h1>Política de privacidad</h1>
+      <p class="meta">El juego «Burji · برجي» de Kodna · Última actualización: 24 de octubre de 2026</p>
+    
+      <p>Respetamos tu privacidad. Esta página explica qué datos utiliza el juego Burji, por qué y cómo puedes controlarlos.</p>
+    
+      <h2>1. Datos guardados en tu dispositivo</h2>
+      <p>El juego guarda tu progreso en tu dispositivo, en tu navegador: la mejor puntuación, las gemas, los objetos que has conseguido, los ajustes y el idioma, y contadores sencillos del número de partidas diarias. Cuando las funciones en línea están activadas, se guarda una copia de este progreso en tu cuenta en el servidor del juego para que no lo pierdas; de lo contrario, no se envía a nadie. Puedes borrar la copia local eliminando los datos del sitio desde los ajustes del navegador.</p>
+    
+      <h2>2. Funciones en línea</h2>
+      <p>Cuando activas las funciones en línea (clasificaciones, desafíos, grupos, partidas en directo, títulos), guardamos en el servidor del juego: el nombre que tú eliges, el color de tu compañero, tus puntuaciones, tu nivel y un identificador aleatorio de tu cuenta (no pedimos tu correo electrónico ni tu número de teléfono). El servidor del juego es el servicio Google Firebase, y Google trata estos datos en nuestro nombre conforme a sus condiciones. El nombre es visible para los demás jugadores. Si eliges «Cuenta privada» en los ajustes, tu nombre aparece como «Jugador privado» y no apareces en la lista de jugadores. Y si eliges el estado «Ocupado», apareces como desconectado.</p>
+      <p>Lo que ven los demás jugadores: tu nombre, el color de tu compañero, tus puntuaciones y tu nivel, si estás conectado ahora o cuándo te vieron por última vez, y tu puntuación durante una partida en directo. Si empiezas a jugar desde el enlace de un amigo, lo guardamos en tu registro para darles a ambos la recompensa por invitación.</p>
+      <p>También guardamos contadores de uso vinculados a tu identificador aleatorio: la fecha de la primera partida, si llegaste desde un enlace, tu idioma y el número de partidas y de veces que compartes al día. Los usamos solo para entender si el juego es divertido y mejorarlo. Google Firebase también trata datos técnicos como la dirección IP, el tipo de dispositivo y el navegador para hacer funcionar el servicio y protegerlo. No vendemos ningún dato ni compartimos estos datos del servidor (tu nombre, tus puntuaciones y tus contadores) con anunciantes.</p>
+      <p><b>Mensajes:</b> los mensajes rápidos predefinidos («Hola», «¿Partida?»...) se guardan en el servidor hasta que el jugador los recibe y luego se eliminan. Los mensajes del chat de grupo se guardan con tu nombre y solo los ven los miembros del grupo. Los mensajes privados entre dos jugadores se guardan con tu nombre, solo los ven esos dos jugadores y se eliminan junto con tu cuenta si la eliminas. Los insultos, los enlaces y los números de teléfono se ocultan automáticamente, y cualquier jugador puede bloquear a otro jugador o denunciar un mensaje; revisamos las denuncias y eliminamos lo que infringe las normas. Puedes eliminar tus mensajes en cualquier momento, y todos se eliminan cuando eliminas tu cuenta.</p>
+      <p>Vincular la cuenta con Google es opcional. Si la vinculas, guardamos a través de Google Firebase tu dirección de correo electrónico y tu nombre de Google junto con el identificador de tu cuenta, solo para que puedas recuperar tu progreso en cualquier dispositivo. No se los mostramos a nadie ni te enviamos ningún mensaje.</p>
+      <p>Las notificaciones (invitación a una partida, nuevo título) se generan en tu propio dispositivo, primero piden tu permiso y no enviamos ningún identificador de notificaciones a ningún servidor.</p>
+    
+      <h2>3. Anuncios y plataformas</h2>
+      <p>En la aplicación Burji para Android se muestran anuncios de vídeo con recompensa (gemas gratis, duplicar gemas, continuar la partida) del servicio Google AdMob, y solo aparecen cuando tú pulsas el botón del anuncio. Para mostrar y medir estos anuncios y prevenir el fraude, Google recopila de tu dispositivo el identificador de publicidad, la dirección IP, el tipo de dispositivo y tu interacción con el anuncio. En algunos países (como los de la Unión Europea y el Reino Unido), el juego te pide primero tu consentimiento para los anuncios personalizados, y puedes cambiar tu elección en cualquier momento en «Acerca de» → «Configuración de privacidad de anuncios». También puedes eliminar o restablecer el identificador de publicidad en los ajustes de tu teléfono (Google → Anuncios). Detalles sobre el uso de datos por parte de Google: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>Cuando juegas a través de plataformas como CrazyGames, la plataforma muestra los anuncios y aplica su propia política de privacidad. Los anuncios que dan recompensas son siempre opcionales.</p>
+    
+      <h2>4. Compras</h2>
+      <p>Las compras con dinero real, cuando estén disponibles en la aplicación Burji, se realizan a través de Google Play o App Store, y no vemos los datos de tu tarjeta.</p>
+    
+      <h2>5. Niños</h2>
+      <p>El juego es apto para todos, pero no está dirigido específicamente a niños menores de 13 años, y no recopilamos intencionadamente datos personales de ellos. Si eres padre, madre o tutor y crees que tu hijo nos ha enviado datos, ponte en contacto con nosotros para eliminarlos.</p>
+    
+      <h2 id="delete">6. Plazo de conservación y eliminación de tus datos</h2>
+      <p>Conservamos los datos de tu cuenta mientras juegues, y eliminamos los datos de cualquier cuenta que no se haya usado en 12 meses.</p>
+      <p><b>Eliminar la cuenta desde el juego:</b> abre Ajustes → «Eliminar mi cuenta». Tu cuenta, tus puntuaciones y tu progreso se eliminan del servidor y del dispositivo de inmediato. También puedes solicitar la eliminación sin abrir el juego desde la <a href="delete-account.html">página de eliminación de cuenta</a>.</p>
+      <p>Puedes cambiar tu nombre o hacer que tu cuenta sea privada desde los ajustes del juego. Para eliminar definitivamente tus datos del servidor del juego: abre «Acerca de» y copia el identificador que aparece después de «ID», y luego envíanoslo por Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> o a través de <a href="https://kodna.org/">kodna.org</a>. Eliminamos los datos en un plazo de 30 días desde la solicitud.</p>
+    
+      <h2>7. Cambios</h2>
+      <p>Podemos actualizar esta política a medida que añadamos nuevas funciones, y cambiaremos la fecha de «Última actualización» que aparece arriba.</p>
+  </article>
+  <article class="doc" lang="fa" dir="rtl" hidden>
+    <h1>سیاست حفظ حریم خصوصی</h1>
+      <p class="meta">بازی «Burji · برجي» از Kodna · آخرین به‌روزرسانی: 24 اکتبر 2026</p>
+    
+      <p>ما به حریم خصوصی شما احترام می‌گذاریم. این صفحه توضیح می‌دهد که بازی Burji از چه داده‌هایی استفاده می‌کند، چرا، و چگونه می‌توانید آن‌ها را کنترل کنید.</p>
+    
+      <h2>1. داده‌های ذخیره‌شده روی دستگاه شما</h2>
+      <p>بازی پیشرفت شما را روی دستگاهتان و در مرورگرتان ذخیره می‌کند: بهترین امتیاز، جواهرها، آیتم‌هایی که به دست آورده‌اید، تنظیمات و زبان، و شمارنده‌هایی ساده برای تعداد دورهای روزانه. وقتی قابلیت‌های چندنفره فعال باشند، نسخه‌ای از این پیشرفت در حساب شما روی سرور بازی ذخیره می‌شود تا آن را از دست ندهید؛ در غیر این صورت به هیچ طرفی ارسال نمی‌شود. می‌توانید نسخهٔ محلی را با پاک کردن داده‌های سایت از تنظیمات مرورگر حذف کنید.</p>
+    
+      <h2>2. قابلیت‌های چندنفره</h2>
+      <p>وقتی قابلیت‌های چندنفره (جدول‌های رده‌بندی، چالش‌ها، گروه‌ها، مسابقه‌های زنده، لقب‌ها) را روشن می‌کنید، این موارد را روی سرور بازی ذخیره می‌کنیم: نامی که خودتان انتخاب می‌کنید، رنگ همراهتان، امتیازهایتان، سطحتان، و یک شناسهٔ تصادفی برای حسابتان (ایمیل یا شماره‌تان را نمی‌خواهیم). سرور بازی سرویس Google Firebase است و Google این داده‌ها را از طرف ما و طبق شرایط خود پردازش می‌کند. نام شما برای بقیهٔ بازیکنان قابل مشاهده است. اگر در تنظیمات «حساب خصوصی» را انتخاب کنید، نامتان به‌صورت «بازیکن خصوصی» نمایش داده می‌شود و در فهرست بازیکنان دیده نمی‌شوید. و اگر وضعیت «مشغول» را انتخاب کنید، آفلاین نشان داده می‌شوید.</p>
+      <p>آنچه بازیکنان دیگر می‌بینند: نام، رنگ همراه، امتیازها و سطح شما، اینکه الان آنلاین هستید یا آخرین بار کی دیده شده‌اید، و امتیازتان در طول مسابقهٔ زنده. اگر بازی را از لینک یک دوست شروع کنید، این را در سابقهٔ شما ذخیره می‌کنیم تا پاداش دعوت را به هر دوی شما بدهیم.</p>
+      <p>همچنین شمارنده‌های استفاده‌ای را که به شناسهٔ تصادفی شما مرتبط‌اند ذخیره می‌کنیم: تاریخ اولین بازی، اینکه آیا از یک لینک آمده‌اید، زبانتان، و تعداد دورها و اشتراک‌گذاری‌ها در هر روز. از این‌ها فقط برای این استفاده می‌کنیم که بفهمیم بازی سرگرم‌کننده است یا نه و آن را بهتر کنیم. Google Firebase همچنین داده‌های فنی مانند نشانی IP، نوع دستگاه و مرورگر را برای اجرای سرویس و محافظت از آن پردازش می‌کند. ما هیچ داده‌ای را نمی‌فروشیم و این داده‌های سرور (نام، امتیازها و شمارنده‌های شما) را با تبلیغ‌کنندگان به اشتراک نمی‌گذاریم.</p>
+      <p><b>پیام‌ها:</b> پیام‌های سریع آماده («سلام»، «مسابقه؟»...) تا زمانی که بازیکن آن‌ها را دریافت کند روی سرور ذخیره می‌شوند و سپس حذف می‌شوند. پیام‌های گفتگوی گروه همراه با نام شما ذخیره می‌شوند و فقط اعضای گروه آن‌ها را می‌بینند. پیام‌های خصوصی میان دو بازیکن همراه با نام شما ذخیره می‌شوند و فقط همان دو بازیکن آن‌ها را می‌بینند، و اگر حسابتان را حذف کنید همراه با آن حذف می‌شوند. ناسزاها، لینک‌ها و شماره‌تلفن‌ها به‌طور خودکار پنهان می‌شوند، و هر بازیکنی می‌تواند بازیکن دیگری را مسدود کند یا پیامی را گزارش دهد؛ ما گزارش‌ها را بررسی می‌کنیم و موارد متخلف را حذف می‌کنیم. می‌توانید هر زمان پیام‌هایتان را حذف کنید، و با حذف حسابتان همهٔ آن‌ها حذف می‌شوند.</p>
+      <p>پیوند دادن حساب به Google اختیاری است. اگر آن را پیوند دهید، از طریق Google Firebase ایمیل و نام Google شما را همراه با شناسهٔ حسابتان ذخیره می‌کنیم، فقط برای اینکه بتوانید پیشرفتتان را روی هر دستگاهی بازیابی کنید. آن‌ها را به هیچ‌کس نشان نمی‌دهیم و هیچ پیامی برایتان نمی‌فرستیم.</p>
+      <p>اعلان‌ها (دعوت به مسابقه، لقب جدید) از خود دستگاه شما صادر می‌شوند، ابتدا از شما اجازه می‌گیرند، و ما هیچ شناسهٔ اعلانی را به سروری ارسال نمی‌کنیم.</p>
+    
+      <h2>3. تبلیغات و پلتفرم‌ها</h2>
+      <p>در اپلیکیشن Burji روی اندروید، تبلیغات ویدیویی جایزه‌دار (جواهر رایگان، دو برابر کردن جواهرها، تکمیل دور) از سرویس Google AdMob نمایش داده می‌شوند، و فقط وقتی ظاهر می‌شوند که خودتان دکمهٔ تبلیغ را بزنید. برای نمایش این تبلیغات، سنجش آن‌ها و جلوگیری از تقلب، Google از دستگاه شما شناسهٔ تبلیغاتی، نشانی IP، نوع دستگاه و تعامل شما با تبلیغ را جمع‌آوری می‌کند. در برخی کشورها (مانند کشورهای اتحادیهٔ اروپا و بریتانیا) بازی ابتدا دربارهٔ موافقتتان با تبلیغات شخصی‌سازی‌شده از شما می‌پرسد، و می‌توانید هر زمان انتخابتان را از «درباره» ← «تنظیمات حریم خصوصی تبلیغات» تغییر دهید. همچنین می‌توانید شناسهٔ تبلیغاتی را از تنظیمات تلفنتان (Google ← تبلیغات) حذف یا بازنشانی کنید. جزئیات استفادهٔ Google از داده‌ها: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>هنگام بازی از طریق پلتفرم‌هایی مانند CrazyGames، خود پلتفرم تبلیغات را نمایش می‌دهد و سیاست حفظ حریم خصوصی خودش را اعمال می‌کند. تبلیغاتی که جایزه می‌دهند همیشه اختیاری‌اند.</p>
+    
+      <h2>4. خریدها</h2>
+      <p>خریدهای با پول واقعی، هر زمان که در اپلیکیشن Burji در دسترس باشند، از طریق Google Play یا App Store انجام می‌شوند و ما اطلاعات کارت شما را نمی‌بینیم.</p>
+    
+      <h2>5. کودکان</h2>
+      <p>بازی برای همه مناسب است، اما به‌طور خاص کودکان زیر 13 سال را هدف نگرفته است، و ما آگاهانه داده‌های شخصی آن‌ها را جمع‌آوری نمی‌کنیم. اگر ولی یا سرپرست هستید و فکر می‌کنید فرزندتان داده‌ای برای ما فرستاده است، برای حذف آن با ما تماس بگیرید.</p>
+    
+      <h2 id="delete">6. مدت نگهداری و حذف داده‌های شما</h2>
+      <p>داده‌های حساب شما را تا زمانی که بازی می‌کنید نگه می‌داریم، و داده‌های هر حسابی را که 12 ماه از آن استفاده نشده باشد حذف می‌کنیم.</p>
+      <p><b>حذف حساب از داخل بازی:</b> تنظیمات ← «حذف حساب من» را باز کنید. حساب، امتیازها و پیشرفت شما فوراً از سرور و از دستگاه حذف می‌شوند. همچنین می‌توانید بدون باز کردن بازی، از <a href="delete-account.html">صفحهٔ حذف حساب</a> درخواست حذف بدهید.</p>
+      <p>می‌توانید نامتان را تغییر دهید یا حسابتان را از تنظیمات داخل بازی خصوصی کنید. برای حذف دائمی داده‌هایتان از سرور بازی: «درباره» را باز کنید و شناسه‌ای را که بعد از «ID» نوشته شده کپی کنید، سپس آن را از طریق Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> یا از طریق <a href="https://kodna.org/">kodna.org</a> برای ما بفرستید. داده‌ها را ظرف 30 روز از زمان درخواست حذف می‌کنیم.</p>
+    
+      <h2>7. تغییرات</h2>
+      <p>ممکن است با افزودن قابلیت‌های جدید این سیاست را به‌روزرسانی کنیم، و تاریخ «آخرین به‌روزرسانی» در بالا را تغییر خواهیم داد.</p>
+  </article>
+  <article class="doc" lang="ur" dir="rtl" hidden>
+    <h1>پرائیویسی پالیسی</h1>
+      <p class="meta">Kodna کی گیم “Burji · برجي” · آخری اپ ڈیٹ: 24 اکتوبر 2026</p>
+    
+      <p>ہم آپ کی پرائیویسی کا احترام کرتے ہیں۔ یہ صفحہ بتاتا ہے کہ Burji گیم کون سا ڈیٹا استعمال کرتی ہے، کیوں، اور آپ اسے کیسے کنٹرول کر سکتے ہیں۔</p>
+    
+      <h2>1. آپ کے ڈیوائس پر محفوظ ڈیٹا</h2>
+      <p>گیم آپ کی پیش رفت آپ کے ڈیوائس پر آپ کے براؤزر میں محفوظ کرتی ہے: بہترین اسکور، جواہرات، آپ کے حاصل کردہ آئٹمز، سیٹنگز اور زبان، اور روزانہ راؤنڈز کی تعداد کے سادہ کاؤنٹرز۔ جب ملٹی پلیئر فیچرز فعال ہوں تو اس پیش رفت کی ایک کاپی گیم سرور پر آپ کے اکاؤنٹ میں محفوظ کی جاتی ہے تاکہ یہ ضائع نہ ہو؛ ورنہ یہ کسی بھی فریق کو نہیں بھیجی جاتی۔ آپ براؤزر کی سیٹنگز سے سائٹ کا ڈیٹا صاف کر کے مقامی کاپی حذف کر سکتے ہیں۔</p>
+    
+      <h2>2. ملٹی پلیئر فیچرز</h2>
+      <p>جب آپ ملٹی پلیئر فیچرز (لیڈر بورڈز، چیلنجز، گروپس، لائیو میچز، القاب) آن کرتے ہیں تو ہم گیم سرور پر یہ محفوظ کرتے ہیں: وہ نام جو آپ خود منتخب کرتے ہیں، آپ کے ساتھی کا رنگ، آپ کے اسکورز، آپ کا لیول، اور آپ کے اکاؤنٹ کے لیے ایک بے ترتیب شناخت کنندہ (ہم آپ کا ای میل یا نمبر نہیں مانگتے)۔ گیم سرور Google Firebase سروس ہے، اور Google یہ ڈیٹا ہماری طرف سے اپنی شرائط کے مطابق پروسیس کرتا ہے۔ نام دوسرے کھلاڑیوں کو نظر آتا ہے۔ اگر آپ سیٹنگز میں “نجی اکاؤنٹ” منتخب کریں تو آپ کا نام “نجی کھلاڑی” دکھائی دیتا ہے اور آپ کھلاڑیوں کی فہرست میں نظر نہیں آتے۔ اور اگر آپ “مصروف” اسٹیٹس منتخب کریں تو آپ آف لائن دکھائی دیتے ہیں۔</p>
+      <p>دوسرے کھلاڑی کیا دیکھتے ہیں: آپ کا نام، آپ کے ساتھی کا رنگ، آپ کے اسکورز اور لیول، آپ اس وقت آن لائن ہیں یا آخری بار کب نظر آئے تھے، اور لائیو میچ کے دوران آپ کا اسکور۔ اگر آپ کسی دوست کے لنک سے کھیلنا شروع کریں تو ہم یہ آپ کے ریکارڈ میں محفوظ کرتے ہیں تاکہ آپ دونوں کو دعوت کا انعام دے سکیں۔</p>
+      <p>ہم آپ کے بے ترتیب شناخت کنندہ سے منسلک استعمال کے کاؤنٹرز بھی محفوظ کرتے ہیں: پہلی بار کھیلنے کی تاریخ، آیا آپ کسی لنک سے آئے، آپ کی زبان، اور روزانہ راؤنڈز اور شیئرز کی تعداد۔ ہم انہیں صرف یہ سمجھنے کے لیے استعمال کرتے ہیں کہ گیم مزے دار ہے یا نہیں، اور اسے بہتر بنانے کے لیے۔ Google Firebase سروس چلانے اور اس کی حفاظت کے لیے تکنیکی ڈیٹا بھی پروسیس کرتا ہے، جیسے IP ایڈریس، ڈیوائس کی قسم اور براؤزر۔ ہم کوئی ڈیٹا فروخت نہیں کرتے، اور سرور کا یہ ڈیٹا (آپ کا نام، اسکورز اور کاؤنٹرز) مشتہرین کے ساتھ شیئر نہیں کرتے۔</p>
+      <p><b>پیغامات:</b> فوری تیار شدہ پیغامات (“سلام”، “میچ؟”...) سرور پر اس وقت تک محفوظ رہتے ہیں جب تک کھلاڑی انہیں وصول نہ کر لے، پھر حذف کر دیے جاتے ہیں۔ گروپ چیٹ کے پیغامات آپ کے نام کے ساتھ محفوظ ہوتے ہیں اور انہیں صرف گروپ کے اراکین دیکھتے ہیں۔ دو کھلاڑیوں کے درمیان نجی پیغامات آپ کے نام کے ساتھ محفوظ ہوتے ہیں اور انہیں صرف وہی دو کھلاڑی دیکھتے ہیں، اور اگر آپ اپنا اکاؤنٹ حذف کریں تو وہ اس کے ساتھ حذف ہو جاتے ہیں۔ گالیاں، لنکس اور فون نمبرز خودکار طور پر چھپا دیے جاتے ہیں، اور کوئی بھی کھلاڑی کسی دوسرے کھلاڑی کو بلاک کر سکتا ہے یا کسی پیغام کی رپورٹ کر سکتا ہے؛ ہم رپورٹس کا جائزہ لیتے ہیں اور خلاف ورزی والا مواد حذف کرتے ہیں۔ آپ کسی بھی وقت اپنے پیغامات حذف کر سکتے ہیں، اور اکاؤنٹ حذف کرنے پر وہ سب حذف ہو جاتے ہیں۔</p>
+      <p>اکاؤنٹ کو Google سے لنک کرنا اختیاری ہے۔ اگر آپ اسے لنک کریں تو ہم Google Firebase کے ذریعے آپ کا ای میل اور Google والا نام آپ کے اکاؤنٹ کے شناخت کنندہ کے ساتھ محفوظ کرتے ہیں، صرف اس لیے کہ آپ کسی بھی ڈیوائس پر اپنی پیش رفت بحال کر سکیں۔ ہم انہیں کسی کو نہیں دکھاتے اور آپ کو کوئی پیغام نہیں بھیجتے۔</p>
+      <p>نوٹیفیکیشنز (میچ کی دعوت، نیا لقب) خود آپ کے ڈیوائس سے جاری ہوتی ہیں، پہلے آپ سے اجازت مانگتی ہیں، اور ہم کوئی نوٹیفیکیشن شناخت کنندہ کسی سرور کو نہیں بھیجتے۔</p>
+    
+      <h2>3. اشتہارات اور پلیٹ فارمز</h2>
+      <p>اینڈرائیڈ پر Burji ایپ میں Google AdMob سروس کی جانب سے انعامی ویڈیو اشتہارات (مفت جواہرات، جواہرات دُگنے کرنا، راؤنڈ مکمل کرنا) دکھائے جاتے ہیں، اور یہ صرف اسی وقت ظاہر ہوتے ہیں جب آپ خود اشتہار کا بٹن دبائیں۔ ان اشتہارات کو دکھانے، ان کی پیمائش کرنے اور دھوکہ دہی روکنے کے لیے Google آپ کے ڈیوائس سے اشتہاری شناخت کنندہ، IP ایڈریس، ڈیوائس کی قسم، اور اشتہار کے ساتھ آپ کا تعامل جمع کرتا ہے۔ بعض ممالک (جیسے یورپی یونین کے ممالک اور برطانیہ) میں گیم پہلے ذاتی نوعیت کے اشتہارات کے لیے آپ کی رضامندی پوچھتی ہے، اور آپ کسی بھی وقت “گیم کے بارے میں” ← “اشتہارات کی پرائیویسی سیٹنگز” سے اپنا انتخاب بدل سکتے ہیں۔ آپ اپنے فون کی سیٹنگز (Google ← اشتہارات) سے اشتہاری شناخت کنندہ حذف یا ری سیٹ بھی کر سکتے ہیں۔ Google کے ڈیٹا کے استعمال کی تفصیلات: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>۔</p>
+      <p>CrazyGames جیسے پلیٹ فارمز کے ذریعے کھیلتے وقت پلیٹ فارم خود اشتہارات دکھاتا ہے اور اپنی پرائیویسی پالیسی لاگو کرتا ہے۔ انعام دینے والے اشتہارات ہمیشہ اختیاری ہوتے ہیں۔</p>
+    
+      <h2>4. خریداری</h2>
+      <p>اصلی رقم سے خریداری، جب Burji ایپ میں دستیاب ہو، Google Play یا App Store کے ذریعے ہوتی ہے، اور ہم آپ کے کارڈ کی تفصیلات نہیں دیکھتے۔</p>
+    
+      <h2>5. بچے</h2>
+      <p>گیم سب کے لیے موزوں ہے، لیکن یہ خاص طور پر 13 سال سے کم عمر بچوں کے لیے نہیں ہے، اور ہم جان بوجھ کر ان کا ذاتی ڈیٹا جمع نہیں کرتے۔ اگر آپ والدین یا سرپرست ہیں اور سمجھتے ہیں کہ آپ کے بچے نے ہمیں ڈیٹا بھیجا ہے تو اسے حذف کروانے کے لیے ہم سے رابطہ کریں۔</p>
+    
+      <h2 id="delete">6. محفوظ رکھنے کی مدت اور آپ کے ڈیٹا کا حذف</h2>
+      <p>جب تک آپ کھیلتے ہیں ہم آپ کے اکاؤنٹ کا ڈیٹا رکھتے ہیں، اور جو اکاؤنٹ 12 مہینوں سے استعمال نہ ہوا ہو اس کا ڈیٹا حذف کر دیتے ہیں۔</p>
+      <p><b>گیم کے اندر سے اکاؤنٹ حذف کرنا:</b> سیٹنگز ← “میرا اکاؤنٹ حذف کریں” کھولیں۔ آپ کا اکاؤنٹ، اسکورز اور پیش رفت سرور اور ڈیوائس سے فوراً حذف ہو جاتے ہیں۔ آپ گیم کھولے بغیر <a href="delete-account.html">اکاؤنٹ حذف کرنے کے صفحے</a> سے بھی حذف کرنے کی درخواست کر سکتے ہیں۔</p>
+      <p>آپ گیم کے اندر سیٹنگز سے اپنا نام بدل سکتے ہیں یا اپنا اکاؤنٹ نجی بنا سکتے ہیں۔ گیم سرور سے اپنا ڈیٹا مستقل طور پر حذف کرنے کے لیے: “گیم کے بارے میں” کھولیں اور “ID” کے بعد لکھا ہوا شناخت کنندہ کاپی کریں، پھر اسے Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> پر یا <a href="https://kodna.org/">kodna.org</a> کے ذریعے ہمیں بھیجیں۔ ہم درخواست کے 30 دن کے اندر ڈیٹا حذف کر دیتے ہیں۔</p>
+    
+      <h2>7. تبدیلیاں</h2>
+      <p>نئے فیچرز شامل ہونے کے ساتھ ہم اس پالیسی کو اپ ڈیٹ کر سکتے ہیں، اور اوپر دی گئی “آخری اپ ڈیٹ” کی تاریخ بدل دیں گے۔</p>
+  </article>
+  <article class="doc" lang="id" dir="ltr" hidden>
+    <h1>Kebijakan Privasi</h1>
+      <p class="meta">Game “Burji · برجي” dari Kodna · Terakhir diperbarui: 24 Oktober 2026</p>
+    
+      <p>Kami menghormati privasi Anda. Halaman ini menjelaskan data apa yang digunakan game Burji, untuk apa, dan bagaimana Anda mengendalikannya.</p>
+    
+      <h2>1. Data yang disimpan di perangkat Anda</h2>
+      <p>Game menyimpan progres Anda di perangkat Anda, di browser Anda: skor terbaik, permata, item yang Anda peroleh, pengaturan dan bahasa, serta penghitung sederhana untuk jumlah ronde harian. Saat fitur multipemain aktif, salinan progres ini disimpan di akun Anda pada server game agar tidak hilang; jika tidak, data ini tidak dikirim ke pihak mana pun. Anda dapat menghapus salinan lokal dengan membersihkan data situs dari pengaturan browser.</p>
+    
+      <h2>2. Fitur multipemain</h2>
+      <p>Saat Anda mengaktifkan fitur multipemain (papan peringkat, tantangan, grup, pertandingan langsung, gelar), kami menyimpan di server game: nama yang Anda pilih sendiri, warna pendamping Anda, skor Anda, level Anda, dan pengenal acak untuk akun Anda (kami tidak meminta email atau nomor Anda). Server game adalah layanan Google Firebase, dan Google memproses data ini atas nama kami sesuai ketentuannya. Nama Anda terlihat oleh pemain lain. Jika Anda memilih “Akun pribadi” di pengaturan, nama Anda ditampilkan sebagai “Pemain pribadi” dan Anda tidak muncul di daftar pemain. Jika Anda memilih status “Sibuk”, Anda akan terlihat offline.</p>
+      <p>Yang dilihat pemain lain: nama, warna pendamping, skor, dan level Anda, apakah Anda sedang online atau kapan terakhir kali terlihat, serta skor Anda selama pertandingan langsung. Jika Anda mulai bermain dari tautan teman, kami menyimpannya di catatan Anda untuk memberikan hadiah undangan kepada Anda berdua.</p>
+      <p>Kami juga menyimpan penghitung penggunaan yang terkait dengan pengenal acak Anda: tanggal pertama kali bermain, apakah Anda datang dari tautan, bahasa Anda, serta jumlah ronde dan jumlah berbagi per hari. Kami menggunakannya hanya untuk memahami apakah game ini menyenangkan dan untuk memperbaikinya. Google Firebase juga memproses data teknis seperti alamat IP, jenis perangkat, dan browser untuk menjalankan dan melindungi layanan. Kami tidak menjual data apa pun, dan kami tidak membagikan data server ini (nama, skor, dan penghitung Anda) kepada pengiklan.</p>
+      <p><b>Pesan:</b> Pesan cepat siap pakai (“Halo”, “Tanding?”...) disimpan di server sampai pemain menerimanya, lalu dihapus. Pesan obrolan grup disimpan bersama nama Anda dan hanya dapat dilihat oleh anggota grup. Pesan pribadi antara dua pemain disimpan bersama nama Anda dan hanya dapat dilihat oleh kedua pemain tersebut, serta dihapus bersama akun Anda jika Anda menghapusnya. Kata-kata kasar, tautan, dan nomor telepon disembunyikan secara otomatis, dan setiap pemain dapat memblokir pemain lain atau melaporkan pesan; kami meninjau laporan dan menghapus yang melanggar. Anda dapat menghapus pesan Anda kapan saja, dan semuanya dihapus saat Anda menghapus akun.</p>
+      <p>Menautkan akun ke Google bersifat opsional. Jika Anda menautkannya, kami menyimpan melalui Google Firebase email dan nama Google Anda bersama pengenal akun Anda, hanya agar Anda dapat memulihkan progres di perangkat mana pun. Kami tidak menampilkannya kepada siapa pun dan tidak mengirimi Anda pesan apa pun.</p>
+      <p>Notifikasi (undangan bertanding, gelar baru) dibuat oleh perangkat Anda sendiri, meminta izin Anda terlebih dahulu, dan kami tidak mengirim pengenal notifikasi apa pun ke server.</p>
+    
+      <h2>3. Iklan dan platform</h2>
+      <p>Di aplikasi Burji untuk Android, ditampilkan iklan video berhadiah (permata gratis, menggandakan permata, menyelesaikan ronde) dari layanan Google AdMob, dan iklan ini hanya muncul saat Anda sendiri menekan tombol iklan. Untuk menampilkan dan mengukur iklan ini serta mencegah penipuan, Google mengumpulkan dari perangkat Anda ID iklan, alamat IP, jenis perangkat, dan interaksi Anda dengan iklan. Di beberapa negara (seperti negara-negara Uni Eropa dan Britania Raya), game terlebih dahulu meminta persetujuan Anda untuk iklan yang dipersonalisasi, dan Anda dapat mengubah pilihan kapan saja melalui “Tentang” → “Pengaturan privasi iklan”. Anda juga dapat menghapus atau menyetel ulang ID iklan dari pengaturan ponsel Anda (Google → Iklan). Detail penggunaan data oleh Google: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>Saat bermain melalui platform seperti CrazyGames, platform tersebut yang menampilkan iklan dan menerapkan kebijakan privasinya sendiri. Iklan yang memberikan hadiah selalu bersifat opsional.</p>
+    
+      <h2>4. Pembelian</h2>
+      <p>Pembelian dengan uang sungguhan, bila tersedia di aplikasi Burji, dilakukan melalui Google Play atau App Store, dan kami tidak melihat data kartu Anda.</p>
+    
+      <h2>5. Anak-anak</h2>
+      <p>Game ini cocok untuk semua orang, tetapi tidak secara khusus ditujukan untuk anak-anak di bawah 13 tahun, dan kami tidak dengan sengaja mengumpulkan data pribadi dari mereka. Jika Anda orang tua atau wali dan yakin anak Anda telah mengirimkan data kepada kami, hubungi kami untuk menghapusnya.</p>
+    
+      <h2 id="delete">6. Masa penyimpanan dan penghapusan data Anda</h2>
+      <p>Kami menyimpan data akun Anda selama Anda bermain, dan menghapus data akun mana pun yang tidak digunakan selama 12 bulan.</p>
+      <p><b>Menghapus akun dari dalam game:</b> buka Pengaturan → “Hapus akun saya”. Akun, skor, dan progres Anda langsung dihapus dari server dan dari perangkat. Anda juga dapat meminta penghapusan tanpa membuka game melalui <a href="delete-account.html">halaman penghapusan akun</a>.</p>
+      <p>Anda dapat mengubah nama atau menjadikan akun Anda pribadi dari pengaturan di dalam game. Untuk menghapus data Anda dari server game secara permanen: buka “Tentang” dan salin pengenal yang tertulis setelah “ID”, lalu kirimkan kepada kami melalui Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> atau melalui <a href="https://kodna.org/">kodna.org</a>. Kami menghapus data dalam 30 hari sejak permintaan.</p>
+    
+      <h2>7. Perubahan</h2>
+      <p>Kami dapat memperbarui kebijakan ini seiring penambahan fitur baru, dan kami akan mengubah tanggal “Terakhir diperbarui” di atas.</p>
+  </article>
+  <article class="doc" lang="pt" dir="ltr" hidden>
+    <h1>Política de Privacidade</h1>
+      <p class="meta">Jogo “Burji · برجي” da Kodna · Última atualização: 24 de outubro de 2026</p>
+    
+      <p>Respeitamos sua privacidade. Esta página explica quais dados o jogo Burji usa, por quê e como você pode controlá-los.</p>
+    
+      <h2>1. Dados salvos no seu dispositivo</h2>
+      <p>O jogo salva seu progresso no seu dispositivo, no seu navegador: melhor pontuação, gemas, itens que você obteve, configurações e idioma, e contadores simples do número de partidas diárias. Quando os recursos online estão ativados, uma cópia desse progresso é salva na sua conta no servidor do jogo para que você não o perca; caso contrário, ele não é enviado a ninguém. Você pode excluir a cópia local limpando os dados do site nas configurações do navegador.</p>
+    
+      <h2>2. Recursos online</h2>
+      <p>Quando você ativa os recursos online (rankings, desafios, grupos, partidas ao vivo, títulos), armazenamos no servidor do jogo: o nome que você escolhe, a cor do seu companheiro, suas pontuações, seu nível e um identificador aleatório da sua conta (não pedimos seu e-mail nem seu número de telefone). O servidor do jogo é o serviço Google Firebase, e o Google trata esses dados em nosso nome, de acordo com os termos dele. O nome fica visível para os outros jogadores. Se você escolher “Conta privada” nas configurações, seu nome aparece como “Jogador privado” e você não aparece na lista de jogadores. E se escolher o status “Ocupado”, você aparece como offline.</p>
+      <p>O que os outros jogadores veem: seu nome, a cor do seu companheiro, suas pontuações e seu nível, se você está online agora ou quando foi visto pela última vez, e sua pontuação durante uma partida ao vivo. Se você começar a jogar pelo link de um amigo, registramos isso no seu histórico para dar a vocês dois a recompensa de convite.</p>
+      <p>Também armazenamos contadores de uso vinculados ao seu identificador aleatório: data da primeira partida, se você veio de um link, seu idioma e o número de partidas e compartilhamentos por dia. Usamos esses contadores apenas para entender se o jogo é divertido e melhorá-lo. O Google Firebase também trata dados técnicos, como endereço IP, tipo de dispositivo e navegador, para operar e proteger o serviço. Não vendemos nenhum dado e não compartilhamos esses dados do servidor (seu nome, suas pontuações e seus contadores) com anunciantes.</p>
+      <p><b>Mensagens:</b> as mensagens rápidas prontas (“Oi”, “Partida?”...) ficam armazenadas no servidor até que o jogador as receba e depois são excluídas. As mensagens do chat do grupo são armazenadas com seu nome e só os membros do grupo as veem. As mensagens privadas entre dois jogadores são armazenadas com seu nome, só esses dois jogadores as veem, e são excluídas junto com sua conta se você excluí-la. Palavrões, links e números de telefone são ocultados automaticamente, e qualquer jogador pode bloquear outro jogador ou denunciar uma mensagem; analisamos as denúncias e excluímos o que viola as regras. Você pode excluir suas mensagens a qualquer momento, e todas elas são excluídas quando você exclui sua conta.</p>
+      <p>Vincular a conta ao Google é opcional. Se você vinculá-la, armazenamos por meio do Google Firebase seu endereço de e-mail e seu nome no Google junto com o identificador da sua conta, apenas para que você possa recuperar seu progresso em qualquer dispositivo. Não os mostramos a ninguém e não enviamos nenhuma mensagem para você.</p>
+      <p>As notificações (convite para partida, novo título) são emitidas pelo seu próprio dispositivo, pedem sua permissão primeiro, e não enviamos nenhum identificador de notificações a nenhum servidor.</p>
+    
+      <h2>3. Anúncios e plataformas</h2>
+      <p>No app Burji para Android, são exibidos anúncios em vídeo premiados (gemas grátis, dobrar gemas, continuar a partida) do serviço Google AdMob, e eles só aparecem quando você mesmo toca no botão do anúncio. Para exibir e medir esses anúncios e evitar fraudes, o Google coleta do seu dispositivo o ID de publicidade, o endereço IP, o tipo de dispositivo e sua interação com o anúncio. Em alguns países (como os da União Europeia e o Reino Unido), o jogo primeiro pede seu consentimento para anúncios personalizados, e você pode mudar sua escolha a qualquer momento em “Sobre” → “Configurações de privacidade de anúncios”. Você também pode excluir ou redefinir o ID de publicidade nas configurações do seu celular (Google → Anúncios). Detalhes sobre o uso de dados pelo Google: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>Ao jogar por meio de plataformas como CrazyGames, a plataforma exibe os anúncios e aplica a própria política de privacidade. Os anúncios que dão prêmios são sempre opcionais.</p>
+    
+      <h2>4. Compras</h2>
+      <p>As compras com dinheiro real, quando disponíveis no app Burji, são feitas pelo Google Play ou pela App Store, e não vemos os dados do seu cartão.</p>
+    
+      <h2>5. Crianças</h2>
+      <p>O jogo é adequado para todos, mas não é direcionado especificamente a crianças menores de 13 anos, e não coletamos intencionalmente dados pessoais delas. Se você é pai, mãe ou responsável e acredita que seu filho nos enviou dados, entre em contato conosco para excluí-los.</p>
+    
+      <h2 id="delete">6. Período de armazenamento e exclusão dos seus dados</h2>
+      <p>Mantemos os dados da sua conta enquanto você joga e excluímos os dados de qualquer conta que não seja usada há 12 meses.</p>
+      <p><b>Excluir a conta pelo jogo:</b> abra Configurações → “Excluir minha conta”. Sua conta, suas pontuações e seu progresso são excluídos do servidor e do dispositivo imediatamente. Você também pode solicitar a exclusão sem abrir o jogo na <a href="delete-account.html">página de exclusão de conta</a>.</p>
+      <p>Você pode mudar seu nome ou tornar sua conta privada nas configurações do jogo. Para excluir definitivamente seus dados do servidor do jogo: abra “Sobre” e copie o identificador escrito depois de “ID”, depois envie-o para nós pelo Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> ou por meio de <a href="https://kodna.org/">kodna.org</a>. Excluímos os dados em até 30 dias a partir da solicitação.</p>
+    
+      <h2>7. Alterações</h2>
+      <p>Podemos atualizar esta política à medida que novos recursos forem adicionados, e alteraremos a data de “Última atualização” acima.</p>
+  </article>
+  <article class="doc" lang="zh" dir="ltr" hidden>
+    <h1>隐私政策</h1>
+      <p class="meta">Kodna 出品的游戏“Burji · برجي” · 最后更新：2026年10月24日</p>
+    
+      <p>我们尊重您的隐私。本页面说明 Burji 游戏使用哪些数据、为什么使用，以及您如何控制这些数据。</p>
+    
+      <h2>1. 保存在您设备上的数据</h2>
+      <p>游戏会将您的进度保存在您设备上的浏览器中：最高分、宝石、您获得的物品、设置和语言，以及记录每日局数的简单计数器。启用多人功能时，这些进度的一份副本会保存在游戏服务器上您的账号中，以免丢失；否则不会发送给任何一方。您可以在浏览器设置中清除网站数据，从而删除本地副本。</p>
+    
+      <h2>2. 多人功能</h2>
+      <p>当您开启多人功能（排行榜、挑战、群组、实时对战、称号）时，我们会在游戏服务器上保存：您自己选择的名字、您伙伴的颜色、您的分数、您的等级，以及您账号的一个随机标识符（我们不会索要您的电子邮箱或号码）。游戏服务器是 Google Firebase 服务，Google 代表我们并依据其条款处理这些数据。您的名字对其他玩家可见。如果您在设置中选择“私密账号”，您的名字将显示为“私密玩家”，且您不会出现在玩家列表中。如果您选择“忙碌”状态，您将显示为离线。</p>
+      <p>其他玩家能看到：您的名字、伙伴颜色、分数和等级，您当前是否在线或最后一次在线的时间，以及您在实时对战中的分数。如果您是通过好友的链接开始游戏的，我们会在您的记录中保存这一点，以便向你们双方发放邀请奖励。</p>
+      <p>我们还会保存与您的随机标识符关联的使用计数：首次游玩日期、您是否通过链接而来、您的语言，以及每日的局数和分享次数。我们仅将其用于了解游戏是否有趣并加以改进。Google Firebase 还会处理 IP 地址、设备类型和浏览器等技术数据，以运行和保护该服务。我们不出售任何数据，也不会与广告商共享这些服务器数据（您的名字、分数和计数）。</p>
+      <p><b>消息：</b>预设的快捷消息（“你好”“来一局？”……）会保存在服务器上，直到对方玩家收到后即被删除。群聊消息会连同您的名字一起保存，仅群组成员可见。两名玩家之间的私信会连同您的名字一起保存，仅这两名玩家可见；如果您删除账号，私信也会随之删除。脏话、链接和电话号码会被自动隐藏，任何玩家都可以屏蔽其他玩家或举报消息；我们会审核举报并删除违规内容。您可以随时删除自己的消息，删除账号时所有消息都会被删除。</p>
+      <p>将账号关联到 Google 是可选的。如果您进行关联，我们会通过 Google Firebase 将您的电子邮箱和 Google 名称与您的账号标识符一起保存，仅用于让您在任何设备上恢复进度。我们不会向任何人展示这些信息，也不会向您发送任何消息。</p>
+      <p>通知（对战邀请、新称号）由您的设备本身发出，会先征得您的许可，我们不会将任何通知标识符发送到服务器。</p>
+    
+      <h2>3. 广告与平台</h2>
+      <p>在 Android 版 Burji 应用中，会展示来自 Google AdMob 服务的激励视频广告（免费宝石、宝石翻倍、完成本局），且只有在您主动点击广告按钮时才会出现。为展示和衡量这些广告并防止欺诈，Google 会从您的设备收集广告标识符、IP 地址、设备类型以及您与广告的互动。在某些国家（例如欧盟国家和英国），游戏会先征求您对个性化广告的同意，您可以随时在“关于”→“广告隐私设置”中更改您的选择。您也可以在手机设置（Google → 广告）中删除或重置广告标识符。Google 如何使用数据的详情：<a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>。</p>
+      <p>通过 CrazyGames 等平台游玩时，广告由平台展示，并适用该平台自己的隐私政策。提供奖励的广告始终是可选的。</p>
+    
+      <h2>4. 购买</h2>
+      <p>真实货币购买在 Burji 应用中提供时，将通过 Google Play 或 App Store 进行，我们看不到您的银行卡信息。</p>
+    
+      <h2>5. 儿童</h2>
+      <p>本游戏适合所有人，但并非专门面向 13 岁以下儿童，我们也不会在知情的情况下收集他们的个人数据。如果您是家长或监护人，并认为您的孩子向我们发送了数据，请联系我们删除。</p>
+    
+      <h2 id="delete">6. 保存期限与删除您的数据</h2>
+      <p>只要您还在玩，我们就会保留您的账号数据；任何 12 个月未使用的账号，其数据将被删除。</p>
+      <p><b>在游戏内删除账号：</b>打开设置 →“删除我的账号”。您的账号、分数和进度会立即从服务器和设备上删除。您也可以不打开游戏，通过<a href="delete-account.html">账号删除页面</a>申请删除。</p>
+      <p>您可以在游戏内的设置中更改名字或将账号设为私密。如需从游戏服务器永久删除您的数据：打开“关于”，复制“ID”后面显示的标识符，然后通过 Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> 或 <a href="https://kodna.org/">kodna.org</a> 发送给我们。我们会在收到请求后 30 天内删除数据。</p>
+    
+      <h2>7. 变更</h2>
+      <p>随着新功能的加入，我们可能会更新本政策，并修改上方的“最后更新”日期。</p>
+  </article>
+  <article class="doc" lang="ru" dir="ltr" hidden>
+    <h1>Политика конфиденциальности</h1>
+      <p class="meta">Игра «Burji · برجي» от Kodna · Последнее обновление: 24 октября 2026 г.</p>
+    
+      <p>Мы уважаем вашу конфиденциальность. На этой странице объясняется, какие данные использует игра Burji, зачем и как вы можете ими управлять.</p>
+    
+      <h2>1. Данные, хранящиеся на вашем устройстве</h2>
+      <p>Игра сохраняет ваш прогресс на вашем устройстве, в браузере: лучший результат, кристаллы, полученные вами предметы, настройки и язык, а также простые счётчики количества раундов за день. Когда многопользовательские функции включены, копия этого прогресса сохраняется в вашем аккаунте на игровом сервере, чтобы вы его не потеряли; в противном случае он никому не передаётся. Вы можете удалить локальную копию, очистив данные сайта в настройках браузера.</p>
+    
+      <h2>2. Многопользовательские функции</h2>
+      <p>Когда вы включаете многопользовательские функции (таблицы лидеров, вызовы, группы, матчи в реальном времени, титулы), мы храним на игровом сервере: имя, которое вы выбираете сами, цвет вашего компаньона, ваши результаты, ваш уровень и случайный идентификатор вашего аккаунта (мы не запрашиваем вашу почту или номер). Игровой сервер — это сервис Google Firebase, и Google обрабатывает эти данные от нашего имени в соответствии со своими условиями. Ваше имя видно другим игрокам. Если в настройках выбрать «Закрытый аккаунт», ваше имя будет отображаться как «Скрытый игрок», и вас не будет в списке игроков. А если выбрать статус «Занят», вы будете отображаться как не в сети.</p>
+      <p>Что видят другие игроки: ваше имя, цвет компаньона, результаты и уровень, в сети ли вы сейчас или когда были в последний раз, а также ваш счёт во время матча в реальном времени. Если вы начали играть по ссылке друга, мы сохраняем это в вашей записи, чтобы вы оба получили награду за приглашение.</p>
+      <p>Мы также храним счётчики использования, связанные с вашим случайным идентификатором: дату первой игры, пришли ли вы по ссылке, ваш язык, а также количество раундов и репостов за день. Мы используем их только для того, чтобы понять, интересна ли игра, и улучшить её. Google Firebase также обрабатывает технические данные, такие как IP-адрес, тип устройства и браузер, чтобы обеспечивать работу сервиса и защищать его. Мы не продаём никакие данные и не передаём эти серверные данные (ваше имя, результаты и счётчики) рекламодателям.</p>
+      <p><b>Сообщения:</b> готовые быстрые сообщения («Привет», «Сыграем?»...) хранятся на сервере, пока игрок их не получит, а затем удаляются. Сообщения группового чата хранятся вместе с вашим именем, и их видят только участники группы. Личные сообщения между двумя игроками хранятся вместе с вашим именем, их видят только эти два игрока, и они удаляются вместе с вашим аккаунтом, если вы его удалите. Ругательства, ссылки и номера телефонов скрываются автоматически, и любой игрок может заблокировать другого игрока или пожаловаться на сообщение; мы рассматриваем жалобы и удаляем нарушающий контент. Вы можете удалить свои сообщения в любое время, а при удалении аккаунта удаляются все они.</p>
+      <p>Привязка аккаунта к Google необязательна. Если вы его привяжете, мы через Google Firebase сохраним ваш адрес электронной почты и имя в Google вместе с идентификатором вашего аккаунта — только для того, чтобы вы могли восстановить прогресс на любом устройстве. Мы никому их не показываем и не отправляем вам никаких сообщений.</p>
+      <p>Уведомления (приглашение на матч, новый титул) создаются самим вашим устройством, сначала запрашивают ваше разрешение, и мы не отправляем на сервер никаких идентификаторов уведомлений.</p>
+    
+      <h2>3. Реклама и платформы</h2>
+      <p>В приложении Burji для Android показывается видеореклама с вознаграждением (бесплатные кристаллы, удвоение кристаллов, завершение раунда) от сервиса Google AdMob, и она появляется только тогда, когда вы сами нажимаете кнопку рекламы. Для показа и измерения этой рекламы, а также для предотвращения мошенничества Google собирает с вашего устройства рекламный идентификатор, IP-адрес, тип устройства и данные о вашем взаимодействии с рекламой. В некоторых странах (например, в странах Европейского союза и Великобритании) игра сначала запрашивает ваше согласие на персонализированную рекламу, и вы можете в любое время изменить свой выбор в разделе «Об игре» → «Настройки конфиденциальности рекламы». Вы также можете удалить или сбросить рекламный идентификатор в настройках телефона (Google → Реклама). Подробнее об использовании данных компанией Google: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
+      <p>При игре через платформы, такие как CrazyGames, рекламу показывает сама платформа, и при этом действует её собственная политика конфиденциальности. Реклама, дающая награды, всегда необязательна.</p>
+    
+      <h2>4. Покупки</h2>
+      <p>Покупки за реальные деньги, когда они доступны в приложении Burji, совершаются через Google Play или App Store, и мы не видим данные вашей карты.</p>
+    
+      <h2>5. Дети</h2>
+      <p>Игра подходит для всех, но не предназначена специально для детей младше 13 лет, и мы сознательно не собираем их персональные данные. Если вы родитель или опекун и считаете, что ваш ребёнок отправил нам данные, свяжитесь с нами, чтобы мы их удалили.</p>
+    
+      <h2 id="delete">6. Срок хранения и удаление ваших данных</h2>
+      <p>Мы храним данные вашего аккаунта, пока вы играете, и удаляем данные любого аккаунта, который не использовался 12 месяцев.</p>
+      <p><b>Удаление аккаунта в игре:</b> откройте Настройки → «Удалить мой аккаунт». Ваш аккаунт, результаты и прогресс сразу удаляются с сервера и с устройства. Вы также можете запросить удаление, не открывая игру, на <a href="delete-account.html">странице удаления аккаунта</a>.</p>
+      <p>Вы можете изменить имя или сделать аккаунт закрытым в настройках игры. Чтобы окончательно удалить свои данные с игрового сервера: откройте «Об игре» и скопируйте идентификатор, указанный после «ID», затем отправьте его нам в Telegram <a href="https://t.me/kodna_iq">t.me/kodna_iq</a> или через <a href="https://kodna.org/">kodna.org</a>. Мы удаляем данные в течение 30 дней с момента запроса.</p>
+    
+      <h2>7. Изменения</h2>
+      <p>Мы можем обновлять эту политику по мере добавления новых функций и изменим дату «Последнее обновление» выше.</p>
+  </article>
 </main>
+<script src="lang.js"></script>
+<script>
+  // Show the page in the visitor's language (same choice as the game and kodna.org)
+  (function(){
+    var LBL = {"ar": "اللغة", "en": "Language", "ku": "زمان", "tr": "Dil", "fr": "Langue", "es": "Idioma", "fa": "زبان", "ur": "زبان", "id": "Bahasa", "pt": "Idioma", "zh": "语言", "ru": "Язык"}, TTL = {"ar": "سياسة الخصوصية", "en": "Privacy policy", "ku": "سیاسەتی تایبەتمەندی", "tr": "Gizlilik politikası", "fr": "Politique de confidentialité", "es": "Política de privacidad", "fa": "سیاست حفظ حریم خصوصی", "ur": "پرائیویسی پالیسی", "id": "Kebijakan privasi", "pt": "Política de privacidade", "zh": "隐私政策", "ru": "Политика конфиденциальности"};
+    BurjiLang.init(function(l){
+      var shown = false;
+      document.querySelectorAll('.doc').forEach(function(a){ var on = a.lang === l; a.hidden = !on; if (on) shown = true; });
+      if (!shown) document.querySelector('.doc[lang=en]').hidden = false;
+      document.querySelector('[data-t=lang]').textContent = LBL[l] || LBL.en;
+      document.title = (TTL[l] || TTL.en) + ' · Burji';
+    });
+  })();
+</script>
 </body>
 </html>
