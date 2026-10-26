@@ -466,6 +466,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
     <span class="brand-text">Kodna<span>.</span></span>
   </a>
   <ul class="nav-center" aria-label="Site sections">
+    <li><a href="#games" data-i18n="nav_games">ألعاب</a></li>
     <li><a href="#programs" data-i18n="nav_programs">البرامج</a></li>
     <li><a href="#pro" data-i18n="nav_pro">احترافي</a></li>
     <li><a href="#online" data-i18n="nav_online">خدمات أون لاين</a></li>
@@ -498,6 +499,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
 </nav>
 
 <div class="mobile-nav" id="mobileNav" role="navigation">
+  <a href="#games" onclick="toggleMenu()" data-i18n="mobile_games">🎮 ألعاب</a>
   <a href="#programs" onclick="toggleMenu()" data-i18n="mobile_programs">📦 البرامج</a>
   <a href="#pro" onclick="toggleMenu()" data-i18n="mobile_pro">⭐ احترافي</a>
   <a href="#online" onclick="toggleMenu()" data-i18n="mobile_online">🛠 خدمات أون لاين</a>
@@ -532,6 +534,39 @@ html[dir=ltr] .cta-inner{direction:ltr}
     <div class="stat"><div class="stat-num"><span>50</span>+</div><div class="stat-label" data-i18n="stat_platforms">منصة مدعومة</div></div>
     <div class="stat"><div class="stat-num"><span>100</span>%</div><div class="stat-label" data-i18n="stat_free">مجاني</div></div>
     <div class="stat"><div class="stat-num"><span>∞</span></div><div class="stat-label" data-i18n="stat_updates">تحديثات</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ GAMES ═══ -->
+<section class="programs rev" id="games" aria-label="Games">
+  <div class="sec-header">
+    <div class="sec-tag" data-i18n="sec_games">ألعابنا</div>
+    <h2 class="sec-title" data-i18n="games_title">ألعاب مجانية من كودنا</h2>
+    <p class="sec-desc" data-i18n="games_desc">ألعاب خفيفة وممتعة تلعبها على هاتفك أو في المتصفح مباشرة.</p>
+  </div>
+  <div class="programs-grid">
+    <!-- Burji (free game) -->
+    <a class="prog-card featured" href="burji/" aria-label="Burji - Stack to the Sky">
+      <div class="prog-card-top">
+        <div class="prog-icon-wrap" style="background:none;border:none;padding:0;width:50px;height:50px;overflow:hidden">
+          <img src="burji/img/icon-192.png" alt="Burji" width="50" height="50" style="display:block;border-radius:12px" loading="lazy">
+        </div>
+        <div class="prog-card-badges">
+          <span class="badge new" data-i18n="badge_new">جديد</span>
+          <span class="badge free" data-i18n="badge_free">مجاني</span>
+        </div>
+      </div>
+      <div class="prog-card-body">
+        <div class="prog-name">Burji · برجي</div>
+        <div class="prog-desc" data-i18n="burji_desc">لعبة تكديس بلمسة واحدة: 19 عالماً بقواعد مختلفة، تحدٍّ يومي، ومباريات مباشرة مع أصدقائك.</div>
+      </div>
+      <div class="prog-card-footer">
+        <div class="prog-tags"><span class="prog-tag">Android</span><span class="prog-tag">Web</span><span class="prog-tag" data-i18n="tag_game">لعبة</span></div>
+        <span class="prog-arrow">←</span>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -912,7 +947,7 @@ html[dir=ltr] .cta-inner{direction:ltr}
    TRANSLATIONS — shared key: kodna_lang
 ───────────────────────────────────────────── */
 const T = {
-ar:{dir:'rtl',flag:'🇮🇶',code:'AR',
+ar:{dir:'rtl',flag:'🇮🇶',code:'AR',nav_games:'ألعاب',mobile_games:'🎮 ألعاب',sec_games:'ألعابنا',games_title:'ألعاب مجانية من كودنا',games_desc:'ألعاب خفيفة وممتعة تلعبها على هاتفك أو في المتصفح مباشرة.',burji_desc:'لعبة تكديس بلمسة واحدة: 19 عالماً بقواعد مختلفة، تحدٍّ يومي، ومباريات مباشرة مع أصدقائك.',tag_game:'لعبة',
  srv_nav:"خدماتنا",srv_mnav:"💼 خدماتنا",sec_srv:"خدماتنا",srv_title:"خدمات نقدمها لك",srv_desc:"إضافة لبرامجنا، نشتغل وياك على حضورك الرقمي ومشاريعك.",srv1_name:"دعم الصفحات وإدارة السوشل ميديا",srv1_desc:"زيادة متابعين، رفع تفاعل، إدارة حسابات، حملات وترندات X، تصميم وإنتاج فيديو، وإزالة الحسابات المنتحلة.",srv1_tag:"سوشل ميديا",srv2_name:"تطوير مواقع وتطبيقات",srv2_desc:"موقع أو تطبيق أندرويد من الصفر حسب طلبك — حجز دومين، استضافة، تصميم واجهات، برمجة، ولوحة تحكم ودعم.",srv2_tag:"تطوير",srv_badge:"خدمة",srv_btn:"التفاصيل ←",
  pwgen_name:'مولّد كلمات المرور',pwgen_desc:'أنشئ كلمات مرور عشوائية قوية بطول وخيارات قابلة للضبط — كلها داخل متصفحك.',
  nav_online:'خدمات أون لاين',mobile_online:'🛠 خدمات أون لاين',sec_online:'خدمات أون لاين',online_title:'خدمات وأدوات أون لاين مجانية',online_desc:'أدوات تعمل مباشرة في متصفحك بلا تثبيت ولا تسجيل.',twofa_name:'مولّد رمز 2FA',twofa_desc:'مولّد رمز المصادقة الثنائية (TOTP) — أدخل المفتاح واحصل على رمز يتغيّر كل 30 ثانية، داخل متصفحك.',tag_online:'أونلاين',
@@ -950,7 +985,7 @@ ar:{dir:'rtl',flag:'🇮🇶',code:'AR',
   tg_open:'✈️\u00a0 فتح تيليغرام الآن',tg_note:'سيتم فتح تيليغرام مباشرة',
   tg_or:'أو انضم لقناة كودنا',tg_channel:'📢\u00a0 قناة كودنا – أخبار وتحديثات',
 },
-en:{dir:'ltr',flag:'🇬🇧',code:'EN',
+en:{dir:'ltr',flag:'🇬🇧',code:'EN',nav_games:'Games',mobile_games:'🎮 Games',sec_games:'Our games',games_title:'Free games from Kodna',games_desc:'Light, fun games you can play on your phone or right in your browser.',burji_desc:'A one-tap stacking game: 19 worlds with different rules, a daily challenge and live matches with friends.',tag_game:'Game',
  srv_nav:"Services",srv_mnav:"💼 Services",sec_srv:"Our services",srv_title:"Services we offer you",srv_desc:"Beyond our software, we work with you on your digital presence and your projects.",srv1_name:"Social Media Growth & Management",srv1_desc:"Follower growth, engagement, account management, X campaigns, design and video production, and impersonation takedown.",srv1_tag:"Social media",srv2_name:"Web & App Development",srv2_desc:"A website or Android app built from scratch — domain, hosting, UI design, development, dashboard and support.",srv2_tag:"Development",srv_badge:"Service",srv_btn:"Details →",
  pwgen_name:'Password Generator',pwgen_desc:'Create strong random passwords with adjustable length and options — all in your browser.',
  nav_online:'Online Services',mobile_online:'🛠 Online Services',sec_online:'Online Services',online_title:'Free online tools & services',online_desc:'Tools that run right in your browser — no install, no signup.',twofa_name:'2FA Authenticator',twofa_desc:'2FA (TOTP) code generator — enter your secret and get a code that refreshes every 30s, in your browser.',tag_online:'Online',
@@ -988,7 +1023,7 @@ en:{dir:'ltr',flag:'🇬🇧',code:'EN',
   tg_open:'✈️\u00a0 Open Telegram Now',tg_note:'Telegram will open directly',
   tg_or:'Or join the Kodna channel',tg_channel:'📢\u00a0 Kodna Channel – News & Updates',
 },
-ku:{dir:'rtl',flag:'🏔️',code:'KU',
+ku:{dir:'rtl',flag:'🏔️',code:'KU',nav_games:'یاری',mobile_games:'🎮 یاری',sec_games:'یارییەکانمان',games_title:'یاریی بێبەرامبەر لە کۆدنا',games_desc:'یاریی سووک و خۆش کە لەسەر مۆبایلەکەت یان ڕاستەوخۆ لە وێبگەڕدا یاری دەکەیت.',burji_desc:'یارییەکی کەڵەکەکردن بە یەک لێدان: ١٩ جیهان بە یاسای جیاواز، ململانێی ڕۆژانە و یاریی ڕاستەوخۆ لەگەڵ هاوڕێکانت.',tag_game:'یاری',
  srv_nav:"خزمەتگوزارییەکانمان",srv_mnav:"💼 خزمەتگوزارییەکانمان",sec_srv:"خزمەتگوزارییەکانمان",srv_title:"خزمەتگوزاری کە پێشکەشت دەکەین",srv_desc:"جگە لە بەرنامەکانمان، لەگەڵت کار دەکەین لەسەر ئامادەبوونی دیجیتاڵی و پڕۆژەکانت.",srv1_name:"پشتگیری پەڕەکان و بەڕێوەبردنی سۆشیال میدیا",srv1_desc:"زیادکردنی فۆڵۆوەر، کارلێک، بەڕێوەبردنی هەژمار، کەمپینی X، دیزاین و ڤیدیۆ، و لابردنی ناوی ساختە.",srv1_tag:"سۆشیال میدیا",srv2_name:"دروستکردنی ماڵپەڕ و ئەپ",srv2_desc:"ماڵپەڕ یان ئەپی ئەندرۆید لە سفرەوە — دۆمەین، هۆستینگ، دیزاین، بەرنامەسازی و پشتگیری.",srv2_tag:"گەشەپێدان",srv_badge:"خزمەتگوزاری",srv_btn:"وردەکاری ←",
  pwgen_name:'دروستکەری وشەی نهێنی',pwgen_desc:'وشەی نهێنی بەهێز و هەڕەمەکی دروست بکە بە درێژی و هەڵبژاردنی گونجاو — هەمووی لە وێبگەڕەکەتدا.',
  nav_online:'خزمەتگوزاری ئۆنڵاین',mobile_online:'🛠 خزمەتگوزاری ئۆنڵاین',sec_online:'خزمەتگوزاری ئۆنڵاین',online_title:'ئامراز و خزمەتگوزاری ئۆنڵاینی بەخۆڕایی',online_desc:'ئامرازەکان ڕاستەوخۆ لە وێبگەڕەکەتدا کار دەکەن بەبێ دامەزراندن.',twofa_name:'دروستکەری کۆدی 2FA',twofa_desc:'دروستکەری کۆدی 2FA (TOTP) — کلیل بنووسە و کۆدێک وەربگرە کە هەر ٣٠ چرکە دەگۆڕێت.',tag_online:'ئۆنڵاین',
@@ -1026,7 +1061,7 @@ ku:{dir:'rtl',flag:'🏔️',code:'KU',
   tg_open:'✈️\u00a0 تیلیگرام ئێستا بکەرەوە',tg_note:'تیلیگرام ڕاستەوخۆ دەکرێتەوە',
   tg_or:'یان بەشداربە لە کەناڵی Kodna',tg_channel:'📢\u00a0 کەناڵی Kodna – هەواڵ و نوێکارییەکان',
 },
-zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',
+zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',nav_games:'游戏',mobile_games:'🎮 游戏',sec_games:'我们的游戏',games_title:'Kodna 免费游戏',games_desc:'轻松有趣的游戏，可在手机上或直接在浏览器中畅玩。',burji_desc:'一键叠塔游戏：19 个规则各异的世界、每日挑战，以及与好友的实时对战。',tag_game:'游戏',
  srv_nav:"我们的服务",srv_mnav:"💼 我们的服务",sec_srv:"我们的服务",srv_title:"我们为你提供的服务",srv_desc:"除了软件，我们还与你一起打造数字影响力和项目。",srv1_name:"主页推广与社交媒体运营",srv1_desc:"涨粉、互动提升、账号运营、X 话题活动、设计与视频制作，以及仿冒清除。",srv1_tag:"社交媒体",srv2_name:"网站与应用开发",srv2_desc:"从零搭建网站或安卓应用——域名、主机、界面设计、开发、后台与支持。",srv2_tag:"开发",srv_badge:"服务",srv_btn:"了解详情 →",
  pwgen_name:'密码生成器',pwgen_desc:'生成长度与选项可调的强随机密码 — 全部在浏览器中完成。',
  nav_online:'在线服务',mobile_online:'🛠 在线服务',sec_online:'在线服务',online_title:'免费在线工具与服务',online_desc:'直接在浏览器中运行，无需安装或注册。',twofa_name:'2FA 验证器',twofa_desc:'2FA (TOTP) 验证码生成器 — 输入密钥即可获得每 30 秒更新的代码。',tag_online:'在线',
@@ -1064,7 +1099,7 @@ zh:{dir:'ltr',flag:'🇨🇳',code:'ZH',
   tg_open:'✈️\u00a0 立即打开 Telegram',tg_note:'Telegram 将直接打开',
   tg_or:'或加入 Kodna 频道',tg_channel:'📢\u00a0 Kodna 频道 – 新闻与更新',
 },
-es:{dir:'ltr',flag:'🇪🇸',code:'ES',
+es:{dir:'ltr',flag:'🇪🇸',code:'ES',nav_games:'Juegos',mobile_games:'🎮 Juegos',sec_games:'Nuestros juegos',games_title:'Juegos gratis de Kodna',games_desc:'Juegos ligeros y divertidos para tu móvil o directamente en el navegador.',burji_desc:'Un juego de apilar con un toque: 19 mundos con reglas distintas, un reto diario y partidas en vivo con amigos.',tag_game:'Juego',
  srv_nav:"Servicios",srv_mnav:"💼 Servicios",sec_srv:"Nuestros servicios",srv_title:"Servicios que te ofrecemos",srv_desc:"Además de nuestro software, trabajamos contigo en tu presencia digital y tus proyectos.",srv1_name:"Gestión y crecimiento en redes",srv1_desc:"Seguidores, interacción, gestión de cuentas, campañas en X, diseño y vídeo, y retirada de suplantaciones.",srv1_tag:"Redes sociales",srv2_name:"Desarrollo web y de apps",srv2_desc:"Una web o app Android desde cero: dominio, alojamiento, diseño, programación, panel y soporte.",srv2_tag:"Desarrollo",srv_badge:"Servicio",srv_btn:"Ver detalles →",
  pwgen_name:'Generador de contraseñas',pwgen_desc:'Crea contraseñas aleatorias fuertes con longitud y opciones ajustables — todo en tu navegador.',
  nav_online:'Servicios online',mobile_online:'🛠 Servicios online',sec_online:'Servicios online',online_title:'Herramientas y servicios online gratis',online_desc:'Herramientas que funcionan en tu navegador, sin instalar ni registrarse.',twofa_name:'Autenticador 2FA',twofa_desc:'Generador de códigos 2FA (TOTP) — introduce tu clave y obtén un código que cambia cada 30 s.',tag_online:'Online',
@@ -1102,7 +1137,7 @@ es:{dir:'ltr',flag:'🇪🇸',code:'ES',
   tg_open:'✈️\u00a0 Abrir Telegram Ahora',tg_note:'Telegram se abrirá directamente',
   tg_or:'O únete al canal de Kodna',tg_channel:'📢\u00a0 Canal Kodna – Noticias y Actualizaciones',
 },
-ru:{dir:'ltr',flag:'🇷🇺',code:'RU',
+ru:{dir:'ltr',flag:'🇷🇺',code:'RU',nav_games:'Игры',mobile_games:'🎮 Игры',sec_games:'Наши игры',games_title:'Бесплатные игры от Kodna',games_desc:'Лёгкие и весёлые игры для телефона или прямо в браузере.',burji_desc:'Башня в одно касание: 19 миров с разными правилами, ежедневный вызов и живые матчи с друзьями.',tag_game:'Игра',
  srv_nav:"Наши услуги",srv_mnav:"💼 Наши услуги",sec_srv:"Наши услуги",srv_title:"Услуги, которые мы предлагаем",srv_desc:"Кроме программ, мы работаем с вами над вашим присутствием в сети и проектами.",srv1_name:"Продвижение и ведение соцсетей",srv1_desc:"Подписчики, вовлечённость, ведение аккаунтов, кампании в X, дизайн и видео, удаление подделок.",srv1_tag:"Соцсети",srv2_name:"Разработка сайтов и приложений",srv2_desc:"Сайт или Android-приложение с нуля: домен, хостинг, дизайн, разработка, панель и поддержка.",srv2_tag:"Разработка",srv_badge:"Услуга",srv_btn:"Подробнее →",
  pwgen_name:'Генератор паролей',pwgen_desc:'Создавайте надёжные случайные пароли с настраиваемой длиной — всё в браузере.',
  nav_online:'Онлайн-сервисы',mobile_online:'🛠 Онлайн-сервисы',sec_online:'Онлайн-сервисы',online_title:'Бесплатные онлайн-инструменты и сервисы',online_desc:'Инструменты прямо в браузере — без установки и регистрации.',twofa_name:'Генератор 2FA',twofa_desc:'Генератор кодов 2FA (TOTP) — введите ключ и получите код, меняющийся каждые 30 секунд.',tag_online:'Онлайн',
